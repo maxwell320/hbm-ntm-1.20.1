@@ -1,4 +1,4 @@
-// 1.20.1	2026-03-31T23:14:53.1135082	Item Models: hbmntm
+// 1.20.1	2026-03-31T23:28:32.056663	Item Models: hbmntm
 5af477fae0ee316daeface1cde9128dc4f6e626c assets/hbmntm/models/item/ball_resin.json
 eca0ce1be9a8cdc468645ed5f33746d4234c91ad assets/hbmntm/models/item/barrel_heavy_cdalloy.json
 eca0ce1be9a8cdc468645ed5f33746d4234c91ad assets/hbmntm/models/item/barrel_heavy_desh.json
@@ -85,6 +85,7 @@ df044d7e2a265987e24a523d3fe97a6efb259a53 assets/hbmntm/models/item/coil_advanced
 df044d7e2a265987e24a523d3fe97a6efb259a53 assets/hbmntm/models/item/coil_copper.json
 df044d7e2a265987e24a523d3fe97a6efb259a53 assets/hbmntm/models/item/coil_gold.json
 df044d7e2a265987e24a523d3fe97a6efb259a53 assets/hbmntm/models/item/coil_magnetized_tungsten.json
+df044d7e2a265987e24a523d3fe97a6efb259a53 assets/hbmntm/models/item/coil_tungsten.json
 c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_aluminium.json
 c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_beryllium.json
 c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_cinnebar.json
@@ -417,6 +418,7 @@ c8d8b03f3cd7ab50987c4556bf26983a379b17db assets/hbmntm/models/item/receiver_ligh
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/sulfur.json
 f18029efdb36a6bdf1764fe6dbb36fdf459f753f assets/hbmntm/models/item/wire_advanced_alloy.json
 f18029efdb36a6bdf1764fe6dbb36fdf459f753f assets/hbmntm/models/item/wire_aluminium.json
+f18029efdb36a6bdf1764fe6dbb36fdf459f753f assets/hbmntm/models/item/wire_carbon.json
 f18029efdb36a6bdf1764fe6dbb36fdf459f753f assets/hbmntm/models/item/wire_copper.json
 df044d7e2a265987e24a523d3fe97a6efb259a53 assets/hbmntm/models/item/wire_dense_bscco.json
 df044d7e2a265987e24a523d3fe97a6efb259a53 assets/hbmntm/models/item/wire_dense_dineutronium.json
@@ -427,8 +429,6 @@ df044d7e2a265987e24a523d3fe97a6efb259a53 assets/hbmntm/models/item/wire_dense_sc
 df044d7e2a265987e24a523d3fe97a6efb259a53 assets/hbmntm/models/item/wire_dense_schrabidium.json
 df044d7e2a265987e24a523d3fe97a6efb259a53 assets/hbmntm/models/item/wire_dense_starmetal.json
 df044d7e2a265987e24a523d3fe97a6efb259a53 assets/hbmntm/models/item/wire_dense_titanium.json
-df044d7e2a265987e24a523d3fe97a6efb259a53 assets/hbmntm/models/item/wire_dense_tungsten.json
-f18029efdb36a6bdf1764fe6dbb36fdf459f753f assets/hbmntm/models/item/wire_fine_carbon.json
 f18029efdb36a6bdf1764fe6dbb36fdf459f753f assets/hbmntm/models/item/wire_fine_steel.json
 f18029efdb36a6bdf1764fe6dbb36fdf459f753f assets/hbmntm/models/item/wire_fine_zirconium.json
 f18029efdb36a6bdf1764fe6dbb36fdf459f753f assets/hbmntm/models/item/wire_gold.json

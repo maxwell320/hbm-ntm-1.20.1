@@ -6,7 +6,7 @@
     "hbmntm:crystal_tungsten",
     "hbmntm:wire_tungsten",
     "hbmntm:bolt_tungsten",
-    "hbmntm:wire_dense_tungsten",
+    "hbmntm:coil_tungsten",
     "hbmntm:plate_triple_tungsten",
     "hbmntm:plate_sextuple_tungsten"
   ]
