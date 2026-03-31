@@ -1,5 +1,32 @@
 {
   "values": [
-    "hbmntm:crystal_cinnebar"
+    "hbmntm:crystal_coal",
+    "hbmntm:crystal_diamond",
+    "hbmntm:crystal_iron",
+    "hbmntm:crystal_gold",
+    "hbmntm:crystal_redstone",
+    "hbmntm:crystal_lapis",
+    "hbmntm:crystal_lithium",
+    "hbmntm:crystal_uranium",
+    "hbmntm:crystal_thorium",
+    "hbmntm:crystal_plutonium",
+    "hbmntm:crystal_titanium",
+    "hbmntm:crystal_copper",
+    "hbmntm:crystal_tungsten",
+    "hbmntm:crystal_aluminium",
+    "hbmntm:crystal_starmetal",
+    "hbmntm:crystal_schrabidium",
+    "hbmntm:crystal_schraranium",
+    "hbmntm:crystal_lead",
+    "hbmntm:crystal_rare",
+    "hbmntm:crystal_beryllium",
+    "hbmntm:crystal_cobalt",
+    "hbmntm:crystal_sulfur",
+    "hbmntm:crystal_niter",
+    "hbmntm:crystal_fluorite",
+    "hbmntm:crystal_phosphorus",
+    "hbmntm:crystal_cinnebar",
+    "hbmntm:crystal_osmiridium",
+    "hbmntm:crystal_trixite"
   ]
 }

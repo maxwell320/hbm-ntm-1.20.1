@@ -1,7 +1,12 @@
 {
   "values": [
+    "hbmntm:powder_coal",
+    "hbmntm:powder_lignite",
+    "hbmntm:powder_diamond",
     "hbmntm:powder_iron",
     "hbmntm:powder_gold",
+    "hbmntm:powder_lapis",
+    "hbmntm:powder_quartz",
     "hbmntm:powder_lithium",
     "hbmntm:powder_calcium",
     "hbmntm:powder_cadmium",

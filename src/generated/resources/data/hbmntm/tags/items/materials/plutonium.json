@@ -3,6 +3,7 @@
     "hbmntm:ingot_plutonium",
     "hbmntm:nugget_plutonium",
     "hbmntm:billet_plutonium",
-    "hbmntm:powder_plutonium"
+    "hbmntm:powder_plutonium",
+    "hbmntm:crystal_plutonium"
   ]
 }

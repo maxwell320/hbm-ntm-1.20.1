@@ -4,6 +4,7 @@
     "hbmntm:ingot_uranium",
     "hbmntm:nugget_uranium",
     "hbmntm:billet_uranium",
-    "hbmntm:powder_uranium"
+    "hbmntm:powder_uranium",
+    "hbmntm:crystal_uranium"
   ]
 }

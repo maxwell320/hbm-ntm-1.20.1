@@ -1,4 +1,4 @@
-// 1.20.1	2026-03-31T19:18:57.7579126	Item Models: hbmntm
+// 1.20.1	2026-03-31T22:41:10.8062513	Item Models: hbmntm
 5af477fae0ee316daeface1cde9128dc4f6e626c assets/hbmntm/models/item/ball_resin.json
 eca0ce1be9a8cdc468645ed5f33746d4234c91ad assets/hbmntm/models/item/barrel_heavy_cdalloy.json
 eca0ce1be9a8cdc468645ed5f33746d4234c91ad assets/hbmntm/models/item/barrel_heavy_desh.json
@@ -81,7 +81,34 @@ eca0ce1be9a8cdc468645ed5f33746d4234c91ad assets/hbmntm/models/item/barrel_heavy_
 5a2a3137b0e718a50b2c6c1515b71c9d9233a469 assets/hbmntm/models/item/bolt_steel.json
 5a2a3137b0e718a50b2c6c1515b71c9d9233a469 assets/hbmntm/models/item/bolt_tungsten.json
 5af477fae0ee316daeface1cde9128dc4f6e626c assets/hbmntm/models/item/cinnebar.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_aluminium.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_beryllium.json
 c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_cinnebar.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_coal.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_cobalt.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_copper.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_diamond.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_fluorite.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_gold.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_iron.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_lapis.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_lead.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_lithium.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_niter.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_osmiridium.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_phosphorus.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_plutonium.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_rare.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_redstone.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_schrabidium.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_schraranium.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_starmetal.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_sulfur.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_thorium.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_titanium.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_trixite.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_tungsten.json
+c64ed609ece68994ce23dd2809145040bce13579 assets/hbmntm/models/item/crystal_uranium.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/fluorite.json
 5af477fae0ee316daeface1cde9128dc4f6e626c assets/hbmntm/models/item/gem_sodalite.json
 5af477fae0ee316daeface1cde9128dc4f6e626c assets/hbmntm/models/item/gem_tantalium.json
@@ -155,6 +182,7 @@ e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_rubber.
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_saturnite.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_schrabidate.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_schrabidium.json
+e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_schraranium.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_silicon.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_slag.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_solinium.json
@@ -173,6 +201,7 @@ e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_u238.js
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_uranium.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_weaponsteel.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_zirconium.json
+5af477fae0ee316daeface1cde9128dc4f6e626c assets/hbmntm/models/item/lignite.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/lithium.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/nitra.json
 e6885ed5496c11f28296dedb86482ccdc77686ce assets/hbmntm/models/item/ntmpipe_aluminium.json
@@ -288,6 +317,8 @@ c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_cerium
 da5d98b464567d94836049cecc97328495fcfb10 assets/hbmntm/models/item/powder_cerium_tiny.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_chlorocalcite.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_co60.json
+c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_coal.json
+da5d98b464567d94836049cecc97328495fcfb10 assets/hbmntm/models/item/powder_coal_tiny.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_cobalt.json
 da5d98b464567d94836049cecc97328495fcfb10 assets/hbmntm/models/item/powder_cobalt_tiny.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_combine_steel.json
@@ -295,6 +326,7 @@ c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_copper
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_cs137.json
 da5d98b464567d94836049cecc97328495fcfb10 assets/hbmntm/models/item/powder_cs137_tiny.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_desh.json
+c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_diamond.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_dineutronium.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_dura_steel.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_emerald.json
@@ -308,7 +340,9 @@ c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_iodine
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_iron.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_lanthanium.json
 da5d98b464567d94836049cecc97328495fcfb10 assets/hbmntm/models/item/powder_lanthanium_tiny.json
+c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_lapis.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_lead.json
+c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_lignite.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_lithium.json
 da5d98b464567d94836049cecc97328495fcfb10 assets/hbmntm/models/item/powder_lithium_tiny.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_magnetized_tungsten.json
@@ -321,6 +355,7 @@ da5d98b464567d94836049cecc97328495fcfb10 assets/hbmntm/models/item/powder_niobiu
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_plutonium.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_polonium.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_polymer.json
+c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_quartz.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_ra226.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_red_copper.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_schrabidate.json

@@ -4,32 +4,56 @@ import java.util.List;
 
 public final class HbmMaterials {
     public static final HbmMaterialDefinition CARBON = HbmMaterialDefinition.of("carbon", "Carbon", HbmMaterialShape.WIRE);
+    public static final HbmMaterialDefinition COAL = HbmMaterialDefinition.of("coal", "Coal", HbmMaterialShape.DUST_TINY, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
+        .withItemId(HbmMaterialShape.DUST_TINY, "powder_coal_tiny")
+        .withItemId(HbmMaterialShape.DUST, "powder_coal")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_coal");
+    public static final HbmMaterialDefinition LIGNITE = HbmMaterialDefinition.of("lignite", "Lignite", HbmMaterialShape.GEM, HbmMaterialShape.DUST)
+        .withItemId(HbmMaterialShape.GEM, "lignite")
+        .withItemDisplayName(HbmMaterialShape.GEM, "Lignite")
+        .withItemId(HbmMaterialShape.DUST, "powder_lignite");
     public static final HbmMaterialDefinition GRAPHITE = HbmMaterialDefinition.of("graphite", "Graphite", HbmMaterialShape.INGOT);
+    public static final HbmMaterialDefinition DIAMOND = HbmMaterialDefinition.of("diamond", "Diamond", HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
+        .withItemId(HbmMaterialShape.DUST, "powder_diamond")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_diamond");
     public static final HbmMaterialDefinition FIREBRICK = HbmMaterialDefinition.of("firebrick", "Firebrick", HbmMaterialShape.INGOT);
-    public static final HbmMaterialDefinition IRON = HbmMaterialDefinition.of("iron", "Iron", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST, HbmMaterialShape.PLATE, HbmMaterialShape.PIPE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE)
-        .withItemId(HbmMaterialShape.DUST, "powder_iron");
-    public static final HbmMaterialDefinition GOLD = HbmMaterialDefinition.of("gold", "Gold", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST, HbmMaterialShape.PLATE, HbmMaterialShape.WIRE, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE)
-        .withItemId(HbmMaterialShape.DUST, "powder_gold");
-    public static final HbmMaterialDefinition LITHIUM = HbmMaterialDefinition.of("lithium", "Lithium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.DUST_TINY, HbmMaterialShape.DUST)
+    public static final HbmMaterialDefinition IRON = HbmMaterialDefinition.of("iron", "Iron", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL, HbmMaterialShape.PLATE, HbmMaterialShape.PIPE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE)
+        .withItemId(HbmMaterialShape.DUST, "powder_iron")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_iron");
+    public static final HbmMaterialDefinition GOLD = HbmMaterialDefinition.of("gold", "Gold", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL, HbmMaterialShape.PLATE, HbmMaterialShape.WIRE, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE)
+        .withItemId(HbmMaterialShape.DUST, "powder_gold")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_gold");
+    public static final HbmMaterialDefinition REDSTONE = HbmMaterialDefinition.of("redstone", "Redstone", HbmMaterialShape.CRYSTAL)
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_redstone");
+    public static final HbmMaterialDefinition LAPIS = HbmMaterialDefinition.of("lapis", "Lapis", HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
+        .withItemId(HbmMaterialShape.DUST, "powder_lapis")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_lapis");
+    public static final HbmMaterialDefinition QUARTZ = HbmMaterialDefinition.of("quartz", "Quartz", HbmMaterialShape.DUST)
+        .withItemId(HbmMaterialShape.DUST, "powder_quartz");
+    public static final HbmMaterialDefinition LITHIUM = HbmMaterialDefinition.of("lithium", "Lithium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.DUST_TINY, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
         .withItemId(HbmMaterialShape.INGOT, "lithium")
         .withItemDisplayName(HbmMaterialShape.INGOT, "Lithium")
         .withItemId(HbmMaterialShape.DUST_TINY, "powder_lithium_tiny")
-        .withItemId(HbmMaterialShape.DUST, "powder_lithium");
+        .withItemId(HbmMaterialShape.DUST, "powder_lithium")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_lithium");
     public static final HbmMaterialDefinition CALCIUM = HbmMaterialDefinition.of("calcium", "Calcium", HbmMaterialShape.INGOT, HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.DUST, "powder_calcium");
     public static final HbmMaterialDefinition CADMIUM = HbmMaterialDefinition.of("cadmium", "Cadmium", HbmMaterialShape.INGOT, HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.DUST, "powder_cadmium");
-    public static final HbmMaterialDefinition URANIUM = HbmMaterialDefinition.of("uranium", "Uranium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST)
-        .withItemId(HbmMaterialShape.DUST, "powder_uranium");
+    public static final HbmMaterialDefinition URANIUM = HbmMaterialDefinition.of("uranium", "Uranium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
+        .withItemId(HbmMaterialShape.DUST, "powder_uranium")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_uranium");
     public static final HbmMaterialDefinition AUSTRALIUM = HbmMaterialDefinition.of("australium", "Australium", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.DUST, "powder_australium");
     public static final HbmMaterialDefinition U233 = HbmMaterialDefinition.of("u233", "U-233", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET);
     public static final HbmMaterialDefinition U235 = HbmMaterialDefinition.of("u235", "U-235", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET);
     public static final HbmMaterialDefinition U238 = HbmMaterialDefinition.of("u238", "U-238", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET);
-    public static final HbmMaterialDefinition TH232 = HbmMaterialDefinition.of("th232", "Thorium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST)
-        .withItemId(HbmMaterialShape.DUST, "powder_thorium");
-    public static final HbmMaterialDefinition PLUTONIUM = HbmMaterialDefinition.of("plutonium", "Plutonium", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST)
-        .withItemId(HbmMaterialShape.DUST, "powder_plutonium");
+    public static final HbmMaterialDefinition TH232 = HbmMaterialDefinition.of("th232", "Thorium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
+        .withItemId(HbmMaterialShape.DUST, "powder_thorium")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_thorium");
+    public static final HbmMaterialDefinition PLUTONIUM = HbmMaterialDefinition.of("plutonium", "Plutonium", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
+        .withItemId(HbmMaterialShape.DUST, "powder_plutonium")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_plutonium");
     public static final HbmMaterialDefinition PU238 = HbmMaterialDefinition.of("pu238", "Pu-238", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET);
     public static final HbmMaterialDefinition PU239 = HbmMaterialDefinition.of("pu239", "Pu-239", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET);
     public static final HbmMaterialDefinition PU240 = HbmMaterialDefinition.of("pu240", "Pu-240", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET);
@@ -62,18 +86,22 @@ public final class HbmMaterials {
     public static final HbmMaterialDefinition AU198 = HbmMaterialDefinition.of("au198", "Au-198", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.DUST, "powder_au198");
     public static final HbmMaterialDefinition PB209 = HbmMaterialDefinition.of("pb209", "Pb-209", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET);
-    public static final HbmMaterialDefinition TITANIUM = HbmMaterialDefinition.of("titanium", "Titanium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.PLATE, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE, HbmMaterialShape.SHELL)
-        .withItemId(HbmMaterialShape.DUST, "powder_titanium");
-    public static final HbmMaterialDefinition COPPER = HbmMaterialDefinition.of("copper", "Copper", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.WIRE, HbmMaterialShape.PLATE, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE, HbmMaterialShape.SHELL, HbmMaterialShape.PIPE)
-        .withItemId(HbmMaterialShape.DUST, "powder_copper");
+    public static final HbmMaterialDefinition TITANIUM = HbmMaterialDefinition.of("titanium", "Titanium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL, HbmMaterialShape.PLATE, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE, HbmMaterialShape.SHELL)
+        .withItemId(HbmMaterialShape.DUST, "powder_titanium")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_titanium");
+    public static final HbmMaterialDefinition COPPER = HbmMaterialDefinition.of("copper", "Copper", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL, HbmMaterialShape.WIRE, HbmMaterialShape.PLATE, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE, HbmMaterialShape.SHELL, HbmMaterialShape.PIPE)
+        .withItemId(HbmMaterialShape.DUST, "powder_copper")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_copper");
     public static final HbmMaterialDefinition RED_COPPER = HbmMaterialDefinition.of("red_copper", "Red Copper", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.WIRE, HbmMaterialShape.DENSE_WIRE)
         .withItemId(HbmMaterialShape.DUST, "powder_red_copper");
     public static final HbmMaterialDefinition ADVANCED_ALLOY = HbmMaterialDefinition.of("advanced_alloy", "Advanced Alloy", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.WIRE, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE)
         .withItemId(HbmMaterialShape.DUST, "powder_advanced_alloy");
-    public static final HbmMaterialDefinition TUNGSTEN = HbmMaterialDefinition.of("tungsten", "Tungsten", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.WIRE, HbmMaterialShape.BOLT, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE)
-        .withItemId(HbmMaterialShape.DUST, "powder_tungsten");
-    public static final HbmMaterialDefinition ALUMINIUM = HbmMaterialDefinition.of("aluminium", "Aluminium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.WIRE, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE, HbmMaterialShape.SHELL, HbmMaterialShape.PIPE)
-        .withItemId(HbmMaterialShape.DUST, "powder_aluminium");
+    public static final HbmMaterialDefinition TUNGSTEN = HbmMaterialDefinition.of("tungsten", "Tungsten", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL, HbmMaterialShape.WIRE, HbmMaterialShape.BOLT, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE)
+        .withItemId(HbmMaterialShape.DUST, "powder_tungsten")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_tungsten");
+    public static final HbmMaterialDefinition ALUMINIUM = HbmMaterialDefinition.of("aluminium", "Aluminium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL, HbmMaterialShape.WIRE, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE, HbmMaterialShape.SHELL, HbmMaterialShape.PIPE)
+        .withItemId(HbmMaterialShape.DUST, "powder_aluminium")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_aluminium");
     public static final HbmMaterialDefinition STEEL = HbmMaterialDefinition.of("steel", "Steel", HbmMaterialShape.INGOT, HbmMaterialShape.DUST_TINY, HbmMaterialShape.DUST, HbmMaterialShape.WIRE, HbmMaterialShape.BOLT, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE, HbmMaterialShape.SHELL, HbmMaterialShape.PIPE, HbmMaterialShape.LIGHT_BARREL, HbmMaterialShape.HEAVY_BARREL, HbmMaterialShape.LIGHT_RECEIVER, HbmMaterialShape.GRIP)
         .withItemId(HbmMaterialShape.DUST_TINY, "powder_steel_tiny")
         .withItemId(HbmMaterialShape.DUST, "powder_steel");
@@ -87,20 +115,26 @@ public final class HbmMaterials {
         .withItemId(HbmMaterialShape.DUST, "powder_magnetized_tungsten");
     public static final HbmMaterialDefinition COMBINE_STEEL = HbmMaterialDefinition.of("combine_steel", "Combine Steel", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE)
         .withItemId(HbmMaterialShape.DUST, "powder_combine_steel");
-    public static final HbmMaterialDefinition STARMETAL = HbmMaterialDefinition.of("starmetal", "Starmetal", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE)
-        .withItemId(HbmMaterialShape.DUST, "powder_starmetal");
+    public static final HbmMaterialDefinition STARMETAL = HbmMaterialDefinition.of("starmetal", "Starmetal", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE)
+        .withItemId(HbmMaterialShape.DUST, "powder_starmetal")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_starmetal");
     public static final HbmMaterialDefinition FERRORANIUM = HbmMaterialDefinition.of("ferrouranium", "Ferrouranium", HbmMaterialShape.INGOT, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.HEAVY_BARREL, HbmMaterialShape.HEAVY_RECEIVER);
     public static final HbmMaterialDefinition GUNMETAL = HbmMaterialDefinition.of("gunmetal", "Gunmetal", HbmMaterialShape.INGOT, HbmMaterialShape.PLATE, HbmMaterialShape.LIGHT_BARREL, HbmMaterialShape.HEAVY_BARREL, HbmMaterialShape.LIGHT_RECEIVER, HbmMaterialShape.HEAVY_RECEIVER, HbmMaterialShape.MECHANISM, HbmMaterialShape.STOCK, HbmMaterialShape.GRIP);
     public static final HbmMaterialDefinition WEAPONSTEEL = HbmMaterialDefinition.of("weaponsteel", "Weapon Steel", HbmMaterialShape.INGOT, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.SHELL, HbmMaterialShape.LIGHT_BARREL, HbmMaterialShape.HEAVY_BARREL, HbmMaterialShape.LIGHT_RECEIVER, HbmMaterialShape.HEAVY_RECEIVER, HbmMaterialShape.MECHANISM, HbmMaterialShape.STOCK, HbmMaterialShape.GRIP);
     public static final HbmMaterialDefinition SATURNITE = HbmMaterialDefinition.of("saturnite", "Saturnite", HbmMaterialShape.INGOT, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.SHELL, HbmMaterialShape.LIGHT_BARREL, HbmMaterialShape.HEAVY_BARREL, HbmMaterialShape.LIGHT_RECEIVER, HbmMaterialShape.HEAVY_RECEIVER, HbmMaterialShape.MECHANISM, HbmMaterialShape.STOCK, HbmMaterialShape.GRIP);
-    public static final HbmMaterialDefinition SCHRABIDIUM = HbmMaterialDefinition.of("schrabidium", "Schrabidium", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.WIRE, HbmMaterialShape.BILLET, HbmMaterialShape.DUST, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE)
-        .withItemId(HbmMaterialShape.DUST, "powder_schrabidium");
+    public static final HbmMaterialDefinition SCHRABIDIUM = HbmMaterialDefinition.of("schrabidium", "Schrabidium", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.WIRE, HbmMaterialShape.BILLET, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE)
+        .withItemId(HbmMaterialShape.DUST, "powder_schrabidium")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_schrabidium");
     public static final HbmMaterialDefinition SOLINIUM = HbmMaterialDefinition.of("solinium", "Solinium", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET);
     public static final HbmMaterialDefinition SCHRABIDATE = HbmMaterialDefinition.of("schrabidate", "Schrabidate", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE)
         .withItemId(HbmMaterialShape.DUST, "powder_schrabidate");
+    public static final HbmMaterialDefinition SCHRARANIUM = HbmMaterialDefinition.of("schraranium", "Schraranium", HbmMaterialShape.INGOT, HbmMaterialShape.CRYSTAL)
+        .withItemId(HbmMaterialShape.INGOT, "ingot_schraranium")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_schraranium");
     public static final HbmMaterialDefinition GH336 = HbmMaterialDefinition.of("gh336", "GH-336", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET);
-    public static final HbmMaterialDefinition LEAD = HbmMaterialDefinition.of("lead", "Lead", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.DUST, HbmMaterialShape.PLATE)
-        .withItemId(HbmMaterialShape.DUST, "powder_lead");
+    public static final HbmMaterialDefinition LEAD = HbmMaterialDefinition.of("lead", "Lead", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL, HbmMaterialShape.PLATE)
+        .withItemId(HbmMaterialShape.DUST, "powder_lead")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_lead");
     public static final HbmMaterialDefinition BISMUTH = HbmMaterialDefinition.of("bismuth", "Bismuth", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.DUST, "powder_bismuth");
     public static final HbmMaterialDefinition ARSENIC = HbmMaterialDefinition.of("arsenic", "Arsenic", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET);
@@ -112,6 +146,8 @@ public final class HbmMaterials {
     public static final HbmMaterialDefinition TANTALIUM = HbmMaterialDefinition.of("tantalium", "Tantalium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.GEM, HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.GEM, "gem_tantalium")
         .withItemId(HbmMaterialShape.DUST, "powder_tantalium");
+    public static final HbmMaterialDefinition RARE_EARTH = HbmMaterialDefinition.of("rare_earth", "Rare Earth", HbmMaterialShape.CRYSTAL)
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_rare");
     public static final HbmMaterialDefinition LANTHANIUM = HbmMaterialDefinition.of("lanthanium", "Lanthanium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.DUST_TINY, HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.DUST_TINY, "powder_lanthanium_tiny")
         .withItemId(HbmMaterialShape.DUST, "powder_lanthanium");
@@ -121,29 +157,36 @@ public final class HbmMaterials {
     public static final HbmMaterialDefinition NIOBIUM = HbmMaterialDefinition.of("niobium", "Niobium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.DUST_TINY, HbmMaterialShape.DUST, HbmMaterialShape.DENSE_WIRE)
         .withItemId(HbmMaterialShape.DUST_TINY, "powder_niobium_tiny")
         .withItemId(HbmMaterialShape.DUST, "powder_niobium");
-    public static final HbmMaterialDefinition BERYLLIUM = HbmMaterialDefinition.of("beryllium", "Beryllium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST)
-        .withItemId(HbmMaterialShape.DUST, "powder_beryllium");
+    public static final HbmMaterialDefinition BERYLLIUM = HbmMaterialDefinition.of("beryllium", "Beryllium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
+        .withItemId(HbmMaterialShape.DUST, "powder_beryllium")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_beryllium");
     public static final HbmMaterialDefinition EMERALD = HbmMaterialDefinition.of("emerald", "Emerald", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.DUST, "powder_emerald");
-    public static final HbmMaterialDefinition COBALT = HbmMaterialDefinition.of("cobalt", "Cobalt", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST_TINY, HbmMaterialShape.DUST)
+    public static final HbmMaterialDefinition COBALT = HbmMaterialDefinition.of("cobalt", "Cobalt", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST_TINY, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
         .withItemId(HbmMaterialShape.DUST_TINY, "powder_cobalt_tiny")
-        .withItemId(HbmMaterialShape.DUST, "powder_cobalt");
+        .withItemId(HbmMaterialShape.DUST, "powder_cobalt")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_cobalt");
     public static final HbmMaterialDefinition SODIUM = HbmMaterialDefinition.of("sodium", "Sodium", HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.DUST, "powder_sodium");
     public static final HbmMaterialDefinition STRONTIUM = HbmMaterialDefinition.of("strontium", "Strontium", HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.DUST, "powder_strontium");
-    public static final HbmMaterialDefinition SULFUR = HbmMaterialDefinition.of("sulfur", "Sulfur", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST)
+    public static final HbmMaterialDefinition SULFUR = HbmMaterialDefinition.of("sulfur", "Sulfur", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
         .withItemId(HbmMaterialShape.DUST, "sulfur")
-        .withItemDisplayName(HbmMaterialShape.DUST, "Sulfur");
-    public static final HbmMaterialDefinition KNO = HbmMaterialDefinition.of("kno", "KNO", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST)
+        .withItemDisplayName(HbmMaterialShape.DUST, "Sulfur")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_sulfur");
+    public static final HbmMaterialDefinition KNO = HbmMaterialDefinition.of("kno", "KNO", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
         .withItemId(HbmMaterialShape.DUST, "nitra")
-        .withItemDisplayName(HbmMaterialShape.DUST, "Niter");
-    public static final HbmMaterialDefinition FLUORITE = HbmMaterialDefinition.of("fluorite", "Fluorite", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST)
+        .withItemDisplayName(HbmMaterialShape.DUST, "Niter")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_niter")
+        .withItemDisplayName(HbmMaterialShape.CRYSTAL, "Niter Crystal");
+    public static final HbmMaterialDefinition FLUORITE = HbmMaterialDefinition.of("fluorite", "Fluorite", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
         .withItemId(HbmMaterialShape.DUST, "fluorite")
-        .withItemDisplayName(HbmMaterialShape.DUST, "Fluorite");
-    public static final HbmMaterialDefinition RED_PHOSPHORUS = HbmMaterialDefinition.of("red_phosphorus", "Red Phosphorus", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST)
+        .withItemDisplayName(HbmMaterialShape.DUST, "Fluorite")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_fluorite");
+    public static final HbmMaterialDefinition RED_PHOSPHORUS = HbmMaterialDefinition.of("red_phosphorus", "Red Phosphorus", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
         .withItemId(HbmMaterialShape.DUST, "powder_fire")
-        .withItemDisplayName(HbmMaterialShape.DUST, "Red Phosphorus");
+        .withItemDisplayName(HbmMaterialShape.DUST, "Red Phosphorus")
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_phosphorus");
     public static final HbmMaterialDefinition WHITE_PHOSPHORUS = HbmMaterialDefinition.of("white_phosphorus", "White Phosphorus", HbmMaterialShape.INGOT)
         .withItemId(HbmMaterialShape.INGOT, "ingot_phosphorus")
         .withItemDisplayName(HbmMaterialShape.INGOT, "White Phosphorus");
@@ -195,7 +238,10 @@ public final class HbmMaterials {
         .withItemId(HbmMaterialShape.INGOT, "ingot_fiberglass");
     public static final HbmMaterialDefinition ASBESTOS = HbmMaterialDefinition.of("asbestos", "Asbestos", HbmMaterialShape.INGOT, HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.DUST, "powder_asbestos");
-    public static final HbmMaterialDefinition OSMIRIDIUM = HbmMaterialDefinition.of("osmiridium", "Osmiridium", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE);
+    public static final HbmMaterialDefinition OSMIRIDIUM = HbmMaterialDefinition.of("osmiridium", "Osmiridium", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.CRYSTAL, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE)
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_osmiridium");
+    public static final HbmMaterialDefinition TRIXITE = HbmMaterialDefinition.of("trixite", "Trixite", HbmMaterialShape.CRYSTAL)
+        .withItemId(HbmMaterialShape.CRYSTAL, "crystal_trixite");
     public static final HbmMaterialDefinition ELECTRONIUM = HbmMaterialDefinition.of("electronium", "Electronium", HbmMaterialShape.INGOT)
         .withItemId(HbmMaterialShape.INGOT, "ingot_electronium");
     public static final HbmMaterialDefinition SLAG = HbmMaterialDefinition.of("slag", "Slag", HbmMaterialShape.INGOT);
@@ -211,10 +257,16 @@ public final class HbmMaterials {
 
     private static final List<HbmMaterialDefinition> ORDERED = List.of(
         CARBON,
+        COAL,
+        LIGNITE,
         GRAPHITE,
+        DIAMOND,
         FIREBRICK,
         IRON,
         GOLD,
+        REDSTONE,
+        LAPIS,
+        QUARTZ,
         LITHIUM,
         CALCIUM,
         CADMIUM,
@@ -263,6 +315,7 @@ public final class HbmMaterials {
         SCHRABIDIUM,
         SOLINIUM,
         SCHRABIDATE,
+        SCHRARANIUM,
         GH336,
         LEAD,
         BISMUTH,
@@ -270,6 +323,7 @@ public final class HbmMaterials {
         BORON,
         BORAX,
         TANTALIUM,
+        RARE_EARTH,
         LANTHANIUM,
         NEODYMIUM,
         NIOBIUM,
@@ -305,6 +359,7 @@ public final class HbmMaterials {
         FIBERGLASS,
         ASBESTOS,
         OSMIRIDIUM,
+        TRIXITE,
         ELECTRONIUM,
         SLAG,
         MUD,

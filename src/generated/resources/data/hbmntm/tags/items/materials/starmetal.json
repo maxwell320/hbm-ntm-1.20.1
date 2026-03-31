@@ -2,6 +2,7 @@
   "values": [
     "hbmntm:ingot_starmetal",
     "hbmntm:powder_starmetal",
+    "hbmntm:crystal_starmetal",
     "hbmntm:wire_dense_starmetal",
     "hbmntm:plate_triple_starmetal"
   ]
