@@ -151,9 +151,9 @@ public final class HbmMaterials {
         .withItemId(HbmMaterialShape.DUST, "powder_steel")
         .withItemId(HbmMaterialShape.PIPE, "pipes_steel")
         .withItemDisplayName(HbmMaterialShape.PIPE, "Steel Pipes");
-    public static final HbmMaterialDefinition TCALLOY = HbmMaterialDefinition.of("tcalloy", "TC Alloy", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE, HbmMaterialShape.LIGHT_BARREL, HbmMaterialShape.HEAVY_BARREL, HbmMaterialShape.LIGHT_RECEIVER, HbmMaterialShape.HEAVY_RECEIVER)
+    public static final HbmMaterialDefinition TCALLOY = HbmMaterialDefinition.of("tcalloy", "Technetium Steel", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE, HbmMaterialShape.LIGHT_BARREL, HbmMaterialShape.HEAVY_BARREL, HbmMaterialShape.LIGHT_RECEIVER, HbmMaterialShape.HEAVY_RECEIVER)
         .withItemId(HbmMaterialShape.DUST, "powder_tcalloy");
-    public static final HbmMaterialDefinition CDALLOY = HbmMaterialDefinition.of("cdalloy", "CD Alloy", HbmMaterialShape.INGOT, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE, HbmMaterialShape.LIGHT_BARREL, HbmMaterialShape.HEAVY_BARREL, HbmMaterialShape.LIGHT_RECEIVER, HbmMaterialShape.HEAVY_RECEIVER);
+    public static final HbmMaterialDefinition CDALLOY = HbmMaterialDefinition.of("cdalloy", "Cadmium Steel", HbmMaterialShape.INGOT, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE, HbmMaterialShape.LIGHT_BARREL, HbmMaterialShape.HEAVY_BARREL, HbmMaterialShape.LIGHT_RECEIVER, HbmMaterialShape.HEAVY_RECEIVER);
     public static final HbmMaterialDefinition BISMUTH_BRONZE = HbmMaterialDefinition.of("bismuth_bronze", "Bismuth Bronze", HbmMaterialShape.INGOT, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.LIGHT_BARREL, HbmMaterialShape.LIGHT_RECEIVER, HbmMaterialShape.HEAVY_RECEIVER);
     public static final HbmMaterialDefinition ARSENIC_BRONZE = HbmMaterialDefinition.of("arsenic_bronze", "Arsenic Bronze", HbmMaterialShape.INGOT, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.LIGHT_BARREL, HbmMaterialShape.LIGHT_RECEIVER, HbmMaterialShape.HEAVY_RECEIVER);
     public static final HbmMaterialDefinition BSCCO = HbmMaterialDefinition.of("bscco", "BSCCO", HbmMaterialShape.INGOT, HbmMaterialShape.DENSE_WIRE);
@@ -302,7 +302,7 @@ public final class HbmMaterials {
         .withItemId(HbmMaterialShape.INGOT, "ingot_electronium");
     public static final HbmMaterialDefinition SLAG = HbmMaterialDefinition.of("slag", "Slag", HbmMaterialShape.INGOT);
     public static final HbmMaterialDefinition MUD = HbmMaterialDefinition.of("mud", "Mud", HbmMaterialShape.INGOT);
-    public static final HbmMaterialDefinition DURA_STEEL = HbmMaterialDefinition.of("dura_steel", "Dura Steel", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.BOLT, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.PIPE, HbmMaterialShape.LIGHT_BARREL, HbmMaterialShape.HEAVY_BARREL, HbmMaterialShape.LIGHT_RECEIVER, HbmMaterialShape.HEAVY_RECEIVER, HbmMaterialShape.GRIP)
+    public static final HbmMaterialDefinition DURA_STEEL = HbmMaterialDefinition.of("dura_steel", "High-Speed Steel", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.BOLT, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.PIPE, HbmMaterialShape.LIGHT_BARREL, HbmMaterialShape.HEAVY_BARREL, HbmMaterialShape.LIGHT_RECEIVER, HbmMaterialShape.HEAVY_RECEIVER, HbmMaterialShape.GRIP)
         .withItemDisplayName(HbmMaterialShape.INGOT, "High-Speed Steel Ingot")
         .withItemId(HbmMaterialShape.DUST, "powder_dura_steel")
         .withItemDisplayName(HbmMaterialShape.DUST, "High-Speed Steel Powder")
