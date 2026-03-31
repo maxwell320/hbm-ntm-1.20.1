@@ -163,7 +163,7 @@ public final class HbmMaterials {
         .withItemId(HbmMaterialShape.DENSE_WIRE, "coil_magnetized_tungsten")
         .withItemDisplayName(HbmMaterialShape.DENSE_WIRE, "4000K High Temperature Super Conducting Coil")
         .withItemId(HbmMaterialShape.DUST, "powder_magnetized_tungsten");
-    public static final HbmMaterialDefinition COMBINE_STEEL = HbmMaterialDefinition.of("combine_steel", "Combine Steel", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE)
+    public static final HbmMaterialDefinition COMBINE_STEEL = HbmMaterialDefinition.of("combine_steel", "CMB Steel", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE)
         .withItemDisplayName(HbmMaterialShape.INGOT, "CMB Steel Ingot")
         .withItemId(HbmMaterialShape.DUST, "powder_combine_steel")
         .withItemDisplayName(HbmMaterialShape.PLATE, "CMB Steel Plate");
@@ -180,7 +180,7 @@ public final class HbmMaterials {
         .withItemId(HbmMaterialShape.DUST, "powder_schrabidium")
         .withItemId(HbmMaterialShape.CRYSTAL, "crystal_schrabidium");
     public static final HbmMaterialDefinition SOLINIUM = HbmMaterialDefinition.of("solinium", "Solinium", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET);
-    public static final HbmMaterialDefinition SCHRABIDATE = HbmMaterialDefinition.of("schrabidate", "Schrabidate", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE)
+    public static final HbmMaterialDefinition SCHRABIDATE = HbmMaterialDefinition.of("schrabidate", "Ferric Schrabidate", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE)
         .withItemId(HbmMaterialShape.DUST, "powder_schrabidate");
     public static final HbmMaterialDefinition SCHRARANIUM = HbmMaterialDefinition.of("schraranium", "Schraranium", HbmMaterialShape.INGOT, HbmMaterialShape.CRYSTAL)
         .withItemId(HbmMaterialShape.INGOT, "ingot_schraranium")
