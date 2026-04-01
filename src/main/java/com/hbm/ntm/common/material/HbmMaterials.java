@@ -33,6 +33,7 @@ public final class HbmMaterials {
         .withItemId(HbmMaterialShape.CRYSTAL, "crystal_redstone");
     public static final HbmMaterialDefinition LAPIS = HbmMaterialDefinition.of("lapis", "Lapis", HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
         .withItemId(HbmMaterialShape.DUST, "powder_lapis")
+        .withItemDisplayName(HbmMaterialShape.DUST, "Lapis Lazuli Powder")
         .withItemId(HbmMaterialShape.CRYSTAL, "crystal_lapis");
     public static final HbmMaterialDefinition QUARTZ = HbmMaterialDefinition.of("quartz", "Quartz", HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.DUST, "powder_quartz");
