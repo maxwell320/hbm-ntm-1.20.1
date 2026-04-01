@@ -6,7 +6,11 @@ It is not going to be a straight copy of the old 1.7.10 code. Too much of that c
 
 ## Current state
 
-Right now this is still early setup work.
+The project is past pure bootstrap and is in active system-by-system reconstruction.
+
+Current rough progress snapshot:
+- generated material and item naming parity audit: `~90%`
+- overall full 1.7.10 gameplay/content parity: still much earlier than that
 
 So far the project has:
 - a working Forge 1.20.1 workspace
@@ -14,6 +18,8 @@ So far the project has:
 - Gradle runs working
 - a minimal mod bootstrap
 - a basic CI build
+- generated material/item infrastructure with datagen-backed registries and assets
+- a large legacy-backed parity sweep across isotope, powder, wire, crystal, and special-material labels
 
 ## Project baseline
 

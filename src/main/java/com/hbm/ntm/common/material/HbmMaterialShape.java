@@ -5,7 +5,7 @@ public enum HbmMaterialShape {
     INGOT("ingot", "Ingot", "ingots", "item/iron_ingot"),
     NUGGET("nugget", "Nugget", "nuggets", "item/gold_nugget"),
     GEM("gem", "Gem", "gems", "item/emerald"),
-    CRYSTAL("crystal", "Crystal", "crystals", "item/amethyst_shard"),
+    CRYSTAL("crystal", "Crystal", "crystals", "item/amethyst_shard", "%s Crystals"),
     DUST_TINY("dust_tiny", "Tiny Dust", "tiny_dusts", "item/sugar", "Tiny Pile of %s Powder"),
     DUST("dust", "Dust", "dusts", "item/gunpowder", "%s Powder"),
     WIRE("wire_fine", "Fine Wire", "wires", "item/string", "%s Wire"),

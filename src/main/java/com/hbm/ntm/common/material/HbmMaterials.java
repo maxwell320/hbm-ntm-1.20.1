@@ -258,7 +258,7 @@ public final class HbmMaterials {
         .withItemId(HbmMaterialShape.DUST, "nitra")
         .withItemDisplayName(HbmMaterialShape.DUST, "Niter")
         .withItemId(HbmMaterialShape.CRYSTAL, "crystal_niter")
-        .withItemDisplayName(HbmMaterialShape.CRYSTAL, "Niter Crystal");
+        .withItemDisplayName(HbmMaterialShape.CRYSTAL, "Niter Crystals");
     public static final HbmMaterialDefinition FLUORITE = HbmMaterialDefinition.of("fluorite", "Fluorite", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
         .withItemId(HbmMaterialShape.DUST, "fluorite")
         .withItemDisplayName(HbmMaterialShape.DUST, "Fluorite")
@@ -266,6 +266,7 @@ public final class HbmMaterials {
     public static final HbmMaterialDefinition RED_PHOSPHORUS = HbmMaterialDefinition.of("red_phosphorus", "Red Phosphorus", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
         .withItemId(HbmMaterialShape.DUST, "powder_fire")
         .withItemDisplayName(HbmMaterialShape.DUST, "Red Phosphorus")
+        .withItemDisplayName(HbmMaterialShape.CRYSTAL, "Phosphorus Crystals")
         .withItemId(HbmMaterialShape.CRYSTAL, "crystal_phosphorus");
     public static final HbmMaterialDefinition WHITE_PHOSPHORUS = HbmMaterialDefinition.of("white_phosphorus", "White Phosphorus", HbmMaterialShape.INGOT)
         .withItemId(HbmMaterialShape.INGOT, "ingot_phosphorus")
@@ -283,7 +284,7 @@ public final class HbmMaterials {
         .withItemId(HbmMaterialShape.GEM, "cinnebar")
         .withItemDisplayName(HbmMaterialShape.GEM, "Cinnebar")
         .withItemId(HbmMaterialShape.CRYSTAL, "crystal_cinnebar")
-        .withItemDisplayName(HbmMaterialShape.CRYSTAL, "Cinnebar Crystal");
+        .withItemDisplayName(HbmMaterialShape.CRYSTAL, "Cinnabar Crystals");
     public static final HbmMaterialDefinition IODINE = HbmMaterialDefinition.of("iodine", "Iodine", HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.DUST, "powder_iodine");
     public static final HbmMaterialDefinition ASTATINE = HbmMaterialDefinition.of("astatine", "Astatine", HbmMaterialShape.DUST)
