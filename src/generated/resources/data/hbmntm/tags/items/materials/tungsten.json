@@ -7,7 +7,7 @@
     "hbmntm:wire_tungsten",
     "hbmntm:bolt_tungsten",
     "hbmntm:coil_tungsten",
-    "hbmntm:plate_triple_tungsten",
-    "hbmntm:plate_sextuple_tungsten"
+    "hbmntm:plate_cast_tungsten",
+    "hbmntm:plate_welded_tungsten"
   ]
 }

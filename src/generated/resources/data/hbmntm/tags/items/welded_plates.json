@@ -1,15 +1,15 @@
 {
   "values": [
-    "hbmntm:plate_sextuple_iron",
-    "hbmntm:plate_sextuple_titanium",
-    "hbmntm:plate_sextuple_copper",
-    "hbmntm:plate_sextuple_tungsten",
-    "hbmntm:plate_sextuple_aluminium",
-    "hbmntm:plate_sextuple_steel",
-    "hbmntm:plate_sextuple_tcalloy",
-    "hbmntm:plate_sextuple_cdalloy",
-    "hbmntm:plate_sextuple_combine_steel",
-    "hbmntm:plate_sextuple_zirconium",
-    "hbmntm:plate_sextuple_osmiridium"
+    "hbmntm:plate_welded_iron",
+    "hbmntm:plate_welded_titanium",
+    "hbmntm:plate_welded_copper",
+    "hbmntm:plate_welded_tungsten",
+    "hbmntm:plate_welded_aluminium",
+    "hbmntm:plate_welded_steel",
+    "hbmntm:plate_welded_tcalloy",
+    "hbmntm:plate_welded_cdalloy",
+    "hbmntm:plate_welded_combine_steel",
+    "hbmntm:plate_welded_zirconium",
+    "hbmntm:plate_welded_osmiridium"
   ]
 }

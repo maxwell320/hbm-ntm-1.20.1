@@ -1,10 +1,10 @@
 {
   "values": [
-    "hbmntm:ntmpipe_iron",
-    "hbmntm:ntmpipe_copper",
-    "hbmntm:ntmpipe_aluminium",
+    "hbmntm:pipentm_iron",
+    "hbmntm:pipentm_copper",
+    "hbmntm:pipentm_aluminium",
     "hbmntm:pipes_steel",
-    "hbmntm:ntmpipe_rubber",
-    "hbmntm:ntmpipe_dura_steel"
+    "hbmntm:pipentm_rubber",
+    "hbmntm:pipentm_dura_steel"
   ]
 }

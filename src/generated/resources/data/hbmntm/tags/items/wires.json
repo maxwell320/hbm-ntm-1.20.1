@@ -7,9 +7,9 @@
     "hbmntm:wire_advanced_alloy",
     "hbmntm:wire_tungsten",
     "hbmntm:wire_aluminium",
-    "hbmntm:wire_fine_steel",
+    "hbmntm:wire_steel",
     "hbmntm:wire_magnetized_tungsten",
     "hbmntm:wire_schrabidium",
-    "hbmntm:wire_fine_zirconium"
+    "hbmntm:wire_zirconium"
   ]
 }

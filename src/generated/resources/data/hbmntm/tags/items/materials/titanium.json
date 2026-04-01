@@ -6,8 +6,8 @@
     "hbmntm:crystal_titanium",
     "hbmntm:plate_titanium",
     "hbmntm:wire_dense_titanium",
-    "hbmntm:plate_triple_titanium",
-    "hbmntm:plate_sextuple_titanium",
+    "hbmntm:plate_cast_titanium",
+    "hbmntm:plate_welded_titanium",
     "hbmntm:shell_titanium"
   ]
 }

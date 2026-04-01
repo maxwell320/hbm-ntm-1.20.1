@@ -4,8 +4,8 @@
     "hbmntm:powder_iron",
     "hbmntm:crystal_iron",
     "hbmntm:plate_iron",
-    "hbmntm:ntmpipe_iron",
-    "hbmntm:plate_triple_iron",
-    "hbmntm:plate_sextuple_iron"
+    "hbmntm:pipentm_iron",
+    "hbmntm:plate_cast_iron",
+    "hbmntm:plate_welded_iron"
   ]
 }

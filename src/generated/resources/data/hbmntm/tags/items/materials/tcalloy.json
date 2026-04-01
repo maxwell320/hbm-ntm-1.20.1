@@ -2,8 +2,8 @@
   "values": [
     "hbmntm:ingot_tcalloy",
     "hbmntm:powder_tcalloy",
-    "hbmntm:plate_triple_tcalloy",
-    "hbmntm:plate_sextuple_tcalloy",
+    "hbmntm:plate_cast_tcalloy",
+    "hbmntm:plate_welded_tcalloy",
     "hbmntm:barrel_light_tcalloy",
     "hbmntm:barrel_heavy_tcalloy",
     "hbmntm:receiver_light_tcalloy",

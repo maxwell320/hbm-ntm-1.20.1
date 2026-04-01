@@ -7,9 +7,9 @@
     "hbmntm:wire_copper",
     "hbmntm:plate_copper",
     "hbmntm:coil_copper",
-    "hbmntm:plate_triple_copper",
-    "hbmntm:plate_sextuple_copper",
+    "hbmntm:plate_cast_copper",
+    "hbmntm:plate_welded_copper",
     "hbmntm:shell_copper",
-    "hbmntm:ntmpipe_copper"
+    "hbmntm:pipentm_copper"
   ]
 }

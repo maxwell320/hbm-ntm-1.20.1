@@ -6,9 +6,9 @@
     "hbmntm:crystal_aluminium",
     "hbmntm:wire_aluminium",
     "hbmntm:plate_aluminium",
-    "hbmntm:plate_triple_aluminium",
-    "hbmntm:plate_sextuple_aluminium",
+    "hbmntm:plate_cast_aluminium",
+    "hbmntm:plate_welded_aluminium",
     "hbmntm:shell_aluminium",
-    "hbmntm:ntmpipe_aluminium"
+    "hbmntm:pipentm_aluminium"
   ]
 }

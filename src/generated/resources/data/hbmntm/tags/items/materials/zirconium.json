@@ -3,10 +3,10 @@
     "hbmntm:bedrockorefragment_zirconium",
     "hbmntm:ingot_zirconium",
     "hbmntm:nugget_zirconium",
-    "hbmntm:wire_fine_zirconium",
+    "hbmntm:wire_zirconium",
     "hbmntm:billet_zirconium",
     "hbmntm:powder_zirconium",
-    "hbmntm:plate_triple_zirconium",
-    "hbmntm:plate_sextuple_zirconium"
+    "hbmntm:plate_cast_zirconium",
+    "hbmntm:plate_welded_zirconium"
   ]
 }

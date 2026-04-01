@@ -1,8 +1,8 @@
 {
   "values": [
     "hbmntm:ingot_cdalloy",
-    "hbmntm:plate_triple_cdalloy",
-    "hbmntm:plate_sextuple_cdalloy",
+    "hbmntm:plate_cast_cdalloy",
+    "hbmntm:plate_welded_cdalloy",
     "hbmntm:barrel_light_cdalloy",
     "hbmntm:barrel_heavy_cdalloy",
     "hbmntm:receiver_light_cdalloy",

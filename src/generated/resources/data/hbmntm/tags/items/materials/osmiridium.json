@@ -3,7 +3,7 @@
     "hbmntm:ingot_osmiridium",
     "hbmntm:nugget_osmiridium",
     "hbmntm:crystal_osmiridium",
-    "hbmntm:plate_triple_osmiridium",
-    "hbmntm:plate_sextuple_osmiridium"
+    "hbmntm:plate_cast_osmiridium",
+    "hbmntm:plate_welded_osmiridium"
   ]
 }
