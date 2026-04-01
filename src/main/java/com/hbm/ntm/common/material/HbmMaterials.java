@@ -148,7 +148,7 @@ public final class HbmMaterials {
         .withItemDisplayName(HbmMaterialShape.DENSE_WIRE, "Copper Coil")
         .withItemId(HbmMaterialShape.DUST, "powder_copper")
         .withItemId(HbmMaterialShape.CRYSTAL, "crystal_copper");
-    public static final HbmMaterialDefinition RED_COPPER = HbmMaterialDefinition.of("red_copper", "Red Copper", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.WIRE, HbmMaterialShape.DENSE_WIRE)
+    public static final HbmMaterialDefinition RED_COPPER = HbmMaterialDefinition.of("red_copper", "Minecraft Grade Copper", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.WIRE, HbmMaterialShape.DENSE_WIRE)
         .withItemDisplayName(HbmMaterialShape.INGOT, "Minecraft Grade Copper")
         .withItemId(HbmMaterialShape.WIRE, "wire_red_copper")
         .withItemDisplayName(HbmMaterialShape.WIRE, "Red Copper Wire")
@@ -188,7 +188,7 @@ public final class HbmMaterials {
         .withItemId(HbmMaterialShape.DENSE_WIRE, "coil_magnetized_tungsten")
         .withItemDisplayName(HbmMaterialShape.DENSE_WIRE, "4000K High Temperature Super Conducting Coil")
         .withItemId(HbmMaterialShape.DUST, "powder_magnetized_tungsten");
-    public static final HbmMaterialDefinition COMBINE_STEEL = HbmMaterialDefinition.of("combine_steel", "CMB Steel", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE)
+    public static final HbmMaterialDefinition COMBINE_STEEL = HbmMaterialDefinition.of("combine_steel", "Combine Steel", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE)
         .withItemDisplayName(HbmMaterialShape.INGOT, "CMB Steel Ingot")
         .withItemId(HbmMaterialShape.DUST, "powder_combine_steel")
         .withItemDisplayName(HbmMaterialShape.PLATE, "CMB Steel Plate");
@@ -354,7 +354,7 @@ public final class HbmMaterials {
         .withItemDisplayName(HbmMaterialShape.INGOT, "Latex Bar");
     public static final HbmMaterialDefinition RUBBER = HbmMaterialDefinition.of("rubber", "Rubber", HbmMaterialShape.INGOT, HbmMaterialShape.PIPE, HbmMaterialShape.GRIP)
         .withItemDisplayName(HbmMaterialShape.INGOT, "Rubber Bar");
-    public static final HbmMaterialDefinition PC = HbmMaterialDefinition.of("pc", "PC", HbmMaterialShape.INGOT, HbmMaterialShape.STOCK, HbmMaterialShape.GRIP)
+    public static final HbmMaterialDefinition PC = HbmMaterialDefinition.of("pc", "Hard Plastic", HbmMaterialShape.INGOT, HbmMaterialShape.STOCK, HbmMaterialShape.GRIP)
         .withItemId(HbmMaterialShape.INGOT, "ingot_pc")
         .withItemDisplayName(HbmMaterialShape.INGOT, "Hard Plastic Bar");
     public static final HbmMaterialDefinition PVC = HbmMaterialDefinition.of("pvc", "PVC", HbmMaterialShape.INGOT, HbmMaterialShape.STOCK, HbmMaterialShape.GRIP)
