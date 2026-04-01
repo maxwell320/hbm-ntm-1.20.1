@@ -308,7 +308,7 @@ public final class HbmMaterials {
         .withItemDisplayName(HbmMaterialShape.DUST, "Molysite");
     public static final HbmMaterialDefinition CINNABAR = HbmMaterialDefinition.of("cinnabar", "Cinnabar", HbmMaterialShape.FRAGMENT, HbmMaterialShape.GEM, HbmMaterialShape.CRYSTAL)
         .withItemId(HbmMaterialShape.GEM, "cinnebar")
-        .withItemDisplayName(HbmMaterialShape.GEM, "Cinnebar")
+        .withItemDisplayName(HbmMaterialShape.GEM, "Cinnabar")
         .withItemId(HbmMaterialShape.CRYSTAL, "crystal_cinnebar")
         .withItemDisplayName(HbmMaterialShape.CRYSTAL, "Cinnabar Crystals");
     public static final HbmMaterialDefinition IODINE = HbmMaterialDefinition.of("iodine", "Iodine", HbmMaterialShape.DUST)
