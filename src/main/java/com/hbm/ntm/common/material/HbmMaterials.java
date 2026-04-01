@@ -285,6 +285,7 @@ public final class HbmMaterials {
         .withItemDisplayName(HbmMaterialShape.DUST, "Sulfur")
         .withItemId(HbmMaterialShape.CRYSTAL, "crystal_sulfur");
     public static final HbmMaterialDefinition KNO = HbmMaterialDefinition.of("kno", "KNO", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
+        .withItemDisplayName(HbmMaterialShape.FRAGMENT, "Saltpeter Bedrock Ore Fragment")
         .withItemId(HbmMaterialShape.DUST, "niter")
         .withItemDisplayName(HbmMaterialShape.DUST, "Niter")
         .withItemId(HbmMaterialShape.CRYSTAL, "crystal_niter")
