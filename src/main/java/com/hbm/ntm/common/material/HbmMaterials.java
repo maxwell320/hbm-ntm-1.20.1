@@ -89,6 +89,7 @@ public final class HbmMaterials {
     public static final HbmMaterialDefinition POLONIUM = HbmMaterialDefinition.of("polonium", "Polonium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST)
         .withItemDisplayName(HbmMaterialShape.INGOT, "Polonium-210 Ingot")
         .withItemDisplayName(HbmMaterialShape.NUGGET, "Polonium-210 Nugget")
+        .withItemDisplayName(HbmMaterialShape.BILLET, "Polonium-210 Billet")
         .withItemId(HbmMaterialShape.DUST, "powder_polonium");
     public static final HbmMaterialDefinition TECHNETIUM = HbmMaterialDefinition.of("technetium", "Technetium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET)
         .withItemDisplayName(HbmMaterialShape.INGOT, "Technetium-99 Ingot")
