@@ -227,6 +227,7 @@ public final class HbmMaterials {
         .withItemId(HbmMaterialShape.DUST, "powder_borax")
         .withItemDisplayName(HbmMaterialShape.DUST, "Borax");
     public static final HbmMaterialDefinition TANTALIUM = HbmMaterialDefinition.of("tantalium", "Tantalium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.GEM, HbmMaterialShape.DUST)
+        .withItemDisplayName(HbmMaterialShape.FRAGMENT, "Tantalum Bedrock Ore Fragment")
         .withItemDisplayName(HbmMaterialShape.INGOT, "Tantalum Ingot")
         .withItemDisplayName(HbmMaterialShape.NUGGET, "Tantalum Nugget")
         .withItemDisplayName(HbmMaterialShape.GEM, "Tantalum Polycrystal")
