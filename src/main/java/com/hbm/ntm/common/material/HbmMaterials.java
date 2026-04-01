@@ -87,6 +87,7 @@ public final class HbmMaterials {
     public static final HbmMaterialDefinition NEPTUNIUM = HbmMaterialDefinition.of("neptunium", "Neptunium", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.DUST, "powder_neptunium");
     public static final HbmMaterialDefinition POLONIUM = HbmMaterialDefinition.of("polonium", "Polonium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST)
+        .withItemDisplayName(HbmMaterialShape.INGOT, "Polonium-210 Ingot")
         .withItemId(HbmMaterialShape.DUST, "powder_polonium");
     public static final HbmMaterialDefinition TECHNETIUM = HbmMaterialDefinition.of("technetium", "Technetium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET)
         .withItemDisplayName(HbmMaterialShape.INGOT, "Technetium-99 Ingot")
@@ -184,6 +185,7 @@ public final class HbmMaterials {
         .withItemId(HbmMaterialShape.DUST, "powder_combine_steel")
         .withItemDisplayName(HbmMaterialShape.PLATE, "CMB Steel Plate");
     public static final HbmMaterialDefinition STARMETAL = HbmMaterialDefinition.of("starmetal", "Starmetal", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE)
+        .withItemDisplayName(HbmMaterialShape.INGOT, "§9Starmetal Ingot§r")
         .withItemId(HbmMaterialShape.DUST, "powder_starmetal")
         .withItemId(HbmMaterialShape.CRYSTAL, "crystal_starmetal");
     public static final HbmMaterialDefinition FERRORANIUM = HbmMaterialDefinition.of("ferrouranium", "Ferrouranium", HbmMaterialShape.INGOT, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.HEAVY_BARREL, HbmMaterialShape.HEAVY_RECEIVER);
