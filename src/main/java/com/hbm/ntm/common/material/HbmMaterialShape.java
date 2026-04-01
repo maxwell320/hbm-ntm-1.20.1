@@ -1,7 +1,7 @@
 package com.hbm.ntm.common.material;
 
 public enum HbmMaterialShape {
-    FRAGMENT("bedrockorefragment", "Fragment", "fragments", "item/prismarine_shard"),
+    FRAGMENT("bedrockorefragment", "Fragment", "fragments", "item/prismarine_shard", "%s Bedrock Ore Fragment"),
     INGOT("ingot", "Ingot", "ingots", "item/iron_ingot"),
     NUGGET("nugget", "Nugget", "nuggets", "item/gold_nugget"),
     GEM("gem", "Gem", "gems", "item/emerald"),

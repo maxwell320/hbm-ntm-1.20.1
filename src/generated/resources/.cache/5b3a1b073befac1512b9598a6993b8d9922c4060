@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-01T16:38:12.7801944	Item Models: hbmntm
+// 1.20.1	2026-04-01T16:49:41.6541498	Item Models: hbmntm
 5af477fae0ee316daeface1cde9128dc4f6e626c assets/hbmntm/models/item/ball_resin.json
 eca0ce1be9a8cdc468645ed5f33746d4234c91ad assets/hbmntm/models/item/barrel_heavy_cdalloy.json
 eca0ce1be9a8cdc468645ed5f33746d4234c91ad assets/hbmntm/models/item/barrel_heavy_desh.json
@@ -114,6 +114,7 @@ c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/fluorite.json
 66063b17cb93c7336607cef31749a6f0ec6dd344 assets/hbmntm/models/item/fragment_cerium.json
 66063b17cb93c7336607cef31749a6f0ec6dd344 assets/hbmntm/models/item/fragment_cobalt.json
 66063b17cb93c7336607cef31749a6f0ec6dd344 assets/hbmntm/models/item/fragment_lanthanium.json
+66063b17cb93c7336607cef31749a6f0ec6dd344 assets/hbmntm/models/item/fragment_meteorite.json
 66063b17cb93c7336607cef31749a6f0ec6dd344 assets/hbmntm/models/item/fragment_neodymium.json
 66063b17cb93c7336607cef31749a6f0ec6dd344 assets/hbmntm/models/item/fragment_niobium.json
 5af477fae0ee316daeface1cde9128dc4f6e626c assets/hbmntm/models/item/gem_sodalite.json
@@ -168,6 +169,7 @@ e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_gunmeta
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_lanthanium.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_lead.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_magnetized_tungsten.json
+e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_meteorite.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_mud.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_neptunium.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_niobium.json
@@ -352,6 +354,8 @@ c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_lignit
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_lithium.json
 da5d98b464567d94836049cecc97328495fcfb10 assets/hbmntm/models/item/powder_lithium_tiny.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_magnetized_tungsten.json
+c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_meteorite.json
+da5d98b464567d94836049cecc97328495fcfb10 assets/hbmntm/models/item/powder_meteorite_tiny.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_molysite.json
 c6deebadfc028d6d62f45fc649e6c7dd033f5af5 assets/hbmntm/models/item/powder_neodymium.json
 da5d98b464567d94836049cecc97328495fcfb10 assets/hbmntm/models/item/powder_neodymium_tiny.json
