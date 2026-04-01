@@ -152,7 +152,8 @@ public final class HbmMaterials {
         .withItemDisplayName(HbmMaterialShape.INGOT, "Minecraft Grade Copper")
         .withItemId(HbmMaterialShape.WIRE, "wire_red_copper")
         .withItemDisplayName(HbmMaterialShape.WIRE, "Red Copper Wire")
-        .withItemId(HbmMaterialShape.DUST, "powder_red_copper");
+        .withItemId(HbmMaterialShape.DUST, "powder_red_copper")
+        .withItemDisplayName(HbmMaterialShape.DUST, "Red Copper Powder");
     public static final HbmMaterialDefinition ADVANCED_ALLOY = HbmMaterialDefinition.of("advanced_alloy", "Advanced Alloy", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.WIRE, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE)
         .withItemId(HbmMaterialShape.WIRE, "wire_advanced_alloy")
         .withItemDisplayName(HbmMaterialShape.WIRE, "Super Conductor")
@@ -191,6 +192,7 @@ public final class HbmMaterials {
     public static final HbmMaterialDefinition COMBINE_STEEL = HbmMaterialDefinition.of("combine_steel", "Combine Steel", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE, HbmMaterialShape.WELDED_PLATE)
         .withItemDisplayName(HbmMaterialShape.INGOT, "CMB Steel Ingot")
         .withItemId(HbmMaterialShape.DUST, "powder_combine_steel")
+        .withItemDisplayName(HbmMaterialShape.DUST, "CMB Steel Powder")
         .withItemDisplayName(HbmMaterialShape.PLATE, "CMB Steel Plate");
     public static final HbmMaterialDefinition STARMETAL = HbmMaterialDefinition.of("starmetal", "Starmetal", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL, HbmMaterialShape.DENSE_WIRE, HbmMaterialShape.CAST_PLATE)
         .withItemDisplayName(HbmMaterialShape.INGOT, "§9Starmetal Ingot§r")
