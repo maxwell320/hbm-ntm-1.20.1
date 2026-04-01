@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-01T18:07:58.9395127	HBM Item Tags
+// 1.20.1	2026-04-01T20:37:54.4402893	HBM Item Tags
 5e5245f92e4f2eed9c0fbe3d93f0366e27a4530c data/forge/tags/items/billets/actinium.json
 65d1d0138232e9f49b85fcdf4a585711b8c1d528 data/forge/tags/items/billets/au198.json
 1ab902dad59d64ed93bbe859502ea9611c92bb19 data/forge/tags/items/billets/australium.json
@@ -280,6 +280,7 @@ adcce30155856c45e1b95bad65302b40486e65ce data/forge/tags/items/ingots/niobium.js
 502d1014481a1ff7c45facb257389501ebd2f2a9 data/forge/tags/items/ingots/osmiridium.json
 e1d26ec405cbcf38ca8512a42a75107c8f5f572e data/forge/tags/items/ingots/pb209.json
 ef99eda17c651a2b4a01084ac74bbeffabc34895 data/forge/tags/items/ingots/pc.json
+bf0ce5580e09b72dbb0a0917fd9abe7c28719f15 data/forge/tags/items/ingots/pet.json
 eaff62ebf6f29fd155d162526e50f1bdff0460c3 data/forge/tags/items/ingots/plutonium.json
 a85c39a5698700c0a650d1a22bfbfafef65925cf data/forge/tags/items/ingots/polonium.json
 26d51ac350c6bfd06eb8b4e5c5ceae0f6fb59072 data/forge/tags/items/ingots/polymer.json
@@ -692,7 +693,7 @@ ab5d4a378dc9acee2f8283d3488d8143ff942a8a data/hbmntm/tags/items/heavy_receivers/
 d6334d8d0b3c496b350e3a85b63bf2d38bc30167 data/hbmntm/tags/items/heavy_receivers/saturnite.json
 dcdd4611ca89908bd1b1234b4d956916a5dc3f09 data/hbmntm/tags/items/heavy_receivers/tcalloy.json
 b2aa06dfe8ad0fa98992f77309850ef1a7f88c57 data/hbmntm/tags/items/heavy_receivers/weaponsteel.json
-f5d0fa6aa3c34b9719b641080067e85de1269b54 data/hbmntm/tags/items/ingots.json
+74cf8399950cf6341988433b642c22402696054a data/hbmntm/tags/items/ingots.json
 ce0e5383152e3688e8affeb9f3f055f398890c5d data/hbmntm/tags/items/ingots/actinium.json
 cb89c36c841df517917c244f076a163ef7774995 data/hbmntm/tags/items/ingots/advanced_alloy.json
 10a6f40dff0685eb2df65cc4eb1f64711e667146 data/hbmntm/tags/items/ingots/aluminium.json
@@ -737,6 +738,7 @@ adcce30155856c45e1b95bad65302b40486e65ce data/hbmntm/tags/items/ingots/niobium.j
 502d1014481a1ff7c45facb257389501ebd2f2a9 data/hbmntm/tags/items/ingots/osmiridium.json
 e1d26ec405cbcf38ca8512a42a75107c8f5f572e data/hbmntm/tags/items/ingots/pb209.json
 ef99eda17c651a2b4a01084ac74bbeffabc34895 data/hbmntm/tags/items/ingots/pc.json
+bf0ce5580e09b72dbb0a0917fd9abe7c28719f15 data/hbmntm/tags/items/ingots/pet.json
 eaff62ebf6f29fd155d162526e50f1bdff0460c3 data/hbmntm/tags/items/ingots/plutonium.json
 a85c39a5698700c0a650d1a22bfbfafef65925cf data/hbmntm/tags/items/ingots/polonium.json
 26d51ac350c6bfd06eb8b4e5c5ceae0f6fb59072 data/hbmntm/tags/items/ingots/polymer.json
@@ -861,6 +863,7 @@ b8cd07d0aa645469d50c64b94cc31e8e4eba1968 data/hbmntm/tags/items/materials/neodym
 328dd7fb406e8cd008ab53ecc5160f48b8c82a31 data/hbmntm/tags/items/materials/osmiridium.json
 e030e93b3ae278a4687810f6edea221ca0d1d1ca data/hbmntm/tags/items/materials/pb209.json
 a3aa6cfe1e1efe7952d5bcf8cfec811d1d5a850d data/hbmntm/tags/items/materials/pc.json
+bf0ce5580e09b72dbb0a0917fd9abe7c28719f15 data/hbmntm/tags/items/materials/pet.json
 2ec3d28db1894b8a711b6736fe66acae31a3ec8a data/hbmntm/tags/items/materials/plutonium.json
 1d62115af5a87649239a63886287929def35592c data/hbmntm/tags/items/materials/polonium.json
 cc80040debb17e8d06ee751022d5588eb992bb53 data/hbmntm/tags/items/materials/polymer.json

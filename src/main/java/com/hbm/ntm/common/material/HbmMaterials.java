@@ -356,6 +356,9 @@ public final class HbmMaterials {
         .withItemDisplayName(HbmMaterialShape.INGOT, "Latex Bar");
     public static final HbmMaterialDefinition RUBBER = HbmMaterialDefinition.of("rubber", "Rubber", HbmMaterialShape.INGOT, HbmMaterialShape.PIPE, HbmMaterialShape.GRIP)
         .withItemDisplayName(HbmMaterialShape.INGOT, "Rubber Bar");
+    public static final HbmMaterialDefinition PET = HbmMaterialDefinition.of("pet", "PET", HbmMaterialShape.INGOT)
+        .withItemId(HbmMaterialShape.INGOT, "ingot_pet")
+        .withItemDisplayName(HbmMaterialShape.INGOT, "Aluminium-Metallized PET Bar");
     public static final HbmMaterialDefinition PC = HbmMaterialDefinition.of("pc", "Hard Plastic", HbmMaterialShape.INGOT, HbmMaterialShape.STOCK, HbmMaterialShape.GRIP)
         .withItemId(HbmMaterialShape.INGOT, "ingot_pc")
         .withItemDisplayName(HbmMaterialShape.INGOT, "Hard Plastic Bar");
@@ -493,6 +496,7 @@ public final class HbmMaterials {
         BAKELITE,
         LATEX,
         RUBBER,
+        PET,
         PC,
         PVC,
         FIBERGLASS,

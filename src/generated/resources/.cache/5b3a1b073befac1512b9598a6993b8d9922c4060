@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-01T18:07:58.9799905	Item Models: hbmntm
+// 1.20.1	2026-04-01T20:37:54.4525582	Item Models: hbmntm
 5af477fae0ee316daeface1cde9128dc4f6e626c assets/hbmntm/models/item/ball_resin.json
 66063b17cb93c7336607cef31749a6f0ec6dd344 assets/hbmntm/models/item/bedrockorefragment_aluminium.json
 66063b17cb93c7336607cef31749a6f0ec6dd344 assets/hbmntm/models/item/bedrockorefragment_beryllium.json
@@ -144,6 +144,7 @@ e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_niobium
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_osmiridium.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_pb209.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_pc.json
+e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_pet.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_phosphorus.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_plutonium.json
 e0f5689a509a1a6b835fcb5a31a9d3bd288a7fab assets/hbmntm/models/item/ingot_polonium.json
