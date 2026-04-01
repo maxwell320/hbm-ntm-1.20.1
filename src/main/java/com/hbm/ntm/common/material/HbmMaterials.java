@@ -265,7 +265,7 @@ public final class HbmMaterials {
         .withItemId(HbmMaterialShape.CRYSTAL, "crystal_phosphorus");
     public static final HbmMaterialDefinition WHITE_PHOSPHORUS = HbmMaterialDefinition.of("white_phosphorus", "White Phosphorus", HbmMaterialShape.INGOT)
         .withItemId(HbmMaterialShape.INGOT, "ingot_phosphorus")
-        .withItemDisplayName(HbmMaterialShape.INGOT, "White Phosphorus");
+        .withItemDisplayName(HbmMaterialShape.INGOT, "Bar of White Phosphorus");
     public static final HbmMaterialDefinition SODALITE = HbmMaterialDefinition.of("sodalite", "Sodalite", HbmMaterialShape.FRAGMENT, HbmMaterialShape.GEM)
         .withItemId(HbmMaterialShape.GEM, "gem_sodalite");
     public static final HbmMaterialDefinition CHLOROCALCITE = HbmMaterialDefinition.of("chlorocalcite", "Chlorocalcite", HbmMaterialShape.FRAGMENT, HbmMaterialShape.DUST)
@@ -299,7 +299,8 @@ public final class HbmMaterials {
         .withItemDisplayName(HbmMaterialShape.INGOT, "Zirconium Cube")
         .withItemDisplayName(HbmMaterialShape.NUGGET, "Zirconium Splinter")
         .withItemId(HbmMaterialShape.DUST, "powder_zirconium");
-    public static final HbmMaterialDefinition SILICON = HbmMaterialDefinition.of("silicon", "Silicon", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET);
+    public static final HbmMaterialDefinition SILICON = HbmMaterialDefinition.of("silicon", "Silicon", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET)
+        .withItemDisplayName(HbmMaterialShape.INGOT, "Silicon Boule");
     public static final HbmMaterialDefinition POLYMER = HbmMaterialDefinition.of("polymer", "Polymer", HbmMaterialShape.INGOT, HbmMaterialShape.DUST, HbmMaterialShape.PLATE, HbmMaterialShape.STOCK, HbmMaterialShape.GRIP)
         .withItemDisplayName(HbmMaterialShape.INGOT, "Polymer Bar")
         .withItemId(HbmMaterialShape.DUST, "powder_polymer")
