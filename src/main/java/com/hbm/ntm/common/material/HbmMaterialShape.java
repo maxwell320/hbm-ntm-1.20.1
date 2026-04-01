@@ -22,7 +22,7 @@ public enum HbmMaterialShape {
     HEAVY_BARREL("part_barrel_heavy", "Heavy Barrel", "heavy_barrels", "item/blaze_powder", "Heavy %s Barrel"),
     LIGHT_RECEIVER("part_receiver_light", "Light Receiver", "light_receivers", "item/flint", "Light %s Receiver"),
     HEAVY_RECEIVER("part_receiver_heavy", "Heavy Receiver", "heavy_receivers", "item/netherite_scrap", "Heavy %s Receiver"),
-    MECHANISM("part_mechanism", "Gun Mechanism", "mechanisms", "item/iron_nugget"),
+    MECHANISM("part_mechanism", "Mechanism", "mechanisms", "item/iron_nugget"),
     STOCK("part_stock", "Stock", "stocks", "item/stick"),
     GRIP("part_grip", "Grip", "grips", "item/leather");
 
