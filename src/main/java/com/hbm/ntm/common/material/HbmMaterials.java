@@ -60,10 +60,12 @@ public final class HbmMaterials {
         .withItemDisplayName(HbmMaterialShape.NUGGET, "Uranium-235 Nugget")
         .withItemDisplayName(HbmMaterialShape.BILLET, "Uranium-235 Billet");
     public static final HbmMaterialDefinition U238 = HbmMaterialDefinition.of("u238", "U-238", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET)
+        .withItemDisplayName(HbmMaterialShape.FRAGMENT, "Uranium-238 Bedrock Ore Fragment")
         .withItemDisplayName(HbmMaterialShape.INGOT, "Uranium-238 Ingot")
         .withItemDisplayName(HbmMaterialShape.NUGGET, "Uranium-238 Nugget")
         .withItemDisplayName(HbmMaterialShape.BILLET, "Uranium-238 Billet");
     public static final HbmMaterialDefinition TH232 = HbmMaterialDefinition.of("th232", "Thorium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL)
+        .withItemDisplayName(HbmMaterialShape.FRAGMENT, "Thorium-232 Bedrock Ore Fragment")
         .withItemDisplayName(HbmMaterialShape.INGOT, "Thorium-232 Ingot")
         .withItemDisplayName(HbmMaterialShape.NUGGET, "Thorium-232 Nugget")
         .withItemDisplayName(HbmMaterialShape.BILLET, "Thorium-232 Billet")
@@ -87,11 +89,13 @@ public final class HbmMaterials {
     public static final HbmMaterialDefinition NEPTUNIUM = HbmMaterialDefinition.of("neptunium", "Neptunium", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST)
         .withItemId(HbmMaterialShape.DUST, "powder_neptunium");
     public static final HbmMaterialDefinition POLONIUM = HbmMaterialDefinition.of("polonium", "Polonium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST)
+        .withItemDisplayName(HbmMaterialShape.FRAGMENT, "Polonium-210 Bedrock Ore Fragment")
         .withItemDisplayName(HbmMaterialShape.INGOT, "Polonium-210 Ingot")
         .withItemDisplayName(HbmMaterialShape.NUGGET, "Polonium-210 Nugget")
         .withItemDisplayName(HbmMaterialShape.BILLET, "Polonium-210 Billet")
         .withItemId(HbmMaterialShape.DUST, "powder_polonium");
     public static final HbmMaterialDefinition TECHNETIUM = HbmMaterialDefinition.of("technetium", "Technetium", HbmMaterialShape.FRAGMENT, HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET)
+        .withItemDisplayName(HbmMaterialShape.FRAGMENT, "Technetium-99 Bedrock Ore Fragment")
         .withItemDisplayName(HbmMaterialShape.INGOT, "Technetium-99 Ingot")
         .withItemDisplayName(HbmMaterialShape.NUGGET, "Technetium-99 Nugget")
         .withItemDisplayName(HbmMaterialShape.BILLET, "Technetium-99 Billet");
