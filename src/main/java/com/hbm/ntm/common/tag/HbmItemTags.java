@@ -29,6 +29,10 @@ public final class HbmItemTags {
         return create("forge", shape.tagFolder() + "/" + material.id());
     }
 
+    public static TagKey<Item> named(final String namespace, final String path) {
+        return create(namespace, path);
+    }
+
     @SuppressWarnings("null")
     private static TagKey<Item> create(final String namespace, final String path) {
         return TagKey.create(Objects.requireNonNull(Registries.ITEM), Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(namespace, path)));

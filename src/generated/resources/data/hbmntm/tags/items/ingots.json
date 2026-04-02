@@ -77,6 +77,8 @@
     "hbmntm:ingot_dura_steel",
     "hbmntm:ingot_desh",
     "hbmntm:ingot_euphemium",
-    "hbmntm:ingot_dineutronium"
+    "hbmntm:ingot_dineutronium",
+    "hbmntm:chunk_ore_rare",
+    "hbmntm:chunk_ore_malachite"
   ]
 }

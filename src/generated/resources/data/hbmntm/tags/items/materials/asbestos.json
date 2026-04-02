@@ -1,6 +1,8 @@
 {
   "values": [
     "hbmntm:ingot_asbestos",
-    "hbmntm:powder_asbestos"
+    "hbmntm:powder_asbestos",
+    "hbmntm:ore_basalt_asbestos",
+    "hbmntm:stone_resource_asbestos"
   ]
 }

@@ -2,6 +2,8 @@
   "values": [
     "hbmntm:bedrockorefragment_sulfur",
     "hbmntm:sulfur",
-    "hbmntm:crystal_sulfur"
+    "hbmntm:crystal_sulfur",
+    "hbmntm:ore_basalt_sulfur",
+    "hbmntm:stone_resource_sulfur"
   ]
 }

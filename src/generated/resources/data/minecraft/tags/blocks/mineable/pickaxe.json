@@ -1,0 +1,15 @@
+{
+  "values": [
+    "hbmntm:ore_basalt_sulfur",
+    "hbmntm:ore_basalt_fluorite",
+    "hbmntm:ore_basalt_asbestos",
+    "hbmntm:ore_basalt_gem",
+    "hbmntm:ore_basalt_molysite",
+    "hbmntm:stone_resource_sulfur",
+    "hbmntm:stone_resource_asbestos",
+    "hbmntm:stone_resource_limestone",
+    "hbmntm:stone_resource_bauxite",
+    "hbmntm:stone_resource_hematite",
+    "hbmntm:stone_resource_malachite"
+  ]
+}

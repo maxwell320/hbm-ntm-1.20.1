@@ -1,6 +1,7 @@
 package com.hbm.ntm.data;
 
 import com.hbm.ntm.HbmNtmMod;
+import com.hbm.ntm.common.item.ChunkOreItemType;
 import com.hbm.ntm.common.material.HbmMaterialDefinition;
 import com.hbm.ntm.common.material.HbmMaterialShape;
 import com.hbm.ntm.common.material.HbmMaterials;
@@ -19,6 +20,10 @@ public class HbmItemModelProvider extends ItemModelProvider {
             for (final HbmMaterialShape shape : material.shapes()) {
                 singleTexture(material.itemId(shape), mcLoc("item/generated"), "layer0", mcLoc(shape.defaultTexturePath()));
             }
+        }
+
+        for (final ChunkOreItemType type : ChunkOreItemType.values()) {
+            singleTexture(type.itemId(), mcLoc("item/generated"), "layer0", modLoc(type.defaultTexturePath()));
         }
     }
 }

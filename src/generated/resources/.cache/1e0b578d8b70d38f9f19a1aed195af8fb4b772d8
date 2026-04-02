@@ -1,1 +1,21 @@
-// 1.20.1	2026-03-31T17:48:07.7864151	HBM Block Tags
+// 1.20.1	2026-04-02T13:35:32.4481812	HBM Block Tags
+d98e6e4e7f8643ebdcdb5639a878ad00ac6e6d37 data/forge/tags/blocks/ores/asbestos.json
+181c656ae778168c5bd6b385ad0e989a0d5d0fca data/forge/tags/blocks/ores/bauxite.json
+89ce20b78924629a6f423347d3f8e51eb5b462f6 data/forge/tags/blocks/ores/fluorite.json
+ade3fd1bedd139488310bed14e59910c434f4174 data/forge/tags/blocks/ores/hematite.json
+4ef7c9292961d242dd5921225bd1f7c4de67ca4e data/forge/tags/blocks/ores/limestone.json
+5d928aed6c5d05600dcc7fc4d8fa7a93fd3c841d data/forge/tags/blocks/ores/malachite.json
+9f20993e8400ae9a85bbcf20bc2b0a26c04807e9 data/forge/tags/blocks/ores/molysite.json
+f0c38edc61517fb2a000ad1eadaf7cd2ad3c5f54 data/forge/tags/blocks/ores/sulfur.json
+ebd140b41a224260467d812b38c23cbca4a0db81 data/forge/tags/blocks/ores/volcanic.json
+d98e6e4e7f8643ebdcdb5639a878ad00ac6e6d37 data/hbmntm/tags/blocks/ores/asbestos.json
+181c656ae778168c5bd6b385ad0e989a0d5d0fca data/hbmntm/tags/blocks/ores/bauxite.json
+89ce20b78924629a6f423347d3f8e51eb5b462f6 data/hbmntm/tags/blocks/ores/fluorite.json
+ade3fd1bedd139488310bed14e59910c434f4174 data/hbmntm/tags/blocks/ores/hematite.json
+4ef7c9292961d242dd5921225bd1f7c4de67ca4e data/hbmntm/tags/blocks/ores/limestone.json
+5d928aed6c5d05600dcc7fc4d8fa7a93fd3c841d data/hbmntm/tags/blocks/ores/malachite.json
+9f20993e8400ae9a85bbcf20bc2b0a26c04807e9 data/hbmntm/tags/blocks/ores/molysite.json
+f0c38edc61517fb2a000ad1eadaf7cd2ad3c5f54 data/hbmntm/tags/blocks/ores/sulfur.json
+ebd140b41a224260467d812b38c23cbca4a0db81 data/hbmntm/tags/blocks/ores/volcanic.json
+8534f1850ee6442a7ecf8c29d4e26caf1c70e7b7 data/minecraft/tags/blocks/mineable/pickaxe.json
+8534f1850ee6442a7ecf8c29d4e26caf1c70e7b7 data/minecraft/tags/blocks/needs_stone_tool.json

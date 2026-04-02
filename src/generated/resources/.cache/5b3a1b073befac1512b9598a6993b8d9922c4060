@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-01T21:04:16.3800942	Item Models: hbmntm
+// 1.20.1	2026-04-02T00:23:40.134873	Item Models: hbmntm
 5af477fae0ee316daeface1cde9128dc4f6e626c assets/hbmntm/models/item/ball_resin.json
 66063b17cb93c7336607cef31749a6f0ec6dd344 assets/hbmntm/models/item/bedrockorefragment_aluminium.json
 66063b17cb93c7336607cef31749a6f0ec6dd344 assets/hbmntm/models/item/bedrockorefragment_beryllium.json
@@ -55,6 +55,10 @@
 5a2a3137b0e718a50b2c6c1515b71c9d9233a469 assets/hbmntm/models/item/bolt_dura_steel.json
 5a2a3137b0e718a50b2c6c1515b71c9d9233a469 assets/hbmntm/models/item/bolt_steel.json
 5a2a3137b0e718a50b2c6c1515b71c9d9233a469 assets/hbmntm/models/item/bolt_tungsten.json
+ccc86a6572669993b1b018c62b20c2eeedc32633 assets/hbmntm/models/item/chunk_ore_cryolite.json
+e7eb8c26e5a22a9870b463f8502a628f8966a372 assets/hbmntm/models/item/chunk_ore_malachite.json
+c38d7e52ee84503ba0bc23a055857dbfd0f94c2c assets/hbmntm/models/item/chunk_ore_moonstone.json
+b266e948f3af42373c55cec51f263f118153a23f assets/hbmntm/models/item/chunk_ore_rare.json
 5af477fae0ee316daeface1cde9128dc4f6e626c assets/hbmntm/models/item/cinnebar.json
 df044d7e2a265987e24a523d3fe97a6efb259a53 assets/hbmntm/models/item/coil_advanced_alloy.json
 df044d7e2a265987e24a523d3fe97a6efb259a53 assets/hbmntm/models/item/coil_copper.json
