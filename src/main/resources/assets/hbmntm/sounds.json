@@ -1,0 +1,11 @@
+{
+  "item.radaway": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "hbmntm:tool/radaway",
+        "stream": false
+      }
+    ]
+  }
+}

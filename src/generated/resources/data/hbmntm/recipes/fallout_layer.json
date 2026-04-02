@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "F": {
+      "item": "hbmntm:fallout"
+    }
+  },
+  "pattern": [
+    "FF"
+  ],
+  "result": {
+    "count": 2,
+    "item": "hbmntm:fallout_layer"
+  },
+  "show_notification": true
+}
