@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "hbmntm:block/waste_log"
+    },
+    "axis=z": {
+      "model": "hbmntm:block/waste_log_horizontal"
+    },
+    "axis=x": {
+      "model": "hbmntm:block/waste_log_horizontal",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

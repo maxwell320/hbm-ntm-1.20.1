@@ -1,0 +1,6 @@
+{
+  "parent": "hbmntm:block/template_sellafield_overlay_cube",
+  "textures": {
+    "all": "hbmntm:block/ore_overlay_uranium_scorched"
+  }
+}

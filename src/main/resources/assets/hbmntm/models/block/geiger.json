@@ -1,0 +1,9 @@
+{
+  "loader": "forge:obj",
+  "flip_v": true,
+  "model": "hbmntm:models/block/geiger_counter.obj",
+  "textures": {
+    "texture0": "hbmntm:block/geiger",
+    "particle": "hbmntm:block/geiger"
+  }
+}

@@ -1,9 +1,72 @@
 {
+  "item.geiger1": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "hbmntm:tool/geiger1",
+        "stream": false
+      }
+    ]
+  },
+  "item.geiger2": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "hbmntm:tool/geiger2",
+        "stream": false
+      }
+    ]
+  },
+  "item.geiger3": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "hbmntm:tool/geiger3",
+        "stream": false
+      }
+    ]
+  },
+  "item.geiger4": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "hbmntm:tool/geiger4",
+        "stream": false
+      }
+    ]
+  },
+  "item.geiger5": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "hbmntm:tool/geiger5",
+        "stream": false
+      }
+    ]
+  },
+  "item.geiger6": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "hbmntm:tool/geiger6",
+        "stream": false
+      }
+    ]
+  },
   "item.radaway": {
     "category": "player",
     "sounds": [
       {
-        "name": "hbmntm:tool/radaway",
+        "name": "hbmntm:item/radaway",
+        "stream": false
+      }
+    ]
+  },
+  "item.tech_boop": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "hbmntm:tool/tech_boop",
         "stream": false
       }
     ]
