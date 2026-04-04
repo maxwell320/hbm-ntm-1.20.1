@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "I": {
+      "item": "hbmntm:plate_polymer"
+    },
+    "N": {
+      "item": "hbmntm:nugget_tantalium"
+    },
+    "W": {
+      "item": "hbmntm:wire_aluminium"
+    }
+  },
+  "pattern": [
+    "I",
+    "N",
+    "W"
+  ],
+  "result": {
+    "item": "hbmntm:circuit_capacitor_tantalium"
+  },
+  "show_notification": true
+}

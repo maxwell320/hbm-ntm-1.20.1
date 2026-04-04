@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_plate_polymer": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:plate_polymer"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:circuit_capacitor_tantalium_from_aluminium_wire"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_plate_polymer",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:circuit_capacitor_tantalium_from_aluminium_wire"
+    ]
+  },
+  "sends_telemetry_event": false
+}

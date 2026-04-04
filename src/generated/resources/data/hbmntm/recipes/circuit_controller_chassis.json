@@ -1,0 +1,44 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "B": {
+      "item": "hbmntm:circuit_pcb"
+    },
+    "C": {
+      "item": "hbmntm:crt_display"
+    },
+    "P": [
+      {
+        "item": "hbmntm:ingot_polymer"
+      },
+      {
+        "item": "hbmntm:ingot_bakelite"
+      },
+      {
+        "item": "hbmntm:ingot_biorubber"
+      },
+      {
+        "item": "hbmntm:ingot_rubber"
+      },
+      {
+        "item": "hbmntm:ingot_pet"
+      },
+      {
+        "item": "hbmntm:ingot_pc"
+      },
+      {
+        "item": "hbmntm:ingot_pvc"
+      }
+    ]
+  },
+  "pattern": [
+    "PPP",
+    "CBB",
+    "PPP"
+  ],
+  "result": {
+    "item": "hbmntm:circuit_controller_chassis"
+  },
+  "show_notification": true
+}

@@ -2,6 +2,7 @@ package com.hbm.ntm.data;
 
 import com.hbm.ntm.HbmNtmMod;
 import com.hbm.ntm.common.block.SellafieldOreType;
+import com.hbm.ntm.common.item.BriquetteItemType;
 import com.hbm.ntm.common.item.CircuitItemType;
 import com.hbm.ntm.common.item.ChunkOreItemType;
 import com.hbm.ntm.common.item.StampItemType;
@@ -21,7 +22,10 @@ public class HbmItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        singleTexture("biomass", mcLoc("item/generated"), "layer0", modLoc("item/biomass"));
+        singleTexture("biomass_compressed", mcLoc("item/generated"), "layer0", modLoc("item/biomass_compressed"));
         singleTexture("burnt_bark", mcLoc("item/generated"), "layer0", modLoc("item/burnt_bark"));
+        singleTexture("crt_display", mcLoc("item/generated"), "layer0", modLoc("item/crt_display"));
         singleTexture("dosimeter", mcLoc("item/generated"), "layer0", modLoc("item/dosimeter"));
         withExistingParent("fallout_layer", modLoc("block/fallout"));
         withExistingParent("geiger", modLoc("block/geiger"));
@@ -44,6 +48,10 @@ public class HbmItemModelProvider extends ItemModelProvider {
                 final String itemId = material.itemId(shape);
                 singleTexture(itemId, mcLoc("item/generated"), "layer0", preferredMaterialTexture(itemId, shape));
             }
+        }
+
+        for (final BriquetteItemType type : BriquetteItemType.values()) {
+            singleTexture(type.itemId(), mcLoc("item/generated"), "layer0", modLoc(type.defaultTexturePath()));
         }
 
         for (final ChunkOreItemType type : ChunkOreItemType.values()) {

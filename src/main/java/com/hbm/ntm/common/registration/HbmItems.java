@@ -5,6 +5,7 @@ import com.hbm.ntm.common.block.BasaltBlockType;
 import com.hbm.ntm.common.block.BasaltOreType;
 import com.hbm.ntm.common.block.SellafieldOreType;
 import com.hbm.ntm.common.block.StoneResourceType;
+import com.hbm.ntm.common.item.BriquetteItemType;
 import com.hbm.ntm.common.item.CircuitItemType;
 import com.hbm.ntm.common.item.ChunkOreItemType;
 import com.hbm.ntm.common.item.DosimeterItem;
@@ -34,19 +35,24 @@ import net.minecraftforge.registries.RegistryObject;
 public final class HbmItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, HbmNtmMod.MOD_ID);
     private static final Map<String, RegistryObject<Item>> MATERIAL_PARTS = new LinkedHashMap<>();
+    private static final Map<String, RegistryObject<Item>> BRIQUETTES = new LinkedHashMap<>();
     private static final Map<String, RegistryObject<Item>> CHUNK_ORES = new LinkedHashMap<>();
     private static final Map<String, RegistryObject<Item>> CIRCUITS = new LinkedHashMap<>();
     private static final Map<String, RegistryObject<Item>> STAMPS = new LinkedHashMap<>();
     private static final Map<String, RegistryObject<Item>> SIMPLE_ITEMS = new LinkedHashMap<>();
     private static final Map<String, RegistryObject<Item>> BLOCK_ITEMS = new LinkedHashMap<>();
     public static final RegistryObject<Item> BURNT_BARK = registerSimpleItem("burnt_bark", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> BIOMASS = registerSimpleItem("biomass", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> BIOMASS_COMPRESSED = registerSimpleItem("biomass_compressed", SIMPLE_ITEMS);
     public static final RegistryObject<Item> FALLOUT = registerSimpleItem("fallout", SIMPLE_ITEMS);
     public static final RegistryObject<Item> FALLOUT_LAYER = registerBlockItem("fallout_layer", HbmBlocks.FALLOUT, BLOCK_ITEMS);
     public static final RegistryObject<Item> GEIGER = registerBlockItem("geiger", HbmBlocks.GEIGER, BLOCK_ITEMS);
+    public static final RegistryObject<Item> PRESS_PREHEATER = registerBlockItem("press_preheater", HbmBlocks.PRESS_PREHEATER, BLOCK_ITEMS);
     public static final RegistryObject<Item> SELLAFIELD = registerItem("sellafield", () -> new SellafieldBlockItem(HbmBlocks.SELLAFIELD.get(), new Item.Properties()), BLOCK_ITEMS);
     public static final RegistryObject<Item> GEIGER_COUNTER = registerItem("geiger_counter", () -> new GeigerCounterItem(new Item.Properties()), SIMPLE_ITEMS);
     public static final RegistryObject<Item> GEM_RAD = registerSimpleItem("gem_rad", SIMPLE_ITEMS);
     public static final RegistryObject<Item> IV_EMPTY = registerSimpleItem("iv_empty", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> CRT_DISPLAY = registerSimpleItem("crt_display", SIMPLE_ITEMS);
     public static final RegistryObject<Item> DOSIMETER = registerItem("dosimeter", () -> new DosimeterItem(new Item.Properties()), SIMPLE_ITEMS);
     public static final RegistryObject<Item> RADAWAY = registerItem("radaway", () -> new RadawayItem(140, new Item.Properties()), SIMPLE_ITEMS);
     public static final RegistryObject<Item> RADAWAY_STRONG = registerItem("radaway_strong", () -> new RadawayItem(350, new Item.Properties()), SIMPLE_ITEMS);
@@ -55,6 +61,7 @@ public final class HbmItems {
 
     static {
         HbmMaterials.ordered().forEach(HbmItems::registerMaterialSet);
+        registerBriquetteItems();
         registerChunkOreItems();
         registerCircuitItems();
         registerStampItems();
@@ -74,6 +81,12 @@ public final class HbmItems {
     private static void registerChunkOreItems() {
         for (final ChunkOreItemType type : ChunkOreItemType.values()) {
             registerSimpleItem(type.itemId(), CHUNK_ORES);
+        }
+    }
+
+    private static void registerBriquetteItems() {
+        for (final BriquetteItemType type : BriquetteItemType.values()) {
+            registerSimpleItem(type.itemId(), BRIQUETTES);
         }
     }
 
@@ -149,6 +162,7 @@ public final class HbmItems {
 
     public static Collection<RegistryObject<Item>> creativeTabEntries() {
         final List<RegistryObject<Item>> entries = new ArrayList<>(MATERIAL_PARTS.values());
+        entries.addAll(BRIQUETTES.values());
         entries.addAll(CHUNK_ORES.values());
         entries.addAll(CIRCUITS.values());
         entries.addAll(STAMPS.values());
@@ -169,6 +183,14 @@ public final class HbmItems {
         final RegistryObject<Item> registryObject = CHUNK_ORES.get(type.itemId());
         if (registryObject == null) {
             throw new IllegalArgumentException("Unknown chunk ore item: " + type.itemId());
+        }
+        return registryObject;
+    }
+
+    public static RegistryObject<Item> getBriquette(final BriquetteItemType type) {
+        final RegistryObject<Item> registryObject = BRIQUETTES.get(type.itemId());
+        if (registryObject == null) {
+            throw new IllegalArgumentException("Unknown briquette item: " + type.itemId());
         }
         return registryObject;
     }

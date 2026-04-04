@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "I": {
+      "item": "hbmntm:plate_polymer"
+    },
+    "S": {
+      "item": "hbmntm:circuit_silicon"
+    },
+    "W": {
+      "item": "hbmntm:wire_gold"
+    }
+  },
+  "pattern": [
+    "I",
+    "S",
+    "W"
+  ],
+  "result": {
+    "item": "hbmntm:circuit_chip"
+  },
+  "show_notification": true
+}

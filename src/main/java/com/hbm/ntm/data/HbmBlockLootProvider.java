@@ -51,6 +51,7 @@ public class HbmBlockLootProvider extends BlockLootSubProvider {
         dropSelf(HbmBlocks.ANVIL_DESH.get());
         add(HbmBlocks.FALLOUT.get(), createSingleItemTable(HbmItems.FALLOUT.get()));
         dropSelf(HbmBlocks.GEIGER.get());
+        dropSelf(HbmBlocks.PRESS_PREHEATER.get());
         dropSelf(HbmBlocks.SELLAFIELD_SLAKED.get());
         add(HbmBlocks.WASTE_LOG.get(), createWasteLogTable(HbmBlocks.WASTE_LOG.get()));
         dropSelf(HbmBlocks.WASTE_PLANKS.get());

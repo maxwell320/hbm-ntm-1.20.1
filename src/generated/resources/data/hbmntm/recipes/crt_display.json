@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "item": "hbmntm:powder_aluminium"
+    },
+    "G": {
+      "tag": "forge:glass_panes"
+    },
+    "S": {
+      "item": "hbmntm:plate_steel"
+    },
+    "T": {
+      "item": "hbmntm:circuit_vacuum_tube"
+    }
+  },
+  "pattern": [
+    " A ",
+    "SGS",
+    " T "
+  ],
+  "result": {
+    "count": 4,
+    "item": "hbmntm:crt_display"
+  },
+  "show_notification": true
+}

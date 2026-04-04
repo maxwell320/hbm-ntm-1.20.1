@@ -1,6 +1,7 @@
 {
   "values": [
     "hbmntm:geiger",
+    "hbmntm:press_preheater",
     "hbmntm:anvil_iron",
     "hbmntm:anvil_steel",
     "hbmntm:anvil_desh",

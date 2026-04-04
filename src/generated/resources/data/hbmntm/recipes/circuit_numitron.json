@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "G": {
+      "tag": "forge:glass_panes"
+    },
+    "I": {
+      "item": "hbmntm:plate_copper"
+    },
+    "W": {
+      "item": "hbmntm:coil_tungsten"
+    }
+  },
+  "pattern": [
+    "G",
+    "W",
+    "I"
+  ],
+  "result": {
+    "count": 3,
+    "item": "hbmntm:circuit_numitron"
+  },
+  "show_notification": true
+}

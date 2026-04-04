@@ -38,6 +38,8 @@ public final class HbmBlocks {
     public static final RegistryObject<Block> FALLOUT = BLOCKS.register("fallout", FalloutBlock::new);
     public static final RegistryObject<Block> GEIGER = BLOCKS.register("geiger",
         () -> new GeigerCounterBlock(Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(15.0F, 0.25F).noOcclusion())));
+    public static final RegistryObject<Block> PRESS_PREHEATER = BLOCKS.register("press_preheater",
+        () -> new Block(Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 10.0F).requiresCorrectToolForDrops())));
     public static final RegistryObject<Block> ANVIL_IRON = BLOCKS.register("anvil_iron",
         () -> new NtmAnvilBlock(NtmAnvilBlock.TIER_IRON, Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.ANVIL).strength(5.0F, 100.0F).requiresCorrectToolForDrops())));
     public static final RegistryObject<Block> ANVIL_STEEL = BLOCKS.register("anvil_steel",

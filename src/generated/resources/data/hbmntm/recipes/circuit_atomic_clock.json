@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "item": "hbmntm:circuit_chip"
+    },
+    "I": {
+      "item": "hbmntm:plate_polymer"
+    },
+    "S": {
+      "item": "hbmntm:powder_strontium"
+    }
+  },
+  "pattern": [
+    "ICI",
+    "CSC",
+    "ICI"
+  ],
+  "result": {
+    "item": "hbmntm:circuit_atomic_clock"
+  },
+  "show_notification": true
+}

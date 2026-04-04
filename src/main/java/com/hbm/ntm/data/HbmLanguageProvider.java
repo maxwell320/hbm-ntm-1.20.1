@@ -5,6 +5,7 @@ import com.hbm.ntm.common.block.BasaltBlockType;
 import com.hbm.ntm.common.block.BasaltOreType;
 import com.hbm.ntm.common.block.SellafieldOreType;
 import com.hbm.ntm.common.block.StoneResourceType;
+import com.hbm.ntm.common.item.BriquetteItemType;
 import com.hbm.ntm.common.item.CircuitItemType;
 import com.hbm.ntm.common.item.ChunkOreItemType;
 import com.hbm.ntm.common.item.StampItemType;
@@ -38,7 +39,11 @@ public class HbmLanguageProvider extends LanguageProvider {
         add(Objects.requireNonNull(HbmBlocks.FALLOUT.get()), "Fallout");
         add(Objects.requireNonNull(HbmBlocks.GAS_ASBESTOS.get()), "Airborne Asbestos Particles");
         add(Objects.requireNonNull(HbmBlocks.GEIGER.get()), "Geiger Counter");
+        add(Objects.requireNonNull(HbmBlocks.PRESS_PREHEATER.get()), "Burner Press Preheater");
         add(Objects.requireNonNull(HbmBlocks.SELLAFIELD.get()), "Sellafite");
+        add(Objects.requireNonNull(HbmItems.BIOMASS.get()), "Biomass");
+        add(Objects.requireNonNull(HbmItems.BIOMASS_COMPRESSED.get()), "Compressed Biomass");
+        add(Objects.requireNonNull(HbmItems.CRT_DISPLAY.get()), "Cathode Ray Tube");
         add(Objects.requireNonNull(HbmItems.DOSIMETER.get()), "Dosimeter");
         add(Objects.requireNonNull(HbmItems.FALLOUT.get()), "Pile of Fallout");
         add(Objects.requireNonNull(HbmItems.GEIGER_COUNTER.get()), "Geiger Counter");
@@ -75,6 +80,10 @@ public class HbmLanguageProvider extends LanguageProvider {
             for (final HbmMaterialShape shape : material.shapes()) {
                 add(Objects.requireNonNull(HbmItems.getMaterialPart(material, shape).get()), Objects.requireNonNull(material.itemTranslation(shape)));
             }
+        }
+
+        for (final BriquetteItemType type : BriquetteItemType.values()) {
+            add(Objects.requireNonNull(HbmItems.getBriquette(type).get()), type.displayName());
         }
 
         for (final ChunkOreItemType type : ChunkOreItemType.values()) {

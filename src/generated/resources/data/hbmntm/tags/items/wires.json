@@ -10,6 +10,7 @@
     "hbmntm:wire_steel",
     "hbmntm:wire_magnetized_tungsten",
     "hbmntm:wire_schrabidium",
+    "hbmntm:wire_lead",
     "hbmntm:wire_zirconium"
   ]
 }

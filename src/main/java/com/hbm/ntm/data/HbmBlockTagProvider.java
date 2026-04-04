@@ -24,9 +24,9 @@ public class HbmBlockTagProvider extends BlockTagsProvider {
     protected void addTags(final @NotNull HolderLookup.Provider provider) {
         tag(BlockTags.MINEABLE_WITH_SHOVEL).add(HbmBlocks.FALLOUT.get());
         tag(BlockTags.MINEABLE_WITH_AXE).add(HbmBlocks.WASTE_LOG.get(), HbmBlocks.WASTE_PLANKS.get());
-        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(HbmBlocks.GEIGER.get(), HbmBlocks.ANVIL_IRON.get(), HbmBlocks.ANVIL_STEEL.get(),
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(HbmBlocks.GEIGER.get(), HbmBlocks.PRESS_PREHEATER.get(), HbmBlocks.ANVIL_IRON.get(), HbmBlocks.ANVIL_STEEL.get(),
             HbmBlocks.ANVIL_DESH.get(), HbmBlocks.SELLAFIELD.get(), HbmBlocks.SELLAFIELD_SLAKED.get());
-        tag(BlockTags.NEEDS_STONE_TOOL).add(HbmBlocks.ANVIL_IRON.get(), HbmBlocks.ANVIL_STEEL.get(), HbmBlocks.ANVIL_DESH.get(),
+        tag(BlockTags.NEEDS_STONE_TOOL).add(HbmBlocks.PRESS_PREHEATER.get(), HbmBlocks.ANVIL_IRON.get(), HbmBlocks.ANVIL_STEEL.get(), HbmBlocks.ANVIL_DESH.get(),
             HbmBlocks.SELLAFIELD.get(), HbmBlocks.SELLAFIELD_SLAKED.get());
 
         for (final BasaltBlockType type : BasaltBlockType.values()) {
