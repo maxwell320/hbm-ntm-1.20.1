@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:coil_tungsten"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wire_tungsten": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:wire_tungsten"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_wire_tungsten",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:coil_tungsten"
+    ]
+  },
+  "sends_telemetry_event": false
+}

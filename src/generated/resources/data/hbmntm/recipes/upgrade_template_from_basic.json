@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "item": "hbmntm:circuit_basic"
+    },
+    "I": {
+      "item": "hbmntm:ingot_pc"
+    },
+    "P": {
+      "item": "hbmntm:plate_polymer"
+    },
+    "W": {
+      "item": "hbmntm:wire_copper"
+    }
+  },
+  "pattern": [
+    "WIW",
+    "PCP",
+    "WIW"
+  ],
+  "result": {
+    "item": "hbmntm:upgrade_template"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "item": "hbmntm:coil_gold_torus"
+    },
+    "D": {
+      "item": "hbmntm:ingot_desh"
+    },
+    "M": {
+      "item": "hbmntm:motor"
+    },
+    "P": [
+      {
+        "item": "hbmntm:ingot_polymer"
+      },
+      {
+        "item": "hbmntm:ingot_bakelite"
+      },
+      {
+        "item": "hbmntm:ingot_biorubber"
+      },
+      {
+        "item": "hbmntm:ingot_rubber"
+      },
+      {
+        "item": "hbmntm:ingot_pet"
+      },
+      {
+        "item": "hbmntm:ingot_pc"
+      },
+      {
+        "item": "hbmntm:ingot_pvc"
+      }
+    ]
+  },
+  "pattern": [
+    "PCP",
+    "DMD",
+    "PCP"
+  ],
+  "result": {
+    "item": "hbmntm:motor_desh"
+  },
+  "show_notification": true
+}

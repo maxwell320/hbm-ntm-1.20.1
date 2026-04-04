@@ -40,7 +40,15 @@ public final class HbmAnvilRecipes {
         smithing(NtmAnvilBlock.TIER_IRON, HbmBlocks.ANVIL_IRON, Ingredient.of(HbmBlocks.ANVIL_IRON.get()), 1,
             Ingredient.of(Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.STEEL, HbmMaterialShape.INGOT).get())), 10),
         smithing(NtmAnvilBlock.TIER_IRON, HbmBlocks.ANVIL_DESH, Ingredient.of(HbmBlocks.ANVIL_IRON.get()), 1,
-            Ingredient.of(Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.DESH, HbmMaterialShape.INGOT).get())), 10)
+            Ingredient.of(Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.DESH, HbmMaterialShape.INGOT).get())), 10),
+        smithing(NtmAnvilBlock.TIER_STEEL, stamp(StampItemType.IRON_C9), Ingredient.of(Objects.requireNonNull(HbmItems.getStamp(StampItemType.IRON_FLAT).get())), 1,
+            Ingredient.of(Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.GUNMETAL, HbmMaterialShape.INGOT).get())), 2),
+        smithing(NtmAnvilBlock.TIER_STEEL, stamp(StampItemType.IRON_C50), Ingredient.of(Objects.requireNonNull(HbmItems.getStamp(StampItemType.IRON_FLAT).get())), 1,
+            Ingredient.of(Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.GUNMETAL, HbmMaterialShape.INGOT).get())), 2),
+        smithing(NtmAnvilBlock.TIER_DESH, stamp(StampItemType.DESH_C9), Ingredient.of(Objects.requireNonNull(HbmItems.getStamp(StampItemType.DESH_FLAT).get())), 1,
+            Ingredient.of(Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.WEAPONSTEEL, HbmMaterialShape.INGOT).get())), 4),
+        smithing(NtmAnvilBlock.TIER_DESH, stamp(StampItemType.DESH_C50), Ingredient.of(Objects.requireNonNull(HbmItems.getStamp(StampItemType.DESH_FLAT).get())), 1,
+            Ingredient.of(Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.WEAPONSTEEL, HbmMaterialShape.INGOT).get())), 4)
     );
 
     private HbmAnvilRecipes() {

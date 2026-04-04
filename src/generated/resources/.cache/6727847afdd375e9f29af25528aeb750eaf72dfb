@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-02T13:35:32.4194869	HBM Item Tags
+// 1.20.1	2026-04-04T15:43:35.8755193	HBM Item Tags
 5e5245f92e4f2eed9c0fbe3d93f0366e27a4530c data/forge/tags/items/billets/actinium.json
 65d1d0138232e9f49b85fcdf4a585711b8c1d528 data/forge/tags/items/billets/au198.json
 1ab902dad59d64ed93bbe859502ea9611c92bb19 data/forge/tags/items/billets/australium.json
@@ -454,6 +454,7 @@ fedb0f08a3329a821e932f73c08fc51ee4a9fe9e data/forge/tags/items/wires/aluminium.j
 4977d7fe31c852975ec0937b7ee1c8cf7d96253f data/forge/tags/items/wires/carbon.json
 cfe17cdeef71a21db407362e93be60493990512d data/forge/tags/items/wires/copper.json
 26fdb945701c978402ac05b99bb8802016aea4ad data/forge/tags/items/wires/gold.json
+17184c5c6b3f4ee76446139502cae78f6f8f8874 data/forge/tags/items/wires/lead.json
 d360ab0c3c63bfaf1a1a84526242accf9f849d72 data/forge/tags/items/wires/magnetized_tungsten.json
 85da8dbad82522742e8c31e4c7223ce76678d33c data/forge/tags/items/wires/red_copper.json
 aec592c8b0a572089b7ccc9d0005e5fd47ad42c9 data/forge/tags/items/wires/schrabidium.json
@@ -874,7 +875,7 @@ c0742d4beac006a30073dab1f02d323f3f5296d2 data/hbmntm/tags/items/materials/iron.j
 ae9b62f01a02681328d46a79c15fa5f126e5d182 data/hbmntm/tags/items/materials/lanthanium.json
 79c100e5a62e3abe9ec3557beaa7d38a9e603876 data/hbmntm/tags/items/materials/lapis.json
 b1cd263437a386462b25baed682b4c4247480650 data/hbmntm/tags/items/materials/latex.json
-bfd9b715c9a066eef356135598fa225d0faf7949 data/hbmntm/tags/items/materials/lead.json
+857759f824d7c52fdc0a25772f99b6555fb34ca2 data/hbmntm/tags/items/materials/lead.json
 06797999fe81654694541a6da0d76b7542f916c9 data/hbmntm/tags/items/materials/lignite.json
 e29308ad1833f4eddd86cfce8dea262d1fbb312c data/hbmntm/tags/items/materials/limestone.json
 2cd92fedb5d8f2658751235866725e36d6d82d87 data/hbmntm/tags/items/materials/lithium.json
@@ -1053,12 +1054,13 @@ c3081bccd246672165ae683c84d1b7196628823d data/hbmntm/tags/items/welded_plates/tc
 61034d9fd1e920bbf87cad5a2923d90b1defb1f9 data/hbmntm/tags/items/welded_plates/titanium.json
 332bc0732c37cbbc53384783e664729ad32f1127 data/hbmntm/tags/items/welded_plates/tungsten.json
 95e237fb02fd39c1b48cb1d896ed9147d4d785a0 data/hbmntm/tags/items/welded_plates/zirconium.json
-fa3bdc8c633e357ccaea4724e21ac414bf39a2b9 data/hbmntm/tags/items/wires.json
+7e2b66cf33f996bda16d08b3710ce1c5c609a9ef data/hbmntm/tags/items/wires.json
 7702f6b685c0df78e53f4c143cdee47a257a11d4 data/hbmntm/tags/items/wires/advanced_alloy.json
 fedb0f08a3329a821e932f73c08fc51ee4a9fe9e data/hbmntm/tags/items/wires/aluminium.json
 4977d7fe31c852975ec0937b7ee1c8cf7d96253f data/hbmntm/tags/items/wires/carbon.json
 cfe17cdeef71a21db407362e93be60493990512d data/hbmntm/tags/items/wires/copper.json
 26fdb945701c978402ac05b99bb8802016aea4ad data/hbmntm/tags/items/wires/gold.json
+17184c5c6b3f4ee76446139502cae78f6f8f8874 data/hbmntm/tags/items/wires/lead.json
 d360ab0c3c63bfaf1a1a84526242accf9f849d72 data/hbmntm/tags/items/wires/magnetized_tungsten.json
 85da8dbad82522742e8c31e4c7223ce76678d33c data/hbmntm/tags/items/wires/red_copper.json
 aec592c8b0a572089b7ccc9d0005e5fd47ad42c9 data/hbmntm/tags/items/wires/schrabidium.json

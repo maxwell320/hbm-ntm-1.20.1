@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:string"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "S": {
+      "item": "minecraft:slime_ball"
+    }
+  },
+  "pattern": [
+    "F",
+    "P",
+    "S"
+  ],
+  "result": {
+    "count": 4,
+    "item": "hbmntm:ducttape"
+  },
+  "show_notification": true
+}

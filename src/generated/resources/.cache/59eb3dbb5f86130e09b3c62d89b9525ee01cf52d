@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-03T20:43:54.9139936	Loot Tables
+// 1.20.1	2026-04-04T15:43:35.8910625	Loot Tables
 2d39a7e294d885b47f2ec965a87c5916bbd05817 data/hbmntm/loot_tables/blocks/anvil_desh.json
 4d08660cb314bd4f467cf304296abc200f03e6bb data/hbmntm/loot_tables/blocks/anvil_iron.json
 5f3b4f00cafc5ac6e0324b4c3413e41e1d33bbc5 data/hbmntm/loot_tables/blocks/anvil_steel.json
@@ -20,6 +20,7 @@ ec2dfd9ad45f992fe2e7664ff7ede476f0004e1e data/hbmntm/loot_tables/blocks/ore_basa
 27b2328929b93d61ca863ca20de35b08b3136422 data/hbmntm/loot_tables/blocks/ore_sellafield_radgem.json
 c76754b982e89e72346ed577a3ed83ba0a309e0b data/hbmntm/loot_tables/blocks/ore_sellafield_schrabidium.json
 eeddf0d1f3bd0605a24052ce298deca97e8ec289 data/hbmntm/loot_tables/blocks/ore_sellafield_uranium_scorched.json
+4fc53b1c10a1057297df12a076235ec4cc3d14a9 data/hbmntm/loot_tables/blocks/press_preheater.json
 17e832252765181f1c4d8cfed3daec8472d69997 data/hbmntm/loot_tables/blocks/sellafield_slaked.json
 2564643ef1934d1f39d68fc1baa32658b2d5ab33 data/hbmntm/loot_tables/blocks/stone_resource_asbestos.json
 4a1fbc1492225ebd553df2206ef53187d4da90f2 data/hbmntm/loot_tables/blocks/stone_resource_bauxite.json

@@ -6,6 +6,8 @@ import com.hbm.ntm.common.block.BasaltOreType;
 import com.hbm.ntm.common.block.SellafieldOreType;
 import com.hbm.ntm.common.block.StoneResourceType;
 import com.hbm.ntm.common.item.BriquetteItemType;
+import com.hbm.ntm.common.item.CasingItemType;
+import com.hbm.ntm.common.item.CokeItemType;
 import com.hbm.ntm.common.item.CircuitItemType;
 import com.hbm.ntm.common.item.ChunkOreItemType;
 import com.hbm.ntm.common.item.DosimeterItem;
@@ -36,6 +38,8 @@ public final class HbmItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, HbmNtmMod.MOD_ID);
     private static final Map<String, RegistryObject<Item>> MATERIAL_PARTS = new LinkedHashMap<>();
     private static final Map<String, RegistryObject<Item>> BRIQUETTES = new LinkedHashMap<>();
+    private static final Map<String, RegistryObject<Item>> CASINGS = new LinkedHashMap<>();
+    private static final Map<String, RegistryObject<Item>> COKES = new LinkedHashMap<>();
     private static final Map<String, RegistryObject<Item>> CHUNK_ORES = new LinkedHashMap<>();
     private static final Map<String, RegistryObject<Item>> CIRCUITS = new LinkedHashMap<>();
     private static final Map<String, RegistryObject<Item>> STAMPS = new LinkedHashMap<>();
@@ -44,7 +48,20 @@ public final class HbmItems {
     public static final RegistryObject<Item> BURNT_BARK = registerSimpleItem("burnt_bark", SIMPLE_ITEMS);
     public static final RegistryObject<Item> BIOMASS = registerSimpleItem("biomass", SIMPLE_ITEMS);
     public static final RegistryObject<Item> BIOMASS_COMPRESSED = registerSimpleItem("biomass_compressed", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> DUCTTAPE = registerSimpleItem("ducttape", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> FUSE = registerSimpleItem("fuse", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> SAFETY_FUSE = registerSimpleItem("safety_fuse", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> COIL_COPPER_TORUS = registerSimpleItem("coil_copper_torus", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> MOTOR = registerSimpleItem("motor", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> MOTOR_DESH = registerSimpleItem("motor_desh", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> TANK_STEEL = registerSimpleItem("tank_steel", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> COIL_ADVANCED_TORUS = registerSimpleItem("coil_advanced_torus", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> COIL_GOLD_TORUS = registerSimpleItem("coil_gold_torus", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> PHOTO_PANEL = registerSimpleItem("photo_panel", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> PIN = registerSimpleItem("pin", SIMPLE_ITEMS);
     public static final RegistryObject<Item> FALLOUT = registerSimpleItem("fallout", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> POWDER_SAWDUST = registerSimpleItem("powder_sawdust", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> UPGRADE_TEMPLATE = registerSimpleItem("upgrade_template", SIMPLE_ITEMS);
     public static final RegistryObject<Item> FALLOUT_LAYER = registerBlockItem("fallout_layer", HbmBlocks.FALLOUT, BLOCK_ITEMS);
     public static final RegistryObject<Item> GEIGER = registerBlockItem("geiger", HbmBlocks.GEIGER, BLOCK_ITEMS);
     public static final RegistryObject<Item> PRESS_PREHEATER = registerBlockItem("press_preheater", HbmBlocks.PRESS_PREHEATER, BLOCK_ITEMS);
@@ -62,6 +79,8 @@ public final class HbmItems {
     static {
         HbmMaterials.ordered().forEach(HbmItems::registerMaterialSet);
         registerBriquetteItems();
+        registerCasingItems();
+        registerCokeItems();
         registerChunkOreItems();
         registerCircuitItems();
         registerStampItems();
@@ -87,6 +106,18 @@ public final class HbmItems {
     private static void registerBriquetteItems() {
         for (final BriquetteItemType type : BriquetteItemType.values()) {
             registerSimpleItem(type.itemId(), BRIQUETTES);
+        }
+    }
+
+    private static void registerCasingItems() {
+        for (final CasingItemType type : CasingItemType.values()) {
+            registerSimpleItem(type.itemId(), CASINGS);
+        }
+    }
+
+    private static void registerCokeItems() {
+        for (final CokeItemType type : CokeItemType.values()) {
+            registerSimpleItem(type.itemId(), COKES);
         }
     }
 
@@ -163,6 +194,8 @@ public final class HbmItems {
     public static Collection<RegistryObject<Item>> creativeTabEntries() {
         final List<RegistryObject<Item>> entries = new ArrayList<>(MATERIAL_PARTS.values());
         entries.addAll(BRIQUETTES.values());
+        entries.addAll(CASINGS.values());
+        entries.addAll(COKES.values());
         entries.addAll(CHUNK_ORES.values());
         entries.addAll(CIRCUITS.values());
         entries.addAll(STAMPS.values());
@@ -191,6 +224,22 @@ public final class HbmItems {
         final RegistryObject<Item> registryObject = BRIQUETTES.get(type.itemId());
         if (registryObject == null) {
             throw new IllegalArgumentException("Unknown briquette item: " + type.itemId());
+        }
+        return registryObject;
+    }
+
+    public static RegistryObject<Item> getCasing(final CasingItemType type) {
+        final RegistryObject<Item> registryObject = CASINGS.get(type.itemId());
+        if (registryObject == null) {
+            throw new IllegalArgumentException("Unknown casing item: " + type.itemId());
+        }
+        return registryObject;
+    }
+
+    public static RegistryObject<Item> getCoke(final CokeItemType type) {
+        final RegistryObject<Item> registryObject = COKES.get(type.itemId());
+        if (registryObject == null) {
+            throw new IllegalArgumentException("Unknown coke item: " + type.itemId());
         }
         return registryObject;
     }

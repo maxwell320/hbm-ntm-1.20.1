@@ -1,6 +1,8 @@
 package com.hbm.ntm.common.press;
 
 import com.hbm.ntm.common.item.BriquetteItemType;
+import com.hbm.ntm.common.item.CasingItemType;
+import com.hbm.ntm.common.item.CokeItemType;
 import com.hbm.ntm.common.item.CircuitItemType;
 import com.hbm.ntm.common.item.StampItem;
 import com.hbm.ntm.common.item.StampItemType;
@@ -61,6 +63,12 @@ public final class HbmPressRecipes {
         add(PressStampType.FLAT, Ingredient.of(item(HbmMaterials.DIAMOND, HbmMaterialShape.DUST)), new ItemStack(Items.DIAMOND));
         add(PressStampType.FLAT, Ingredient.of(item(HbmMaterials.EMERALD, HbmMaterialShape.DUST)), new ItemStack(Items.EMERALD));
         add(PressStampType.FLAT, Ingredient.of(Objects.requireNonNull(HbmItems.BIOMASS.get())), new ItemStack(Objects.requireNonNull(HbmItems.BIOMASS_COMPRESSED.get())));
+        add(PressStampType.FLAT,
+            Ingredient.of(
+                Objects.requireNonNull(HbmItems.getCoke(CokeItemType.COAL).get()),
+                Objects.requireNonNull(HbmItems.getCoke(CokeItemType.LIGNITE).get()),
+                Objects.requireNonNull(HbmItems.getCoke(CokeItemType.PETROLEUM).get())),
+            new ItemStack(item(HbmMaterials.GRAPHITE, HbmMaterialShape.INGOT)));
         add(PressStampType.FLAT, Ingredient.of(Blocks.JUNGLE_LOG), new ItemStack(item(HbmMaterials.LATEX, HbmMaterialShape.GEM)));
         add(PressStampType.FLAT,
             Ingredient.of(item(HbmMaterials.COAL, HbmMaterialShape.DUST)),
@@ -68,6 +76,9 @@ public final class HbmPressRecipes {
         add(PressStampType.FLAT,
             Ingredient.of(item(HbmMaterials.LIGNITE, HbmMaterialShape.DUST)),
             new ItemStack(Objects.requireNonNull(HbmItems.getBriquette(BriquetteItemType.LIGNITE).get())));
+        add(PressStampType.FLAT,
+            Ingredient.of(Objects.requireNonNull(HbmItems.POWDER_SAWDUST.get())),
+            new ItemStack(Objects.requireNonNull(HbmItems.getBriquette(BriquetteItemType.WOOD).get())));
 
         addPlateRecipe(HbmMaterials.IRON);
         addPlateRecipe(HbmMaterials.GOLD);
@@ -83,6 +94,19 @@ public final class HbmPressRecipes {
         addPlateRecipe(HbmMaterials.WEAPONSTEEL);
         addPlateRecipe(HbmMaterials.SATURNITE);
         addPlateRecipe(HbmMaterials.DURA_STEEL);
+
+        add(PressStampType.C9,
+            Ingredient.of(item(HbmMaterials.GUNMETAL, HbmMaterialShape.PLATE)),
+            new ItemStack(Objects.requireNonNull(HbmItems.getCasing(CasingItemType.SMALL).get()), 4));
+        add(PressStampType.C50,
+            Ingredient.of(item(HbmMaterials.GUNMETAL, HbmMaterialShape.PLATE)),
+            new ItemStack(Objects.requireNonNull(HbmItems.getCasing(CasingItemType.LARGE).get()), 2));
+        add(PressStampType.C9,
+            Ingredient.of(item(HbmMaterials.WEAPONSTEEL, HbmMaterialShape.PLATE)),
+            new ItemStack(Objects.requireNonNull(HbmItems.getCasing(CasingItemType.SMALL_STEEL).get()), 4));
+        add(PressStampType.C50,
+            Ingredient.of(item(HbmMaterials.WEAPONSTEEL, HbmMaterialShape.PLATE)),
+            new ItemStack(Objects.requireNonNull(HbmItems.getCasing(CasingItemType.LARGE_STEEL).get()), 2));
 
         for (final HbmMaterialDefinition material : HbmMaterials.ordered()) {
             if (material.hasShape(HbmMaterialShape.INGOT) && material.hasShape(HbmMaterialShape.WIRE)) {
@@ -125,7 +149,9 @@ public final class HbmPressRecipes {
         FLAT,
         PLATE,
         WIRE,
-        CIRCUIT;
+        CIRCUIT,
+        C9,
+        C50;
 
         public static PressStampType from(final StampItemType type) {
             return switch (type) {
@@ -133,6 +159,8 @@ public final class HbmPressRecipes {
                 case STONE_PLATE, IRON_PLATE, STEEL_PLATE, TITANIUM_PLATE, OBSIDIAN_PLATE, DESH_PLATE -> PLATE;
                 case STONE_WIRE, IRON_WIRE, STEEL_WIRE, TITANIUM_WIRE, OBSIDIAN_WIRE, DESH_WIRE -> WIRE;
                 case STONE_CIRCUIT, IRON_CIRCUIT, STEEL_CIRCUIT, TITANIUM_CIRCUIT, OBSIDIAN_CIRCUIT, DESH_CIRCUIT -> CIRCUIT;
+                case IRON_C9, DESH_C9 -> C9;
+                case IRON_C50, DESH_C50 -> C50;
             };
         }
     }

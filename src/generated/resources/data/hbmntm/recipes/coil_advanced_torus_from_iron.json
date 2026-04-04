@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "item": "hbmntm:coil_advanced_alloy"
+    },
+    "P": {
+      "item": "hbmntm:plate_iron"
+    }
+  },
+  "pattern": [
+    " C ",
+    "CPC",
+    " C "
+  ],
+  "result": {
+    "count": 2,
+    "item": "hbmntm:coil_advanced_torus"
+  },
+  "show_notification": true
+}

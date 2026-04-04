@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "item": "hbmntm:coil_copper"
+    },
+    "I": {
+      "item": "hbmntm:plate_steel"
+    },
+    "R": {
+      "item": "hbmntm:wire_red_copper"
+    },
+    "T": {
+      "item": "hbmntm:coil_copper_torus"
+    }
+  },
+  "pattern": [
+    " R ",
+    "ICI",
+    " T "
+  ],
+  "result": {
+    "count": 2,
+    "item": "hbmntm:motor"
+  },
+  "show_notification": true
+}

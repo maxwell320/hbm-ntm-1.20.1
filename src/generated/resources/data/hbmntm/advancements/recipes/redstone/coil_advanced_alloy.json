@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:coil_advanced_alloy"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wire_advanced_alloy": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:wire_advanced_alloy"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_wire_advanced_alloy",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:coil_advanced_alloy"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -111,7 +111,10 @@ public class HbmRecipeProvider extends RecipeProvider {
         final ItemLike atomicClock = Objects.requireNonNull(HbmItems.getCircuit(CircuitItemType.ATOMIC_CLOCK).get());
         final ItemLike controllerChassis = Objects.requireNonNull(HbmItems.getCircuit(CircuitItemType.CONTROLLER_CHASSIS).get());
         final ItemLike numitron = Objects.requireNonNull(HbmItems.getCircuit(CircuitItemType.NUMITRON).get());
+        final ItemLike analogCircuit = Objects.requireNonNull(HbmItems.getCircuit(CircuitItemType.ANALOG).get());
+        final ItemLike basicCircuit = Objects.requireNonNull(HbmItems.getCircuit(CircuitItemType.BASIC).get());
         final ItemLike crtDisplay = Objects.requireNonNull(HbmItems.CRT_DISPLAY.get());
+        final ItemLike upgradeTemplate = Objects.requireNonNull(HbmItems.UPGRADE_TEMPLATE.get());
         final ItemLike polymerPlate = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.POLYMER, HbmMaterialShape.PLATE).get());
         final ItemLike polymerBar = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.POLYMER, HbmMaterialShape.INGOT).get());
         final ItemLike bakeliteBar = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.BAKELITE, HbmMaterialShape.INGOT).get());
@@ -122,16 +125,34 @@ public class HbmRecipeProvider extends RecipeProvider {
         final ItemLike pvcBar = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.PVC, HbmMaterialShape.INGOT).get());
         final ItemLike tungstenWire = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.TUNGSTEN, HbmMaterialShape.WIRE).get());
         final ItemLike heatingCoil = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.TUNGSTEN, HbmMaterialShape.DENSE_WIRE).get());
+        final ItemLike magnetizedTungstenWire = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.MAGNETIZED_TUNGSTEN, HbmMaterialShape.WIRE).get());
+        final ItemLike magnetizedTungstenCoil = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.MAGNETIZED_TUNGSTEN, HbmMaterialShape.DENSE_WIRE).get());
         final ItemLike carbonWire = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.CARBON, HbmMaterialShape.WIRE).get());
         final ItemLike niobiumNugget = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.NIOBIUM, HbmMaterialShape.NUGGET).get());
         final ItemLike tantaliumNugget = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.TANTALIUM, HbmMaterialShape.NUGGET).get());
         final ItemLike aluminiumWire = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.ALUMINIUM, HbmMaterialShape.WIRE).get());
         final ItemLike copperWire = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.COPPER, HbmMaterialShape.WIRE).get());
+        final ItemLike redCopperWire = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.RED_COPPER, HbmMaterialShape.WIRE).get());
         final ItemLike aluminiumDust = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.ALUMINIUM, HbmMaterialShape.DUST).get());
+        final ItemLike ironPlate = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.IRON, HbmMaterialShape.PLATE).get());
         final ItemLike copperPlate = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.COPPER, HbmMaterialShape.PLATE).get());
         final ItemLike goldPlate = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.GOLD, HbmMaterialShape.PLATE).get());
         final ItemLike goldWire = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.GOLD, HbmMaterialShape.WIRE).get());
+        final ItemLike quartzDust = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.QUARTZ, HbmMaterialShape.DUST).get());
+        final ItemLike goldCoil = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.GOLD, HbmMaterialShape.DENSE_WIRE).get());
+        final ItemLike advancedAlloyWire = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.ADVANCED_ALLOY, HbmMaterialShape.WIRE).get());
+        final ItemLike advancedAlloyCoil = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.ADVANCED_ALLOY, HbmMaterialShape.DENSE_WIRE).get());
         final ItemLike steelPlate = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.STEEL, HbmMaterialShape.PLATE).get());
+        final ItemLike copperCoil = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.COPPER, HbmMaterialShape.DENSE_WIRE).get());
+        final ItemLike copperCoilTorus = Objects.requireNonNull(HbmItems.COIL_COPPER_TORUS.get());
+        final ItemLike motor = Objects.requireNonNull(HbmItems.MOTOR.get());
+        final ItemLike motorDesh = Objects.requireNonNull(HbmItems.MOTOR_DESH.get());
+        final ItemLike tankSteel = Objects.requireNonNull(HbmItems.TANK_STEEL.get());
+        final ItemLike coilAdvancedTorus = Objects.requireNonNull(HbmItems.COIL_ADVANCED_TORUS.get());
+        final ItemLike coilGoldTorus = Objects.requireNonNull(HbmItems.COIL_GOLD_TORUS.get());
+        final ItemLike photoPanel = Objects.requireNonNull(HbmItems.PHOTO_PANEL.get());
+        final ItemLike pin = Objects.requireNonNull(HbmItems.PIN.get());
+        final ItemLike titaniumPlate = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.TITANIUM, HbmMaterialShape.PLATE).get());
         final ItemLike strontiumDust = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.STRONTIUM, HbmMaterialShape.DUST).get());
         final Ingredient plasticBars = Ingredient.of(polymerBar, bakeliteBar, latexBar, rubberBar, petBar, pcBar, pvcBar);
 
@@ -270,6 +291,166 @@ public class HbmRecipeProvider extends RecipeProvider {
             .unlockedBy(getHasName(chip), has(chip))
             .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "circuit_atomic_clock")));
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, copperCoil)
+            .pattern("WWW")
+            .pattern("WIW")
+            .pattern("WWW")
+            .define('W', redCopperWire)
+            .define('I', Items.IRON_INGOT)
+            .unlockedBy(getHasName(redCopperWire), has(redCopperWire))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "coil_copper")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, heatingCoil)
+            .pattern("WWW")
+            .pattern("WIW")
+            .pattern("WWW")
+            .define('W', tungstenWire)
+            .define('I', Items.IRON_INGOT)
+            .unlockedBy(getHasName(tungstenWire), has(tungstenWire))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "coil_tungsten")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, magnetizedTungstenCoil)
+            .pattern("WWW")
+            .pattern("WIW")
+            .pattern("WWW")
+            .define('W', magnetizedTungstenWire)
+            .define('I', Items.IRON_INGOT)
+            .unlockedBy(getHasName(magnetizedTungstenWire), has(magnetizedTungstenWire))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "coil_magnetized_tungsten")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, copperCoilTorus, 2)
+            .pattern(" C ")
+            .pattern("CPC")
+            .pattern(" C ")
+            .define('C', copperCoil)
+            .define('P', ironPlate)
+            .unlockedBy(getHasName(copperCoil), has(copperCoil))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "coil_copper_torus_from_iron")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, copperCoilTorus, 2)
+            .pattern(" C ")
+            .pattern("CPC")
+            .pattern(" C ")
+            .define('C', copperCoil)
+            .define('P', steelPlate)
+            .unlockedBy(getHasName(copperCoil), has(copperCoil))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "coil_copper_torus_from_steel")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, advancedAlloyCoil)
+            .pattern("WWW")
+            .pattern("WIW")
+            .pattern("WWW")
+            .define('W', advancedAlloyWire)
+            .define('I', Items.IRON_INGOT)
+            .unlockedBy(getHasName(advancedAlloyWire), has(advancedAlloyWire))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "coil_advanced_alloy")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, goldCoil)
+            .pattern("WWW")
+            .pattern("WIW")
+            .pattern("WWW")
+            .define('W', goldWire)
+            .define('I', Items.IRON_INGOT)
+            .unlockedBy(getHasName(goldWire), has(goldWire))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "coil_gold")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, coilAdvancedTorus, 2)
+            .pattern(" C ")
+            .pattern("CPC")
+            .pattern(" C ")
+            .define('C', advancedAlloyCoil)
+            .define('P', ironPlate)
+            .unlockedBy(getHasName(advancedAlloyCoil), has(advancedAlloyCoil))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "coil_advanced_torus_from_iron")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, coilAdvancedTorus, 2)
+            .pattern(" C ")
+            .pattern("CPC")
+            .pattern(" C ")
+            .define('C', advancedAlloyCoil)
+            .define('P', steelPlate)
+            .unlockedBy(getHasName(advancedAlloyCoil), has(advancedAlloyCoil))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "coil_advanced_torus_from_steel")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, coilGoldTorus, 2)
+            .pattern(" C ")
+            .pattern("CPC")
+            .pattern(" C ")
+            .define('C', goldCoil)
+            .define('P', ironPlate)
+            .unlockedBy(getHasName(goldCoil), has(goldCoil))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "coil_gold_torus_from_iron")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, coilGoldTorus, 2)
+            .pattern(" C ")
+            .pattern("CPC")
+            .pattern(" C ")
+            .define('C', goldCoil)
+            .define('P', steelPlate)
+            .unlockedBy(getHasName(goldCoil), has(goldCoil))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "coil_gold_torus_from_steel")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, motor, 2)
+            .pattern(" R ")
+            .pattern("ICI")
+            .pattern("ITI")
+            .define('R', redCopperWire)
+            .define('I', ironPlate)
+            .define('C', copperCoil)
+            .define('T', copperCoilTorus)
+            .unlockedBy(getHasName(copperCoilTorus), has(copperCoilTorus))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "motor_from_iron")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, motor, 2)
+            .pattern(" R ")
+            .pattern("ICI")
+            .pattern(" T ")
+            .define('R', redCopperWire)
+            .define('I', steelPlate)
+            .define('C', copperCoil)
+            .define('T', copperCoilTorus)
+            .unlockedBy(getHasName(copperCoilTorus), has(copperCoilTorus))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "motor_from_steel")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, tankSteel, 2)
+            .pattern("STS")
+            .pattern("S S")
+            .pattern("STS")
+            .define('S', steelPlate)
+            .define('T', titaniumPlate)
+            .unlockedBy(getHasName(steelPlate), has(steelPlate))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "tank_steel")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, photoPanel)
+            .pattern(" G ")
+            .pattern("IPI")
+            .pattern(" C ")
+            .define('G', Ingredient.of(Tags.Items.GLASS_PANES))
+            .define('I', polymerPlate)
+            .define('P', quartzDust)
+            .define('C', pcb)
+            .unlockedBy(getHasName(pcb), has(pcb))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "photo_panel")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, pin)
+            .pattern("W ")
+            .pattern(" W")
+            .pattern(" W")
+            .define('W', copperWire)
+            .unlockedBy(getHasName(copperWire), has(copperWire))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "pin")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, motorDesh)
+            .pattern("PCP")
+            .pattern("DMD")
+            .pattern("PCP")
+            .define('P', plasticBars)
+            .define('C', coilGoldTorus)
+            .define('D', Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.DESH, HbmMaterialShape.INGOT).get()))
+            .define('M', motor)
+            .unlockedBy(getHasName(motor), has(motor))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "motor_desh")));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, numitron, 3)
             .pattern("G")
             .pattern("W")
@@ -289,11 +470,51 @@ public class HbmRecipeProvider extends RecipeProvider {
             .define('B', pcb)
             .unlockedBy(getHasName(crtDisplay), has(crtDisplay))
             .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "circuit_controller_chassis")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, upgradeTemplate)
+            .pattern("WIW")
+            .pattern("PCP")
+            .pattern("WIW")
+            .define('W', copperWire)
+            .define('I', ironPlate)
+            .define('P', polymerPlate)
+            .define('C', analogCircuit)
+            .unlockedBy(getHasName(analogCircuit), has(analogCircuit))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "upgrade_template_from_analog")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, upgradeTemplate)
+            .pattern("WIW")
+            .pattern("PCP")
+            .pattern("WIW")
+            .define('W', copperWire)
+            .define('I', pcBar)
+            .define('P', polymerPlate)
+            .define('C', basicCircuit)
+            .unlockedBy(getHasName(basicCircuit), has(basicCircuit))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "upgrade_template_from_basic")));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, Objects.requireNonNull(HbmItems.FUSE.get()))
+            .requires(steelPlate)
+            .requires(polymerPlate)
+            .requires(tungstenWire)
+            .unlockedBy(getHasName(steelPlate), has(steelPlate))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "fuse")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, Objects.requireNonNull(HbmItems.SAFETY_FUSE.get()), 8)
+            .pattern("SSS")
+            .pattern("SGS")
+            .pattern("SSS")
+            .define('S', Items.STRING)
+            .define('G', Items.GUNPOWDER)
+            .unlockedBy("has_gunpowder", has(Items.GUNPOWDER))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "safety_fuse")));
     }
 
     private void buildPressSupportRecipes(final Consumer<FinishedRecipe> recipeOutput) {
         final ItemLike pressPreheater = Objects.requireNonNull(HbmBlocks.PRESS_PREHEATER.get());
         final ItemLike copperPlate = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.COPPER, HbmMaterialShape.PLATE).get());
+        final ItemLike biomass = Objects.requireNonNull(HbmItems.BIOMASS.get());
+        final ItemLike sawdust = Objects.requireNonNull(HbmItems.POWDER_SAWDUST.get());
         final ItemLike tungstenIngot = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.TUNGSTEN, HbmMaterialShape.INGOT).get());
 
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, pressPreheater)
@@ -306,6 +527,153 @@ public class HbmRecipeProvider extends RecipeProvider {
             .define('T', tungstenIngot)
             .unlockedBy(getHasName(copperPlate), has(copperPlate))
             .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "press_preheater")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.PAPER, 3)
+            .pattern("SSS")
+            .define('S', sawdust)
+            .unlockedBy(getHasName(sawdust), has(sawdust))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "paper_from_sawdust")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Objects.requireNonNull(HbmItems.DUCTTAPE.get()), 4)
+            .pattern("F")
+            .pattern("P")
+            .pattern("S")
+            .define('F', Items.STRING)
+            .define('P', Items.PAPER)
+            .define('S', Items.SLIME_BALL)
+            .unlockedBy("has_paper", has(Items.PAPER))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "ducttape")));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, biomass, 4)
+            .requires(Items.SUGAR)
+            .requires(sawdust)
+            .requires(sawdust)
+            .requires(sawdust)
+            .requires(sawdust)
+            .requires(sawdust)
+            .unlockedBy(getHasName(sawdust), has(sawdust))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "biomass_from_sawdust")));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, biomass, 4)
+            .requires(Items.SUGAR)
+            .requires(sawdust)
+            .requires(sawdust)
+            .requires(Items.APPLE)
+            .requires(Items.APPLE)
+            .requires(Items.APPLE)
+            .unlockedBy(getHasName(sawdust), has(sawdust))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "biomass_from_apple")));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, biomass, 4)
+            .requires(Items.SUGAR)
+            .requires(sawdust)
+            .requires(sawdust)
+            .requires(Items.SUGAR_CANE)
+            .requires(Items.SUGAR_CANE)
+            .requires(Items.SUGAR_CANE)
+            .unlockedBy(getHasName(sawdust), has(sawdust))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "biomass_from_sugar_cane")));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, biomass, 4)
+            .requires(Items.SUGAR)
+            .requires(sawdust)
+            .requires(sawdust)
+            .requires(Items.ROTTEN_FLESH)
+            .requires(Items.ROTTEN_FLESH)
+            .requires(Items.ROTTEN_FLESH)
+            .unlockedBy(getHasName(sawdust), has(sawdust))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "biomass_from_rotten_flesh")));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, biomass, 4)
+            .requires(Items.SUGAR)
+            .requires(sawdust)
+            .requires(sawdust)
+            .requires(Items.CARROT)
+            .requires(Items.CARROT)
+            .requires(Items.CARROT)
+            .requires(Items.CARROT)
+            .requires(Items.CARROT)
+            .requires(Items.CARROT)
+            .unlockedBy(getHasName(sawdust), has(sawdust))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "biomass_from_carrot")));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, biomass, 4)
+            .requires(Items.SUGAR)
+            .requires(sawdust)
+            .requires(sawdust)
+            .requires(Items.POTATO)
+            .requires(Items.POTATO)
+            .requires(Items.POTATO)
+            .requires(Items.POTATO)
+            .requires(Items.POTATO)
+            .requires(Items.POTATO)
+            .unlockedBy(getHasName(sawdust), has(sawdust))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "biomass_from_potato")));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, biomass, 4)
+            .requires(Items.SUGAR)
+            .requires(sawdust)
+            .requires(sawdust)
+            .requires(ItemTags.SAPLINGS)
+            .requires(ItemTags.SAPLINGS)
+            .requires(ItemTags.SAPLINGS)
+            .requires(ItemTags.SAPLINGS)
+            .requires(ItemTags.SAPLINGS)
+            .requires(ItemTags.SAPLINGS)
+            .unlockedBy(getHasName(sawdust), has(sawdust))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "biomass_from_saplings")));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, biomass, 4)
+            .requires(Items.SUGAR)
+            .requires(sawdust)
+            .requires(sawdust)
+            .requires(ItemTags.LEAVES)
+            .requires(ItemTags.LEAVES)
+            .requires(ItemTags.LEAVES)
+            .requires(ItemTags.LEAVES)
+            .requires(ItemTags.LEAVES)
+            .requires(ItemTags.LEAVES)
+            .unlockedBy(getHasName(sawdust), has(sawdust))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "biomass_from_leaves")));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, biomass, 4)
+            .requires(Items.SUGAR)
+            .requires(sawdust)
+            .requires(sawdust)
+            .requires(Blocks.PUMPKIN)
+            .unlockedBy(getHasName(sawdust), has(sawdust))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "biomass_from_pumpkin")));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, biomass, 4)
+            .requires(Items.SUGAR)
+            .requires(sawdust)
+            .requires(sawdust)
+            .requires(Blocks.MELON)
+            .unlockedBy(getHasName(sawdust), has(sawdust))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "biomass_from_melon")));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, biomass, 4)
+            .requires(Items.SUGAR)
+            .requires(sawdust)
+            .requires(sawdust)
+            .requires(Blocks.CACTUS)
+            .requires(Blocks.CACTUS)
+            .requires(Blocks.CACTUS)
+            .unlockedBy(getHasName(sawdust), has(sawdust))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "biomass_from_cactus")));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, biomass, 4)
+            .requires(Items.SUGAR)
+            .requires(sawdust)
+            .requires(sawdust)
+            .requires(Items.WHEAT)
+            .requires(Items.WHEAT)
+            .requires(Items.WHEAT)
+            .requires(Items.WHEAT)
+            .requires(Items.WHEAT)
+            .requires(Items.WHEAT)
+            .unlockedBy(getHasName(sawdust), has(sawdust))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "biomass_from_wheat")));
     }
 
     private void buildStampRecipes(final Consumer<FinishedRecipe> recipeOutput) {

@@ -6,8 +6,10 @@ import com.hbm.ntm.common.block.BasaltOreType;
 import com.hbm.ntm.common.block.SellafieldOreType;
 import com.hbm.ntm.common.block.StoneResourceType;
 import com.hbm.ntm.common.item.BriquetteItemType;
+import com.hbm.ntm.common.item.CasingItemType;
 import com.hbm.ntm.common.item.CircuitItemType;
 import com.hbm.ntm.common.item.ChunkOreItemType;
+import com.hbm.ntm.common.item.CokeItemType;
 import com.hbm.ntm.common.item.StampItemType;
 import com.hbm.ntm.common.material.HbmMaterialDefinition;
 import com.hbm.ntm.common.material.HbmMaterialShape;
@@ -43,15 +45,29 @@ public class HbmLanguageProvider extends LanguageProvider {
         add(Objects.requireNonNull(HbmBlocks.SELLAFIELD.get()), "Sellafite");
         add(Objects.requireNonNull(HbmItems.BIOMASS.get()), "Biomass");
         add(Objects.requireNonNull(HbmItems.BIOMASS_COMPRESSED.get()), "Compressed Biomass");
+        add(Objects.requireNonNull(HbmItems.COIL_ADVANCED_TORUS.get()), "Super Conducting Ring Coil");
+        add(Objects.requireNonNull(HbmItems.COIL_COPPER_TORUS.get()), "Ring Coil");
+        add(Objects.requireNonNull(HbmItems.COIL_GOLD_TORUS.get()), "Golden Ring Coil");
         add(Objects.requireNonNull(HbmItems.CRT_DISPLAY.get()), "Cathode Ray Tube");
+        add(Objects.requireNonNull(HbmItems.MOTOR.get()), "Motor");
+        add(Objects.requireNonNull(HbmItems.MOTOR_DESH.get()), "Desh Motor");
         add(Objects.requireNonNull(HbmItems.DOSIMETER.get()), "Dosimeter");
+        add(Objects.requireNonNull(HbmItems.TANK_STEEL.get()), "Steel Tank");
+        add(Objects.requireNonNull(HbmItems.DUCTTAPE.get()), "Duct Tape");
+        add(Objects.requireNonNull(HbmItems.FUSE.get()), "Fuse");
+        add(Objects.requireNonNull(HbmItems.SAFETY_FUSE.get()), "Safety Fuse");
         add(Objects.requireNonNull(HbmItems.FALLOUT.get()), "Pile of Fallout");
         add(Objects.requireNonNull(HbmItems.GEIGER_COUNTER.get()), "Geiger Counter");
         add(Objects.requireNonNull(HbmItems.IV_EMPTY.get()), "Empty IV Bag");
+        add(Objects.requireNonNull(HbmItems.POWDER_SAWDUST.get()), "Sawdust");
+        add(Objects.requireNonNull(HbmItems.PHOTO_PANEL.get()), "Photovoltaic Panel");
+        add(Objects.requireNonNull(HbmItems.PIN.get()), "Bobby Pin");
+        add("item.hbmntm.pin.desc", "Standard success rate of picking a regular lock is ~10%%.");
         add(Objects.requireNonNull(HbmItems.RADAWAY.get()), "RadAway");
         add(Objects.requireNonNull(HbmItems.RADAWAY_STRONG.get()), "Strong RadAway");
         add(Objects.requireNonNull(HbmItems.RADAWAY_FLUSH.get()), "Elite RadAway");
         add(Objects.requireNonNull(HbmItems.RADX.get()), "Rad-X");
+        add(Objects.requireNonNull(HbmItems.UPGRADE_TEMPLATE.get()), "Machine Upgrade Template");
         add("geiger.chunkRad", "Current chunk radiation:");
         add("geiger.envRad", "Total environmental radiation:");
         add("geiger.playerRad", "Player contamination:");
@@ -84,6 +100,14 @@ public class HbmLanguageProvider extends LanguageProvider {
 
         for (final BriquetteItemType type : BriquetteItemType.values()) {
             add(Objects.requireNonNull(HbmItems.getBriquette(type).get()), type.displayName());
+        }
+
+        for (final CasingItemType type : CasingItemType.values()) {
+            add(Objects.requireNonNull(HbmItems.getCasing(type).get()), type.displayName());
+        }
+
+        for (final CokeItemType type : CokeItemType.values()) {
+            add(Objects.requireNonNull(HbmItems.getCoke(type).get()), type.displayName());
         }
 
         for (final ChunkOreItemType type : ChunkOreItemType.values()) {
