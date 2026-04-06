@@ -27,11 +27,11 @@ jobs:
           java-version: '17'
           cache: gradle
 
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
-
       - name: Make Gradle wrapper executable
         run: chmod +x gradlew
 
+      - name: Remove Maven toolchains file
+        run: rm -f ~/.m2/toolchains.xml
+
       - name: Build
-        run: ./gradlew build --no-daemon
+        run: ./gradlew build --no-daemon -Dorg.gradle.java.installations.auto-detect=false -Dorg.gradle.java.installations.fromEnv=JAVA_HOME
