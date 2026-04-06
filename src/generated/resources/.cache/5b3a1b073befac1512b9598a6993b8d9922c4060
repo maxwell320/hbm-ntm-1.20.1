@@ -1,5 +1,6 @@
-// 1.20.1	2026-04-05T22:38:12.9320881	Item Models: hbmntm
+// 1.20.1	2026-04-06T20:56:43.2307385	Item Models: hbmntm
 863bf180da18fb08cd18fd883d2876403e499196 assets/hbmntm/models/item/ball_resin.json
+c7f796f727085e78a62e7e201032ba97f5cb6e46 assets/hbmntm/models/item/battery_potato.json
 4a895ed346aaeaa928dbc1c32ad7ad77b6680724 assets/hbmntm/models/item/bedrockorefragment_aluminium.json
 4a895ed346aaeaa928dbc1c32ad7ad77b6680724 assets/hbmntm/models/item/bedrockorefragment_beryllium.json
 4a895ed346aaeaa928dbc1c32ad7ad77b6680724 assets/hbmntm/models/item/bedrockorefragment_chlorocalcite.json
@@ -55,6 +56,8 @@ fbe0f8a2498916af3ec503b3c9328a3641866905 assets/hbmntm/models/item/billet_uraniu
 869408499afc379a9349e34385e7551d6c57c926 assets/hbmntm/models/item/biomass.json
 a6e45fa638846202ef0ba0a6b95b88f06c6e840e assets/hbmntm/models/item/biomass_compressed.json
 2d080600b27f3414cb9e189cb399cec0a922a0c9 assets/hbmntm/models/item/blade_titanium.json
+5bf0cc64c4d47112e91bfb4f70fb8d20abd3ddd6 assets/hbmntm/models/item/block_beryllium.json
+1a978f7b2e8deda6d9e8b76407c2a33e336b8e39 assets/hbmntm/models/item/block_steel.json
 9a2bec0f20526e6cfa684d8726477867b9d6ba25 assets/hbmntm/models/item/bolt_dura_steel.json
 9a2bec0f20526e6cfa684d8726477867b9d6ba25 assets/hbmntm/models/item/bolt_steel.json
 9a2bec0f20526e6cfa684d8726477867b9d6ba25 assets/hbmntm/models/item/bolt_tungsten.json
@@ -76,12 +79,20 @@ bdc154d1e0a341e65dcaf08888b81f07b85c16c3 assets/hbmntm/models/item/circuit_advan
 76ae69f6541efca806e6e58e2f7bd4c1f5afc91d assets/hbmntm/models/item/circuit_analog.json
 4e0c31947cb405ac533d0e45302948ee3e93c35b assets/hbmntm/models/item/circuit_atomic_clock.json
 0a4b82db04ca705adf110febdae5c3d4d851507d assets/hbmntm/models/item/circuit_basic.json
+d71a9010611c1767b604a0230acf133553206365 assets/hbmntm/models/item/circuit_bismoid.json
 a4b2b91e70ed45c7fbd08879a7158a5e902f29bb assets/hbmntm/models/item/circuit_capacitor.json
+6b7a7fd8d4de789355c302b063116bad25173ea9 assets/hbmntm/models/item/circuit_capacitor_board.json
 93a04f205c2df1bdb688d08cfdc8b3e7b7abcb03 assets/hbmntm/models/item/circuit_capacitor_tantalium.json
 44414b680dec0235124e1246968836ff58a63d43 assets/hbmntm/models/item/circuit_chip.json
+ad5176bd9507a1f91dc6486f09a55773e2f4be9c assets/hbmntm/models/item/circuit_chip_bismoid.json
+7ac6932fcc53b0e1ca9ce5986c20cd253d2120d1 assets/hbmntm/models/item/circuit_chip_quantum.json
+fa5068e14770e26013967928e36d8b3d3d057d7c assets/hbmntm/models/item/circuit_controller.json
+9e7b66db5b3b5e3e67d17a283b824bd61be62dfc assets/hbmntm/models/item/circuit_controller_advanced.json
 d5e6618bb133e56df91b92166f0dc48f0cdd6f6d assets/hbmntm/models/item/circuit_controller_chassis.json
+294e7bb0d15805b36cb520c19a0e379074ac5247 assets/hbmntm/models/item/circuit_controller_quantum.json
 e7732897278e1ecb4ee5cc2a76c10908535cba45 assets/hbmntm/models/item/circuit_numitron.json
 21935ec7b8d6b46b735f1d1bd8113c0b1e63bc73 assets/hbmntm/models/item/circuit_pcb.json
+53bf629e64fd318326689a843fac64d0acf9bff5 assets/hbmntm/models/item/circuit_quantum.json
 61d210a7e47e1b221091a83743f6be5325b92075 assets/hbmntm/models/item/circuit_silicon.json
 29cf1a1f249595b87cbfb9fbc3eb5ca9bc9dc81c assets/hbmntm/models/item/circuit_vacuum_tube.json
 525669defa14bcb791f9b373219004f830ee2fed assets/hbmntm/models/item/coil_advanced_alloy.json
@@ -132,7 +143,9 @@ fb1ade35cd171b27260bbb760d9372971df0fb11 assets/hbmntm/models/item/fallout_layer
 582648ceafbd5fcc8dfcdf3d0f9d746f6820ec4a assets/hbmntm/models/item/fins_flat.json
 cbbe4445f296a98e8d7a4bd386e1baa4332677dd assets/hbmntm/models/item/fins_quad_titanium.json
 d8cd0f1a43db6f2c3f0da4fb26d6e8c5b24e9d8d assets/hbmntm/models/item/fins_small_steel.json
+246e1cc91858cc87423830aa6f67db602b7f1b10 assets/hbmntm/models/item/fins_tri_steel.json
 84b15d98037b2ac74d5bf176dc80c015393383cb assets/hbmntm/models/item/fluorite.json
+fe57f9cd531a953aa3618e16b3c8a37d9de5efca assets/hbmntm/models/item/flywheel_beryllium.json
 2f9fd184a5f76da12ab41710497ee2ae9617323f assets/hbmntm/models/item/fragment_actinium.json
 fbdf26dd2565c26b2e2e3eae2fa81e29c49f9b5b assets/hbmntm/models/item/fragment_boron.json
 a166947e3f7fad068a6f7017569a55813729ca7c assets/hbmntm/models/item/fragment_cerium.json

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "R": {
+      "item": "hbmntm:wire_red_copper"
+    },
+    "W": {
+      "item": "hbmntm:plate_polymer"
+    }
+  },
+  "pattern": [
+    " W ",
+    "RRR",
+    " W "
+  ],
+  "result": {
+    "count": 16,
+    "item": "hbmntm:red_cable"
+  },
+  "show_notification": true
+}

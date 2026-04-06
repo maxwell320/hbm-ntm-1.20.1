@@ -13,6 +13,7 @@
     "hbmntm:part_barrel_light_steel",
     "hbmntm:part_barrel_heavy_steel",
     "hbmntm:part_receiver_light_steel",
-    "hbmntm:part_grip_steel"
+    "hbmntm:part_grip_steel",
+    "hbmntm:block_steel"
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "I": {
+      "item": "hbmntm:plate_polymer"
+    },
+    "N": {
+      "item": "hbmntm:nugget_bismuth"
+    },
+    "S": {
+      "item": "hbmntm:circuit_silicon"
+    },
+    "W": {
+      "item": "hbmntm:wire_copper"
+    }
+  },
+  "pattern": [
+    "III",
+    "SNS",
+    "WWW"
+  ],
+  "result": {
+    "item": "hbmntm:circuit_chip_bismoid"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "hbmntm:block_steel"
+    },
+    "I": {
+      "item": "hbmntm:ingot_steel"
+    },
+    "P": {
+      "item": "hbmntm:plate_steel"
+    }
+  },
+  "pattern": [
+    " PI",
+    "IIB",
+    " PI"
+  ],
+  "result": {
+    "item": "hbmntm:fins_tri_steel"
+  },
+  "show_notification": true
+}

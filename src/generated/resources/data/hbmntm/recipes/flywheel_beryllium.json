@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "hbmntm:block_beryllium"
+    },
+    "I": {
+      "item": "hbmntm:plate_cast_iron"
+    },
+    "T": {
+      "item": "hbmntm:pipentm_dura_steel"
+    }
+  },
+  "pattern": [
+    "IBI",
+    "BTB",
+    "IBI"
+  ],
+  "result": {
+    "item": "hbmntm:flywheel_beryllium"
+  },
+  "show_notification": true
+}

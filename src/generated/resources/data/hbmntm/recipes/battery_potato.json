@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "hbmntm:wire_aluminium"
+    },
+    {
+      "item": "hbmntm:wire_copper"
+    }
+  ],
+  "result": {
+    "item": "hbmntm:battery_potato"
+  }
+}

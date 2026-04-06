@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-04T15:43:35.8755193	HBM Item Tags
+// 1.20.1	2026-04-05T23:39:02.8557229	HBM Item Tags
 5e5245f92e4f2eed9c0fbe3d93f0366e27a4530c data/forge/tags/items/billets/actinium.json
 65d1d0138232e9f49b85fcdf4a585711b8c1d528 data/forge/tags/items/billets/au198.json
 1ab902dad59d64ed93bbe859502ea9611c92bb19 data/forge/tags/items/billets/australium.json
@@ -423,6 +423,8 @@ aa9bb132de56b3dff62539a3bec094684931612a data/forge/tags/items/stocks/bakelite.j
 3ab07f7e0d57f67f480f15e9a9b75f8cd82f3d97 data/forge/tags/items/stocks/pvc.json
 dd23ce4ad22696199db8e13e0df4f0e6c38d3010 data/forge/tags/items/stocks/saturnite.json
 38728f65a508d6fd5364b4dac0d0c88f5419aba7 data/forge/tags/items/stocks/weaponsteel.json
+183e857ff0eecd3baedde9bb9c666dfd458ad638 data/forge/tags/items/storage_blocks/beryllium.json
+4f528c24e61df558436a6798aceb34019b8a9e07 data/forge/tags/items/storage_blocks/steel.json
 0172ce05b32ce4ca383bd0649045e844803f7b65 data/forge/tags/items/tiny_dusts/actinium.json
 a5d174dfa64b506b2eb1e6ab1045c9b71afac6f8 data/forge/tags/items/tiny_dusts/boron.json
 b38c2d05ae93fbed2b84976fa849301baf333747 data/forge/tags/items/tiny_dusts/cerium.json
@@ -828,7 +830,7 @@ e1fe52f5e65db61ac89a7263e549f4343559ba94 data/hbmntm/tags/items/materials/au198.
 26e75e2ba15e45e09c011ea7361d92e7fceb7696 data/hbmntm/tags/items/materials/australium.json
 f8bc8663feac8692366a578750eb6df3e88c5a33 data/hbmntm/tags/items/materials/bakelite.json
 181c656ae778168c5bd6b385ad0e989a0d5d0fca data/hbmntm/tags/items/materials/bauxite.json
-a9643db74651304bd2a6bef73dac9c48b9ae8e51 data/hbmntm/tags/items/materials/beryllium.json
+9cc204e9facc014d8ae1d5c4d5df81f891b888e4 data/hbmntm/tags/items/materials/beryllium.json
 371ba28c562569ff8b52d4f6141170d486a4d4a5 data/hbmntm/tags/items/materials/bismuth.json
 452330150a10f7b1330d590027221ae7a7d9f572 data/hbmntm/tags/items/materials/bismuth_bronze.json
 6e0afcbecf05f3cc22985f45808fb5cf6f32f053 data/hbmntm/tags/items/materials/borax.json
@@ -916,7 +918,7 @@ d4fa5843b06486ae0e105dc3aa22518a338f6cc1 data/hbmntm/tags/items/materials/sodali
 820358d7d3f3ac0c5fb6a125ec4a4373f4456975 data/hbmntm/tags/items/materials/solinium.json
 5626f3d529efd3a57beab693c97a689427acefa2 data/hbmntm/tags/items/materials/sr90.json
 0185f198a2a53c8635b6767d14b6a18fa6b61b0f data/hbmntm/tags/items/materials/starmetal.json
-d8e632505303ec246926192ac6803d548e257177 data/hbmntm/tags/items/materials/steel.json
+4e12a68d59bc8ffedf60e467e309c22a810da044 data/hbmntm/tags/items/materials/steel.json
 8bbd7d2e4b80e31a31bd4416d3fb84214c117796 data/hbmntm/tags/items/materials/strontium.json
 9a278c0c8c93727aa68d66577d0f9ff849501160 data/hbmntm/tags/items/materials/sulfur.json
 8cb20bc60bd2ac197863a893b5bc2794c96ccbe7 data/hbmntm/tags/items/materials/tantalium.json
@@ -1026,6 +1028,8 @@ aa9bb132de56b3dff62539a3bec094684931612a data/hbmntm/tags/items/stocks/bakelite.
 3ab07f7e0d57f67f480f15e9a9b75f8cd82f3d97 data/hbmntm/tags/items/stocks/pvc.json
 dd23ce4ad22696199db8e13e0df4f0e6c38d3010 data/hbmntm/tags/items/stocks/saturnite.json
 38728f65a508d6fd5364b4dac0d0c88f5419aba7 data/hbmntm/tags/items/stocks/weaponsteel.json
+183e857ff0eecd3baedde9bb9c666dfd458ad638 data/hbmntm/tags/items/storage_blocks/beryllium.json
+4f528c24e61df558436a6798aceb34019b8a9e07 data/hbmntm/tags/items/storage_blocks/steel.json
 86943462587086cc5c5eba01bffb2fc1241e3751 data/hbmntm/tags/items/tiny_dusts.json
 0172ce05b32ce4ca383bd0649045e844803f7b65 data/hbmntm/tags/items/tiny_dusts/actinium.json
 a5d174dfa64b506b2eb1e6ab1045c9b71afac6f8 data/hbmntm/tags/items/tiny_dusts/boron.json
