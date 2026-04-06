@@ -35,17 +35,29 @@ jobs:
       - name: Make Gradle wrapper executable
         run: chmod +x gradlew
 
-      - name: Configure Gradle toolchain
+      - name: Debug pre-build environment
         run: |
-          mkdir -p "$GRADLE_USER_HOME"
-          printf '%s\n' \
-            'org.gradle.java.installations.auto-detect=false' \
-            'org.gradle.java.installations.auto-download=false' \
-            'org.gradle.java.installations.fromenv=JAVA_HOME' \
-            > "$GRADLE_USER_HOME/gradle.properties"
+          echo "--- Environment ---"
+          echo "HOME=$HOME"
+          echo "JAVA_HOME=$JAVA_HOME"
+          echo "GRADLE_HOME=${GRADLE_HOME:-<unset>}"
+          echo "GRADLE_USER_HOME=$GRADLE_USER_HOME"
+          echo "--- Searching for ALL gradle.properties files ---"
+          find / -name "gradle.properties" -readable 2>/dev/null || true
+          echo "--- System Gradle init scripts ---"
+          find /usr/share/gradle*/init.d/ -type f 2>/dev/null || echo "(none)"
+          echo "--- GRADLE_USER_HOME contents ---"
+          find "$GRADLE_USER_HOME" -type f 2>/dev/null || echo "(empty)"
+          echo "--- Searching for Windows path in any readable file ---"
+          grep -rl "Eclipse Adoptium" /home/runner/ 2>/dev/null || echo "(not found)"
 
       - name: Build
-        run: ./gradlew build --no-daemon
+        run: |
+          unset GRADLE_HOME
+          ./gradlew build --no-daemon \
+            -Dorg.gradle.java.installations.auto-detect=false \
+            -Dorg.gradle.java.installations.auto-download=false \
+            -Dorg.gradle.java.installations.paths="$JAVA_HOME"
 
       - name: Debug Java and Gradle environment
         if: failure()
@@ -53,7 +65,7 @@ jobs:
           echo "HOME=$HOME"
           echo "JAVA_HOME=$JAVA_HOME"
           env | sort | grep -E 'JAVA|GRADLE|MAVEN|TOOL' || true
-          echo "--- GRADLE_USER_HOME/gradle.properties ---"
-          cat "$GRADLE_USER_HOME/gradle.properties" 2>/dev/null || echo "(not found)"
+          echo "--- All gradle.properties found ---"
+          find "$GRADLE_USER_HOME" -name "gradle.properties" -exec echo "== {} ==" \; -exec cat {} \; 2>/dev/null || true
           echo "--- toolchains.xml ---"
           find "$HOME" -maxdepth 4 -name toolchains.xml -print -exec cat {} \; || true
