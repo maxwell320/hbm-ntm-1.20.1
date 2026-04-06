@@ -16,11 +16,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
+      HOME: ${{ github.workspace }}/.ci-home
       GRADLE_USER_HOME: ${{ github.workspace }}/.gradle-ci
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Prepare CI home
+        run: mkdir -p "$HOME/.m2"
 
       - name: Set up Java 17
         uses: actions/setup-java@v4
@@ -35,4 +39,17 @@ jobs:
         run: rm -f ~/.m2/toolchains.xml
 
       - name: Build
-        run: ./gradlew build --no-daemon -Dorg.gradle.java.installations.auto-detect=false -Dorg.gradle.java.installations.auto-download=false -Dorg.gradle.java.installations.paths= -Dorg.gradle.java.installations.fromEnv=JAVA_HOME
+        run: |
+          export ORG_GRADLE_JAVA_INSTALLATIONS_AUTO_DETECT=false
+          export ORG_GRADLE_JAVA_INSTALLATIONS_AUTO_DOWNLOAD=false
+          export ORG_GRADLE_JAVA_INSTALLATIONS_FROMENV=JAVA_HOME
+          export ORG_GRADLE_JAVA_INSTALLATIONS_PATHS="$JAVA_HOME"
+          ./gradlew build --no-daemon
+
+      - name: Debug Java and Gradle environment
+        if: failure()
+        run: |
+          echo "HOME=$HOME"
+          echo "JAVA_HOME=$JAVA_HOME"
+          env | sort | grep -E 'JAVA|GRADLE|MAVEN|TOOL' || true
+          find "$HOME" -maxdepth 4 -name toolchains.xml -print -exec cat {} \; || true
