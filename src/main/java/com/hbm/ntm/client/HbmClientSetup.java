@@ -33,6 +33,12 @@ public final class HbmClientSetup {
         event.enqueueWork(() -> {
             final RenderType translucent = Objects.requireNonNull(RenderType.translucent());
             MenuScreens.register(HbmMenuTypes.NTM_ANVIL.get(), NtmAnvilScreen::new);
+            ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.COOLANT.getStillFluid()), translucent);
+            ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.COOLANT.getFlowingFluid()), translucent);
+            ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.COOLANT_HOT.getStillFluid()), translucent);
+            ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.COOLANT_HOT.getFlowingFluid()), translucent);
+            ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.OIL.getStillFluid()), translucent);
+            ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.OIL.getFlowingFluid()), translucent);
             ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.VOLCANIC_LAVA.getStillFluid()), translucent);
             ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.VOLCANIC_LAVA.getFlowingFluid()), translucent);
             ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.RAD_LAVA.getStillFluid()), translucent);

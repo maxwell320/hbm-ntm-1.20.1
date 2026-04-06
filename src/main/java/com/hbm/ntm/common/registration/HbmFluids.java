@@ -20,19 +20,73 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+@SuppressWarnings("null")
 public final class HbmFluids {
     public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, HbmNtmMod.MOD_ID);
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, HbmNtmMod.MOD_ID);
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, HbmNtmMod.MOD_ID);
-    public static final FluidEntry VOLCANIC_LAVA = registerVolcanicLava();
-    public static final FluidEntry RAD_LAVA = registerRadLava();
-
+    private static final ResourceLocation COOLANT_STILL = Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "block/coolant_still"));
+    private static final ResourceLocation COOLANT_FLOWING = Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "block/coolant_flowing"));
+    private static final ResourceLocation COOLANT_HOT_STILL = Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "block/coolant_hot_still"));
+    private static final ResourceLocation COOLANT_HOT_FLOWING = Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "block/coolant_hot_flowing"));
+    private static final ResourceLocation OIL_STILL = Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "block/oil_still"));
+    private static final ResourceLocation OIL_FLOWING = Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "block/oil_flowing"));
     private static final ResourceLocation VOLCANIC_LAVA_STILL = Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "block/volcanic_lava_still"));
     private static final ResourceLocation VOLCANIC_LAVA_FLOWING = Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "block/volcanic_lava_flowing"));
     private static final ResourceLocation RAD_LAVA_STILL = Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "block/rad_lava_still"));
     private static final ResourceLocation RAD_LAVA_FLOWING = Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "block/rad_lava_flowing"));
+    public static final FluidEntry COOLANT = registerCoolant("coolant", 0xFFD8FCFF, 1_000, COOLANT_STILL, COOLANT_FLOWING, MapColor.ICE);
+    public static final FluidEntry COOLANT_HOT = registerCoolant("coolant_hot", 0xFF99525E, 1_000, COOLANT_HOT_STILL, COOLANT_HOT_FLOWING, MapColor.COLOR_RED);
+    public static final FluidEntry OIL = registerOil();
+    public static final FluidEntry VOLCANIC_LAVA = registerVolcanicLava();
+    public static final FluidEntry RAD_LAVA = registerRadLava();
 
     private HbmFluids() {
+    }
+
+    private static FluidEntry registerCoolant(final String id, final int tintColor, final int density, final ResourceLocation stillTexture,
+                                              final ResourceLocation flowingTexture, final MapColor mapColor) {
+        final FluidEntry entry = new FluidEntry();
+        final ResourceLocation fluidId = Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, id));
+        final FluidType.Properties fluidTypeProperties = FluidType.Properties.create()
+            .density(density)
+            .viscosity(1_000)
+            .descriptionId(Util.makeDescriptionId("fluid", fluidId));
+        final ForgeFlowingFluid.Properties fluidProperties = new ForgeFlowingFluid.Properties(entry::getFluidType, entry::getStillFluid, entry::getFlowingFluid)
+            .block(entry::getBlock)
+            .levelDecreasePerBlock(1)
+            .slopeFindDistance(2)
+            .tickRate(10)
+            .explosionResistance(100.0F);
+
+        entry.fluidType = FLUID_TYPES.register(id, () -> new HbmFluidType(fluidTypeProperties, stillTexture, flowingTexture, tintColor));
+        entry.stillFluid = FLUIDS.register(id, () -> new ForgeFlowingFluid.Source(fluidProperties));
+        entry.flowingFluid = FLUIDS.register("flowing_" + id, () -> new ForgeFlowingFluid.Flowing(fluidProperties));
+        entry.block = BLOCKS.register(id + "_block", () -> new LiquidBlock(entry::getStillFluid,
+            Objects.requireNonNull(BlockBehaviour.Properties.of().noCollission().strength(100.0F).noLootTable().replaceable().pushReaction(PushReaction.DESTROY).liquid().mapColor(Objects.requireNonNull(mapColor)))));
+        return entry;
+    }
+
+    private static FluidEntry registerOil() {
+        final FluidEntry entry = new FluidEntry();
+        final ResourceLocation fluidId = Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "oil"));
+        final FluidType.Properties fluidTypeProperties = FluidType.Properties.create()
+            .density(1_200)
+            .viscosity(2_000)
+            .descriptionId(Util.makeDescriptionId("fluid", fluidId));
+        final ForgeFlowingFluid.Properties fluidProperties = new ForgeFlowingFluid.Properties(entry::getFluidType, entry::getStillFluid, entry::getFlowingFluid)
+            .block(entry::getBlock)
+            .levelDecreasePerBlock(1)
+            .slopeFindDistance(2)
+            .tickRate(25)
+            .explosionResistance(100.0F);
+
+        entry.fluidType = FLUID_TYPES.register("oil", () -> new HbmFluidType(fluidTypeProperties, OIL_STILL, OIL_FLOWING, 0xFF020202));
+        entry.stillFluid = FLUIDS.register("oil", () -> new ForgeFlowingFluid.Source(fluidProperties));
+        entry.flowingFluid = FLUIDS.register("flowing_oil", () -> new ForgeFlowingFluid.Flowing(fluidProperties));
+        entry.block = BLOCKS.register("oil_block", () -> new LiquidBlock(entry::getStillFluid,
+            Objects.requireNonNull(BlockBehaviour.Properties.of().noCollission().strength(100.0F).noLootTable().replaceable().pushReaction(PushReaction.DESTROY).liquid().mapColor(Objects.requireNonNull(MapColor.COLOR_BLACK)))));
+        return entry;
     }
 
     private static FluidEntry registerVolcanicLava() {

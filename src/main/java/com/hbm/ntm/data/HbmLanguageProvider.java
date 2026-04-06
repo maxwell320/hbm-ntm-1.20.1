@@ -3,6 +3,7 @@ package com.hbm.ntm.data;
 import com.hbm.ntm.HbmNtmMod;
 import com.hbm.ntm.common.block.BasaltBlockType;
 import com.hbm.ntm.common.block.BasaltOreType;
+import com.hbm.ntm.common.block.MaterialBlockType;
 import com.hbm.ntm.common.block.SellafieldOreType;
 import com.hbm.ntm.common.block.StoneResourceType;
 import com.hbm.ntm.common.item.BriquetteItemType;
@@ -31,18 +32,25 @@ public class HbmLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup." + HbmNtmMod.MOD_ID + ".main", "HBM Nuclear Tech");
+        add("fluid.hbmntm.coolant", "Coolant");
+        add("fluid.hbmntm.coolant_hot", "Hot Coolant");
         add("death.attack.radiation", "%1$s died from radiation poisoning");
+        add("fluid.hbmntm.oil", "Crude Oil");
         add(HbmMobEffects.RADIATION.get(), "Radiation");
         add(HbmMobEffects.RADAWAY.get(), "RadAway");
         add(HbmMobEffects.RAD_X.get(), "Rad-X");
         add(Objects.requireNonNull(HbmBlocks.ANVIL_IRON.get()), "Iron Anvil");
         add(Objects.requireNonNull(HbmBlocks.ANVIL_STEEL.get()), "Steel Anvil");
         add(Objects.requireNonNull(HbmBlocks.ANVIL_DESH.get()), "Desh Anvil");
+        add(Objects.requireNonNull(HbmBlocks.CREATIVE_ENERGY_SOURCE.get()), "Creative Energy Source");
         add(Objects.requireNonNull(HbmBlocks.FALLOUT.get()), "Fallout");
         add(Objects.requireNonNull(HbmBlocks.GAS_ASBESTOS.get()), "Airborne Asbestos Particles");
         add(Objects.requireNonNull(HbmBlocks.GEIGER.get()), "Geiger Counter");
         add(Objects.requireNonNull(HbmBlocks.PRESS_PREHEATER.get()), "Burner Press Preheater");
+        add(Objects.requireNonNull(HbmBlocks.RED_CABLE.get()), "Red Copper Cable");
+        add(Objects.requireNonNull(HbmBlocks.RED_CABLE_CLASSIC.get()), "Red Copper Cable (Classic)");
         add(Objects.requireNonNull(HbmBlocks.SELLAFIELD.get()), "Sellafite");
+        add(Objects.requireNonNull(HbmItems.BATTERY_POTATO.get()), "Potato Battery");
         add(Objects.requireNonNull(HbmItems.BIOMASS.get()), "Biomass");
         add(Objects.requireNonNull(HbmItems.BIOMASS_COMPRESSED.get()), "Compressed Biomass");
         add(Objects.requireNonNull(HbmItems.COIL_ADVANCED_TORUS.get()), "Super Conducting Ring Coil");
@@ -69,9 +77,11 @@ public class HbmLanguageProvider extends LanguageProvider {
         add(Objects.requireNonNull(HbmItems.PEDESTAL_STEEL.get()), "Steel Pedestal");
         add(Objects.requireNonNull(HbmItems.FINS_BIG_STEEL.get()), "Big Steel Grid Fins");
         add(Objects.requireNonNull(HbmItems.FINS_SMALL_STEEL.get()), "Small Steel Grid Fins");
+        add(Objects.requireNonNull(HbmItems.FINS_TRI_STEEL.get()), "Large Steel Fins");
         add(Objects.requireNonNull(HbmItems.FINS_QUAD_TITANIUM.get()), "Small Titanium Fins");
         add(Objects.requireNonNull(HbmItems.BLADE_TITANIUM.get()), "Titanium Blade");
         add(Objects.requireNonNull(HbmItems.TURBINE_TITANIUM.get()), "Titanium Steam Turbine");
+        add(Objects.requireNonNull(HbmItems.FLYWHEEL_BERYLLIUM.get()), "Beryllium Flywheel");
         add(Objects.requireNonNull(HbmItems.RING_STARMETAL.get()), "§9Starmetal Ring§r");
         add(Objects.requireNonNull(HbmItems.SAWBLADE.get()), "Sawblade");
         add("item.hbmntm.pin.desc", "Standard success rate of picking a regular lock is ~10%%.");
@@ -136,6 +146,10 @@ public class HbmLanguageProvider extends LanguageProvider {
 
         for (final BasaltBlockType type : BasaltBlockType.values()) {
             add(Objects.requireNonNull(HbmBlocks.getBasaltBlock(type).get()), type.displayName());
+        }
+
+        for (final MaterialBlockType type : MaterialBlockType.values()) {
+            add(Objects.requireNonNull(HbmBlocks.getMaterialBlock(type).get()), type.displayName());
         }
 
         for (final StoneResourceType type : StoneResourceType.values()) {
