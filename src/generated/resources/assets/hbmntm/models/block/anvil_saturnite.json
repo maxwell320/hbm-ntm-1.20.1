@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_anvil",
+  "textures": {
+    "body": "hbmntm:block/anvil_saturnite",
+    "particle": "hbmntm:block/anvil_saturnite",
+    "top": "hbmntm:block/anvil_saturnite"
+  }
+}

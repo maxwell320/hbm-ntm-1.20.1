@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_anvil",
+  "textures": {
+    "body": "hbmntm:block/anvil_ferrouranium",
+    "particle": "hbmntm:block/anvil_ferrouranium",
+    "top": "hbmntm:block/anvil_ferrouranium"
+  }
+}

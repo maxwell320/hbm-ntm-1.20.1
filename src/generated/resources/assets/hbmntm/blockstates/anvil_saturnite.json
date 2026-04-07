@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "hbmntm:block/anvil_saturnite",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "hbmntm:block/anvil_saturnite",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "hbmntm:block/anvil_saturnite"
+    },
+    "facing=west": {
+      "model": "hbmntm:block/anvil_saturnite",
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_nugget_mercury_tiny": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:nugget_mercury_tiny"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:nugget_mercury_from_tiny_drops"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_nugget_mercury_tiny",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:nugget_mercury_from_tiny_drops"
+    ]
+  },
+  "sends_telemetry_event": false
+}

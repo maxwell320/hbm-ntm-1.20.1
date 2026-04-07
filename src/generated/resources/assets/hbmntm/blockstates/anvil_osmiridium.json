@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "hbmntm:block/anvil_osmiridium",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "hbmntm:block/anvil_osmiridium",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "hbmntm:block/anvil_osmiridium"
+    },
+    "facing=west": {
+      "model": "hbmntm:block/anvil_osmiridium",
+      "y": 90
+    }
+  }
+}

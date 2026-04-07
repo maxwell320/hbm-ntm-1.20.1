@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_anvil",
+  "textures": {
+    "body": "hbmntm:block/anvil_schrabidate",
+    "particle": "hbmntm:block/anvil_schrabidate",
+    "top": "hbmntm:block/anvil_schrabidate"
+  }
+}

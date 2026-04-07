@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "B": {
+      "tag": "forge:dyes"
+    },
+    "L": {
+      "tag": "forge:dyes"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "pattern": [
+    "LPL",
+    "BPB",
+    "LPL"
+  ],
+  "result": {
+    "item": "hbmntm:template_folder"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:anvil_murky"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_undefined": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:undefined"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_undefined",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:anvil_murky"
+    ]
+  },
+  "sends_telemetry_event": false
+}

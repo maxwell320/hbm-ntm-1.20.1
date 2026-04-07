@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "hbmntm:block/anvil_dnt",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "hbmntm:block/anvil_dnt",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "hbmntm:block/anvil_dnt"
+    },
+    "facing=west": {
+      "model": "hbmntm:block/anvil_dnt",
+      "y": 90
+    }
+  }
+}

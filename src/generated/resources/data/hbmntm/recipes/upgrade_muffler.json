@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "I": {
+      "item": "hbmntm:ingot_rubber"
+    },
+    "W": {
+      "tag": "minecraft:wool"
+    }
+  },
+  "pattern": [
+    "III",
+    "IWI",
+    "III"
+  ],
+  "result": {
+    "count": 16,
+    "item": "hbmntm:upgrade_muffler"
+  },
+  "show_notification": true
+}
