@@ -9,6 +9,7 @@ import com.hbm.ntm.common.block.entity.FluidDuctBlockEntity;
 import com.hbm.ntm.common.block.entity.GeigerCounterBlockEntity;
 import com.hbm.ntm.common.block.entity.PressBlockEntity;
 import com.hbm.ntm.common.block.entity.PressProxyBlockEntity;
+import com.hbm.ntm.common.block.entity.ShredderBlockEntity;
 import java.util.Arrays;
 import java.util.function.Supplier;
 import net.minecraft.world.level.block.Block;
@@ -36,6 +37,8 @@ public final class HbmBlockEntityTypes {
         HbmBlocks.MACHINE_PRESS);
     public static final RegistryObject<BlockEntityType<PressProxyBlockEntity>> MACHINE_PRESS_PROXY = register("machine_press_proxy", PressProxyBlockEntity::new,
         HbmBlocks.MACHINE_PRESS);
+    public static final RegistryObject<BlockEntityType<ShredderBlockEntity>> MACHINE_SHREDDER = register("machine_shredder", ShredderBlockEntity::new,
+        HbmBlocks.MACHINE_SHREDDER);
     public static final RegistryObject<BlockEntityType<BarrelBlockEntity>> BARREL = register("barrel", BarrelBlockEntity::new,
         HbmBlocks.BARREL_PLASTIC,
         HbmBlocks.BARREL_IRON,
