@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "R": {
+      "item": "minecraft:furnace"
+    }
+  },
+  "pattern": [
+    "IRI",
+    "IPI",
+    "IBI"
+  ],
+  "result": {
+    "item": "hbmntm:machine_press"
+  },
+  "show_notification": true
+}

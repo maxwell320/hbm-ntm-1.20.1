@@ -1,8 +1,10 @@
 package com.hbm.ntm.data;
 
+import com.hbm.ntm.common.block.PressBlock;
 import com.hbm.ntm.common.block.BasaltBlockType;
 import com.hbm.ntm.common.block.BasaltOreType;
 import com.hbm.ntm.common.block.MaterialBlockType;
+import com.hbm.ntm.common.press.PressPart;
 import com.hbm.ntm.common.block.SellafieldOreType;
 import com.hbm.ntm.common.block.StoneResourceType;
 import com.hbm.ntm.common.material.HbmMaterialShape;
@@ -12,6 +14,7 @@ import com.hbm.ntm.common.registration.HbmItems;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -20,6 +23,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -64,6 +68,7 @@ public class HbmBlockLootProvider extends BlockLootSubProvider {
         dropSelf(HbmBlocks.MACHINE_BATTERY.get());
         add(HbmBlocks.FALLOUT.get(), createSingleItemTable(HbmItems.FALLOUT.get()));
         dropSelf(HbmBlocks.GEIGER.get());
+        add(HbmBlocks.MACHINE_PRESS.get(), createPressTable());
         dropSelf(HbmBlocks.PRESS_PREHEATER.get());
         dropSelf(HbmBlocks.BARREL_PLASTIC.get());
         dropSelf(HbmBlocks.BARREL_CORRODED.get());
@@ -125,5 +130,13 @@ public class HbmBlockLootProvider extends BlockLootSubProvider {
                 applyExplosionDecay(block, LootItem.lootTableItem(Items.CHARCOAL)
                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))))
             )));
+    }
+
+    private LootTable.Builder createPressTable() {
+        return LootTable.lootTable().withPool(LootPool.lootPool()
+            .setRolls(ConstantValue.exactly(1.0F))
+            .add(applyExplosionDecay(HbmBlocks.MACHINE_PRESS.get(), LootItem.lootTableItem(HbmBlocks.MACHINE_PRESS.get())
+                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(HbmBlocks.MACHINE_PRESS.get())
+                    .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PressBlock.PART, PressPart.CORE))))));
     }
 }

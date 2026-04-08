@@ -15,6 +15,7 @@ import com.hbm.ntm.common.block.GasAsbestosBlock;
 import com.hbm.ntm.common.block.GeigerCounterBlock;
 import com.hbm.ntm.common.block.MaterialBlockType;
 import com.hbm.ntm.common.block.NtmAnvilBlock;
+import com.hbm.ntm.common.block.PressBlock;
 import com.hbm.ntm.common.block.SellafieldBlock;
 import com.hbm.ntm.common.block.SellafieldOreBlock;
 import com.hbm.ntm.common.block.SellafieldOreType;
@@ -57,6 +58,8 @@ public final class HbmBlocks {
         () -> new CableBlock(20_000, 20_000, Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 10.0F).requiresCorrectToolForDrops().noOcclusion())));
     public static final RegistryObject<Block> FLUID_DUCT_NEO = BLOCKS.register("fluid_duct_neo",
         () -> new FluidDuctBlock(Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 10.0F).requiresCorrectToolForDrops().noOcclusion())));
+    public static final RegistryObject<Block> MACHINE_PRESS = BLOCKS.register("machine_press",
+        () -> new PressBlock(Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 10.0F).requiresCorrectToolForDrops())));
     public static final RegistryObject<Block> PRESS_PREHEATER = BLOCKS.register("press_preheater",
         () -> new Block(Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 10.0F).requiresCorrectToolForDrops())));
     public static final RegistryObject<Block> BARREL_PLASTIC = BLOCKS.register("barrel_plastic",

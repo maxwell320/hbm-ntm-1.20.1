@@ -132,6 +132,7 @@ public final class HbmItems {
     public static final RegistryObject<Item> RED_CABLE_CLASSIC = registerBlockItem("red_cable_classic", HbmBlocks.RED_CABLE_CLASSIC, BLOCK_ITEMS);
     public static final RegistryObject<Item> FLUID_DUCT_NEO = registerBlockItem("fluid_duct_neo", HbmBlocks.FLUID_DUCT_NEO, BLOCK_ITEMS);
     public static final RegistryObject<Item> GEIGER = registerBlockItem("geiger", HbmBlocks.GEIGER, BLOCK_ITEMS);
+    public static final RegistryObject<Item> MACHINE_PRESS = registerBlockItem("machine_press", HbmBlocks.MACHINE_PRESS, BLOCK_ITEMS);
     public static final RegistryObject<Item> PRESS_PREHEATER = registerBlockItem("press_preheater", HbmBlocks.PRESS_PREHEATER, BLOCK_ITEMS);
     public static final RegistryObject<Item> BARREL_PLASTIC = registerItem("barrel_plastic", () -> new BarrelBlockItem(HbmBlocks.BARREL_PLASTIC.get(), BarrelType.PLASTIC, new Item.Properties()), BLOCK_ITEMS);
     public static final RegistryObject<Item> BARREL_CORRODED = registerItem("barrel_corroded", () -> new BarrelBlockItem(HbmBlocks.BARREL_CORRODED.get(), BarrelType.CORRODED, new Item.Properties()), HIDDEN_ITEMS);

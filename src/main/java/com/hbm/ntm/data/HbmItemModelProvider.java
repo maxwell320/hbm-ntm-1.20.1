@@ -36,6 +36,7 @@ public class HbmItemModelProvider extends ItemModelProvider {
         singleTexture("crt_display", mcLoc("item/generated"), "layer0", modLoc("item/crt_display"));
         singleTexture("motor", mcLoc("item/generated"), "layer0", modLoc("item/motor"));
         singleTexture("motor_desh", mcLoc("item/generated"), "layer0", modLoc("item/motor_desh"));
+        withExistingParent("machine_press", modLoc("block/machine_press"));
         singleTexture("photo_panel", mcLoc("item/generated"), "layer0", modLoc("item/photo_panel"));
         singleTexture("pin", mcLoc("item/generated"), "layer0", modLoc("item/pin"));
         singleTexture("catalyst_clay", mcLoc("item/generated"), "layer0", modLoc("item/catalyst_clay"));

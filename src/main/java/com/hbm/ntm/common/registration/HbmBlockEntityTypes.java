@@ -7,6 +7,8 @@ import com.hbm.ntm.common.block.entity.CableBlockEntity;
 import com.hbm.ntm.common.block.entity.CreativeEnergySourceBlockEntity;
 import com.hbm.ntm.common.block.entity.FluidDuctBlockEntity;
 import com.hbm.ntm.common.block.entity.GeigerCounterBlockEntity;
+import com.hbm.ntm.common.block.entity.PressBlockEntity;
+import com.hbm.ntm.common.block.entity.PressProxyBlockEntity;
 import java.util.Arrays;
 import java.util.function.Supplier;
 import net.minecraft.world.level.block.Block;
@@ -30,6 +32,10 @@ public final class HbmBlockEntityTypes {
         HbmBlocks.MACHINE_BATTERY);
     public static final RegistryObject<BlockEntityType<GeigerCounterBlockEntity>> GEIGER = register("geiger", GeigerCounterBlockEntity::new,
         HbmBlocks.GEIGER);
+    public static final RegistryObject<BlockEntityType<PressBlockEntity>> MACHINE_PRESS = register("machine_press", PressBlockEntity::new,
+        HbmBlocks.MACHINE_PRESS);
+    public static final RegistryObject<BlockEntityType<PressProxyBlockEntity>> MACHINE_PRESS_PROXY = register("machine_press_proxy", PressProxyBlockEntity::new,
+        HbmBlocks.MACHINE_PRESS);
     public static final RegistryObject<BlockEntityType<BarrelBlockEntity>> BARREL = register("barrel", BarrelBlockEntity::new,
         HbmBlocks.BARREL_PLASTIC,
         HbmBlocks.BARREL_IRON,

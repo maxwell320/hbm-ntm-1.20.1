@@ -20,6 +20,7 @@ public class HbmBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         batteryBlock(HbmBlocks.MACHINE_BATTERY.get(), "machine_battery", "battery_front_alt", "battery_side_alt", "battery_top");
+        simpleCubeBlock(HbmBlocks.MACHINE_PRESS.get(), "machine_press", "machine_press");
         simpleCubeBlock(HbmBlocks.BARREL_PLASTIC.get(), "barrel_plastic", "barrel_plastic");
         simpleCubeBlock(HbmBlocks.BARREL_CORRODED.get(), "barrel_corroded", "barrel_corroded");
         simpleCubeBlock(HbmBlocks.BARREL_IRON.get(), "barrel_iron", "barrel_iron");

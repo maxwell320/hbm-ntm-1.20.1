@@ -4,6 +4,7 @@ import com.hbm.ntm.HbmNtmMod;
 import com.hbm.ntm.client.screen.BarrelScreen;
 import com.hbm.ntm.client.screen.FluidIdentifierScreen;
 import com.hbm.ntm.client.screen.NtmAnvilScreen;
+import com.hbm.ntm.client.screen.PressScreen;
 import com.hbm.ntm.common.block.SellafieldBlock;
 import com.hbm.ntm.common.fluid.HbmFluidType;
 import com.hbm.ntm.common.item.FluidIdentifierItem;
@@ -37,6 +38,7 @@ public final class HbmClientSetup {
         event.enqueueWork(() -> {
             final RenderType translucent = Objects.requireNonNull(RenderType.translucent());
             MenuScreens.register(HbmMenuTypes.BARREL.get(), BarrelScreen::new);
+            MenuScreens.register(HbmMenuTypes.MACHINE_PRESS.get(), PressScreen::new);
             MenuScreens.register(HbmMenuTypes.NTM_ANVIL.get(), NtmAnvilScreen::new);
             MenuScreens.register(HbmMenuTypes.FLUID_IDENTIFIER.get(), FluidIdentifierScreen::new);
             ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.COOLANT.getStillFluid()), translucent);

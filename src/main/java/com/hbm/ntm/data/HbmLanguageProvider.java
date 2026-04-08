@@ -205,6 +205,7 @@ public class HbmLanguageProvider extends LanguageProvider {
         add(Objects.requireNonNull(HbmBlocks.FALLOUT.get()), "Fallout");
         add(Objects.requireNonNull(HbmBlocks.GAS_ASBESTOS.get()), "Airborne Asbestos Particles");
         add(Objects.requireNonNull(HbmBlocks.GEIGER.get()), "Geiger Counter");
+        add(Objects.requireNonNull(HbmBlocks.MACHINE_PRESS.get()), "Burner Press");
         add(Objects.requireNonNull(HbmBlocks.PRESS_PREHEATER.get()), "Burner Press Preheater");
         add(Objects.requireNonNull(HbmBlocks.BARREL_PLASTIC.get()), "Safe Barrel™");
         add(Objects.requireNonNull(HbmBlocks.BARREL_CORRODED.get()), "Corroded Barrel");

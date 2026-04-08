@@ -877,11 +877,23 @@ public class HbmRecipeProvider extends RecipeProvider {
     }
 
     private void buildPressSupportRecipes(final Consumer<FinishedRecipe> recipeOutput) {
+        final ItemLike machinePress = Objects.requireNonNull(HbmBlocks.MACHINE_PRESS.get());
         final ItemLike pressPreheater = Objects.requireNonNull(HbmBlocks.PRESS_PREHEATER.get());
         final ItemLike copperPlate = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.COPPER, HbmMaterialShape.PLATE).get());
         final ItemLike biomass = Objects.requireNonNull(HbmItems.BIOMASS.get());
         final ItemLike sawdust = Objects.requireNonNull(HbmItems.POWDER_SAWDUST.get());
         final ItemLike tungstenIngot = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.TUNGSTEN, HbmMaterialShape.INGOT).get());
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, machinePress)
+            .pattern("IRI")
+            .pattern("IPI")
+            .pattern("IBI")
+            .define('I', Items.IRON_INGOT)
+            .define('R', Blocks.FURNACE)
+            .define('P', Blocks.PISTON)
+            .define('B', Blocks.IRON_BLOCK)
+            .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "machine_press")));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, pressPreheater)
             .pattern("CCC")
