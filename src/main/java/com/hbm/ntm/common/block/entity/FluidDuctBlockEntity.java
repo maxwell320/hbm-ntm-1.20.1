@@ -9,6 +9,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.fluids.FluidStack;
@@ -26,7 +27,11 @@ public class FluidDuctBlockEntity extends BlockEntity {
     private ResourceLocation configuredFluidId;
 
     public FluidDuctBlockEntity(final BlockPos pos, final BlockState state) {
-        super(HbmBlockEntityTypes.FLUID_DUCT.get(), pos, state);
+        this(HbmBlockEntityTypes.FLUID_DUCT.get(), pos, state);
+    }
+
+    protected FluidDuctBlockEntity(final BlockEntityType<?> type, final BlockPos pos, final BlockState state) {
+        super(type, pos, state);
     }
 
     public static void serverTick(final Level level, final BlockPos pos, final BlockState state, final FluidDuctBlockEntity blockEntity) {
@@ -78,6 +83,9 @@ public class FluidDuctBlockEntity extends BlockEntity {
             if (neighbor == null || neighbor instanceof FluidDuctBlockEntity) {
                 continue;
             }
+            if (!this.canPull(direction, neighbor)) {
+                continue;
+            }
             final IFluidHandler handler = neighbor.getCapability(ForgeCapabilities.FLUID_HANDLER, direction.getOpposite()).orElse(null);
             if (handler == null) {
                 continue;
@@ -110,11 +118,14 @@ public class FluidDuctBlockEntity extends BlockEntity {
             if (neighbor == null) {
                 continue;
             }
+            if (!this.canPush(direction, neighbor)) {
+                continue;
+            }
             if (neighbor instanceof final FluidDuctBlockEntity duct) {
                 if (!Objects.equals(this.configuredFluidId, duct.configuredFluidId) && duct.configuredFluidId != null) {
                     continue;
                 }
-                final int moved = duct.receiveFromDuct(stored, TRANSFER_PER_TICK);
+                final int moved = duct.receiveFromDuct(stored, TRANSFER_PER_TICK, direction.getOpposite());
                 if (moved > 0) {
                     this.buffer.drain(moved, IFluidHandler.FluidAction.EXECUTE);
                     stored.shrink(moved);
@@ -133,12 +144,24 @@ public class FluidDuctBlockEntity extends BlockEntity {
         }
     }
 
-    private int receiveFromDuct(final FluidStack stack, final int maxAmount) {
-        if (stack.isEmpty() || !this.isValidFluid(stack)) {
+    protected int receiveFromDuct(final FluidStack stack, final int maxAmount, final Direction fromDirection) {
+        if (stack.isEmpty() || !this.isValidFluid(stack) || !this.canReceive(fromDirection, stack)) {
             return 0;
         }
         final int amount = Math.min(maxAmount, stack.getAmount());
         return this.buffer.fill(new FluidStack(stack, amount), IFluidHandler.FluidAction.EXECUTE);
+    }
+
+    protected boolean canPull(final Direction direction, final BlockEntity neighbor) {
+        return true;
+    }
+
+    protected boolean canPush(final Direction direction, final BlockEntity neighbor) {
+        return true;
+    }
+
+    protected boolean canReceive(final Direction direction, final FluidStack stack) {
+        return true;
     }
 
     private boolean isValidFluid(final FluidStack stack) {
