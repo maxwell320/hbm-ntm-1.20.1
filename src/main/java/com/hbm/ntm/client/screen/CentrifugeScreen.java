@@ -60,7 +60,7 @@ public class CentrifugeScreen extends MachineScreenBase<CentrifugeMenu> {
             this.menu.energy(),
             this.menu.maxEnergy());
 
-        if (this.inside(mouseX + this.leftPos, mouseY + this.topPos, this.leftPos + 152, this.topPos + 17, 16, 36)) {
+        if (this.inside(mouseX, mouseY, this.leftPos + 152, this.topPos + 17, 16, 36)) {
             guiGraphics.renderTooltip(this.font,
                 List.of(Component.literal("Consumption: " + this.menu.consumption() + " HE/t")),
                 Optional.empty(),

@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "hbmntm:block/block_steel",
+    "front": "hbmntm:block/block_steel",
+    "particle": "hbmntm:block/block_steel",
+    "side": "hbmntm:block/block_steel",
+    "top": "hbmntm:block/block_steel"
+  }
+}

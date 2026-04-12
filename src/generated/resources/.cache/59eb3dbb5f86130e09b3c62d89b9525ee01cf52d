@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-11T17:00:17.843924	Loot Tables
+// 1.20.1	2026-04-12T21:43:26.512764	Loot Tables
 761932d7de8bb82a916daf8141885c374f4dc866 data/hbmntm/loot_tables/blocks/anvil_arsenic_bronze.json
 bd80baf7df56acdba9ed8c6d066c4e45b80d430b data/hbmntm/loot_tables/blocks/anvil_bismuth_bronze.json
 2d39a7e294d885b47f2ec965a87c5916bbd05817 data/hbmntm/loot_tables/blocks/anvil_desh.json
@@ -69,7 +69,12 @@ fb1801cf1d3b4f00c6987b13ce6c785205a3efe3 data/hbmntm/loot_tables/blocks/machine_
 3c33fae0bbfa118adc11b63df8ff3f7f9ea05a07 data/hbmntm/loot_tables/blocks/machine_battery.json
 ac47c783a6053cfd42125f8a3eb56a38dc4e74f2 data/hbmntm/loot_tables/blocks/machine_centrifuge.json
 49b58672e512cd9c78615ad971d23d7130311a5c data/hbmntm/loot_tables/blocks/machine_gascent.json
+2c5c0c5a129f84f69820113fc06a0505a6adda8e data/hbmntm/loot_tables/blocks/machine_icf.json
+65fc7e4e90c28b099cb28195f014a3c90172f3e5 data/hbmntm/loot_tables/blocks/machine_icf_controller.json
+a3fb278523b054b5b88dcd53e04257ec05dbcd6a data/hbmntm/loot_tables/blocks/machine_icf_laser_component.json
+b1547dd55eb4b0b06b367412229d46ee83b76537 data/hbmntm/loot_tables/blocks/machine_icf_press.json
 9805ebed67e1a8624a5e8d3514ceeff9c63fd3f3 data/hbmntm/loot_tables/blocks/machine_press.json
+606d4c9dfefa0903bb9e3f485284be6fdd385746 data/hbmntm/loot_tables/blocks/machine_purex.json
 ba509cde92054a0c635fa350fa9ea038f5cce716 data/hbmntm/loot_tables/blocks/machine_shredder.json
 85232dca241c0bf7547973210ed5557b3d3aa89a data/hbmntm/loot_tables/blocks/machine_soldering_station.json
 92fcb8e8ce780d62eb0d18836a76af4a3fb9ee66 data/hbmntm/loot_tables/blocks/ore_alexandrite.json

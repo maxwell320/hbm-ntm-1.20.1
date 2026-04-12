@@ -1,7 +1,7 @@
 package com.hbm.ntm.common.block.entity;
 
 import com.hbm.ntm.common.fluid.HbmFluidTank;
-import com.hbm.ntm.common.fluid.FluidNetworkDistributor;
+import com.hbm.ntm.common.fluid.IFluidNetworkReceiver;
 import com.hbm.ntm.common.registration.HbmBlockEntityTypes;
 import com.hbm.ntm.common.transfer.TransferGraphManager;
 import com.hbm.ntm.common.transfer.TransferNetworkKind;
@@ -31,6 +31,9 @@ public class FluidDuctBlockEntity extends BlockEntity implements TransferNodePro
     private final HbmFluidTank buffer = new HbmFluidTank(BUFFER_CAPACITY, this::isValidFluid, this::onContentsChanged);
     @Nullable
     private ResourceLocation configuredFluidId;
+    @Nullable
+    private Direction lastPullDirection;
+    private long lastPullTick = Long.MIN_VALUE;
 
     public FluidDuctBlockEntity(final BlockPos pos, final BlockState state) {
         this(HbmBlockEntityTypes.FLUID_DUCT.get(), pos, state);
@@ -147,6 +150,8 @@ public class FluidDuctBlockEntity extends BlockEntity implements TransferNodePro
                     continue;
                 }
                 handler.drain(new FluidStack(simulated, accepted), IFluidHandler.FluidAction.EXECUTE);
+                this.lastPullDirection = direction;
+                this.lastPullTick = level.getGameTime();
                 return;
             }
         }
@@ -160,6 +165,9 @@ public class FluidDuctBlockEntity extends BlockEntity implements TransferNodePro
         for (final Direction direction : Direction.values()) {
             if (stored.isEmpty()) {
                 return;
+            }
+            if (this.lastPullDirection == direction && this.lastPullTick == level.getGameTime()) {
+                continue;
             }
             final BlockEntity neighbor = level.getBlockEntity(pos.relative(direction));
             if (neighbor == null) {
@@ -180,14 +188,40 @@ public class FluidDuctBlockEntity extends BlockEntity implements TransferNodePro
                 }
                 continue;
             }
-            final int moved = FluidNetworkDistributor.distribute(level, pos, stored, TRANSFER_PER_TICK, direction.getOpposite());
+            final int moved = this.pushToNeighbor(neighbor, stored, direction.getOpposite());
             if (moved > 0) {
                 TransferGraphManager.recordTransfer(level, pos, TransferNetworkKind.FLUID, moved);
                 this.buffer.drain(moved, IFluidHandler.FluidAction.EXECUTE);
                 stored.shrink(moved);
-                return;
             }
         }
+    }
+
+    private int pushToNeighbor(final BlockEntity neighbor, final FluidStack stored, final Direction side) {
+        if (stored.isEmpty()) {
+            return 0;
+        }
+        final int offer = Math.min(TRANSFER_PER_TICK, stored.getAmount());
+        if (offer <= 0) {
+            return 0;
+        }
+
+        if (neighbor instanceof final IFluidNetworkReceiver receiver) {
+            final long demandValue = Math.min(receiver.getNetworkFluidDemand(stored, 0, side), receiver.getFluidReceiverSpeed(stored, 0, side));
+            final int demand = (int) Math.min(Integer.MAX_VALUE, demandValue);
+            if (demand <= 0) {
+                return 0;
+            }
+            final int transfer = Math.min(offer, demand);
+            final long remainder = receiver.receiveNetworkFluid(new FluidStack(stored, transfer), 0, transfer, side);
+            return Math.max(0, transfer - (int) Math.min(Integer.MAX_VALUE, remainder));
+        }
+
+        final IFluidHandler handler = neighbor.getCapability(ForgeCapabilities.FLUID_HANDLER, side).orElse(null);
+        if (handler == null) {
+            return 0;
+        }
+        return handler.fill(new FluidStack(stored, offer), IFluidHandler.FluidAction.EXECUTE);
     }
 
     protected int receiveFromDuct(final FluidStack stack, final int maxAmount, final Direction fromDirection) {

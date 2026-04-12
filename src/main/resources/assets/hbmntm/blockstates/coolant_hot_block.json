@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "hbmntm:block/coolant_hot_block"
+    }
+  }
+}

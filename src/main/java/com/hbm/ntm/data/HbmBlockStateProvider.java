@@ -1,15 +1,22 @@
 package com.hbm.ntm.data;
 
 import com.hbm.ntm.HbmNtmMod;
+import com.hbm.ntm.common.assembly.AssemblyMachinePart;
 import com.hbm.ntm.common.block.AssemblyMachineBlock;
 import com.hbm.ntm.common.block.BatteryBlock;
 import com.hbm.ntm.common.block.CentrifugeBlock;
 import com.hbm.ntm.common.block.GasCentrifugeBlock;
+import com.hbm.ntm.common.block.IcfBlock;
+import com.hbm.ntm.common.block.IcfControllerBlock;
+import com.hbm.ntm.common.block.IcfLaserComponentBlock;
 import com.hbm.ntm.common.block.MaterialBlockType;
 import com.hbm.ntm.common.block.NetherOreType;
 import com.hbm.ntm.common.block.OverworldOreType;
+import com.hbm.ntm.common.block.PressBlock;
+import com.hbm.ntm.common.block.PurexBlock;
 import com.hbm.ntm.common.block.ShredderBlock;
 import com.hbm.ntm.common.block.SolderingStationBlock;
+import com.hbm.ntm.common.press.PressPart;
 import com.hbm.ntm.common.soldering.SolderingStationPart;
 import com.hbm.ntm.common.registration.HbmBlocks;
 import net.minecraft.core.Direction;
@@ -36,11 +43,16 @@ public class HbmBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         batteryBlock(HbmBlocks.MACHINE_BATTERY.get(), "machine_battery", "battery_front_alt", "battery_side_alt", "battery_top");
-        simpleCubeBlock(HbmBlocks.MACHINE_PRESS.get(), "machine_press", "machine_press");
+        pressBlock(HbmBlocks.MACHINE_PRESS.get(), "machine_press", "machine_press");
         assemblyMachineBlock(HbmBlocks.MACHINE_ASSEMBLY_MACHINE.get(), "machine_assembly_machine");
         solderingStationBlock(HbmBlocks.MACHINE_SOLDERING_STATION.get(), "machine_soldering_station");
         centrifugeBlock(HbmBlocks.MACHINE_CENTRIFUGE.get(), "machine_centrifuge");
         gasCentrifugeBlock(HbmBlocks.MACHINE_GAS_CENTRIFUGE.get(), "machine_gascent");
+        purexBlock(HbmBlocks.MACHINE_PUREX.get(), "machine_purex");
+        icfBlock(HbmBlocks.MACHINE_ICF.get(), "machine_icf");
+        icfControllerBlock(HbmBlocks.MACHINE_ICF_CONTROLLER.get(), "machine_icf_controller");
+        icfLaserComponentBlock(HbmBlocks.MACHINE_ICF_LASER_COMPONENT.get(), "machine_icf_laser_component");
+        icfPressBlock(HbmBlocks.MACHINE_ICF_PRESS.get(), "machine_icf_press");
         barrelBlock(HbmBlocks.BARREL_PLASTIC.get(), "barrel_plastic", "barrel_plastic");
         barrelBlock(HbmBlocks.BARREL_CORRODED.get(), "barrel_corroded", "barrel_corroded");
         barrelBlock(HbmBlocks.BARREL_IRON.get(), "barrel_iron", "barrel_iron");
@@ -146,6 +158,23 @@ public class HbmBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, model);
     }
 
+    private void pressBlock(final Block block, final String modelName, final String textureName) {
+        final ModelFile coreModel = models().cubeAll(modelName, preferredBlockTexture(textureName));
+        final ModelFile invisibleModel = new ModelFile.UncheckedModelFile(modLoc("block/invisible"));
+
+        getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder()
+            .modelFile(state.getValue(PressBlock.PART) == PressPart.CORE ? coreModel : invisibleModel)
+            .rotationY(switch (state.getValue(PressBlock.FACING)) {
+                case EAST -> 90;
+                case SOUTH -> 180;
+                case WEST -> 270;
+                default -> 0;
+            })
+            .build());
+
+        simpleBlockItem(block, coreModel);
+    }
+
     private void centrifugeBlock(final Block block, final String modelName) {
         final ModelFile model = models().withExistingParent(modelName, mcLoc("block/orientable_with_bottom"))
             .texture("particle", modLoc("block/machine_centrifuge"))
@@ -188,7 +217,7 @@ public class HbmBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, model);
     }
 
-    private void assemblyMachineBlock(final Block block, final String modelName) {
+    private void purexBlock(final Block block, final String modelName) {
         final ModelFile model = models().withExistingParent(modelName, mcLoc("block/orientable_with_bottom"))
             .texture("particle", modLoc("block/block_steel"))
             .texture("front", modLoc("block/block_steel"))
@@ -198,6 +227,111 @@ public class HbmBlockStateProvider extends BlockStateProvider {
 
         getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder()
             .modelFile(model)
+            .rotationY(switch (state.getValue(PurexBlock.FACING)) {
+                case EAST -> 90;
+                case SOUTH -> 180;
+                case WEST -> 270;
+                default -> 0;
+            })
+            .build());
+
+        simpleBlockItem(block, model);
+    }
+
+    private void icfBlock(final Block block, final String modelName) {
+        final ModelFile model = models().withExistingParent(modelName, mcLoc("block/orientable_with_bottom"))
+            .texture("particle", modLoc("block/block_steel"))
+            .texture("front", modLoc("block/block_steel"))
+            .texture("side", modLoc("block/block_steel"))
+            .texture("top", modLoc("block/block_steel"))
+            .texture("bottom", modLoc("block/block_steel"));
+
+        getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder()
+            .modelFile(model)
+            .rotationY(switch (state.getValue(IcfBlock.FACING)) {
+                case EAST -> 90;
+                case SOUTH -> 180;
+                case WEST -> 270;
+                default -> 0;
+            })
+            .build());
+
+        simpleBlockItem(block, model);
+    }
+
+    private void icfControllerBlock(final Block block, final String modelName) {
+        final ModelFile model = models().withExistingParent(modelName, mcLoc("block/orientable_with_bottom"))
+            .texture("particle", modLoc("block/icf_casing"))
+            .texture("front", modLoc("block/icf_controller"))
+            .texture("side", modLoc("block/icf_casing"))
+            .texture("top", modLoc("block/icf_casing"))
+            .texture("bottom", modLoc("block/icf_casing"));
+
+        getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder()
+            .modelFile(model)
+            .rotationY(switch (state.getValue(IcfControllerBlock.FACING)) {
+                case EAST -> 90;
+                case SOUTH -> 180;
+                case WEST -> 270;
+                default -> 0;
+            })
+            .build());
+
+        simpleBlockItem(block, model);
+    }
+
+    private void icfLaserComponentBlock(final Block block, final String modelName) {
+        final ModelFile casing = models().cubeAll(modelName + "_casing", modLoc("block/icf_casing"));
+        final ModelFile port = models().cubeAll(modelName + "_port", modLoc("block/icf_port"));
+        final ModelFile cell = models().cubeAll(modelName + "_cell", modLoc("block/icf_cell"));
+        final ModelFile emitter = models().cubeAll(modelName + "_emitter", modLoc("block/icf_emitter"));
+        final ModelFile capacitor = models().withExistingParent(modelName + "_capacitor", mcLoc("block/orientable"))
+            .texture("particle", modLoc("block/icf_capacitor_side"))
+            .texture("front", modLoc("block/icf_capacitor_side"))
+            .texture("side", modLoc("block/icf_capacitor_side"))
+            .texture("top", modLoc("block/icf_capacitor_top"))
+            .texture("bottom", modLoc("block/icf_capacitor_top"));
+        final ModelFile turbo = models().cubeAll(modelName + "_turbo", modLoc("block/icf_turbocharger"));
+
+        getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder()
+            .modelFile(switch (state.getValue(IcfLaserComponentBlock.PART)) {
+                case CASING -> casing;
+                case PORT -> port;
+                case CELL -> cell;
+                case EMITTER -> emitter;
+                case CAPACITOR -> capacitor;
+                case TURBO -> turbo;
+            })
+            .build());
+
+        simpleBlockItem(block, casing);
+    }
+
+    private void icfPressBlock(final Block block, final String modelName) {
+        final ModelFile model = models().withExistingParent(modelName, mcLoc("block/cube"))
+            .texture("particle", modLoc("block/machine_icf_press_side"))
+            .texture("down", modLoc("block/machine_icf_press_top"))
+            .texture("up", modLoc("block/machine_icf_press_top"))
+            .texture("north", modLoc("block/machine_icf_press_side"))
+            .texture("south", modLoc("block/machine_icf_press_side"))
+            .texture("west", modLoc("block/machine_icf_press_side"))
+            .texture("east", modLoc("block/machine_icf_press_side"));
+
+        simpleBlock(block, model);
+        simpleBlockItem(block, model);
+    }
+
+    private void assemblyMachineBlock(final Block block, final String modelName) {
+        final ModelFile model = models().withExistingParent(modelName, mcLoc("block/orientable_with_bottom"))
+            .texture("particle", modLoc("block/block_steel"))
+            .texture("front", modLoc("block/block_steel"))
+            .texture("side", modLoc("block/block_steel"))
+            .texture("top", modLoc("block/block_steel"))
+            .texture("bottom", modLoc("block/block_steel"));
+        final ModelFile invisibleModel = new ModelFile.UncheckedModelFile(modLoc("block/invisible"));
+
+        getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder()
+            .modelFile(state.getValue(AssemblyMachineBlock.PART) == AssemblyMachinePart.CORE ? model : invisibleModel)
             .rotationY(switch (state.getValue(AssemblyMachineBlock.FACING)) {
                 case EAST -> 90;
                 case SOUTH -> 180;
@@ -216,9 +350,10 @@ public class HbmBlockStateProvider extends BlockStateProvider {
             .texture("side", modLoc("block/block_steel"))
             .texture("top", modLoc("block/block_steel"))
             .texture("bottom", modLoc("block/block_steel"));
+        final ModelFile invisibleModel = new ModelFile.UncheckedModelFile(modLoc("block/invisible"));
 
         getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder()
-            .modelFile(model)
+            .modelFile(state.getValue(SolderingStationBlock.PART) == SolderingStationPart.CORE ? model : invisibleModel)
             .rotationY(switch (state.getValue(SolderingStationBlock.FACING)) {
                 case EAST -> 90;
                 case SOUTH -> 180;
@@ -227,10 +362,6 @@ public class HbmBlockStateProvider extends BlockStateProvider {
             })
             .build());
 
-        // All parts share a single inventory model; drops are filtered by loot table to core only.
-        for (final SolderingStationPart ignored : SolderingStationPart.values()) {
-            // no-op, keeps parity intent explicit for future per-part models
-        }
         simpleBlockItem(block, model);
     }
 

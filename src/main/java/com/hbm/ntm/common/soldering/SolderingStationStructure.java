@@ -12,8 +12,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 @SuppressWarnings("null")
 public final class SolderingStationStructure extends SimpleMultiblockStructure {
-    public static final SolderingStationStructure INSTANCE = new SolderingStationStructure();
     private static final int[] DIMENSIONS = new int[]{0, 0, 1, 0, 1, 0};
+    public static final SolderingStationStructure INSTANCE = new SolderingStationStructure();
 
     private SolderingStationStructure() {
         super(DIMENSIONS, Blocks.AIR);

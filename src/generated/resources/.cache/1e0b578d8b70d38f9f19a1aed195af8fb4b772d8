@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-11T17:00:17.8474446	HBM Block Tags
+// 1.20.1	2026-04-12T21:43:26.5423004	HBM Block Tags
 9b78937a85fa2cf3d9b114251883fbe2e6835b43 data/forge/tags/blocks/ores/aluminium.json
 b60bc5f2548f07052567cd0d05be778534e16645 data/forge/tags/blocks/ores/asbestos.json
 94cdf437c8170cc7fb81e6d0cec69045afdf5442 data/forge/tags/blocks/ores/australium.json
@@ -56,8 +56,8 @@ ebd140b41a224260467d812b38c23cbca4a0db81 data/hbmntm/tags/blocks/ores/volcanic.j
 183e857ff0eecd3baedde9bb9c666dfd458ad638 data/hbmntm/tags/blocks/storage_blocks/beryllium.json
 4f528c24e61df558436a6798aceb34019b8a9e07 data/hbmntm/tags/blocks/storage_blocks/steel.json
 be421cdab5b68a0dd90583879805bcb928562ff4 data/minecraft/tags/blocks/mineable/axe.json
-3ff13e188c1550829be39780a416af4dd877a79e data/minecraft/tags/blocks/mineable/pickaxe.json
+d9f613e2ac07f2d1c9eb7bc672d8a47d67e4a598 data/minecraft/tags/blocks/mineable/pickaxe.json
 79eb7c424f7cafcfede7f873d105f3de09410013 data/minecraft/tags/blocks/mineable/shovel.json
 60a722387a23ed72862ca58767931825b6cb80d4 data/minecraft/tags/blocks/needs_diamond_tool.json
 911ae92f9c24d2a7e81bcf44224da56dc537ec6a data/minecraft/tags/blocks/needs_iron_tool.json
-0da24d13553543d0f1f1b55349f445379d1a024b data/minecraft/tags/blocks/needs_stone_tool.json
+947c4359340a9954af2b1093f4b7f39dbc424d7d data/minecraft/tags/blocks/needs_stone_tool.json

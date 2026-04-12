@@ -70,6 +70,11 @@ public class HbmItemModelProvider extends ItemModelProvider {
         withExistingParent("machine_soldering_station", modLoc("block/machine_soldering_station"));
         withExistingParent("machine_centrifuge", modLoc("block/machine_centrifuge"));
         withExistingParent("machine_gascent", modLoc("block/machine_gascent"));
+        withExistingParent("machine_purex", modLoc("block/machine_purex"));
+        withExistingParent("machine_icf", modLoc("block/machine_icf"));
+        withExistingParent("machine_icf_controller", modLoc("block/machine_icf_controller"));
+        withExistingParent("machine_icf_laser_component", modLoc("block/machine_icf_laser_component_casing"));
+        withExistingParent("machine_icf_press", modLoc("block/machine_icf_press"));
         singleTexture("photo_panel", mcLoc("item/generated"), "layer0", modLoc("item/photo_panel"));
         singleTexture("pin", mcLoc("item/generated"), "layer0", modLoc("item/pin"));
         singleTexture("catalyst_clay", mcLoc("item/generated"), "layer0", modLoc("item/catalyst_clay"));
@@ -119,6 +124,13 @@ public class HbmItemModelProvider extends ItemModelProvider {
         singleTexture("nugget_mercury", mcLoc("item/generated"), "layer0", modLoc("item/nugget_mercury"));
         singleTexture("nugget_mercury_tiny", mcLoc("item/generated"), "layer0", modLoc("item/nugget_mercury_tiny"));
         singleTexture("nuclear_waste_tiny", mcLoc("item/generated"), "layer0", modLoc("item/nuclear_waste_tiny"));
+        singleTexture("pellet_charged", mcLoc("item/generated"), "layer0", modLoc("item/pellets_charged"));
+        singleTexture("particle_muon", mcLoc("item/generated"), "layer0", modLoc("item/particle_muon"));
+        singleTexture("icf_pellet_empty", mcLoc("item/generated"), "layer0", modLoc("item/icf_pellet_empty"));
+        withExistingParent("icf_pellet", mcLoc("item/generated"))
+            .texture("layer0", modLoc("item/icf_pellet_bg"))
+            .texture("layer1", modLoc("item/icf_pellet_shape"));
+        singleTexture("icf_pellet_depleted", mcLoc("item/generated"), "layer0", modLoc("item/icf_pellet_depleted"));
         singleTexture("pellet_rtg", mcLoc("item/generated"), "layer0", modLoc("item/pellet_rtg"));
         singleTexture("pellet_rtg_radium", mcLoc("item/generated"), "layer0", modLoc("item/pellet_rtg_radium"));
         singleTexture("pellet_rtg_weak", mcLoc("item/generated"), "layer0", modLoc("item/pellet_rtg_weak"));

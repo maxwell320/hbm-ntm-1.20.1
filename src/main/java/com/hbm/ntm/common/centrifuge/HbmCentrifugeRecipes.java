@@ -1,5 +1,6 @@
 package com.hbm.ntm.common.centrifuge;
 
+import com.hbm.ntm.HbmNtmMod;
 import com.hbm.ntm.common.block.OverworldOreType;
 import com.hbm.ntm.common.block.NetherOreType;
 import com.hbm.ntm.common.block.SellafieldOreType;
@@ -14,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -53,7 +55,7 @@ public final class HbmCentrifugeRecipes {
                 material(HbmMaterials.NIOBIUM, HbmMaterialShape.DUST_TINY, 2),
                 material(HbmMaterials.ZIRCONIUM, HbmMaterialShape.NUGGET, 3));
 
-            addRecipe(Ingredient.of(Blocks.COAL_ORE, Blocks.DEEPSLATE_COAL_ORE),
+            addRecipe(Ingredient.of(Blocks.COAL_ORE, Blocks.DEEPSLATE_COAL_ORE, HbmBlocks.getNetherOre(NetherOreType.COAL).get()),
                 material(HbmMaterials.COAL, HbmMaterialShape.DUST, 2),
                 material(HbmMaterials.COAL, HbmMaterialShape.DUST, 2),
                 material(HbmMaterials.COAL, HbmMaterialShape.DUST, 2),
@@ -77,13 +79,13 @@ public final class HbmCentrifugeRecipes {
                 material(HbmMaterials.GOLD, HbmMaterialShape.DUST, 1),
                 new ItemStack(Blocks.GRAVEL));
 
-            addRecipe(Ingredient.of(Blocks.DIAMOND_ORE, Blocks.DEEPSLATE_DIAMOND_ORE),
+            addRecipe(Ingredient.of(Blocks.DIAMOND_ORE, Blocks.DEEPSLATE_DIAMOND_ORE, HbmBlocks.getSellafieldOre(SellafieldOreType.DIAMOND).get()),
                 material(HbmMaterials.DIAMOND, HbmMaterialShape.DUST, 1),
                 material(HbmMaterials.DIAMOND, HbmMaterialShape.DUST, 1),
                 material(HbmMaterials.DIAMOND, HbmMaterialShape.DUST, 1),
                 new ItemStack(Blocks.GRAVEL));
 
-            addRecipe(Ingredient.of(Blocks.EMERALD_ORE, Blocks.DEEPSLATE_EMERALD_ORE),
+            addRecipe(Ingredient.of(Blocks.EMERALD_ORE, Blocks.DEEPSLATE_EMERALD_ORE, HbmBlocks.getSellafieldOre(SellafieldOreType.EMERALD).get()),
                 material(HbmMaterials.EMERALD, HbmMaterialShape.DUST, 1),
                 material(HbmMaterials.EMERALD, HbmMaterialShape.DUST, 1),
                 material(HbmMaterials.EMERALD, HbmMaterialShape.DUST, 1),
@@ -101,7 +103,15 @@ public final class HbmCentrifugeRecipes {
                 tinyDustById("powder_lithium_tiny", 1),
                 new ItemStack(Blocks.NETHERRACK));
 
-            addRecipe(Ingredient.of(HbmBlocks.getOverworldOre(OverworldOreType.TUNGSTEN).get()),
+            final ItemStack certusOre = firstAvailableItem(1, "ae2:quartz_ore", "appliedenergistics2:quartz_ore");
+            final ItemStack certusCrystal = firstAvailableItem(2, "ae2:certus_quartz_crystal", "appliedenergistics2:certus_quartz_crystal");
+            addRecipeIfInputPresent(certusOre,
+                certusCrystal,
+                certusCrystal,
+                certusCrystal,
+                certusCrystal);
+
+            addRecipe(Ingredient.of(HbmBlocks.getOverworldOre(OverworldOreType.TUNGSTEN).get(), HbmBlocks.getNetherOre(NetherOreType.TUNGSTEN).get()),
                 material(HbmMaterials.TUNGSTEN, HbmMaterialShape.DUST, 1),
                 material(HbmMaterials.TUNGSTEN, HbmMaterialShape.DUST, 1),
                 material(HbmMaterials.IRON, HbmMaterialShape.DUST, 1),
@@ -168,6 +178,12 @@ public final class HbmCentrifugeRecipes {
                 material(HbmMaterials.SOLINIUM, HbmMaterialShape.NUGGET, 1),
                 new ItemStack(Blocks.GRAVEL));
 
+            addRecipe(Ingredient.of(HbmBlocks.getOverworldOre(OverworldOreType.RARE).get()),
+                hbmItem("powder_desh_mix", 1),
+                material(HbmMaterials.ZIRCONIUM, HbmMaterialShape.NUGGET, 1),
+                material(HbmMaterials.ZIRCONIUM, HbmMaterialShape.NUGGET, 1),
+                new ItemStack(Blocks.GRAVEL));
+
             addRecipe(Ingredient.of(HbmBlocks.getOverworldOre(OverworldOreType.COBALT).get(), HbmBlocks.getNetherOre(NetherOreType.COBALT).get()),
                 material(HbmMaterials.COBALT, HbmMaterialShape.DUST, 2),
                 material(HbmMaterials.IRON, HbmMaterialShape.DUST, 1),
@@ -192,11 +208,40 @@ public final class HbmCentrifugeRecipes {
                 material(HbmMaterials.WHITE_PHOSPHORUS, HbmMaterialShape.INGOT, 1),
                 new ItemStack(Blocks.NETHERRACK, 1));
 
+            addRecipeIfInputPresent(hbmItem("ore_tikite", 1),
+                material(HbmMaterials.PLUTONIUM, HbmMaterialShape.DUST, 1),
+                material(HbmMaterials.COBALT, HbmMaterialShape.DUST, 2),
+                material(HbmMaterials.NIOBIUM, HbmMaterialShape.DUST, 2),
+                new ItemStack(Blocks.END_STONE, 1));
+
+            addRecipeIfInputPresent(hbmItem("block_euphemium_cluster", 1),
+                material(HbmMaterials.EUPHEMIUM, HbmMaterialShape.NUGGET, 7),
+                material(HbmMaterials.SCHRABIDIUM, HbmMaterialShape.DUST, 4),
+                material(HbmMaterials.STARMETAL, HbmMaterialShape.INGOT, 2),
+                material(HbmMaterials.SOLINIUM, HbmMaterialShape.NUGGET, 2));
+
             addRecipe(Ingredient.of(Items.BLAZE_ROD),
                 new ItemStack(Items.BLAZE_POWDER, 1),
                 new ItemStack(Items.BLAZE_POWDER, 1),
                 material(HbmMaterials.RED_PHOSPHORUS, HbmMaterialShape.DUST, 1),
                 material(HbmMaterials.RED_PHOSPHORUS, HbmMaterialShape.DUST, 1));
+
+            addRecipeIfInputPresent(hbmItem("powder_tektite", 1),
+                material(HbmMaterials.METEORITE, HbmMaterialShape.DUST_TINY, 1),
+                hbmItem("powder_paleogenite_tiny", 1),
+                material(HbmMaterials.METEORITE, HbmMaterialShape.DUST_TINY, 1),
+                hbmItem("dust", 6));
+
+            addRecipeIfInputPresent(hbmItem("block_slag", 1),
+                new ItemStack(Blocks.GRAVEL, 1),
+                material(HbmMaterials.RED_PHOSPHORUS, HbmMaterialShape.DUST, 1),
+                material(HbmMaterials.CALCIUM, HbmMaterialShape.DUST, 1),
+                hbmItem("dust", 1));
+
+            addRecipeIfInputPresent(hbmItem("powder_ash", 1),
+                material(HbmMaterials.COAL, HbmMaterialShape.DUST_TINY, 2),
+                material(HbmMaterials.BORON, HbmMaterialShape.DUST_TINY, 1),
+                hbmItem("dust_tiny", 6));
 
             addRecipe(Ingredient.of(HbmItems.getMaterialPart(HbmMaterials.DIAMOND, HbmMaterialShape.CRYSTAL).get()),
                 material(HbmMaterials.DIAMOND, HbmMaterialShape.DUST, 1),
@@ -312,11 +357,23 @@ public final class HbmCentrifugeRecipes {
                 material(HbmMaterials.PLUTONIUM, HbmMaterialShape.DUST, 1),
                 tinyDustById("powder_lithium_tiny", 1));
 
+            addRecipe(Ingredient.of(HbmItems.getMaterialPart(HbmMaterials.RARE_EARTH, HbmMaterialShape.CRYSTAL).get()),
+                hbmItem("powder_desh_mix", 1),
+                hbmItem("powder_desh_mix", 1),
+                material(HbmMaterials.ZIRCONIUM, HbmMaterialShape.NUGGET, 2),
+                material(HbmMaterials.ZIRCONIUM, HbmMaterialShape.NUGGET, 2));
+
             addRecipe(Ingredient.of(HbmItems.getMaterialPart(HbmMaterials.RED_PHOSPHORUS, HbmMaterialShape.CRYSTAL).get()),
                 material(HbmMaterials.RED_PHOSPHORUS, HbmMaterialShape.DUST, 3),
                 material(HbmMaterials.RED_PHOSPHORUS, HbmMaterialShape.DUST, 3),
                 material(HbmMaterials.WHITE_PHOSPHORUS, HbmMaterialShape.INGOT, 2),
                 new ItemStack(Items.BLAZE_POWDER, 2));
+
+            addRecipe(Ingredient.of(HbmItems.getMaterialPart(HbmMaterials.TRIXITE, HbmMaterialShape.CRYSTAL).get()),
+                material(HbmMaterials.PLUTONIUM, HbmMaterialShape.DUST, 2),
+                material(HbmMaterials.COBALT, HbmMaterialShape.DUST, 3),
+                material(HbmMaterials.NIOBIUM, HbmMaterialShape.DUST, 2),
+                hbmItem("powder_nitan_mix", 1));
 
             addRecipe(Ingredient.of(HbmItems.getMaterialPart(HbmMaterials.LITHIUM, HbmMaterialShape.CRYSTAL).get()),
                 material(HbmMaterials.LITHIUM, HbmMaterialShape.DUST, 2),
@@ -330,11 +387,24 @@ public final class HbmCentrifugeRecipes {
                 material(HbmMaterials.COPPER, HbmMaterialShape.DUST, 3),
                 tinyDustById("powder_lithium_tiny", 1));
 
+            addRecipe(Ingredient.of(HbmItems.getMaterialPart(HbmMaterials.STARMETAL, HbmMaterialShape.CRYSTAL).get()),
+                material(HbmMaterials.DURA_STEEL, HbmMaterialShape.DUST, 3),
+                material(HbmMaterials.COBALT, HbmMaterialShape.DUST, 3),
+                material(HbmMaterials.ASTATINE, HbmMaterialShape.DUST, 2),
+                new ItemStack(Objects.requireNonNull(HbmItems.INGOT_MERCURY.get()), 5));
+
             addRecipe(Ingredient.of(HbmItems.getMaterialPart(HbmMaterials.FLUORITE, HbmMaterialShape.CRYSTAL).get()),
                 material(HbmMaterials.FLUORITE, HbmMaterialShape.DUST, 4),
                 material(HbmMaterials.FLUORITE, HbmMaterialShape.DUST, 4),
                 material(HbmMaterials.SODALITE, HbmMaterialShape.GEM, 2),
                 tinyDustById("powder_lithium_tiny", 1));
+        }
+
+        private void addRecipeIfInputPresent(final ItemStack input, final ItemStack... outputs) {
+            if (input == null || input.isEmpty()) {
+                return;
+            }
+            this.addRecipe(Ingredient.of(input), outputs);
         }
 
         private void addRecipe(final Ingredient input, final ItemStack... outputs) {
@@ -359,9 +429,36 @@ public final class HbmCentrifugeRecipes {
     }
 
     private static ItemStack tinyDustById(final String itemId, final int count) {
+        return hbmItem(itemId, count);
+    }
+
+    private static ItemStack hbmItem(final String path, final int count) {
+        return itemById(HbmNtmMod.MOD_ID + ":" + path, count);
+    }
+
+    private static ItemStack firstAvailableItem(final int count, final String... itemIds) {
+        for (final String itemId : itemIds) {
+            final ItemStack stack = itemById(itemId, count);
+            if (!stack.isEmpty()) {
+                return stack;
+            }
+        }
+        return ItemStack.EMPTY;
+    }
+
+    private static ItemStack itemById(final String itemId, final int count) {
+        if (itemId == null || itemId.isBlank()) {
+            return ItemStack.EMPTY;
+        }
+        final ResourceLocation id = ResourceLocation.tryParse(itemId);
+        if (id == null) {
+            return ItemStack.EMPTY;
+        }
         try {
-            final Item item = Objects.requireNonNull(net.minecraftforge.registries.ForgeRegistries.ITEMS.getValue(
-                net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(com.hbm.ntm.HbmNtmMod.MOD_ID, itemId)));
+            final Item item = Objects.requireNonNull(net.minecraftforge.registries.ForgeRegistries.ITEMS.getValue(id));
+            if (item == Items.AIR) {
+                return ItemStack.EMPTY;
+            }
             return new ItemStack(item, count);
         } catch (final RuntimeException ignored) {
             return ItemStack.EMPTY;

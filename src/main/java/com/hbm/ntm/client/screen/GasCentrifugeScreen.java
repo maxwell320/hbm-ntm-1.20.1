@@ -52,7 +52,7 @@ public class GasCentrifugeScreen extends MachineScreenBase<GasCentrifugeMenu> {
             this.menu.energy(),
             this.menu.maxEnergy());
 
-        if (this.inside(mouseX + this.leftPos, mouseY + this.topPos, this.leftPos + 15, this.topPos + 15, 24, 55)) {
+        if (this.inside(mouseX, mouseY, this.leftPos + 15, this.topPos + 15, 24, 55)) {
             guiGraphics.renderTooltip(this.font,
                 List.of(
                     Component.translatable(this.menu.inputTypeKey()),
@@ -62,7 +62,7 @@ public class GasCentrifugeScreen extends MachineScreenBase<GasCentrifugeMenu> {
                 mouseY);
         }
 
-        if (this.inside(mouseX + this.leftPos, mouseY + this.topPos, this.leftPos + 137, this.topPos + 15, 25, 55)) {
+        if (this.inside(mouseX, mouseY, this.leftPos + 137, this.topPos + 15, 25, 55)) {
             guiGraphics.renderTooltip(this.font,
                 List.of(
                     Component.translatable(this.menu.outputTypeKey()),

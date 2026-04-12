@@ -230,7 +230,7 @@ public class GasCentrifugeBlockEntity extends MachineBlockEntity {
             return false;
         }
 
-        final @Nullable PseudoFluidType mapped = HbmGasCentrifugeRecipes.fluidConversions().get(fluidId);
+        final @Nullable PseudoFluidType mapped = HbmGasCentrifugeRecipes.getPseudoInputForFluid(fluidId).orElse(null);
         if (mapped == null) {
             return false;
         }

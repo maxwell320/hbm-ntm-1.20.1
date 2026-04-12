@@ -1,0 +1,10 @@
+legacy_id,stamp,input_ref,expected_output_ref,notes
+flat_quartz_dust,FLAT,NETHERQUARTZ.dust,minecraft:quartz,legacy_flat_quartz_dust_to_quartz
+flat_any_coke,FLAT,ANY_COKE.gem,hbm:ingot_graphite,legacy_any_coke_to_graphite
+flat_coal_dust_briquette,FLAT,COAL.dust,hbm:briquette_coal,legacy_coal_dust_to_briquette
+plate_saturnite,PLATE,BIGMT.ingot,hbm:plate_saturnite,legacy_bigmt_alias_to_saturnite_plate
+c9_gunmetal,C9,GUNMETAL.plate,hbm:casing_small_x4,legacy_c9_gunmetal_to_small_casing
+c50_weaponsteel,C50,WEAPONSTEEL.plate,hbm:casing_large_steel_x2,legacy_c50_weaponsteel_to_large_steel_casing
+wire_ingot_loop,WIRE,autogen_ingot_with_wire,hbm:wire_fine_x8,legacy_wire_stamp_autogen_loop
+silicon_circuit,CIRCUIT,SI.billet,hbm:circuit_silicon,legacy_silicon_billet_to_circuit
+printing_page8,PRINTING8,minecraft:paper,hbm:page8,legacy_printing8_paper_to_page8

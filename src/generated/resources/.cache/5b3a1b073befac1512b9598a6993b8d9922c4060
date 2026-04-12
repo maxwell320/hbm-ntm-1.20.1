@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-11T23:11:16.8846299	Item Models: hbmntm
+// 1.20.1	2026-04-12T21:43:26.4931599	Item Models: hbmntm
 dcc04e25f14e64a3e399478e0fb2c6712ff67180 assets/hbmntm/models/item/acetylene_torch.json
 52fb062addf509d750be0513021c77dcab08aa62 assets/hbmntm/models/item/asbestos_cloth.json
 863bf180da18fb08cd18fd883d2876403e499196 assets/hbmntm/models/item/ball_resin.json
@@ -244,6 +244,9 @@ aa48fcfad6481b2464c25cc375d0c475e5d5ce25 assets/hbmntm/models/item/gem_rad.json
 d7083e5bfbaba49a0958838abe3f21fec6e08678 assets/hbmntm/models/item/gem_tantalium.json
 11fa6f6155a10fd1f0f37b3aaecf9904dfc0cbe1 assets/hbmntm/models/item/gem_volcanic.json
 63a199e6824673a686fed7bcc76c88147be3aea5 assets/hbmntm/models/item/hazmat_cloth.json
+32280bb77e93d982dd4c701243b7c02401507421 assets/hbmntm/models/item/icf_pellet.json
+63ec96dc3f91eb0889e0a43d5aa183f780e634bf assets/hbmntm/models/item/icf_pellet_depleted.json
+5682df6b7c9df29e9a5e2ea9b1175f423bf933de assets/hbmntm/models/item/icf_pellet_empty.json
 bb28ce2a089211d4686e9db931a28092a3e7d83c assets/hbmntm/models/item/ingot_actinium.json
 de86ee1c153cee6089b157d43a03b01a97bde554 assets/hbmntm/models/item/ingot_advanced_alloy.json
 baac80e6975912f59dcb68f4803753cb6ed2ca9e assets/hbmntm/models/item/ingot_aluminium.json
@@ -332,7 +335,12 @@ d9f4834b050b98e955da750d7b86e7b6eaf57241 assets/hbmntm/models/item/lithium.json
 8e1dc1ae2ca583b0d128b71a4ada6a5778765197 assets/hbmntm/models/item/machine_battery.json
 030efc5399f1960de1b7c48bee09a88b3dc5bbe3 assets/hbmntm/models/item/machine_centrifuge.json
 9c7bb6023b89824de6e8631c6f3ee1917b662f97 assets/hbmntm/models/item/machine_gascent.json
+b2fee83e0cca73513abf0f16f180d4752d82bd58 assets/hbmntm/models/item/machine_icf.json
+3a205b6e2ef6b18b5ef61bd2eb419634d3b4edbc assets/hbmntm/models/item/machine_icf_controller.json
+da6608c1bc1d3642be20e77e75af94b37347cf98 assets/hbmntm/models/item/machine_icf_laser_component.json
+974bf133f9c5a4b2f73ec0e6c8da4809860d89cb assets/hbmntm/models/item/machine_icf_press.json
 5e62c89820c054ba593c5b3885ded645238ce009 assets/hbmntm/models/item/machine_press.json
+8a000a969989412b326ecf574ee768fac9c0e5d1 assets/hbmntm/models/item/machine_purex.json
 43cd67311b9f85b3b159d83e1bd9c3ee45add286 assets/hbmntm/models/item/machine_soldering_station.json
 e15d36759289ddb79622e66510adf461b5a8020b assets/hbmntm/models/item/magnetron.json
 06f112f46fc7bbea0867d6f3a27415054ad99c88 assets/hbmntm/models/item/motor.json
@@ -414,6 +422,7 @@ b9e3e9474d23d09c92a963167d2c982b8f58e43f assets/hbmntm/models/item/ore_tungsten.
 31ec28dd6db91da25ea0c03ffb87d2511cd33ff2 assets/hbmntm/models/item/ore_uranium.json
 1ff81667d93f6993679528ea903ddc14eb1bbb3c assets/hbmntm/models/item/ore_uranium_scorched.json
 f25a90154b5aeee0f7983e2d95c1684eef0d5239 assets/hbmntm/models/item/page_of_.json
+5c608e5218db2fbf58efdb2ce060058f4ca41e1c assets/hbmntm/models/item/particle_muon.json
 40db358dd4782a212f5cc364974af5a1031f1191 assets/hbmntm/models/item/part_barrel_heavy_cdalloy.json
 40db358dd4782a212f5cc364974af5a1031f1191 assets/hbmntm/models/item/part_barrel_heavy_desh.json
 40db358dd4782a212f5cc364974af5a1031f1191 assets/hbmntm/models/item/part_barrel_heavy_dura_steel.json
@@ -480,6 +489,7 @@ f139261751f0cbf995695ab4cb74d059493b5188 assets/hbmntm/models/item/part_receiver
 78df0828020a55579a95758a34757b8c000ca86b assets/hbmntm/models/item/part_stock_saturnite.json
 78df0828020a55579a95758a34757b8c000ca86b assets/hbmntm/models/item/part_stock_weaponsteel.json
 56e929f0eae8acd6d34e47d5099d728a79bea8af assets/hbmntm/models/item/pedestal_steel.json
+35d6d77725cd731a085cc62c353f54e17bb388df assets/hbmntm/models/item/pellet_charged.json
 38dd99a082bb2ffa3909d17256f53344b66de793 assets/hbmntm/models/item/pellet_rtg.json
 ec667e5f7994940c72223934597ddac9c592c2fc assets/hbmntm/models/item/pellet_rtg_actinium.json
 2aba1bd55902f76cc40cb85b380e338495a328ac assets/hbmntm/models/item/pellet_rtg_americium.json

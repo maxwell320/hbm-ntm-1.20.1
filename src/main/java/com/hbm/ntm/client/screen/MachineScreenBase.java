@@ -150,7 +150,7 @@ public abstract class MachineScreenBase<T extends MachineMenuBase<?>> extends Ab
                                              final int height,
                                              final long energy,
                                              final long maxEnergy) {
-        if (this.inside(mouseX + this.leftPos, mouseY + this.topPos, x, y, width, height)) {
+        if (this.inside(mouseX, mouseY, x, y, width, height)) {
             guiGraphics.renderTooltip(this.font,
                 List.of(Component.literal(energy + " / " + Math.max(0L, maxEnergy) + " HE")),
                 Optional.empty(), mouseX, mouseY);
@@ -195,7 +195,7 @@ public abstract class MachineScreenBase<T extends MachineMenuBase<?>> extends Ab
                                             final int height,
                                             final String title,
                                             final FluidTank tank) {
-        if (!this.inside(mouseX + this.leftPos, mouseY + this.topPos, x, y, width, height)) {
+        if (!this.inside(mouseX, mouseY, x, y, width, height)) {
             return;
         }
 
@@ -222,7 +222,7 @@ public abstract class MachineScreenBase<T extends MachineMenuBase<?>> extends Ab
                                             final String fluidName,
                                             final int amount,
                                             final int capacity) {
-        if (!this.inside(mouseX + this.leftPos, mouseY + this.topPos, x, y, width, height)) {
+        if (!this.inside(mouseX, mouseY, x, y, width, height)) {
             return;
         }
         final List<Component> tooltip = new java.util.ArrayList<>();

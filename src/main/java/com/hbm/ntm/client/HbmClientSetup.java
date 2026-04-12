@@ -2,14 +2,19 @@ package com.hbm.ntm.client;
 
 import com.hbm.ntm.HbmNtmMod;
 import com.hbm.ntm.client.renderer.blockentity.BarrelBlockEntityRenderer;
+import com.hbm.ntm.client.renderer.blockentity.IcfControllerBlockEntityRenderer;
+import com.hbm.ntm.client.renderer.blockentity.PressBlockEntityRenderer;
 import com.hbm.ntm.client.network.MachineClientPacketHandlers;
 import com.hbm.ntm.client.screen.AssemblyMachineScreen;
 import com.hbm.ntm.client.screen.BarrelScreen;
 import com.hbm.ntm.client.screen.CentrifugeScreen;
 import com.hbm.ntm.client.screen.FluidIdentifierScreen;
 import com.hbm.ntm.client.screen.GasCentrifugeScreen;
+import com.hbm.ntm.client.screen.IcfScreen;
+import com.hbm.ntm.client.screen.IcfPressScreen;
 import com.hbm.ntm.client.screen.NtmAnvilScreen;
 import com.hbm.ntm.client.screen.PressScreen;
+import com.hbm.ntm.client.screen.PurexScreen;
 import com.hbm.ntm.client.screen.ShredderScreen;
 import com.hbm.ntm.client.screen.SolderingStationScreen;
 import com.hbm.ntm.common.block.SellafieldBlock;
@@ -18,6 +23,7 @@ import com.hbm.ntm.common.item.CanisterItem;
 import com.hbm.ntm.common.item.FluidIdentifierItem;
 import com.hbm.ntm.common.item.FluidTankItem;
 import com.hbm.ntm.common.item.GasTankItem;
+import com.hbm.ntm.common.item.IcfPelletItem;
 import com.hbm.ntm.common.block.SellafieldOreType;
 import com.hbm.ntm.common.item.MaterialPartItem;
 import com.hbm.ntm.common.item.SellafieldBlockItem;
@@ -52,6 +58,8 @@ public final class HbmClientSetup {
             final RenderType translucent = Objects.requireNonNull(RenderType.translucent());
             HbmPacketHandler.setMachineStateClientDispatcher(MachineClientPacketHandlers::handleMachineStateSync);
             BlockEntityRenderers.register(HbmBlockEntityTypes.BARREL.get(), BarrelBlockEntityRenderer::new);
+            BlockEntityRenderers.register(HbmBlockEntityTypes.MACHINE_PRESS.get(), PressBlockEntityRenderer::new);
+            BlockEntityRenderers.register(HbmBlockEntityTypes.MACHINE_ICF_CONTROLLER.get(), IcfControllerBlockEntityRenderer::new);
             MenuScreens.register(HbmMenuTypes.BARREL.get(), BarrelScreen::new);
             MenuScreens.register(HbmMenuTypes.MACHINE_PRESS.get(), PressScreen::new);
             MenuScreens.register(HbmMenuTypes.MACHINE_ASSEMBLY_MACHINE.get(), AssemblyMachineScreen::new);
@@ -61,6 +69,9 @@ public final class HbmClientSetup {
             MenuScreens.register(HbmMenuTypes.MACHINE_SOLDERING_STATION.get(), SolderingStationScreen::new);
             MenuScreens.register(HbmMenuTypes.MACHINE_CENTRIFUGE.get(), CentrifugeScreen::new);
             MenuScreens.register(HbmMenuTypes.MACHINE_GAS_CENTRIFUGE.get(), GasCentrifugeScreen::new);
+            MenuScreens.register(HbmMenuTypes.MACHINE_PUREX.get(), PurexScreen::new);
+            MenuScreens.register(HbmMenuTypes.MACHINE_ICF.get(), IcfScreen::new);
+            MenuScreens.register(HbmMenuTypes.MACHINE_ICF_PRESS.get(), IcfPressScreen::new);
             ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.COOLANT.getStillFluid()), translucent);
             ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.COOLANT.getFlowingFluid()), translucent);
             ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.COOLANT_HOT.getStillFluid()), translucent);
@@ -418,5 +429,6 @@ public final class HbmClientSetup {
             HbmItems.FLUID_TANK_FULL.get(), HbmItems.FLUID_TANK_LEAD_FULL.get());
         event.register((stack, tintIndex) -> tintIndex == 1 ? FluidTankItem.getColor(stack) : 0xFFFFFF,
             HbmItems.FLUID_BARREL_FULL.get(), HbmItems.FLUID_PACK_FULL.get());
+        event.register((stack, tintIndex) -> IcfPelletItem.getTintColor(stack, tintIndex), HbmItems.ICF_PELLET.get());
     }
 }

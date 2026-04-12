@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "bottom": "hbmntm:block/icf_capacitor_top",
+    "front": "hbmntm:block/icf_capacitor_side",
+    "particle": "hbmntm:block/icf_capacitor_side",
+    "side": "hbmntm:block/icf_capacitor_side",
+    "top": "hbmntm:block/icf_capacitor_top"
+  }
+}

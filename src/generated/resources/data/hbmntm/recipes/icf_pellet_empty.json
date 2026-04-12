@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "item": "hbmntm:wire_lead"
+    },
+    "Z": {
+      "item": "hbmntm:wire_zirconium"
+    }
+  },
+  "pattern": [
+    "ZLZ",
+    "L L",
+    "ZLZ"
+  ],
+  "result": {
+    "item": "hbmntm:icf_pellet_empty"
+  },
+  "show_notification": true
+}

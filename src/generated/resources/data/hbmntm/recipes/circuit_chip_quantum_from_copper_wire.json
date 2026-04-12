@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "H": [
+      {
+        "item": "hbmntm:ingot_pc"
+      },
+      {
+        "item": "hbmntm:ingot_pvc"
+      }
+    ],
+    "I": {
+      "item": "hbmntm:pellet_charged"
+    },
+    "S": {
+      "item": "hbmntm:wire_dense_bscco"
+    },
+    "W": {
+      "item": "hbmntm:wire_copper"
+    }
+  },
+  "pattern": [
+    "HHH",
+    "SIS",
+    "WWW"
+  ],
+  "result": {
+    "item": "hbmntm:circuit_chip_quantum"
+  },
+  "show_notification": true
+}

@@ -12,8 +12,8 @@ import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("null")
 public final class PressStructure extends SimpleMultiblockStructure {
-    public static final PressStructure INSTANCE = new PressStructure();
     private static final int[] DIMENSIONS = new int[]{2, 0, 0, 0, 0, 0};
+    public static final PressStructure INSTANCE = new PressStructure();
     public static final int HEIGHT = 3;
 
     private PressStructure() {

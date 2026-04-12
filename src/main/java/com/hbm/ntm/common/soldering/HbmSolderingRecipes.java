@@ -42,6 +42,10 @@ public final class HbmSolderingRecipes {
             List.of(circuitIngredient(CircuitItemType.CHIP_BISMOID, 4), circuitIngredient(CircuitItemType.CHIP, 16), circuitIngredient(CircuitItemType.CAPACITOR, 24)),
             List.of(circuitIngredient(CircuitItemType.PCB, 12), hardPlasticIngredient(2)),
             List.of(materialIngredient(HbmMaterials.LEAD, HbmMaterialShape.WIRE, 12))),
+        circuit(CircuitItemType.QUANTUM, new FluidStack(HbmFluids.HELIUM4.getStillFluid(), 1_000), 400, 100_000,
+            List.of(circuitIngredient(CircuitItemType.CHIP_QUANTUM, 4), circuitIngredient(CircuitItemType.CHIP_BISMOID, 16), circuitIngredient(CircuitItemType.ATOMIC_CLOCK, 4)),
+            List.of(circuitIngredient(CircuitItemType.PCB, 16), hardPlasticIngredient(4)),
+            List.of(materialIngredient(HbmMaterials.LEAD, HbmMaterialShape.WIRE, 16))),
         simpleItem(Objects.requireNonNull(HbmItems.UPGRADE_SPEED_1.get()), 200, 1_000,
             List.of(circuitIngredient(CircuitItemType.VACUUM_TUBE, 4), circuitIngredient(CircuitItemType.CAPACITOR, 1)),
             List.of(simpleItemIngredient(Objects.requireNonNull(HbmItems.UPGRADE_TEMPLATE.get()), 1), materialIngredient(HbmMaterials.RED_COPPER, HbmMaterialShape.DUST, 4)),
@@ -117,7 +121,11 @@ public final class HbmSolderingRecipes {
         circuit(CircuitItemType.CONTROLLER_ADVANCED, new FluidStack(HbmFluids.PERFLUOROMETHYL.getStillFluid(), 4_000), 600, 25_000,
             List.of(circuitIngredient(CircuitItemType.CHIP_BISMOID, 16), circuitIngredient(CircuitItemType.CAPACITOR_TANTALIUM, 48), circuitIngredient(CircuitItemType.ATOMIC_CLOCK, 1)),
             List.of(circuitIngredient(CircuitItemType.CONTROLLER_CHASSIS, 1), simpleItemIngredient(Objects.requireNonNull(HbmItems.UPGRADE_SPEED_3.get()), 1)),
-            List.of(materialIngredient(HbmMaterials.LEAD, HbmMaterialShape.WIRE, 24)))
+            List.of(materialIngredient(HbmMaterials.LEAD, HbmMaterialShape.WIRE, 24))),
+        circuit(CircuitItemType.CONTROLLER_QUANTUM, new FluidStack(HbmFluids.PERFLUOROMETHYL_COLD.getStillFluid(), 6_000), 600, 250_000,
+            List.of(circuitIngredient(CircuitItemType.CHIP_QUANTUM, 16), circuitIngredient(CircuitItemType.CHIP_BISMOID, 48), circuitIngredient(CircuitItemType.ATOMIC_CLOCK, 8)),
+            List.of(circuitIngredient(CircuitItemType.CONTROLLER_ADVANCED, 2), simpleItemIngredient(Objects.requireNonNull(HbmItems.UPGRADE_OVERDRIVE_1.get()), 1)),
+            List.of(materialIngredient(HbmMaterials.LEAD, HbmMaterialShape.WIRE, 32)))
     );
 
     private HbmSolderingRecipes() {

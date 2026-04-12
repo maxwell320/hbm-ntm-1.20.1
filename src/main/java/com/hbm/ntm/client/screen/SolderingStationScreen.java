@@ -45,7 +45,7 @@ public class SolderingStationScreen extends MachineScreenBase<SolderingStationMe
 
     @Override
     protected void renderMachineLabels(final GuiGraphics guiGraphics, final int mouseX, final int mouseY) {
-        if (this.inside(mouseX + this.leftPos, mouseY + this.topPos, this.leftPos + 152, this.topPos + 18, 16, 52)) {
+        if (this.inside(mouseX, mouseY, this.leftPos + 152, this.topPos + 18, 16, 52)) {
             guiGraphics.renderTooltip(this.font,
                 List.of(Component.literal(this.menu.energy() + " / " + this.menu.maxPower() + " HE")),
                 Optional.empty(), mouseX, mouseY);
@@ -54,7 +54,7 @@ public class SolderingStationScreen extends MachineScreenBase<SolderingStationMe
         this.renderFluidTooltip(guiGraphics, mouseX, mouseY, this.leftPos + 35, this.topPos + 79, 34, 16,
             "Fluid Tank", this.menu.fluidName(), this.menu.fluidAmount(), this.menu.fluidCapacity());
 
-        if (this.inside(mouseX + this.leftPos, mouseY + this.topPos, this.leftPos + 5, this.topPos + 66, 10, 10)) {
+        if (this.inside(mouseX, mouseY, this.leftPos + 5, this.topPos + 66, 10, 10)) {
             guiGraphics.renderTooltip(this.font,
                 List.of(
                     Component.literal("Recipe Collision Prevention: " + (this.menu.collisionPrevention() ? "ON" : "OFF")),

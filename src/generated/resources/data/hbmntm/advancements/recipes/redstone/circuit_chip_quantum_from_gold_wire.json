@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_pellet_charged": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:pellet_charged"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:circuit_chip_quantum_from_gold_wire"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_pellet_charged",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:circuit_chip_quantum_from_gold_wire"
+    ]
+  },
+  "sends_telemetry_event": false
+}

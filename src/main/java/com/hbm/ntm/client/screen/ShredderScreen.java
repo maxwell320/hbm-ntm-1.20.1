@@ -69,13 +69,13 @@ public class ShredderScreen extends MachineScreenBase<ShredderMenu> {
 
     @Override
     protected void renderMachineLabels(final GuiGraphics guiGraphics, final int mouseX, final int mouseY) {
-        if (this.inside(mouseX + this.leftPos, mouseY + this.topPos, this.leftPos + 8, this.topPos + 18, 16, 88)) {
+        if (this.inside(mouseX, mouseY, this.leftPos + 8, this.topPos + 18, 16, 88)) {
             guiGraphics.renderTooltip(this.font,
                 List.of(Component.literal(formatShortNumber(this.menu.energy()) + "/" + formatShortNumber(this.menu.maxEnergy()) + "HE")),
                 Optional.empty(), mouseX, mouseY);
         }
 
-        if (this.hasBladeError() && this.inside(mouseX + this.leftPos, mouseY + this.topPos,
+        if (this.hasBladeError() && this.inside(mouseX, mouseY,
             this.leftPos + WARNING_X, this.topPos + WARNING_Y, WARNING_SIZE, WARNING_SIZE)) {
             guiGraphics.renderTooltip(this.font,
                 List.of(Component.literal("Error: Shredder blades are broken or missing!")),

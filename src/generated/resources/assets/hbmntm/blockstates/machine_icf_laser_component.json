@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "part=capacitor": {
+      "model": "hbmntm:block/machine_icf_laser_component_capacitor"
+    },
+    "part=casing": {
+      "model": "hbmntm:block/machine_icf_laser_component_casing"
+    },
+    "part=cell": {
+      "model": "hbmntm:block/machine_icf_laser_component_cell"
+    },
+    "part=emitter": {
+      "model": "hbmntm:block/machine_icf_laser_component_emitter"
+    },
+    "part=port": {
+      "model": "hbmntm:block/machine_icf_laser_component_port"
+    },
+    "part=turbo": {
+      "model": "hbmntm:block/machine_icf_laser_component_turbo"
+    }
+  }
+}

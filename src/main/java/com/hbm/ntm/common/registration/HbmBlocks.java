@@ -16,6 +16,10 @@ import com.hbm.ntm.common.block.FluidDuctBlock;
 import com.hbm.ntm.common.block.GasCentrifugeBlock;
 import com.hbm.ntm.common.block.GasAsbestosBlock;
 import com.hbm.ntm.common.block.GeigerCounterBlock;
+import com.hbm.ntm.common.block.IcfBlock;
+import com.hbm.ntm.common.block.IcfControllerBlock;
+import com.hbm.ntm.common.block.IcfLaserComponentBlock;
+import com.hbm.ntm.common.block.IcfPressBlock;
 import com.hbm.ntm.common.block.MaterialBlockType;
 import com.hbm.ntm.common.block.NetherOreBlock;
 import com.hbm.ntm.common.block.NetherOreType;
@@ -23,6 +27,7 @@ import com.hbm.ntm.common.block.NtmAnvilBlock;
 import com.hbm.ntm.common.block.OverworldOreBlock;
 import com.hbm.ntm.common.block.OverworldOreType;
 import com.hbm.ntm.common.block.PressBlock;
+import com.hbm.ntm.common.block.PurexBlock;
 import com.hbm.ntm.common.block.SellafieldBlock;
 import com.hbm.ntm.common.block.ShredderBlock;
 import com.hbm.ntm.common.block.SolderingStationBlock;
@@ -81,6 +86,16 @@ public final class HbmBlocks {
         () -> new CentrifugeBlock(Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 10.0F).requiresCorrectToolForDrops())));
     public static final RegistryObject<Block> MACHINE_GAS_CENTRIFUGE = BLOCKS.register("machine_gascent",
         () -> new GasCentrifugeBlock(Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 10.0F).requiresCorrectToolForDrops())));
+    public static final RegistryObject<Block> MACHINE_PUREX = BLOCKS.register("machine_purex",
+        () -> new PurexBlock(Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 10.0F).requiresCorrectToolForDrops())));
+    public static final RegistryObject<Block> MACHINE_ICF = BLOCKS.register("machine_icf",
+        () -> new IcfBlock(Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 60.0F).requiresCorrectToolForDrops())));
+    public static final RegistryObject<Block> MACHINE_ICF_CONTROLLER = BLOCKS.register("machine_icf_controller",
+        () -> new IcfControllerBlock(Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 60.0F).requiresCorrectToolForDrops())));
+    public static final RegistryObject<Block> MACHINE_ICF_LASER_COMPONENT = BLOCKS.register("machine_icf_laser_component",
+        () -> new IcfLaserComponentBlock(Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 60.0F).requiresCorrectToolForDrops())));
+    public static final RegistryObject<Block> MACHINE_ICF_PRESS = BLOCKS.register("machine_icf_press",
+        () -> new IcfPressBlock(Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 60.0F).requiresCorrectToolForDrops())));
     public static final RegistryObject<Block> PRESS_PREHEATER = BLOCKS.register("press_preheater",
         () -> new Block(Objects.requireNonNull(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).strength(5.0F, 10.0F).requiresCorrectToolForDrops())));
     public static final RegistryObject<Block> BARREL_PLASTIC = BLOCKS.register("barrel_plastic",

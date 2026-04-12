@@ -79,6 +79,11 @@ public class HbmBlockLootProvider extends BlockLootSubProvider {
         add(HbmBlocks.MACHINE_SOLDERING_STATION.get(), createSolderingStationTable());
         dropSelf(HbmBlocks.MACHINE_CENTRIFUGE.get());
         dropSelf(HbmBlocks.MACHINE_GAS_CENTRIFUGE.get());
+        dropSelf(HbmBlocks.MACHINE_PUREX.get());
+        dropSelf(HbmBlocks.MACHINE_ICF.get());
+        dropSelf(HbmBlocks.MACHINE_ICF_CONTROLLER.get());
+        dropSelf(HbmBlocks.MACHINE_ICF_LASER_COMPONENT.get());
+        dropSelf(HbmBlocks.MACHINE_ICF_PRESS.get());
         dropSelf(HbmBlocks.PRESS_PREHEATER.get());
         dropSelf(HbmBlocks.BARREL_PLASTIC.get());
         dropSelf(HbmBlocks.BARREL_CORRODED.get());

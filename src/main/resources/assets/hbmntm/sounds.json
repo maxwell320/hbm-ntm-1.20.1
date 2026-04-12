@@ -57,7 +57,7 @@
     "category": "player",
     "sounds": [
       {
-        "name": "hbmntm:item/radaway",
+        "name": "hbmntm:tool/radaway",
         "stream": false
       }
     ]
@@ -75,7 +75,7 @@
     "category": "block",
     "sounds": [
       {
-        "name": "hbmntm:block/pressOperate",
+        "name": "hbmntm:block/press_operate",
         "stream": false
       }
     ]
@@ -84,7 +84,7 @@
     "category": "block",
     "sounds": [
       {
-        "name": "hbmntm:block/centrifugeOperate",
+        "name": "hbmntm:block/centrifuge_operate",
         "stream": false
       }
     ]

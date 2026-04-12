@@ -51,16 +51,16 @@ public class GasCentrifugeMenu extends MachineMenuBase<GasCentrifugeBlockEntity>
         super(HbmMenuTypes.MACHINE_GAS_CENTRIFUGE.get(), containerId, inventory, gas, GasCentrifugeBlockEntity.SLOT_COUNT);
         final ItemStackHandler handler = gas == null ? new ItemStackHandler(GasCentrifugeBlockEntity.SLOT_COUNT) : gas.getInternalItemHandler();
 
-        this.addSlot(new OutputSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_OUTPUT_1, 80, 17));
-        this.addSlot(new OutputSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_OUTPUT_2, 98, 17));
-        this.addSlot(new OutputSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_OUTPUT_3, 80, 35));
-        this.addSlot(new OutputSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_OUTPUT_4, 98, 35));
+        this.addSlot(new OutputSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_OUTPUT_1, 71, 53));
+        this.addSlot(new OutputSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_OUTPUT_2, 89, 53));
+        this.addSlot(new OutputSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_OUTPUT_3, 71, 71));
+        this.addSlot(new OutputSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_OUTPUT_4, 89, 71));
 
-        this.addSlot(new FilteredSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_BATTERY, 26, 17,
+        this.addSlot(new FilteredSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_BATTERY, 182, 71,
             (slot, stack) -> stack.getItem() instanceof BatteryItem));
-        this.addSlot(new FilteredSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_FLUID_ID, 152, 17,
+        this.addSlot(new FilteredSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_FLUID_ID, 91, 15,
             (slot, stack) -> stack.getItem() instanceof IItemFluidIdentifier));
-        this.addSlot(new FilteredSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_UPGRADE, 26, 35,
+        this.addSlot(new FilteredSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_UPGRADE, 69, 15,
             (slot, stack) -> stack.getItem() instanceof MachineUpgradeItem upgrade
                 && upgrade.type() == MachineUpgradeItem.UpgradeType.GC_SPEED));
 

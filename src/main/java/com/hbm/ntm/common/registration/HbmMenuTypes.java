@@ -7,7 +7,10 @@ import com.hbm.ntm.common.menu.BarrelMenu;
 import com.hbm.ntm.common.menu.CentrifugeMenu;
 import com.hbm.ntm.common.menu.FluidIdentifierMenu;
 import com.hbm.ntm.common.menu.GasCentrifugeMenu;
+import com.hbm.ntm.common.menu.IcfMenu;
+import com.hbm.ntm.common.menu.IcfPressMenu;
 import com.hbm.ntm.common.menu.PressMenu;
+import com.hbm.ntm.common.menu.PurexMenu;
 import com.hbm.ntm.common.menu.ShredderMenu;
 import com.hbm.ntm.common.menu.SolderingStationMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -27,6 +30,9 @@ public final class HbmMenuTypes {
     public static final RegistryObject<MenuType<ShredderMenu>> MACHINE_SHREDDER = MENU_TYPES.register("machine_shredder", () -> IForgeMenuType.create(ShredderMenu::new));
     public static final RegistryObject<MenuType<CentrifugeMenu>> MACHINE_CENTRIFUGE = MENU_TYPES.register("machine_centrifuge", () -> IForgeMenuType.create(CentrifugeMenu::new));
     public static final RegistryObject<MenuType<GasCentrifugeMenu>> MACHINE_GAS_CENTRIFUGE = MENU_TYPES.register("machine_gascent", () -> IForgeMenuType.create(GasCentrifugeMenu::new));
+    public static final RegistryObject<MenuType<PurexMenu>> MACHINE_PUREX = MENU_TYPES.register("machine_purex", () -> IForgeMenuType.create(PurexMenu::new));
+    public static final RegistryObject<MenuType<IcfMenu>> MACHINE_ICF = MENU_TYPES.register("machine_icf", () -> IForgeMenuType.create(IcfMenu::new));
+    public static final RegistryObject<MenuType<IcfPressMenu>> MACHINE_ICF_PRESS = MENU_TYPES.register("machine_icf_press", () -> IForgeMenuType.create(IcfPressMenu::new));
 
     private HbmMenuTypes() {
     }

@@ -6,7 +6,6 @@ import com.hbm.ntm.common.material.HbmMaterialShape;
 import com.hbm.ntm.common.material.HbmMaterials;
 import com.hbm.ntm.common.registration.HbmItems;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,28 +19,27 @@ public final class HbmGasCentrifugeRecipes {
     private static final ResourceLocation PUF6_ID = ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "puf6");
     private static final ResourceLocation WATZ_ID = ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "watz");
 
-    private static final Map<ResourceLocation, PseudoFluidType> FLUID_CONVERSIONS = Map.of(
-        UF6_ID, PseudoFluidType.NUF6,
-        PUF6_ID, PseudoFluidType.PF6,
-        WATZ_ID, PseudoFluidType.MUD
-    );
-
     private HbmGasCentrifugeRecipes() {
-    }
-
-    public static Map<ResourceLocation, PseudoFluidType> fluidConversions() {
-        return FLUID_CONVERSIONS;
     }
 
     public static Optional<PseudoFluidType> getPseudoInputForFluid(final ResourceLocation fluidId) {
         if (fluidId == null) {
             return Optional.empty();
         }
-        return Optional.ofNullable(FLUID_CONVERSIONS.get(fluidId));
+        if (fluidId.equals(UF6_ID)) {
+            return Optional.of(PseudoFluidType.NUF6);
+        }
+        if (fluidId.equals(PUF6_ID)) {
+            return Optional.of(PseudoFluidType.PF6);
+        }
+        if (fluidId.equals(WATZ_ID)) {
+            return Optional.of(PseudoFluidType.MUD);
+        }
+        return Optional.empty();
     }
 
     public static boolean isSupportedFeedFluid(final ResourceLocation fluidId) {
-        return fluidId != null && FLUID_CONVERSIONS.containsKey(fluidId);
+        return getPseudoInputForFluid(fluidId).isPresent();
     }
 
     public enum PseudoFluidType {
@@ -63,11 +61,11 @@ public final class HbmGasCentrifugeRecipes {
             material(HbmMaterials.FLUORITE, HbmMaterialShape.DUST, 1)),
         MUD_HEAVY("mud_heavy", 500, 0, NONE, false, 0xFF86653E,
             material(HbmMaterials.IRON, HbmMaterialShape.DUST, 1),
-            material(HbmMaterials.COAL, HbmMaterialShape.DUST, 1),
+            hbmItem("dust", 1),
             item(HbmItems.NUCLEAR_WASTE_TINY, 1)),
         MUD("mud", 1000, 500, MUD_HEAVY, false, 0xFF86653E,
             material(HbmMaterials.LEAD, HbmMaterialShape.DUST, 1),
-            material(HbmMaterials.COAL, HbmMaterialShape.DUST, 1));
+            hbmItem("dust", 1));
 
         private final String name;
         private final int fluidConsumed;
@@ -149,6 +147,26 @@ public final class HbmGasCentrifugeRecipes {
     private static ItemStack item(final net.minecraftforge.registries.RegistryObject<Item> item, final int count) {
         try {
             return new ItemStack(Objects.requireNonNull(item.get()), count);
+        } catch (final RuntimeException ignored) {
+            return ItemStack.EMPTY;
+        }
+    }
+
+    private static ItemStack hbmItem(final String path, final int count) {
+        return itemById(HbmNtmMod.MOD_ID + ":" + path, count);
+    }
+
+    private static ItemStack itemById(final String itemId, final int count) {
+        if (itemId == null || itemId.isBlank()) {
+            return ItemStack.EMPTY;
+        }
+        final ResourceLocation id = ResourceLocation.tryParse(itemId);
+        if (id == null) {
+            return ItemStack.EMPTY;
+        }
+        try {
+            final Item resolved = Objects.requireNonNull(net.minecraftforge.registries.ForgeRegistries.ITEMS.getValue(id));
+            return new ItemStack(resolved, count);
         } catch (final RuntimeException ignored) {
             return ItemStack.EMPTY;
         }

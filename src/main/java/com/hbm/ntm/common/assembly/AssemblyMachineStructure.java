@@ -11,8 +11,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 @SuppressWarnings("null")
 public final class AssemblyMachineStructure extends com.hbm.ntm.common.multiblock.SimpleMultiblockStructure {
-    public static final AssemblyMachineStructure INSTANCE = new AssemblyMachineStructure();
     private static final int[] DIMENSIONS = new int[]{2, 0, 1, 1, 1, 1};
+    public static final AssemblyMachineStructure INSTANCE = new AssemblyMachineStructure();
 
     private AssemblyMachineStructure() {
         super(DIMENSIONS, Blocks.AIR);

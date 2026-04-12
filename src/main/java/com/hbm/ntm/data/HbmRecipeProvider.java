@@ -52,6 +52,7 @@ public class HbmRecipeProvider extends RecipeProvider {
         buildMercuryRecipes(recipeOutput);
         buildRtgPelletRecipes(recipeOutput);
         buildPressSupportRecipes(recipeOutput);
+        buildIcfRecipes(recipeOutput);
         buildStampRecipes(recipeOutput);
         buildFalloutRecipes(recipeOutput);
         buildReadoutToolRecipes(recipeOutput);
@@ -414,6 +415,7 @@ public class HbmRecipeProvider extends RecipeProvider {
         final ItemLike siliconWafer = Objects.requireNonNull(HbmItems.getCircuit(CircuitItemType.SILICON).get());
         final ItemLike chip = Objects.requireNonNull(HbmItems.getCircuit(CircuitItemType.CHIP).get());
         final ItemLike chipBismoid = Objects.requireNonNull(HbmItems.getCircuit(CircuitItemType.CHIP_BISMOID).get());
+        final ItemLike chipQuantum = Objects.requireNonNull(HbmItems.getCircuit(CircuitItemType.CHIP_QUANTUM).get());
         final ItemLike atomicClock = Objects.requireNonNull(HbmItems.getCircuit(CircuitItemType.ATOMIC_CLOCK).get());
         final ItemLike controllerChassis = Objects.requireNonNull(HbmItems.getCircuit(CircuitItemType.CONTROLLER_CHASSIS).get());
         final ItemLike numitron = Objects.requireNonNull(HbmItems.getCircuit(CircuitItemType.NUMITRON).get());
@@ -421,6 +423,7 @@ public class HbmRecipeProvider extends RecipeProvider {
         final ItemLike basicCircuit = Objects.requireNonNull(HbmItems.getCircuit(CircuitItemType.BASIC).get());
         final ItemLike crtDisplay = Objects.requireNonNull(HbmItems.CRT_DISPLAY.get());
         final ItemLike upgradeTemplate = Objects.requireNonNull(HbmItems.UPGRADE_TEMPLATE.get());
+        final ItemLike pelletCharged = Objects.requireNonNull(HbmItems.PELLET_CHARGED.get());
         final ItemLike gemAlexandrite = Objects.requireNonNull(HbmItems.GEM_ALEXANDRITE.get());
         final ItemLike polymerPlate = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.POLYMER, HbmMaterialShape.PLATE).get());
         final ItemLike polymerBar = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.POLYMER, HbmMaterialShape.INGOT).get());
@@ -430,6 +433,7 @@ public class HbmRecipeProvider extends RecipeProvider {
         final ItemLike petBar = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.PET, HbmMaterialShape.INGOT).get());
         final ItemLike pcBar = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.PC, HbmMaterialShape.INGOT).get());
         final ItemLike pvcBar = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.PVC, HbmMaterialShape.INGOT).get());
+        final ItemLike bsccoCoil = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.BSCCO, HbmMaterialShape.DENSE_WIRE).get());
         final ItemLike tungstenWire = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.TUNGSTEN, HbmMaterialShape.WIRE).get());
         final ItemLike heatingCoil = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.TUNGSTEN, HbmMaterialShape.DENSE_WIRE).get());
         final ItemLike magnetizedTungstenWire = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.MAGNETIZED_TUNGSTEN, HbmMaterialShape.WIRE).get());
@@ -625,6 +629,28 @@ public class HbmRecipeProvider extends RecipeProvider {
             .define('W', goldWire)
             .unlockedBy(getHasName(siliconWafer), has(siliconWafer))
             .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "circuit_chip_bismoid_from_gold_wire")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, chipQuantum)
+            .pattern("HHH")
+            .pattern("SIS")
+            .pattern("WWW")
+            .define('H', Ingredient.of(pcBar, pvcBar))
+            .define('S', bsccoCoil)
+            .define('I', pelletCharged)
+            .define('W', copperWire)
+            .unlockedBy(getHasName(pelletCharged), has(pelletCharged))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "circuit_chip_quantum_from_copper_wire")));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, chipQuantum)
+            .pattern("HHH")
+            .pattern("SIS")
+            .pattern("WWW")
+            .define('H', Ingredient.of(pcBar, pvcBar))
+            .define('S', bsccoCoil)
+            .define('I', pelletCharged)
+            .define('W', goldWire)
+            .unlockedBy(getHasName(pelletCharged), has(pelletCharged))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "circuit_chip_quantum_from_gold_wire")));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, crtDisplay, 4)
             .pattern(" A ")
@@ -1192,6 +1218,21 @@ public class HbmRecipeProvider extends RecipeProvider {
             .requires(Items.WHEAT)
             .unlockedBy(getHasName(sawdust), has(sawdust))
             .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "biomass_from_wheat")));
+    }
+
+    private void buildIcfRecipes(final Consumer<FinishedRecipe> recipeOutput) {
+        final ItemLike pelletEmpty = Objects.requireNonNull(HbmItems.ICF_PELLET_EMPTY.get());
+        final ItemLike zirconiumWire = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.ZIRCONIUM, HbmMaterialShape.WIRE).get());
+        final ItemLike leadWire = Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.LEAD, HbmMaterialShape.WIRE).get());
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, pelletEmpty)
+            .pattern("ZLZ")
+            .pattern("L L")
+            .pattern("ZLZ")
+            .define('Z', zirconiumWire)
+            .define('L', leadWire)
+            .unlockedBy(getHasName(zirconiumWire), has(zirconiumWire))
+            .save(recipeOutput, Objects.requireNonNull(ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "icf_pellet_empty")));
     }
 
     private void buildStampRecipes(final Consumer<FinishedRecipe> recipeOutput) {

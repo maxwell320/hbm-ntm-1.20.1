@@ -17,7 +17,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 @SuppressWarnings("null")
 public class AssemblyMachineScreen extends MachineScreenBase<AssemblyMachineMenu> {
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "textures/gui/machine/gui_shredder.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "textures/gui/processing/gui_assembler.png");
     private Button previousButton;
     private Button nextButton;
 
@@ -86,7 +86,7 @@ public class AssemblyMachineScreen extends MachineScreenBase<AssemblyMachineMenu
             "Input Tank", this.menu.inputFluid(), this.menu.inputAmount(), this.menu.inputCapacity());
         this.renderFluidTooltip(guiGraphics, mouseX, mouseY, this.leftPos + 80, this.topPos + 115, 52, 16,
             "Output Tank", this.menu.outputFluid(), this.menu.outputAmount(), this.menu.outputCapacity());
-        if (selectedRecipe.isPresent() && this.inside(mouseX + this.leftPos, mouseY + this.topPos, this.leftPos + 7, this.topPos + 125, 18, 18)) {
+        if (selectedRecipe.isPresent() && this.inside(mouseX, mouseY, this.leftPos + 7, this.topPos + 125, 18, 18)) {
             guiGraphics.renderTooltip(this.font, this.recipeTooltip(selectedRecipe.get()), Optional.empty(), mouseX, mouseY);
         }
     }

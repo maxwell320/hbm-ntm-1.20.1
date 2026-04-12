@@ -11,8 +11,13 @@ import com.hbm.ntm.common.block.entity.CreativeEnergySourceBlockEntity;
 import com.hbm.ntm.common.block.entity.FluidDuctBlockEntity;
 import com.hbm.ntm.common.block.entity.GasCentrifugeBlockEntity;
 import com.hbm.ntm.common.block.entity.GeigerCounterBlockEntity;
+import com.hbm.ntm.common.block.entity.IcfBlockEntity;
+import com.hbm.ntm.common.block.entity.IcfControllerBlockEntity;
+import com.hbm.ntm.common.block.entity.IcfLaserComponentBlockEntity;
+import com.hbm.ntm.common.block.entity.IcfPressBlockEntity;
 import com.hbm.ntm.common.block.entity.PressBlockEntity;
 import com.hbm.ntm.common.block.entity.PressProxyBlockEntity;
+import com.hbm.ntm.common.block.entity.PurexBlockEntity;
 import com.hbm.ntm.common.block.entity.ShredderBlockEntity;
 import com.hbm.ntm.common.block.entity.SolderingStationBlockEntity;
 import com.hbm.ntm.common.block.entity.SolderingStationProxyBlockEntity;
@@ -57,6 +62,16 @@ public final class HbmBlockEntityTypes {
         HbmBlocks.MACHINE_CENTRIFUGE);
     public static final RegistryObject<BlockEntityType<GasCentrifugeBlockEntity>> MACHINE_GAS_CENTRIFUGE = register("machine_gascent", GasCentrifugeBlockEntity::new,
         HbmBlocks.MACHINE_GAS_CENTRIFUGE);
+    public static final RegistryObject<BlockEntityType<PurexBlockEntity>> MACHINE_PUREX = register("machine_purex", PurexBlockEntity::new,
+        HbmBlocks.MACHINE_PUREX);
+    public static final RegistryObject<BlockEntityType<IcfBlockEntity>> MACHINE_ICF = register("machine_icf", IcfBlockEntity::new,
+        HbmBlocks.MACHINE_ICF);
+    public static final RegistryObject<BlockEntityType<IcfControllerBlockEntity>> MACHINE_ICF_CONTROLLER = register("machine_icf_controller", IcfControllerBlockEntity::new,
+        HbmBlocks.MACHINE_ICF_CONTROLLER);
+    public static final RegistryObject<BlockEntityType<IcfLaserComponentBlockEntity>> ICF_LASER_COMPONENT = register("machine_icf_laser_component", IcfLaserComponentBlockEntity::new,
+        HbmBlocks.MACHINE_ICF_LASER_COMPONENT);
+    public static final RegistryObject<BlockEntityType<IcfPressBlockEntity>> MACHINE_ICF_PRESS = register("machine_icf_press", IcfPressBlockEntity::new,
+        HbmBlocks.MACHINE_ICF_PRESS);
     public static final RegistryObject<BlockEntityType<BarrelBlockEntity>> BARREL = register("barrel", BarrelBlockEntity::new,
         HbmBlocks.BARREL_PLASTIC,
         HbmBlocks.BARREL_IRON,

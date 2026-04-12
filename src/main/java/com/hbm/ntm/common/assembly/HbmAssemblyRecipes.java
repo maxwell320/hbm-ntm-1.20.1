@@ -197,6 +197,20 @@ public final class HbmAssemblyRecipes {
                 ingredient(Ingredient.of(materialItem(HbmMaterials.STEEL, HbmMaterialShape.PLATE)), materialItem(HbmMaterials.STEEL, HbmMaterialShape.PLATE), 8),
                 ingredient(Ingredient.of(item(HbmItems.getCircuit(CircuitItemType.ADVANCED))), item(HbmItems.getCircuit(CircuitItemType.ADVANCED)), 1)),
             List.of(POOL_PREFIX_528 + "gascent")));
+
+        registry.add(new AssemblyRecipe(
+            "ass.purex",
+            new ItemStack(item(HbmItems.MACHINE_PUREX)),
+            FluidStack.EMPTY,
+            FluidStack.EMPTY,
+            300,
+            100,
+            List.of(
+                ingredient(Ingredient.of(materialItem(HbmMaterials.STEEL, HbmMaterialShape.SHELL)), materialItem(HbmMaterials.STEEL, HbmMaterialShape.SHELL), 4),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.RUBBER, HbmMaterialShape.PIPE)), materialItem(HbmMaterials.RUBBER, HbmMaterialShape.PIPE), 8),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.LEAD, HbmMaterialShape.CAST_PLATE)), materialItem(HbmMaterials.LEAD, HbmMaterialShape.CAST_PLATE), 4),
+                ingredient(Ingredient.of(item(HbmItems.MOTOR_DESH)), item(HbmItems.MOTOR_DESH), 1),
+                ingredient(Ingredient.of(item(HbmItems.getCircuit(CircuitItemType.BASIC))), item(HbmItems.getCircuit(CircuitItemType.BASIC)), 4))));
     }
 
     private static void registerLegacySupportRecipes(final AssemblyRecipeRegistry registry) {

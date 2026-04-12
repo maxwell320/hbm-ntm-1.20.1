@@ -40,22 +40,22 @@ public class CentrifugeMenu extends MachineMenuBase<CentrifugeBlockEntity> {
         super(HbmMenuTypes.MACHINE_CENTRIFUGE.get(), containerId, inventory, centrifuge, CentrifugeBlockEntity.SLOT_COUNT);
         final ItemStackHandler handler = centrifuge == null ? new ItemStackHandler(CentrifugeBlockEntity.SLOT_COUNT) : centrifuge.getInternalItemHandler();
 
-        this.addSlot(new FilteredSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_INPUT, 26, 35,
+        this.addSlot(new FilteredSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_INPUT, 36, 50,
             (slot, stack) -> this.machine == null || this.machine.isItemValid(slot, stack)));
-        this.addSlot(new FilteredSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_BATTERY, 26, 17,
+        this.addSlot(new FilteredSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_BATTERY, 9, 50,
             (slot, stack) -> stack.getItem() instanceof BatteryItem));
 
-        this.addSlot(new OutputSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_OUTPUT_1, 80, 17));
-        this.addSlot(new OutputSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_OUTPUT_2, 98, 17));
-        this.addSlot(new OutputSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_OUTPUT_3, 80, 35));
-        this.addSlot(new OutputSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_OUTPUT_4, 98, 35));
+        this.addSlot(new OutputSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_OUTPUT_1, 63, 50));
+        this.addSlot(new OutputSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_OUTPUT_2, 83, 50));
+        this.addSlot(new OutputSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_OUTPUT_3, 103, 50));
+        this.addSlot(new OutputSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_OUTPUT_4, 123, 50));
 
-        this.addSlot(new FilteredSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_UPGRADE_1, 152, 17,
+        this.addSlot(new FilteredSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_UPGRADE_1, 149, 22,
             (slot, stack) -> stack.getItem() instanceof MachineUpgradeItem));
-        this.addSlot(new FilteredSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_UPGRADE_2, 152, 35,
+        this.addSlot(new FilteredSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_UPGRADE_2, 149, 40,
             (slot, stack) -> stack.getItem() instanceof MachineUpgradeItem));
 
-        this.addPlayerInventory(inventory, 8, 102);
+        this.addPlayerInventory(inventory, 8, 104);
 
         this.data = centrifuge == null
             ? new SimpleContainerData(DATA_COUNT)
