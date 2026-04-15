@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "hbmntm:nugget_co60"
+    }
+  },
+  "pattern": [
+    "NNN",
+    "NNN"
+  ],
+  "result": {
+    "item": "hbmntm:billet_co60"
+  },
+  "show_notification": true
+}

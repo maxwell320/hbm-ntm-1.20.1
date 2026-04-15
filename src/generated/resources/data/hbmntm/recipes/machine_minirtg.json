@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "L": {
+      "item": "hbmntm:plate_lead"
+    },
+    "P": {
+      "item": "hbmntm:billet_pu238"
+    },
+    "R": {
+      "item": "hbmntm:rtg_unit"
+    },
+    "T": {
+      "item": "hbmntm:thermo_element"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "PPP",
+    "TRT"
+  ],
+  "result": {
+    "item": "hbmntm:machine_minirtg"
+  },
+  "show_notification": true
+}

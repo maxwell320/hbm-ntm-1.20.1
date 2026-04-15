@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "hbmntm:block/steel_grate_wide"
+    },
+    "level=1": {
+      "model": "hbmntm:block/steel_grate_wide"
+    },
+    "level=2": {
+      "model": "hbmntm:block/steel_grate_wide"
+    },
+    "level=3": {
+      "model": "hbmntm:block/steel_grate_wide"
+    },
+    "level=4": {
+      "model": "hbmntm:block/steel_grate_wide"
+    },
+    "level=5": {
+      "model": "hbmntm:block/steel_grate_wide"
+    },
+    "level=6": {
+      "model": "hbmntm:block/steel_grate_wide"
+    },
+    "level=7": {
+      "model": "hbmntm:block/steel_grate_wide"
+    },
+    "level=8": {
+      "model": "hbmntm:block/steel_grate_wide"
+    },
+    "level=9": {
+      "model": "hbmntm:block/steel_grate_wide"
+    }
+  }
+}

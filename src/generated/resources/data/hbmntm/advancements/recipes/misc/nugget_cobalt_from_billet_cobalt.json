@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_billet_cobalt": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:billet_cobalt"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:nugget_cobalt_from_billet_cobalt"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_billet_cobalt",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:nugget_cobalt_from_billet_cobalt"
+    ]
+  },
+  "sends_telemetry_event": false
+}

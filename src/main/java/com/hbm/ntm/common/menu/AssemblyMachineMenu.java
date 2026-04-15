@@ -3,7 +3,6 @@ package com.hbm.ntm.common.menu;
 import com.hbm.ntm.common.block.entity.AssemblyMachineBlockEntity;
 import com.hbm.ntm.common.item.BlueprintItem;
 import com.hbm.ntm.common.item.BatteryItem;
-import com.hbm.ntm.common.item.MachineUpgradeItem;
 import com.hbm.ntm.common.registration.HbmMenuTypes;
 import java.util.List;
 import net.minecraft.nbt.CompoundTag;
@@ -49,17 +48,10 @@ public class AssemblyMachineMenu extends MachineMenuBase<AssemblyMachineBlockEnt
             (slot, stack) -> stack.getItem() instanceof BatteryItem));
         this.addSlot(new FilteredSlotItemHandler(handler, AssemblyMachineBlockEntity.SLOT_BLUEPRINT, 35, 126,
             (slot, stack) -> stack.getItem() instanceof BlueprintItem));
-        this.addSlot(new FilteredSlotItemHandler(handler, AssemblyMachineBlockEntity.SLOT_UPGRADE_1, 152, 108,
-            (slot, stack) -> stack.getItem() instanceof MachineUpgradeItem));
-        this.addSlot(new FilteredSlotItemHandler(handler, AssemblyMachineBlockEntity.SLOT_UPGRADE_2, 170, 108,
-            (slot, stack) -> stack.getItem() instanceof MachineUpgradeItem));
-        for (int row = 0; row < 3; row++) {
-            for (int column = 0; column < 4; column++) {
-                final int slot = AssemblyMachineBlockEntity.SLOT_INPUT_START + row * 4 + column;
-                this.addSlot(new FilteredSlotItemHandler(handler, slot, 8 + column * 18, 18 + row * 18,
-                    (ignoredSlot, stack) -> machine == null || machine.isItemValid(slot, stack)));
-            }
-        }
+        this.addUpgradeSlot(handler, AssemblyMachineBlockEntity.SLOT_UPGRADE_1, 152, 108);
+        this.addUpgradeSlot(handler, AssemblyMachineBlockEntity.SLOT_UPGRADE_2, 170, 108);
+        this.addFilteredGridSlots(handler, AssemblyMachineBlockEntity.SLOT_INPUT_START, 8, 18, 3, 4,
+            (slot, stack) -> machine == null || machine.isItemValid(slot, stack));
         this.addSlot(new OutputSlotItemHandler(handler, AssemblyMachineBlockEntity.SLOT_OUTPUT, 98, 45));
         this.addPlayerInventory(inventory, 8, 174);
         this.data = machine == null
@@ -90,10 +82,10 @@ public class AssemblyMachineMenu extends MachineMenuBase<AssemblyMachineBlockEnt
         if (stack.getItem() instanceof BlueprintItem) {
             return this.moveItemStackTo(stack, AssemblyMachineBlockEntity.SLOT_BLUEPRINT, AssemblyMachineBlockEntity.SLOT_BLUEPRINT + 1, false);
         }
-        if (stack.getItem() instanceof MachineUpgradeItem) {
-            return this.moveItemStackTo(stack, AssemblyMachineBlockEntity.SLOT_UPGRADE_1, AssemblyMachineBlockEntity.SLOT_UPGRADE_2 + 1, false);
+        if (this.isUpgradeItem(stack)) {
+            return this.moveToMachineRange(stack, AssemblyMachineBlockEntity.SLOT_UPGRADE_1, AssemblyMachineBlockEntity.SLOT_UPGRADE_2 + 1);
         }
-        return this.moveItemStackTo(stack, AssemblyMachineBlockEntity.SLOT_INPUT_START, AssemblyMachineBlockEntity.SLOT_INPUT_END, false);
+        return this.moveToMachineRange(stack, AssemblyMachineBlockEntity.SLOT_INPUT_START, AssemblyMachineBlockEntity.SLOT_INPUT_END);
     }
 
     public int progress() {

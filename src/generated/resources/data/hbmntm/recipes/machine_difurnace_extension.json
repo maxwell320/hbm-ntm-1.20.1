@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "B": {
+      "item": "hbmntm:ingot_firebrick"
+    },
+    "C": {
+      "item": "hbmntm:plate_copper"
+    },
+    "G": {
+      "item": "hbmntm:steel_grate"
+    }
+  },
+  "pattern": [
+    " C ",
+    "BGB",
+    "BGB"
+  ],
+  "result": {
+    "item": "hbmntm:machine_difurnace_extension"
+  },
+  "show_notification": true
+}

@@ -30,3 +30,16 @@ forge*changelog.txt
 # Internal notes and docs
 *.md
 docs/
+README.txt
+LICENSE.txt
+CREDITS.txt
+
+# Tests and local parity harness output
+test/
+src/test/
+**/test/
+
+# Common duplicate file patterns from local edits/downloads
+* - Copy.*
+* (copy).*
+* (1).*

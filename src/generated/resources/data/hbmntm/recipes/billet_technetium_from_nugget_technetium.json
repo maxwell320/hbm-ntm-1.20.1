@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "hbmntm:nugget_technetium"
+    }
+  },
+  "pattern": [
+    "NNN",
+    "NNN"
+  ],
+  "result": {
+    "item": "hbmntm:billet_technetium"
+  },
+  "show_notification": true
+}

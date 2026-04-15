@@ -27,6 +27,9 @@ public record MachineStateRequestPacket(BlockPos pos) {
             if (player == null) {
                 return;
             }
+            if (!player.level().isLoaded(packet.pos)) {
+                return;
+            }
             final BlockEntity blockEntity = player.level().getBlockEntity(packet.pos);
             if (!(blockEntity instanceof MachineBlockEntity machine)) {
                 return;

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_powder_cs137": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:powder_cs137"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:powder_cs137_tiny_from_powder_cs137"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_powder_cs137",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:powder_cs137_tiny_from_powder_cs137"
+    ]
+  },
+  "sends_telemetry_event": false
+}

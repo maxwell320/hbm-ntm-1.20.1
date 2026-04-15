@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "hbmntm:billet_solinium"
+    },
+    {
+      "item": "hbmntm:billet_solinium"
+    },
+    {
+      "item": "hbmntm:billet_solinium"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "hbmntm:ingot_solinium"
+  }
+}

@@ -11,8 +11,10 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
@@ -138,6 +140,7 @@ public class NtmAnvilScreen extends AbstractContainerScreen<NtmAnvilMenu> {
         }
 
         if (inside(mouseX, mouseY, this.leftPos + 7, this.topPos + 71, 9, 36)) {
+            this.playButtonClick();
             if (this.page > 0) {
                 this.page--;
             }
@@ -145,6 +148,7 @@ public class NtmAnvilScreen extends AbstractContainerScreen<NtmAnvilMenu> {
         }
 
         if (inside(mouseX, mouseY, this.leftPos + 106, this.topPos + 71, 9, 36)) {
+            this.playButtonClick();
             if (this.page < maxPage()) {
                 this.page++;
             }
@@ -153,6 +157,7 @@ public class NtmAnvilScreen extends AbstractContainerScreen<NtmAnvilMenu> {
 
         if (inside(mouseX, mouseY, this.leftPos + 52, this.topPos + 53, 18, 18)) {
             if (this.selectedRecipe >= 0 && this.minecraft != null && this.minecraft.gameMode != null) {
+                this.playButtonClick();
                 final int buttonId = hasShiftDown() ? this.selectedRecipe + 1000 : this.selectedRecipe;
                 this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId, buttonId);
             }
@@ -169,6 +174,7 @@ public class NtmAnvilScreen extends AbstractContainerScreen<NtmAnvilMenu> {
             final int x = this.leftPos + 16 + 18 * (relative / 2);
             final int y = this.topPos + 71 + 18 * (relative % 2);
             if (inside(mouseX, mouseY, x, y, 18, 18)) {
+                this.playButtonClick();
                 this.selectedRecipe = this.selectedRecipe == recipeIndex ? -1 : recipeIndex;
                 return true;
             }
@@ -266,5 +272,12 @@ public class NtmAnvilScreen extends AbstractContainerScreen<NtmAnvilMenu> {
 
     private static boolean inside(final double mouseX, final double mouseY, final int x, final int y, final int width, final int height) {
         return mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height;
+    }
+
+    private void playButtonClick() {
+        if (this.minecraft == null) {
+            return;
+        }
+        this.minecraft.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
     }
 }

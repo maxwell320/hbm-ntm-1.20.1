@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_nugget_solinium": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:nugget_solinium"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:billet_solinium_from_nugget_solinium"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_nugget_solinium",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:billet_solinium_from_nugget_solinium"
+    ]
+  },
+  "sends_telemetry_event": false
+}

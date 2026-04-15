@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "hbmntm:block/grate_top",
+    "particle": "hbmntm:block/grate_side",
+    "side": "hbmntm:block/grate_side",
+    "top": "hbmntm:block/grate_top"
+  }
+}

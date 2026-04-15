@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ingot_neptunium": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:ingot_neptunium"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:billet_neptunium_from_ingot_neptunium"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_ingot_neptunium",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:billet_neptunium_from_ingot_neptunium"
+    ]
+  },
+  "sends_telemetry_event": false
+}

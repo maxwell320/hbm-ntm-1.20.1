@@ -41,6 +41,15 @@ public class HbmItemModelProvider extends ItemModelProvider {
         withExistingParent("canister_full", mcLoc("item/generated"))
             .texture("layer0", modLoc("item/canister_empty"))
             .texture("layer1", modLoc("item/canister_overlay"));
+        singleTexture("canister_napalm", mcLoc("item/generated"), "layer0", modLoc("item/canister_napalm"));
+        singleTexture("disperser_canister_empty", mcLoc("item/generated"), "layer0", modLoc("item/disperser_canister"));
+        withExistingParent("disperser_canister", mcLoc("item/generated"))
+            .texture("layer0", modLoc("item/disperser_canister"))
+            .texture("layer1", modLoc("item/disperser_canister_overlay"));
+        singleTexture("glyphid_gland_empty", mcLoc("item/generated"), "layer0", modLoc("item/glyphid_gland"));
+        withExistingParent("glyphid_gland", mcLoc("item/generated"))
+            .texture("layer0", modLoc("item/glyphid_gland"))
+            .texture("layer1", modLoc("item/fluid_identifier_overlay"));
         singleTexture("gas_empty", mcLoc("item/generated"), "layer0", modLoc("item/gas_empty"));
         withExistingParent("gas_full", mcLoc("item/generated"))
             .texture("layer0", modLoc("item/gas_empty"))
@@ -68,8 +77,25 @@ public class HbmItemModelProvider extends ItemModelProvider {
         withExistingParent("machine_press", modLoc("block/machine_press"));
         withExistingParent("machine_assembly_machine", modLoc("block/machine_assembly_machine"));
         withExistingParent("machine_soldering_station", modLoc("block/machine_soldering_station"));
+        withExistingParent("machine_difurnace", modLoc("block/machine_difurnace_off"));
+        withExistingParent("machine_difurnace_extension", modLoc("block/machine_difurnace_extension"));
+        withExistingParent("machine_difurnace_rtg", modLoc("block/machine_difurnace_rtg_off"));
+        withExistingParent("machine_electric_furnace", modLoc("block/machine_electric_furnace_off"));
+        withExistingParent("machine_rtg_furnace", modLoc("block/machine_rtg_furnace_off"));
+        withExistingParent("machine_rtg_grey", modLoc("block/machine_rtg_grey"));
+        withExistingParent("machine_diesel", modLoc("block/machine_diesel_off"));
+        withExistingParent("machine_combustion", modLoc("block/machine_combustion_off"));
+        withExistingParent("machine_ashpit", modLoc("block/machine_ashpit"));
+        withExistingParent("chimney_brick", modLoc("block/chimney_brick"));
+        withExistingParent("chimney_industrial", modLoc("block/chimney_industrial"));
+        withExistingParent("steel_beam", modLoc("block/steel_beam"));
+        withExistingParent("steel_grate", modLoc("block/steel_grate"));
+        withExistingParent("steel_grate_wide", modLoc("block/steel_grate_wide"));
+        withExistingParent("machine_minirtg", modLoc("block/machine_minirtg"));
+        withExistingParent("machine_powerrtg", modLoc("block/machine_powerrtg"));
         withExistingParent("machine_centrifuge", modLoc("block/machine_centrifuge"));
         withExistingParent("machine_gascent", modLoc("block/machine_gascent"));
+        withExistingParent("machine_cyclotron", modLoc("block/machine_cyclotron"));
         withExistingParent("machine_purex", modLoc("block/machine_purex"));
         withExistingParent("machine_icf", modLoc("block/machine_icf"));
         withExistingParent("machine_icf_controller", modLoc("block/machine_icf_controller"));
@@ -117,12 +143,30 @@ public class HbmItemModelProvider extends ItemModelProvider {
         singleTexture("fins_quad_titanium", mcLoc("item/generated"), "layer0", modLoc("item/fins_quad_titanium"));
         singleTexture("blade_titanium", mcLoc("item/generated"), "layer0", modLoc("item/blade_titanium"));
         singleTexture("turbine_titanium", mcLoc("item/generated"), "layer0", modLoc("item/turbine_titanium"));
+        singleTexture("piston_set_steel", mcLoc("item/generated"), "layer0", modLoc("item/piston_set_steel"));
+        singleTexture("piston_set_dura", mcLoc("item/generated"), "layer0", modLoc("item/piston_set_dura"));
+        singleTexture("piston_set_desh", mcLoc("item/generated"), "layer0", modLoc("item/piston_set_desh"));
+        singleTexture("piston_set_starmetal", mcLoc("item/generated"), "layer0", modLoc("item/piston_set_starmetal"));
         singleTexture("flywheel_beryllium", mcLoc("item/generated"), "layer0", modLoc("item/flywheel_beryllium"));
         singleTexture("ring_starmetal", mcLoc("item/generated"), "layer0", modLoc("item/ring_starmetal"));
         singleTexture("sawblade", mcLoc("item/generated"), "layer0", modLoc("item/sawblade"));
+        singleTexture("meteorite_sword", mcLoc("item/generated"), "layer0", modLoc("item/meteorite_sword"));
+        singleTexture("meteorite_sword_seared", mcLoc("item/generated"), "layer0", modLoc("item/meteorite_sword"));
+        singleTexture("meteorite_sword_reforged", mcLoc("item/generated"), "layer0", modLoc("item/meteorite_sword"));
+        singleTexture("meteorite_sword_hardened", mcLoc("item/generated"), "layer0", modLoc("item/meteorite_sword"));
+        singleTexture("meteorite_sword_alloyed", mcLoc("item/generated"), "layer0", modLoc("item/meteorite_sword"));
+        singleTexture("meteorite_sword_machined", mcLoc("item/generated"), "layer0", modLoc("item/meteorite_sword"));
+        singleTexture("meteorite_sword_treated", mcLoc("item/generated"), "layer0", modLoc("item/meteorite_sword"));
+        singleTexture("meteorite_sword_etched", mcLoc("item/generated"), "layer0", modLoc("item/meteorite_sword"));
+        singleTexture("meteorite_sword_bred", mcLoc("item/generated"), "layer0", modLoc("item/meteorite_sword"));
+        singleTexture("meteorite_sword_irradiated", mcLoc("item/generated"), "layer0", modLoc("item/meteorite_sword"));
+        singleTexture("meteorite_sword_fused", mcLoc("item/generated"), "layer0", modLoc("item/meteorite_sword"));
+        singleTexture("meteorite_sword_baleful", mcLoc("item/generated"), "layer0", modLoc("item/meteorite_sword"));
         singleTexture("bottle_mercury", mcLoc("item/generated"), "layer0", modLoc("item/bottle_mercury"));
         singleTexture("nugget_mercury", mcLoc("item/generated"), "layer0", modLoc("item/nugget_mercury"));
         singleTexture("nugget_mercury_tiny", mcLoc("item/generated"), "layer0", modLoc("item/nugget_mercury_tiny"));
+        singleTexture("nuclear_waste", mcLoc("item/generated"), "layer0", modLoc("item/nuclear_waste"));
+        singleTexture("nuclear_waste_vitrified", mcLoc("item/generated"), "layer0", modLoc("item/nuclear_waste_vitrified"));
         singleTexture("nuclear_waste_tiny", mcLoc("item/generated"), "layer0", modLoc("item/nuclear_waste_tiny"));
         singleTexture("pellet_charged", mcLoc("item/generated"), "layer0", modLoc("item/pellets_charged"));
         singleTexture("particle_muon", mcLoc("item/generated"), "layer0", modLoc("item/particle_muon"));
@@ -171,6 +215,7 @@ public class HbmItemModelProvider extends ItemModelProvider {
         singleTexture("gem_alexandrite", mcLoc("item/generated"), "layer0", modLoc("item/gem_alexandrite"));
         singleTexture("iv_empty", mcLoc("item/generated"), "layer0", modLoc("item/iv_empty"));
         singleTexture("powder_sawdust", mcLoc("item/generated"), "layer0", modLoc("item/powder_sawdust"));
+        singleTexture("powder_ash", mcLoc("item/generated"), "layer0", modLoc("item/powder_ash"));
         singleTexture("powder_ice", mcLoc("item/generated"), "layer0", modLoc("item/powder_ice"));
         singleTexture("powder_magic", mcLoc("item/generated"), "layer0", modLoc("item/powder_magic"));
         singleTexture("powder_poison", mcLoc("item/generated"), "layer0", modLoc("item/powder_poison"));

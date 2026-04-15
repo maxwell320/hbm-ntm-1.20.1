@@ -3,7 +3,6 @@ package com.hbm.ntm.common.menu;
 import com.hbm.ntm.common.block.entity.CentrifugeBlockEntity;
 import com.hbm.ntm.common.config.CentrifugeMachineConfig;
 import com.hbm.ntm.common.item.BatteryItem;
-import com.hbm.ntm.common.item.MachineUpgradeItem;
 import com.hbm.ntm.common.registration.HbmMenuTypes;
 import java.util.List;
 import net.minecraft.nbt.CompoundTag;
@@ -44,16 +43,10 @@ public class CentrifugeMenu extends MachineMenuBase<CentrifugeBlockEntity> {
             (slot, stack) -> this.machine == null || this.machine.isItemValid(slot, stack)));
         this.addSlot(new FilteredSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_BATTERY, 9, 50,
             (slot, stack) -> stack.getItem() instanceof BatteryItem));
+        this.addOutputGridSlots(handler, CentrifugeBlockEntity.SLOT_OUTPUT_1, 63, 50, 1, 4, 20);
 
-        this.addSlot(new OutputSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_OUTPUT_1, 63, 50));
-        this.addSlot(new OutputSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_OUTPUT_2, 83, 50));
-        this.addSlot(new OutputSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_OUTPUT_3, 103, 50));
-        this.addSlot(new OutputSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_OUTPUT_4, 123, 50));
-
-        this.addSlot(new FilteredSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_UPGRADE_1, 149, 22,
-            (slot, stack) -> stack.getItem() instanceof MachineUpgradeItem));
-        this.addSlot(new FilteredSlotItemHandler(handler, CentrifugeBlockEntity.SLOT_UPGRADE_2, 149, 40,
-            (slot, stack) -> stack.getItem() instanceof MachineUpgradeItem));
+        this.addUpgradeSlot(handler, CentrifugeBlockEntity.SLOT_UPGRADE_1, 149, 22);
+        this.addUpgradeSlot(handler, CentrifugeBlockEntity.SLOT_UPGRADE_2, 149, 40);
 
         this.addPlayerInventory(inventory, 8, 104);
 
@@ -83,8 +76,8 @@ public class CentrifugeMenu extends MachineMenuBase<CentrifugeBlockEntity> {
             return this.moveItemStackTo(stack, CentrifugeBlockEntity.SLOT_BATTERY, CentrifugeBlockEntity.SLOT_BATTERY + 1, false);
         }
 
-        if (stack.getItem() instanceof MachineUpgradeItem) {
-            return this.moveItemStackTo(stack, CentrifugeBlockEntity.SLOT_UPGRADE_1, CentrifugeBlockEntity.SLOT_UPGRADE_2 + 1, false);
+        if (this.isUpgradeItem(stack)) {
+            return this.moveToMachineRange(stack, CentrifugeBlockEntity.SLOT_UPGRADE_1, CentrifugeBlockEntity.SLOT_UPGRADE_2 + 1);
         }
 
         if (this.machine != null && this.machine.isItemValid(CentrifugeBlockEntity.SLOT_INPUT, stack)) {

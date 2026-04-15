@@ -11,13 +11,17 @@ import net.minecraftforge.network.NetworkEvent;
 
 @SuppressWarnings("null")
 public record MachineControlPacket(BlockPos pos, CompoundTag data) {
+    private static final String PAYLOAD_NAME = "machine_control";
+
     public static void encode(final MachineControlPacket packet, final FriendlyByteBuf buffer) {
         buffer.writeBlockPos(packet.pos);
-        buffer.writeNbt(packet.data);
+        NbtPacketBufferHelper.writeCompound(buffer, packet.data, PAYLOAD_NAME);
     }
 
     public static MachineControlPacket decode(final FriendlyByteBuf buffer) {
-        return new MachineControlPacket(buffer.readBlockPos(), buffer.readNbt());
+        final BlockPos pos = buffer.readBlockPos();
+        final CompoundTag data = NbtPacketBufferHelper.readCompound(buffer, PAYLOAD_NAME);
+        return new MachineControlPacket(pos, data);
     }
 
     public static void handle(final MachineControlPacket packet, final Supplier<NetworkEvent.Context> contextSupplier) {
@@ -27,11 +31,17 @@ public record MachineControlPacket(BlockPos pos, CompoundTag data) {
             if (player == null) {
                 return;
             }
+            if (!player.level().isLoaded(packet.pos)) {
+                return;
+            }
             final BlockEntity blockEntity = player.level().getBlockEntity(packet.pos);
             if (!(blockEntity instanceof IMachineControlReceiver receiver)) {
                 return;
             }
             if (!receiver.canPlayerControl(player)) {
+                return;
+            }
+            if (!receiver.isControlDataAllowed(player, packet.data)) {
                 return;
             }
             receiver.receiveControl(player, packet.data.copy());

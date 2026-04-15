@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "hbmntm:item/ingot_raw"
+    "layer0": "hbmntm:item/ingot_am241"
   }
 }

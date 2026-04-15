@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "hbmntm:ingot_technetium"
+    }
+  },
+  "pattern": [
+    "II"
+  ],
+  "result": {
+    "count": 3,
+    "item": "hbmntm:billet_technetium"
+  },
+  "show_notification": true
+}

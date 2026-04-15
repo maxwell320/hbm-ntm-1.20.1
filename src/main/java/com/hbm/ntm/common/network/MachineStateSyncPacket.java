@@ -8,13 +8,15 @@ import net.minecraftforge.network.NetworkEvent;
 
 @SuppressWarnings("null")
 public record MachineStateSyncPacket(BlockPos pos, CompoundTag data) {
+    private static final String PAYLOAD_NAME = "machine_state_sync";
+
     public static void encode(final MachineStateSyncPacket packet, final FriendlyByteBuf buffer) {
         buffer.writeBlockPos(packet.pos);
-        buffer.writeNbt(packet.data);
+        NbtPacketBufferHelper.writeCompound(buffer, packet.data, PAYLOAD_NAME);
     }
 
     public static MachineStateSyncPacket decode(final FriendlyByteBuf buffer) {
-        return new MachineStateSyncPacket(buffer.readBlockPos(), buffer.readNbt());
+        return new MachineStateSyncPacket(buffer.readBlockPos(), NbtPacketBufferHelper.readCompound(buffer, PAYLOAD_NAME));
     }
 
     public static void handle(final MachineStateSyncPacket packet, final Supplier<NetworkEvent.Context> contextSupplier) {

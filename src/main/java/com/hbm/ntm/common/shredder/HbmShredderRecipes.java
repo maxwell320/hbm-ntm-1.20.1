@@ -1,5 +1,6 @@
 package com.hbm.ntm.common.shredder;
 
+import com.hbm.ntm.HbmNtmMod;
 import com.hbm.ntm.common.block.MaterialBlockType;
 import com.hbm.ntm.common.block.BasaltOreType;
 import com.hbm.ntm.common.block.NetherOreType;
@@ -15,10 +16,12 @@ import com.hbm.ntm.common.registration.HbmBlocks;
 import com.hbm.ntm.common.registration.HbmItems;
 import java.util.HashMap;
 import java.util.Map;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("null")
@@ -65,12 +68,6 @@ public final class HbmShredderRecipes {
     private static void setRecipe(final Item input, final ItemStack output) {
         if (input != null && !output.isEmpty()) {
             RECIPES.putIfAbsent(input, output);
-        }
-    }
-
-    private static void setRecipe(final ItemStack input, final ItemStack output) {
-        if (!input.isEmpty()) {
-            setRecipe(input.getItem(), output);
         }
     }
 
@@ -186,7 +183,83 @@ public final class HbmShredderRecipes {
         registerLegacyFragmentRecipes();
         registerLegacyCrystalRecipes();
         registerLegacyRecyclingRecipes();
+        registerLegacyOptionalIdRecipes();
         registerLegacyByproductRecipes();
+    }
+
+    private static void registerLegacyOptionalIdRecipes() {
+        setRecipeIfPresent(HbmNtmMod.MOD_ID + ":ore_rare", hbmItem("powder_desh_mix", 1));
+        setRecipeIfPresent(HbmNtmMod.MOD_ID + ":chunk_ore_rare", hbmItem("powder_desh_mix", 1));
+
+        // Optional legacy terrain/deco/meteor families that can be activated as IDs become available.
+        setHbmRecipeIfPresent("block_slag", "powder_cement", 4);
+        setHbmRecipeIfPresent("brick_light", "clay_ball", 4, true);
+        setHbmRecipeIfPresent("ore_oil_empty", "gravel", 1, true);
+        setHbmRecipeIfPresent("block_meteor", "powder_meteorite", 10);
+        setHbmRecipeIfPresent("meteor_polished", "powder_meteorite", 1);
+        setHbmRecipeIfPresent("meteor_brick", "powder_meteorite", 1);
+        setHbmRecipeIfPresent("meteor_brick_mossy", "powder_meteorite", 1);
+        setHbmRecipeIfPresent("meteor_brick_cracked", "powder_meteorite", 1);
+        setHbmRecipeIfPresent("meteor_brick_chiseled", "powder_meteorite", 1);
+        setHbmRecipeIfPresent("meteor_pillar", "powder_meteorite", 1);
+        setHbmRecipeIfPresent("ore_tektite_osmiridium", "powder_tektite", 1);
+        setHbmRecipeIfPresent("boxcar", "powder_steel", 32);
+
+        for (final String id : new String[] {
+            "dirt_dead",
+            "dirt_oily",
+            "sand_dirty",
+            "sand_dirty_red",
+            "stone_cracked",
+            "stone_porous"
+        }) {
+            setHbmRecipeIfPresent(id, "scrap_oil", 1);
+        }
+
+        for (final String id : new String[] {
+            "deco_pipe",
+            "deco_pipe_rusted",
+            "deco_pipe_green",
+            "deco_pipe_green_rusted",
+            "deco_pipe_red",
+            "deco_pipe_marked",
+            "deco_pipe_rim",
+            "deco_pipe_rim_rusted",
+            "deco_pipe_rim_green",
+            "deco_pipe_rim_green_rusted",
+            "deco_pipe_rim_red",
+            "deco_pipe_rim_marked",
+            "deco_pipe_quad",
+            "deco_pipe_quad_rusted",
+            "deco_pipe_quad_green",
+            "deco_pipe_quad_green_rusted",
+            "deco_pipe_quad_red",
+            "deco_pipe_quad_marked",
+            "deco_pipe_framed",
+            "deco_pipe_framed_rusted",
+            "deco_pipe_framed_green",
+            "deco_pipe_framed_green_rusted",
+            "deco_pipe_framed_red",
+            "deco_pipe_framed_marked"
+        }) {
+            setHbmRecipeIfPresent(id, "powder_steel", 1);
+        }
+
+        setHbmRecipeIfPresent("steel_poles", "powder_steel_tiny", 2);
+        setHbmRecipeIfPresent("steel_roof", "powder_steel_tiny", 9);
+        setHbmRecipeIfPresent("steel_wall", "powder_steel_tiny", 9);
+        setHbmRecipeIfPresent("steel_corner", "powder_steel_tiny", 18);
+        setHbmRecipeIfPresent("steel_beam", "powder_steel_tiny", 3);
+        setHbmRecipeIfPresent("steel_scaffold", "powder_steel_tiny", 4);
+        setHbmRecipeIfPresent("crate_iron", "powder_iron", 8);
+        setHbmRecipeIfPresent("crate_steel", "powder_steel", 8);
+        setHbmRecipeIfPresent("crate_tungsten", "powder_tungsten", 36);
+        setHbmRecipeIfPresent("block_schrabidate", "powder_schrabidate", 9);
+        setHbmRecipeIfPresent("coal_infernal", "powder_coal", 2);
+
+        // Legacy outputs these into generic dust; only register when the generic item exists.
+        setRecipeIfPresent("minecraft:dirt", hbmItem("dust", 1));
+        setRecipeIfPresent("minecraft:sand", hbmItem("dust", 2));
     }
 
     private static void registerLegacyByproductRecipes() {
@@ -307,6 +380,7 @@ public final class HbmShredderRecipes {
         setMaterialRecipe(HbmMaterials.LITHIUM, HbmMaterialShape.CRYSTAL, HbmMaterials.LITHIUM, HbmMaterialShape.DUST, 3);
         setMaterialRecipe(HbmMaterials.STARMETAL, HbmMaterialShape.CRYSTAL, HbmMaterials.STARMETAL, HbmMaterialShape.DUST, 6);
         setMaterialRecipe(HbmMaterials.COBALT, HbmMaterialShape.CRYSTAL, HbmMaterials.COBALT, HbmMaterialShape.DUST, 3);
+        setMaterialRecipe(HbmMaterials.TRIXITE, HbmMaterialShape.CRYSTAL, HbmMaterials.PLUTONIUM, HbmMaterialShape.DUST, 6);
 
         final @Nullable Item redstoneCrystal = getShapeItem(HbmMaterials.REDSTONE, HbmMaterialShape.CRYSTAL);
         if (redstoneCrystal != null) {
@@ -432,5 +506,50 @@ public final class HbmShredderRecipes {
         } catch (final IllegalArgumentException e) {
             return null;
         }
+    }
+
+    private static void setRecipeIfPresent(final String inputItemId, final ItemStack output) {
+        final @Nullable Item input = itemById(inputItemId);
+        if (input != null) {
+            setRecipe(input, output);
+        }
+    }
+
+    private static ItemStack hbmItem(final String path, final int count) {
+        return itemStackById(HbmNtmMod.MOD_ID + ":" + path, count);
+    }
+
+    private static void setHbmRecipeIfPresent(final String inputPath, final String outputPath, final int count) {
+        setRecipeIfPresent(HbmNtmMod.MOD_ID + ":" + inputPath, hbmItem(outputPath, count));
+    }
+
+    private static void setHbmRecipeIfPresent(final String inputPath,
+                                              final String outputPath,
+                                              final int count,
+                                              final boolean outputVanilla) {
+        final ItemStack output = outputVanilla
+            ? itemStackById("minecraft:" + outputPath, count)
+            : hbmItem(outputPath, count);
+        setRecipeIfPresent(HbmNtmMod.MOD_ID + ":" + inputPath, output);
+    }
+
+    private static ItemStack itemStackById(final String itemId, final int count) {
+        final @Nullable Item item = itemById(itemId);
+        return item == null ? ItemStack.EMPTY : new ItemStack(item, count);
+    }
+
+    private static @Nullable Item itemById(final String itemId) {
+        if (itemId == null || itemId.isBlank()) {
+            return null;
+        }
+        final @Nullable ResourceLocation id = ResourceLocation.tryParse(itemId);
+        if (id == null) {
+            return null;
+        }
+        final @Nullable Item item = ForgeRegistries.ITEMS.getValue(id);
+        if (item == null || item == Items.AIR) {
+            return null;
+        }
+        return item;
     }
 }

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "hbmntm:nugget_pu239"
+    }
+  },
+  "pattern": [
+    "NNN",
+    "NNN"
+  ],
+  "result": {
+    "item": "hbmntm:billet_pu239"
+  },
+  "show_notification": true
+}

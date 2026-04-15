@@ -3,6 +3,7 @@ package com.hbm.ntm.common.registration;
 import com.hbm.ntm.HbmNtmMod;
 import com.hbm.ntm.common.block.SellafieldBlock;
 import com.hbm.ntm.common.item.CanisterItem;
+import com.hbm.ntm.common.item.DisperserCanisterItem;
 import com.hbm.ntm.common.item.FluidTankItem;
 import com.hbm.ntm.common.item.GasTankItem;
 import com.hbm.ntm.common.item.SellafieldBlockItem;
@@ -29,6 +30,12 @@ public final class HbmCreativeTabs {
                 }
             } else if (item == HbmItems.CANISTER_FULL) {
                 CanisterItem.creativeStacks(Objects.requireNonNull(HbmItems.CANISTER_FULL.get())).forEach(output::accept);
+            } else if (item == HbmItems.DISPERSER_CANISTER) {
+                DisperserCanisterItem.creativeStacks(Objects.requireNonNull(HbmItems.DISPERSER_CANISTER.get()), DisperserCanisterItem.ContainerKind.DISPERSER)
+                    .forEach(output::accept);
+            } else if (item == HbmItems.GLYPHID_GLAND) {
+                DisperserCanisterItem.creativeStacks(Objects.requireNonNull(HbmItems.GLYPHID_GLAND.get()), DisperserCanisterItem.ContainerKind.GLYPHID)
+                    .forEach(output::accept);
             } else if (item == HbmItems.GAS_FULL) {
                 GasTankItem.creativeStacks(Objects.requireNonNull(HbmItems.GAS_FULL.get())).forEach(output::accept);
             } else if (item == HbmItems.FLUID_TANK_FULL) {

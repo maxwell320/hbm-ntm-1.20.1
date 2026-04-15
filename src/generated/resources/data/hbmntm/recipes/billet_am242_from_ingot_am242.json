@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "hbmntm:ingot_am242"
+    }
+  },
+  "pattern": [
+    "II"
+  ],
+  "result": {
+    "count": 3,
+    "item": "hbmntm:billet_am242"
+  },
+  "show_notification": true
+}

@@ -1,10 +1,18 @@
 Project licensing notes
  =======================
 
- The active license for this repository is `GPL-3.0-or-later`.
- See `LICENSE` for the full text that applies to the port source in this repository.
+ The active license for this repository is GPL-3.0-or-later.
+ See LICENSE for the full text that applies to port source in this repository.
 
- This `LICENSE.txt` file is kept as a companion notice for third-party and historical licensing context that came with the Forge MDK and related tooling. It is not meant to override the project license declared in `gradle.properties` and `mods.toml`.
+ Additional notice for redistributors:
+ - Preserve attribution, copyright notices, and license headers.
+ - Clearly mark modified versions and modification dates.
+ - Do not represent unofficial builds as official project releases.
+ - Do not imply endorsement by original HBM authors or this repository maintainer without permission.
+
+ These points are restated in NOTICE.md to reduce confusion. They are intended to be read together with GPL terms, not as a replacement for GPL.
+
+ This LICENSE.txt file also keeps historical third-party licensing context that came with the Forge MDK and related tooling. It is not meant to override the project license declared in gradle.properties and mods.toml.
 
  Important reminders:
  - Minecraft Forge, FML, Mojang mappings, and other toolchain components have their own upstream terms.

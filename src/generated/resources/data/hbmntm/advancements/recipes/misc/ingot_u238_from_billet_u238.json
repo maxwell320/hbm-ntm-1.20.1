@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_billet_u238": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:billet_u238"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:ingot_u238_from_billet_u238"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_billet_u238",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:ingot_u238_from_billet_u238"
+    ]
+  },
+  "sends_telemetry_event": false
+}

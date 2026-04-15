@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_nugget_zirconium": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:nugget_zirconium"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:billet_zirconium_from_nugget_zirconium"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_nugget_zirconium",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:billet_zirconium_from_nugget_zirconium"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "hbmntm:block/brick_fire",
+    "front": "hbmntm:block/difurnace_front_on_alt",
+    "particle": "hbmntm:block/difurnace_side_alt",
+    "side": "hbmntm:block/difurnace_side_alt",
+    "top": "hbmntm:block/difurnace_top_on_alt"
+  }
+}

@@ -33,6 +33,7 @@ import java.util.Map;
 import java.util.Set;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -510,12 +511,19 @@ public abstract class MachineBlockEntity extends BlockEntity implements MenuProv
         return Math.min(15, Math.max(1, filled / Math.max(1, this.items.getSlots())));
     }
 
+    protected final boolean isValidSlotIndex(final int slot) {
+        return slot >= 0 && slot < this.items.getSlots();
+    }
+
     public boolean canInsertIntoSlot(final int slot, final net.minecraft.world.item.ItemStack stack, final @Nullable Direction side) {
+        if (!this.isValidSlotIndex(slot) || stack.isEmpty()) {
+            return false;
+        }
         return this.isItemValid(slot, stack);
     }
 
     public boolean canExtractFromSlot(final int slot, final @Nullable Direction side) {
-        return true;
+        return this.isValidSlotIndex(slot);
     }
 
     @Override
@@ -538,7 +546,7 @@ public abstract class MachineBlockEntity extends BlockEntity implements MenuProv
     }
 
     public boolean isItemValid(final int slot, final net.minecraft.world.item.ItemStack stack) {
-        return true;
+        return this.isValidSlotIndex(slot);
     }
 
     @Override
@@ -1053,6 +1061,55 @@ public abstract class MachineBlockEntity extends BlockEntity implements MenuProv
         tag.putBoolean("muffled", this.muffled);
         tag.putBoolean("maintenanceBlocked", this.maintenanceBlocked);
         tag.putInt("maintenanceLevel", this.getMaintenanceLevel());
+        tag.putBoolean("hasEnergyStorage", this.hasEnergyStorage());
+        tag.putInt("energyStored", this.getStoredEnergy());
+        tag.putInt("energyCapacity", this.getMaxStoredEnergy());
+
+        int fluidStoredTotal = 0;
+        int fluidCapacityTotal = 0;
+        final ListTag syncTanks = new ListTag();
+        int tankIndex = 0;
+        for (final HbmFluidTank tank : this.fluidTanks) {
+            if (tank == null) {
+                tankIndex++;
+                continue;
+            }
+            final int amount = Math.max(0, tank.getFluidAmount());
+            final int capacity = Math.max(0, tank.getCapacity());
+            fluidStoredTotal += amount;
+            fluidCapacityTotal += capacity;
+
+            final CompoundTag tankTag = new CompoundTag();
+            tankTag.putInt("slot", tankIndex);
+            tankTag.putInt("amount", amount);
+            tankTag.putInt("capacity", capacity);
+            if (!tank.isEmpty()) {
+                tankTag.putString("fluid", String.valueOf(BuiltInRegistries.FLUID.getKey(tank.getFluid().getFluid())));
+            }
+            syncTanks.add(tankTag);
+            tankIndex++;
+        }
+        tag.putInt("fluidTankCount", this.fluidTanks.length);
+        tag.putInt("fluidStoredTotal", fluidStoredTotal);
+        tag.putInt("fluidCapacityTotal", fluidCapacityTotal);
+        if (!syncTanks.isEmpty()) {
+            tag.put("syncTanks", syncTanks);
+        }
+
+        int occupiedSlots = 0;
+        int itemCountTotal = 0;
+        for (int slot = 0; slot < this.items.getSlots(); slot++) {
+            final net.minecraft.world.item.ItemStack stack = this.items.getStackInSlot(slot);
+            if (stack.isEmpty()) {
+                continue;
+            }
+            occupiedSlots++;
+            itemCountTotal += stack.getCount();
+        }
+        tag.putInt("inventorySlotCount", this.items.getSlots());
+        tag.putInt("inventoryOccupiedSlots", occupiedSlots);
+        tag.putInt("inventoryItemTotal", itemCountTotal);
+
         this.writeRepairMaterialStateSync(tag);
         this.writeAdditionalMachineStateSync(tag);
         return tag;

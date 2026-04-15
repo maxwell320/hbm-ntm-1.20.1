@@ -4,7 +4,6 @@ import com.hbm.ntm.common.block.entity.SolderingStationBlockEntity;
 import com.hbm.ntm.common.config.SolderingStationMachineConfig;
 import com.hbm.ntm.common.item.BatteryItem;
 import com.hbm.ntm.common.item.IItemFluidIdentifier;
-import com.hbm.ntm.common.item.MachineUpgradeItem;
 import com.hbm.ntm.common.registration.HbmMenuTypes;
 import java.util.List;
 import net.minecraft.nbt.CompoundTag;
@@ -49,23 +48,16 @@ public class SolderingStationMenu extends MachineMenuBase<SolderingStationBlockE
         super(HbmMenuTypes.MACHINE_SOLDERING_STATION.get(), containerId, inventory, station, SolderingStationBlockEntity.SLOT_COUNT);
         final ItemStackHandler handler = station == null ? new ItemStackHandler(SolderingStationBlockEntity.SLOT_COUNT) : station.getInternalItemHandler();
 
-        for (int row = 0; row < 2; row++) {
-            for (int column = 0; column < 3; column++) {
-                final int slot = row * 3 + column;
-                this.addSlot(new FilteredSlotItemHandler(handler, slot, 17 + column * 18, 18 + row * 18,
-                    (ignoredSlot, stack) -> station == null || station.isItemValid(slot, stack)));
-            }
-        }
+        this.addFilteredGridSlots(handler, SolderingStationBlockEntity.SLOT_TOPPING_START, 17, 18, 2, 3,
+            (slot, stack) -> station == null || station.isItemValid(slot, stack));
 
         this.addSlot(new OutputSlotItemHandler(handler, SolderingStationBlockEntity.SLOT_OUTPUT, 107, 27));
         this.addSlot(new FilteredSlotItemHandler(handler, SolderingStationBlockEntity.SLOT_BATTERY, 152, 72,
             (slot, stack) -> stack.getItem() instanceof BatteryItem));
         this.addSlot(new FilteredSlotItemHandler(handler, SolderingStationBlockEntity.SLOT_FLUID_ID, 17, 63,
             (slot, stack) -> stack.getItem() instanceof IItemFluidIdentifier));
-        this.addSlot(new FilteredSlotItemHandler(handler, SolderingStationBlockEntity.SLOT_UPGRADE_1, 89, 63,
-            (slot, stack) -> stack.getItem() instanceof MachineUpgradeItem));
-        this.addSlot(new FilteredSlotItemHandler(handler, SolderingStationBlockEntity.SLOT_UPGRADE_2, 107, 63,
-            (slot, stack) -> stack.getItem() instanceof MachineUpgradeItem));
+        this.addUpgradeSlot(handler, SolderingStationBlockEntity.SLOT_UPGRADE_1, 89, 63);
+        this.addUpgradeSlot(handler, SolderingStationBlockEntity.SLOT_UPGRADE_2, 107, 63);
 
         this.addPlayerInventory(inventory, 8, 122);
         this.data = station == null
@@ -104,8 +96,8 @@ public class SolderingStationMenu extends MachineMenuBase<SolderingStationBlockE
         if (stack.getItem() instanceof IItemFluidIdentifier) {
             return this.moveItemStackTo(stack, SolderingStationBlockEntity.SLOT_FLUID_ID, SolderingStationBlockEntity.SLOT_FLUID_ID + 1, false);
         }
-        if (stack.getItem() instanceof MachineUpgradeItem) {
-            return this.moveItemStackTo(stack, SolderingStationBlockEntity.SLOT_UPGRADE_1, SolderingStationBlockEntity.SLOT_UPGRADE_2 + 1, false);
+        if (this.isUpgradeItem(stack)) {
+            return this.moveToMachineRange(stack, SolderingStationBlockEntity.SLOT_UPGRADE_1, SolderingStationBlockEntity.SLOT_UPGRADE_2 + 1);
         }
 
         if (this.machine != null) {

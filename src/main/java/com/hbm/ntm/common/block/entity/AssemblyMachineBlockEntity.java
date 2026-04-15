@@ -16,6 +16,7 @@ import com.hbm.ntm.common.registration.HbmBlockEntityTypes;
 import com.hbm.ntm.common.registration.HbmBlocks;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -262,6 +263,11 @@ public class AssemblyMachineBlockEntity extends MultiblockCoreBE {
         if (data.contains("cycleRecipe")) {
             this.cycleRecipe(data.getInt("cycleRecipe"));
         }
+    }
+
+    @Override
+    protected Set<String> allowedControlKeys() {
+        return Set.of("repair", "cycleRecipe");
     }
 
     @Override

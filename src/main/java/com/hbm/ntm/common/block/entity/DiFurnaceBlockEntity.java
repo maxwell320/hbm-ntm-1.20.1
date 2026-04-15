@@ -25,7 +25,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -57,7 +61,8 @@ public class DiFurnaceBlockEntity extends MachineBlockEntity {
         HbmBlastFurnaceRecipes.ensureInitialized();
         boolean dirty = false;
 
-        furnace.transferSmokeToNeighbors();
+        final boolean extension = furnace.hasExtension();
+        furnace.transferSmokeToNeighbors(extension);
 
         final ItemStackHandler handler = furnace.getInternalItemHandler();
         final ItemStack inputLeft = handler.getStackInSlot(SLOT_INPUT_LEFT);
@@ -80,13 +85,14 @@ public class DiFurnaceBlockEntity extends MachineBlockEntity {
 
         if (active) {
             furnace.fuel = Math.max(0, furnace.fuel - 1);
-            furnace.progress++;
+            final int speedMultiplier = extension ? 3 : 1;
+            furnace.progress += speedMultiplier;
             if (level.getGameTime() % 20L == 0L) {
-                furnace.bufferPollutionIntoSmokeTank(TANK_SMOKE, PollutionType.SOOT, HbmFluids.SMOKE.getStillFluid(), MACHINE_SOOT_PER_SECOND);
+                furnace.bufferPollutionIntoSmokeTank(TANK_SMOKE, PollutionType.SOOT, HbmFluids.SMOKE.getStillFluid(), MACHINE_SOOT_PER_SECOND * speedMultiplier);
             }
             dirty = true;
-            if (furnace.progress >= PROCESSING_SPEED) {
-                furnace.progress = 0;
+            while (furnace.progress >= PROCESSING_SPEED && recipe != null && furnace.canProcess(recipe)) {
+                furnace.progress -= PROCESSING_SPEED;
                 furnace.processRecipe(recipe);
             }
         } else if (furnace.progress > 0) {
@@ -111,10 +117,58 @@ public class DiFurnaceBlockEntity extends MachineBlockEntity {
         };
     }
 
-    private void transferSmokeToNeighbors() {
+    private boolean hasExtension() {
+        if (this.level == null) {
+            return false;
+        }
+        return this.level.getBlockState(this.worldPosition.above()).is(HbmBlocks.MACHINE_DI_FURNACE_EXTENSION.get());
+    }
+
+    private void transferSmokeToNeighbors(final boolean extension) {
         this.exportTankToNeighbors(TANK_SMOKE);
         this.exportTankToNeighbors(TANK_SMOKE_LEADED);
         this.exportTankToNeighbors(TANK_SMOKE_POISON);
+
+        if (!extension) {
+            return;
+        }
+
+        this.exportTankToExtensionTop(TANK_SMOKE);
+        this.exportTankToExtensionTop(TANK_SMOKE_LEADED);
+        this.exportTankToExtensionTop(TANK_SMOKE_POISON);
+    }
+
+    private void exportTankToExtensionTop(final int tankIndex) {
+        if (this.level == null || this.level.isClientSide()) {
+            return;
+        }
+
+        final HbmFluidTank tank = this.getFluidTank(tankIndex);
+        if (tank == null || tank.isEmpty()) {
+            return;
+        }
+
+        final BlockEntity top = this.level.getBlockEntity(this.worldPosition.above(2));
+        if (top == null) {
+            return;
+        }
+
+        final IFluidHandler handler = top.getCapability(ForgeCapabilities.FLUID_HANDLER, Direction.DOWN).orElse(null);
+        if (handler == null) {
+            return;
+        }
+
+        final FluidStack stored = tank.getFluid();
+        if (stored.isEmpty()) {
+            return;
+        }
+
+        final int accepted = handler.fill(new FluidStack(stored, stored.getAmount()), IFluidHandler.FluidAction.EXECUTE);
+        if (accepted <= 0) {
+            return;
+        }
+
+        tank.drain(accepted, IFluidHandler.FluidAction.EXECUTE);
     }
 
     private boolean canProcess(final HbmBlastFurnaceRecipes.BlastRecipe recipe) {

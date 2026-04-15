@@ -60,9 +60,8 @@ public class GasCentrifugeMenu extends MachineMenuBase<GasCentrifugeBlockEntity>
             (slot, stack) -> stack.getItem() instanceof BatteryItem));
         this.addSlot(new FilteredSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_FLUID_ID, 91, 15,
             (slot, stack) -> stack.getItem() instanceof IItemFluidIdentifier));
-        this.addSlot(new FilteredSlotItemHandler(handler, GasCentrifugeBlockEntity.SLOT_UPGRADE, 69, 15,
-            (slot, stack) -> stack.getItem() instanceof MachineUpgradeItem upgrade
-                && upgrade.type() == MachineUpgradeItem.UpgradeType.GC_SPEED));
+        this.addUpgradeSlot(handler, GasCentrifugeBlockEntity.SLOT_UPGRADE, 69, 15,
+            MachineUpgradeItem.UpgradeType.GC_SPEED);
 
         this.addPlayerInventory(inventory, 8, 122);
 
@@ -104,8 +103,8 @@ public class GasCentrifugeMenu extends MachineMenuBase<GasCentrifugeBlockEntity>
         if (stack.getItem() instanceof IItemFluidIdentifier) {
             return this.moveItemStackTo(stack, GasCentrifugeBlockEntity.SLOT_FLUID_ID, GasCentrifugeBlockEntity.SLOT_FLUID_ID + 1, false);
         }
-        if (stack.getItem() instanceof MachineUpgradeItem upgrade && upgrade.type() == MachineUpgradeItem.UpgradeType.GC_SPEED) {
-            return this.moveItemStackTo(stack, GasCentrifugeBlockEntity.SLOT_UPGRADE, GasCentrifugeBlockEntity.SLOT_UPGRADE + 1, false);
+        if (this.isUpgradeItem(stack, MachineUpgradeItem.UpgradeType.GC_SPEED)) {
+            return this.moveToMachineRange(stack, GasCentrifugeBlockEntity.SLOT_UPGRADE, GasCentrifugeBlockEntity.SLOT_UPGRADE + 1);
         }
         return false;
     }

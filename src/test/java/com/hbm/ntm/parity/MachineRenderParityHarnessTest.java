@@ -76,19 +76,18 @@ class MachineRenderParityHarnessTest {
             List.of(
                 "if (this.menu.burnTime() >= 20) {",
                 "final int pressPixels = this.menu.maxPressTicks() <= 0 ? 0 : this.menu.pressTicks() * 16 / this.menu.maxPressTicks();",
-                "final int speedPixels = this.menu.maxSpeed() <= 0 ? 0 : Math.max(0, Math.min(18, this.menu.speed() * 18 / this.menu.maxSpeed()));",
-                "guiGraphics.fill(this.leftPos + 25, this.topPos + 16 + (18 - speedPixels), this.leftPos + 43, this.topPos + 34, 0xFF7F0000);"
+                "if (this.menu.maxSpeed() > 0) {",
+                "this.renderSmoothNeedleGauge("
             )
         ));
 
         EXPECTATIONS.put("shredder_screen_warning_overlay", expectation(
             Path.of("src", "main", "java", "com", "hbm", "ntm", "client", "screen", "ShredderScreen.java"),
             List.of(
-                "private static final ResourceLocation GUI_UTILITY = ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, \"textures/gui/gui_utility.png\");",
                 "final int gearLeftV = switch (gearLeft) {",
                 "final int gearRightV = switch (gearRight) {",
                 "if (this.hasBladeError()) {",
-                "guiGraphics.blit(GUI_UTILITY, warningX, warningY, 8, 16, WARNING_SIZE, WARNING_SIZE, 64, 64);"
+                "this.renderLegacyInfoPanel(guiGraphics, this.leftPos + WARNING_X, this.topPos + WARNING_Y, 6);"
             )
         ));
 
@@ -96,9 +95,9 @@ class MachineRenderParityHarnessTest {
             Path.of("src", "main", "java", "com", "hbm", "ntm", "client", "screen", "SolderingStationScreen.java"),
             List.of(
                 "if (this.menu.collisionPrevention()) {",
+                "this.renderConfigToggleIndicator(guiGraphics, this.leftPos + 5, this.topPos + 66, 10, 10, this.menu.collisionPrevention());",
                 "this.renderHorizontalFluidBar(guiGraphics, this.leftPos + 35, this.topPos + 79, 34, 16,",
-                "tag.putBoolean(\"collision\", true);",
-                "this.sendControl(tag);"
+                "if (this.handleToggleControlClick(mouseX, mouseY, this.leftPos + 5, this.topPos + 66, 10, 10, \"collision\")) {"
             )
         ));
 
@@ -115,8 +114,8 @@ class MachineRenderParityHarnessTest {
         EXPECTATIONS.put("gas_centrifuge_pseudo_tanks_and_warning", expectation(
             Path.of("src", "main", "java", "com", "hbm", "ntm", "client", "screen", "GasCentrifugeScreen.java"),
             List.of(
-                "this.renderPseudoTank(guiGraphics, this.leftPos + 16, this.topPos + 16, this.menu.inputAmount(), this.menu.tankCapacity(), 6, 52, 0xFFD1CEBE);",
-                "this.renderPseudoTank(guiGraphics, this.leftPos + 154, this.topPos + 16, this.menu.outputAmount(), this.menu.tankCapacity(), 6, 52, 0xFFB8C77A);",
+                "this.renderVerticalFluidGaugeBar(guiGraphics, this.leftPos + 16, this.topPos + 16, 6, 52,",
+                "this.renderVerticalFluidGaugeBar(guiGraphics, this.leftPos + 154, this.topPos + 16, 6, 52,",
                 "if (this.menu.inputNeedsSpeedUpgrade() && !this.menu.hasSpeedUpgrade()) {",
                 "Component.translatable(\"screen.hbmntm.machine_gascent.warning\")"
             )

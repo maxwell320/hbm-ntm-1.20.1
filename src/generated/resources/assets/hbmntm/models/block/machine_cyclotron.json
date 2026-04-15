@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "hbmntm:block/machine_cyclotron",
+    "front": "hbmntm:block/machine_cyclotron",
+    "particle": "hbmntm:block/machine_cyclotron",
+    "side": "hbmntm:block/machine_cyclotron",
+    "top": "hbmntm:block/machine_cyclotron"
+  }
+}

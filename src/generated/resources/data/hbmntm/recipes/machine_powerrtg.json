@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "P": {
+      "item": "hbmntm:billet_polonium"
+    },
+    "R": {
+      "item": "hbmntm:rtg_unit"
+    },
+    "S": {
+      "item": "hbmntm:ingot_starmetal"
+    },
+    "T": {
+      "item": "hbmntm:powder_tennessine"
+    }
+  },
+  "pattern": [
+    "SRS",
+    "PTP",
+    "SRS"
+  ],
+  "result": {
+    "item": "hbmntm:machine_powerrtg"
+  },
+  "show_notification": true
+}

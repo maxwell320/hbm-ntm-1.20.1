@@ -3,7 +3,6 @@ package com.hbm.ntm.common.menu;
 import com.hbm.ntm.common.block.entity.PurexBlockEntity;
 import com.hbm.ntm.common.item.BatteryItem;
 import com.hbm.ntm.common.item.BlueprintItem;
-import com.hbm.ntm.common.item.MachineUpgradeItem;
 import com.hbm.ntm.common.registration.HbmMenuTypes;
 import java.util.List;
 import net.minecraft.nbt.CompoundTag;
@@ -32,6 +31,10 @@ public class PurexMenu extends MachineMenuBase<PurexBlockEntity> {
     private boolean clientHasRecipe;
     private boolean clientCanProcess;
     private boolean clientHasPower;
+    private String clientRecipeId = "";
+    private String clientSelectedRecipeId = "";
+    private int clientRecipeIndex = -1;
+    private int clientRecipeCount;
     private final int[] fluidAmounts = new int[4];
     private final int[] fluidCapacities = new int[4];
     private final String[] fluidNames = new String[]{"", "", "", ""};
@@ -50,10 +53,8 @@ public class PurexMenu extends MachineMenuBase<PurexBlockEntity> {
             (slot, stack) -> stack.getItem() instanceof BatteryItem));
         this.addSlot(new FilteredSlotItemHandler(handler, PurexBlockEntity.SLOT_BLUEPRINT, 35, 126,
             (slot, stack) -> stack.getItem() instanceof BlueprintItem));
-        this.addSlot(new FilteredSlotItemHandler(handler, PurexBlockEntity.SLOT_UPGRADE_1, 152, 108,
-            (slot, stack) -> stack.getItem() instanceof MachineUpgradeItem));
-        this.addSlot(new FilteredSlotItemHandler(handler, PurexBlockEntity.SLOT_UPGRADE_2, 170, 108,
-            (slot, stack) -> stack.getItem() instanceof MachineUpgradeItem));
+        this.addUpgradeSlot(handler, PurexBlockEntity.SLOT_UPGRADE_1, 152, 108);
+        this.addUpgradeSlot(handler, PurexBlockEntity.SLOT_UPGRADE_2, 170, 108);
 
         this.addSlot(new FilteredSlotItemHandler(handler, PurexBlockEntity.SLOT_INPUT_1, 8, 90,
             (slot, stack) -> this.machine == null || this.machine.isItemValid(slot, stack)));
@@ -101,8 +102,8 @@ public class PurexMenu extends MachineMenuBase<PurexBlockEntity> {
             return this.moveItemStackTo(stack, PurexBlockEntity.SLOT_BLUEPRINT, PurexBlockEntity.SLOT_BLUEPRINT + 1, false);
         }
 
-        if (stack.getItem() instanceof MachineUpgradeItem) {
-            return this.moveItemStackTo(stack, PurexBlockEntity.SLOT_UPGRADE_1, PurexBlockEntity.SLOT_UPGRADE_2 + 1, false);
+        if (this.isUpgradeItem(stack)) {
+            return this.moveToMachineRange(stack, PurexBlockEntity.SLOT_UPGRADE_1, PurexBlockEntity.SLOT_UPGRADE_2 + 1);
         }
 
         if (this.machine != null) {
@@ -151,6 +152,18 @@ public class PurexMenu extends MachineMenuBase<PurexBlockEntity> {
         return this.clientHasPower;
     }
 
+    public String recipeId() {
+        return this.clientSelectedRecipeId.isBlank() ? this.clientRecipeId : this.clientSelectedRecipeId;
+    }
+
+    public int recipeIndex() {
+        return this.clientRecipeIndex;
+    }
+
+    public int recipeCount() {
+        return this.clientRecipeCount;
+    }
+
     public int fluidAmount(final int tank) {
         return tank < 0 || tank >= this.fluidAmounts.length ? 0 : this.fluidAmounts[tank];
     }
@@ -173,6 +186,10 @@ public class PurexMenu extends MachineMenuBase<PurexBlockEntity> {
         this.clientHasRecipe = data.getBoolean("hasRecipe");
         this.clientCanProcess = data.getBoolean("canProcess");
         this.clientHasPower = data.getBoolean("hasPower");
+        this.clientSelectedRecipeId = data.getString("selectedRecipeId");
+        this.clientRecipeIndex = data.getInt("selectedRecipeIndex");
+        this.clientRecipeCount = Math.max(0, data.getInt("visibleRecipeCount"));
+        this.clientRecipeId = data.getString("recipeId");
 
         for (int tank = 0; tank < 4; tank++) {
             this.fluidAmounts[tank] = Math.max(0, data.getInt("fluid" + tank + "Amount"));

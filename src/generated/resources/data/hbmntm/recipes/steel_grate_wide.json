@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "G": {
+      "item": "hbmntm:steel_grate"
+    }
+  },
+  "pattern": [
+    "GG"
+  ],
+  "result": {
+    "count": 4,
+    "item": "hbmntm:steel_grate_wide"
+  },
+  "show_notification": true
+}

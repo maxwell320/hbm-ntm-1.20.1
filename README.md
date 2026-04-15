@@ -1,63 +1,60 @@
-# HBM's Nuclear Tech Mod Modern Port
+# HBM Nuclear Tech Modern Port (Forge 1.20.1)
 
-This repo is for a 1.20.1 Forge port of HBM's Nuclear Tech Mod.
+This repository is an active restoration port of HBM Nuclear Tech to modern Forge.
 
-It is not going to be a straight copy of the old 1.7.10 code. Too much of that code depends on old Forge and old Minecraft internals, so the only sane way to do this is to rebuild it piece by piece and keep the original feel where it matters.
+The goal is not to drag 1.7.10 code forward line-for-line. The goal is to preserve gameplay behavior while rebuilding systems in a maintainable 1.20.1 codebase.
 
-## Current state
+## Current status
 
-The project is past pure bootstrap and is in active system-by-system reconstruction.
+The project is in active subsystem parity work.
 
-Current rough progress snapshot:
-- generated material and item naming parity audit: `~90%`
-- overall full 1.7.10 gameplay/content parity: still much earlier than that
+Recent completed slices include:
+- major shared barrel family coverage with runtime behavior
+- explosive and waste barrel variants
+- first pass of disperser/glyphid fluid container restoration
 
-So far the project has:
-- a working Forge 1.20.1 workspace
-- Java 17 set as the build toolchain
-- Gradle runs working
-- a minimal mod bootstrap
-- a basic CI build
-- generated material/item infrastructure with datagen-backed registries and assets
-- a large legacy-backed parity sweep across isotope, powder, wire, crystal, and special-material labels
+Still in progress:
+- broader machine families
+- full fluid logistics parity
+- missile, weapon, and worldgen parity layers
 
-## Project baseline
+## Baseline
 
-- Minecraft: `1.20.1`
-- Forge: `47.4.18`
-- Java: `17`
-- Mod ID: `hbmntm`
-- Package: `com.hbm.ntm`
+- Minecraft: 1.20.1
+- Forge: 47.4.18
+- Java: 17
+- Mod ID: hbmntm
+- Package root: com.hbm.ntm
 
-## What comes first
+## Official releases
 
-The first real milestones are the boring but necessary parts:
-- registry and package structure cleanup
-- core materials and item families
-- basic blocks and recipes
-- machine foundations
-- hazard and radiation groundwork
-- heat, power, and reactor groundwork
+This project now has official distribution channels on Modrinth and CurseForge.
 
-## What is not happening yet
+If a jar is posted outside the official project pages, treat it as an unofficial mirror unless explicitly linked by the maintainer.
 
-- full content parity with the 1.7.10 version
-- one huge dump of legacy code
-- advanced compat support
-- dimensions and large world systems
-- anything that pretends this is already release-ready
+## Build and run
 
-## Building
+From the repository root:
 
-From the project root:
+- gradlew.bat compileJava
+- gradlew.bat runData
+- gradlew.bat runClient
+- gradlew.bat runServer
 
-- `gradlew.bat genIntellijRuns`
-- `gradlew.bat build`
-- `gradlew.bat runClient`
-- `gradlew.bat runServer`
+## Licensing and attribution
 
-## Notes
+Code in this repository is GPL-3.0-or-later.
 
-This is an unofficial port effort based on the original HBM project by HbMinecraft and contributors.
+Read these files before redistributing:
+- LICENSE
+- LICENSE.txt
+- NOTICE.md
+- CREDITS.txt
 
-The plan will move around as the project gets deeper into actual subsystem work. `ROADMAP.md` is just the current working order, not a promise that every phase will stay exactly the same.
+In short: you can fork and modify under GPL terms, but you must keep attribution and license notices intact. Project branding and implied endorsement are handled separately in NOTICE.md.
+
+## Attribution
+
+Original HBM Nuclear Tech was created by HbMinecraft and contributors.
+
+This repository is an independent modern port effort and is not the original 1.7.10 codebase.

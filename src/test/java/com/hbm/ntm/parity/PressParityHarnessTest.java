@@ -52,6 +52,16 @@ class PressParityHarnessTest {
             )
         ));
 
+        ROUTE_EXPECTATIONS.put("flat_meteorite_reforged_hardened", route(
+            "registry.add(PressStampType.FLAT,\n            Ingredient.of(Objects.requireNonNull(HbmItems.METEORITE_SWORD_REFORGED.get())),",
+            "new ItemStack(Objects.requireNonNull(HbmItems.METEORITE_SWORD_HARDENED.get())));",
+            Map.of(
+                "PressStampType.FLAT", 1,
+                "HbmItems.METEORITE_SWORD_REFORGED", 1,
+                "HbmItems.METEORITE_SWORD_HARDENED", 1
+            )
+        ));
+
         ROUTE_EXPECTATIONS.put("plate_saturnite", route(
             "addPlateRecipe(registry, HbmMaterials.SATURNITE);",
             "addPlateRecipe(registry, HbmMaterials.SATURNITE);",
@@ -141,7 +151,7 @@ class PressParityHarnessTest {
             dataRows++;
         }
 
-        assertTrue(dataRows >= 8, "Fixture should include at least 8 seeded legacy entries");
+        assertTrue(dataRows >= 9, "Fixture should include at least 9 seeded legacy entries");
         assertEquals(ROUTE_EXPECTATIONS.keySet(), fixtureIds, "Fixture IDs must align with seeded parity expectations");
     }
 

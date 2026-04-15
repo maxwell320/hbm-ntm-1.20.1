@@ -1,5 +1,6 @@
 package com.hbm.ntm.common.transfer;
 
+import com.hbm.ntm.HbmNtmMod;
 import java.util.ArrayDeque;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -11,8 +12,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.event.level.LevelEvent;
+import net.minecraftforge.event.server.ServerStoppedEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @SuppressWarnings("null")
+@Mod.EventBusSubscriber(modid = HbmNtmMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class TransferGraphManager {
     private static final Map<ResourceKey<Level>, Map<TransferNetworkKind, Map<BlockPos, TransferNetwork>>> NETWORKS = new HashMap<>();
     private static final Map<ResourceKey<Level>, Map<TransferNetworkKind, Set<BlockPos>>> DIRTY_NODES = new HashMap<>();
@@ -21,6 +27,9 @@ public final class TransferGraphManager {
     }
 
     public static void markDirty(final Level level, final BlockPos pos, final TransferNetworkKind kind) {
+        if (level.isClientSide()) {
+            return;
+        }
         final Map<TransferNetworkKind, Set<BlockPos>> byKind = DIRTY_NODES.computeIfAbsent(level.dimension(), key -> new EnumMap<>(TransferNetworkKind.class));
         final Set<BlockPos> dirty = byKind.computeIfAbsent(kind, key -> new HashSet<>());
         dirty.add(pos.immutable());
@@ -30,6 +39,9 @@ public final class TransferGraphManager {
     }
 
     public static TransferNetwork rebuildIfDirty(final Level level, final BlockPos origin, final TransferNetworkKind kind) {
+        if (level.isClientSide()) {
+            return new TransferNetwork(kind);
+        }
         final Map<TransferNetworkKind, Set<BlockPos>> byKind = DIRTY_NODES.get(level.dimension());
         if (byKind == null) {
             return getNetwork(level, origin, kind);
@@ -42,6 +54,9 @@ public final class TransferGraphManager {
     }
 
     public static TransferNetwork rebuildNetwork(final Level level, final BlockPos origin, final TransferNetworkKind kind) {
+        if (level.isClientSide()) {
+            return new TransferNetwork(kind);
+        }
         final BlockEntity startEntity = level.getBlockEntity(origin);
         if (!(startEntity instanceof final TransferNodeProvider startProvider) || startProvider.getTransferNetworkKind() != kind) {
             removeNode(level, origin, kind);
@@ -89,6 +104,9 @@ public final class TransferGraphManager {
     }
 
     public static TransferNetwork getNetwork(final Level level, final BlockPos pos, final TransferNetworkKind kind) {
+        if (level.isClientSide()) {
+            return new TransferNetwork(kind);
+        }
         final Map<BlockPos, TransferNetwork> byPos = NETWORKS
             .getOrDefault(level.dimension(), Map.of())
             .getOrDefault(kind, Map.of());
@@ -97,6 +115,9 @@ public final class TransferGraphManager {
     }
 
     public static void recordTransfer(final Level level, final BlockPos pos, final TransferNetworkKind kind, final long amount) {
+        if (level.isClientSide()) {
+            return;
+        }
         final TransferNetwork network = getNetwork(level, pos, kind);
         if (network.size() > 0) {
             network.recordTransfer(level.getGameTime(), amount);
@@ -104,10 +125,16 @@ public final class TransferGraphManager {
     }
 
     public static long getTransferThisTick(final Level level, final BlockPos pos, final TransferNetworkKind kind) {
+        if (level.isClientSide()) {
+            return 0L;
+        }
         return getNetwork(level, pos, kind).getTransferThisTick(level.getGameTime());
     }
 
     public static void removeNode(final Level level, final BlockPos pos, final TransferNetworkKind kind) {
+        if (level.isClientSide()) {
+            return;
+        }
         final Map<TransferNetworkKind, Map<BlockPos, TransferNetwork>> byKind = NETWORKS.get(level.dimension());
         if (byKind == null) {
             return;
@@ -117,6 +144,42 @@ public final class TransferGraphManager {
             return;
         }
         byPos.remove(pos);
+        if (byPos.isEmpty()) {
+            byKind.remove(kind);
+            final Map<TransferNetworkKind, Set<BlockPos>> dirtyByKind = DIRTY_NODES.get(level.dimension());
+            if (dirtyByKind != null) {
+                dirtyByKind.remove(kind);
+                if (dirtyByKind.isEmpty()) {
+                    DIRTY_NODES.remove(level.dimension());
+                }
+            }
+        }
+        if (byKind.isEmpty()) {
+            NETWORKS.remove(level.dimension());
+        }
+    }
+
+    public static void clearLevel(final ResourceKey<Level> levelKey) {
+        NETWORKS.remove(levelKey);
+        DIRTY_NODES.remove(levelKey);
+    }
+
+    public static void clearAll() {
+        NETWORKS.clear();
+        DIRTY_NODES.clear();
+    }
+
+    @SubscribeEvent
+    public static void onLevelUnload(final LevelEvent.Unload event) {
+        if (!(event.getLevel() instanceof final Level level) || level.isClientSide()) {
+            return;
+        }
+        clearLevel(level.dimension());
+    }
+
+    @SubscribeEvent
+    public static void onServerStopped(final ServerStoppedEvent event) {
+        clearAll();
     }
 
     private static void storeNetwork(final Level level, final TransferNetwork network) {

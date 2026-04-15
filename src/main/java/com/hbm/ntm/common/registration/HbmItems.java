@@ -21,6 +21,7 @@ import com.hbm.ntm.common.item.CokeItemType;
 import com.hbm.ntm.common.item.CircuitItemType;
 import com.hbm.ntm.common.item.ChunkOreItemType;
 import com.hbm.ntm.common.item.DosimeterItem;
+import com.hbm.ntm.common.item.DisperserCanisterItem;
 import com.hbm.ntm.common.item.FluidIdentifierItem;
 import com.hbm.ntm.common.item.FluidTankItem;
 import com.hbm.ntm.common.item.GasTankItem;
@@ -29,6 +30,7 @@ import com.hbm.ntm.common.item.IcfPelletItem;
 import com.hbm.ntm.common.item.MaterialPartItem;
 import com.hbm.ntm.common.item.MachineUpgradeItem;
 import com.hbm.ntm.common.item.PageItem;
+import com.hbm.ntm.common.item.PistonSetItem;
 import com.hbm.ntm.common.item.RadXItem;
 import com.hbm.ntm.common.item.RadawayItem;
 import com.hbm.ntm.common.item.RtgDepletedPelletItem;
@@ -87,6 +89,19 @@ public final class HbmItems {
     public static final RegistryObject<Item> TANK_STEEL = registerSimpleItem("tank_steel", SIMPLE_ITEMS);
     public static final RegistryObject<Item> CANISTER_EMPTY = registerItem("canister_empty", () -> new CanisterItem(false, HbmItems::canisterEmptyItem, HbmItems::canisterFullItem, new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
     public static final RegistryObject<Item> CANISTER_FULL = registerItem("canister_full", () -> new CanisterItem(true, HbmItems::canisterEmptyItem, HbmItems::canisterFullItem, new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> CANISTER_NAPALM = registerSimpleItem("canister_napalm", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> DISPERSER_CANISTER_EMPTY = registerItem("disperser_canister_empty",
+        () -> new DisperserCanisterItem(false, DisperserCanisterItem.ContainerKind.DISPERSER, 2_000,
+            HbmItems::disperserCanisterEmptyItem, HbmItems::disperserCanisterItem, new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> DISPERSER_CANISTER = registerItem("disperser_canister",
+        () -> new DisperserCanisterItem(true, DisperserCanisterItem.ContainerKind.DISPERSER, 2_000,
+            HbmItems::disperserCanisterEmptyItem, HbmItems::disperserCanisterItem, new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> GLYPHID_GLAND_EMPTY = registerItem("glyphid_gland_empty",
+        () -> new DisperserCanisterItem(false, DisperserCanisterItem.ContainerKind.GLYPHID, 4_000,
+            HbmItems::glyphidGlandEmptyItem, HbmItems::glyphidGlandItem, new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> GLYPHID_GLAND = registerItem("glyphid_gland",
+        () -> new DisperserCanisterItem(true, DisperserCanisterItem.ContainerKind.GLYPHID, 4_000,
+            HbmItems::glyphidGlandEmptyItem, HbmItems::glyphidGlandItem, new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
     public static final RegistryObject<Item> GAS_EMPTY = registerItem("gas_empty", () -> new GasTankItem(false, HbmItems::gasEmptyItem, HbmItems::gasFullItem, new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
     public static final RegistryObject<Item> GAS_FULL = registerItem("gas_full", () -> new GasTankItem(true, HbmItems::gasEmptyItem, HbmItems::gasFullItem, new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
     public static final RegistryObject<Item> FLUID_TANK_EMPTY = registerSimpleItem("fluid_tank_empty", SIMPLE_ITEMS);
@@ -140,13 +155,31 @@ public final class HbmItems {
     public static final RegistryObject<Item> FINS_QUAD_TITANIUM = registerSimpleItem("fins_quad_titanium", SIMPLE_ITEMS);
     public static final RegistryObject<Item> BLADE_TITANIUM = registerSimpleItem("blade_titanium", SIMPLE_ITEMS);
     public static final RegistryObject<Item> TURBINE_TITANIUM = registerSimpleItem("turbine_titanium", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> PISTON_SET_STEEL = registerItem("piston_set_steel", () -> new PistonSetItem(PistonSetItem.Tier.STEEL, new Item.Properties()), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> PISTON_SET_DURA = registerItem("piston_set_dura", () -> new PistonSetItem(PistonSetItem.Tier.DURA, new Item.Properties()), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> PISTON_SET_DESH = registerItem("piston_set_desh", () -> new PistonSetItem(PistonSetItem.Tier.DESH, new Item.Properties()), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> PISTON_SET_STARMETAL = registerItem("piston_set_starmetal", () -> new PistonSetItem(PistonSetItem.Tier.STARMETAL, new Item.Properties()), SIMPLE_ITEMS);
     public static final RegistryObject<Item> FLYWHEEL_BERYLLIUM = registerSimpleItem("flywheel_beryllium", SIMPLE_ITEMS);
     public static final RegistryObject<Item> RING_STARMETAL = registerSimpleItem("ring_starmetal", SIMPLE_ITEMS);
     public static final RegistryObject<Item> SAWBLADE = registerSimpleItem("sawblade", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> METEORITE_SWORD = registerItem("meteorite_sword", () -> new Item(new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> METEORITE_SWORD_SEARED = registerItem("meteorite_sword_seared", () -> new Item(new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> METEORITE_SWORD_REFORGED = registerItem("meteorite_sword_reforged", () -> new Item(new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> METEORITE_SWORD_HARDENED = registerItem("meteorite_sword_hardened", () -> new Item(new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> METEORITE_SWORD_ALLOYED = registerItem("meteorite_sword_alloyed", () -> new Item(new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> METEORITE_SWORD_MACHINED = registerItem("meteorite_sword_machined", () -> new Item(new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> METEORITE_SWORD_TREATED = registerItem("meteorite_sword_treated", () -> new Item(new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> METEORITE_SWORD_ETCHED = registerItem("meteorite_sword_etched", () -> new Item(new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> METEORITE_SWORD_BRED = registerItem("meteorite_sword_bred", () -> new Item(new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> METEORITE_SWORD_IRRADIATED = registerItem("meteorite_sword_irradiated", () -> new Item(new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> METEORITE_SWORD_FUSED = registerItem("meteorite_sword_fused", () -> new Item(new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> METEORITE_SWORD_BALEFUL = registerItem("meteorite_sword_baleful", () -> new Item(new Item.Properties().stacksTo(1)), SIMPLE_ITEMS);
     public static final RegistryObject<Item> NUGGET_MERCURY_TINY = registerSimpleItem("nugget_mercury_tiny", SIMPLE_ITEMS);
     public static final RegistryObject<Item> NUGGET_MERCURY = registerSimpleItem("nugget_mercury", SIMPLE_ITEMS);
     public static final RegistryObject<Item> INGOT_MERCURY = NUGGET_MERCURY;
     public static final RegistryObject<Item> BOTTLE_MERCURY = registerItem("bottle_mercury", () -> new Item(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE)), SIMPLE_ITEMS);
+    public static final RegistryObject<Item> NUCLEAR_WASTE = registerSimpleItem("nuclear_waste", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> NUCLEAR_WASTE_VITRIFIED = registerSimpleItem("nuclear_waste_vitrified", SIMPLE_ITEMS);
     public static final RegistryObject<Item> NUCLEAR_WASTE_TINY = registerSimpleItem("nuclear_waste_tiny", SIMPLE_ITEMS);
     public static final RegistryObject<Item> DEBRIS_CONCRETE = registerSimpleItem("debris_concrete", SIMPLE_ITEMS);
     public static final RegistryObject<Item> DEBRIS_SHRAPNEL = registerSimpleItem("debris_shrapnel", SIMPLE_ITEMS);
@@ -156,6 +189,7 @@ public final class HbmItems {
     public static final RegistryObject<Item> DEBRIS_GRAPHITE = registerSimpleItem("debris_graphite", SIMPLE_ITEMS);
     public static final RegistryObject<Item> FALLOUT = registerSimpleItem("fallout", SIMPLE_ITEMS);
     public static final RegistryObject<Item> POWDER_SAWDUST = registerSimpleItem("powder_sawdust", SIMPLE_ITEMS);
+    public static final RegistryObject<Item> POWDER_ASH = registerSimpleItem("powder_ash", SIMPLE_ITEMS);
     public static final RegistryObject<Item> POWDER_ICE = registerSimpleItem("powder_ice", SIMPLE_ITEMS);
     public static final RegistryObject<Item> POWDER_MAGIC = registerSimpleItem("powder_magic", SIMPLE_ITEMS);
     public static final RegistryObject<Item> POWDER_POISON = registerSimpleItem("powder_poison", SIMPLE_ITEMS);
@@ -228,16 +262,34 @@ public final class HbmItems {
     public static final RegistryObject<Item> FALLOUT_LAYER = registerBlockItem("fallout_layer", HbmBlocks.FALLOUT, BLOCK_ITEMS);
     public static final RegistryObject<Item> CREATIVE_ENERGY_SOURCE = registerBlockItem("creative_energy_source", HbmBlocks.CREATIVE_ENERGY_SOURCE, BLOCK_ITEMS);
     public static final RegistryObject<Item> MACHINE_BATTERY = registerItem("machine_battery", () -> new BatteryBlockItem(HbmBlocks.MACHINE_BATTERY.get(), new Item.Properties()), HIDDEN_ITEMS);
+    public static final RegistryObject<Item> STEEL_BEAM = registerBlockItem("steel_beam", HbmBlocks.STEEL_BEAM, BLOCK_ITEMS);
+    public static final RegistryObject<Item> STEEL_GRATE = registerBlockItem("steel_grate", HbmBlocks.STEEL_GRATE, BLOCK_ITEMS);
+    public static final RegistryObject<Item> STEEL_GRATE_WIDE = registerBlockItem("steel_grate_wide", HbmBlocks.STEEL_GRATE_WIDE, BLOCK_ITEMS);
     public static final RegistryObject<Item> RED_CABLE = registerBlockItem("red_cable", HbmBlocks.RED_CABLE, BLOCK_ITEMS);
     public static final RegistryObject<Item> RED_CABLE_CLASSIC = registerBlockItem("red_cable_classic", HbmBlocks.RED_CABLE_CLASSIC, BLOCK_ITEMS);
     public static final RegistryObject<Item> FLUID_DUCT_NEO = registerBlockItem("fluid_duct_neo", HbmBlocks.FLUID_DUCT_NEO, BLOCK_ITEMS);
+    public static final RegistryObject<Item> GLASS_BORON = registerBlockItem("glass_boron", HbmBlocks.GLASS_BORON, BLOCK_ITEMS);
     public static final RegistryObject<Item> GEIGER = registerBlockItem("geiger", HbmBlocks.GEIGER, BLOCK_ITEMS);
     public static final RegistryObject<Item> MACHINE_PRESS = registerBlockItem("machine_press", HbmBlocks.MACHINE_PRESS, BLOCK_ITEMS);
     public static final RegistryObject<Item> MACHINE_ASSEMBLY_MACHINE = registerBlockItem("machine_assembly_machine", HbmBlocks.MACHINE_ASSEMBLY_MACHINE, BLOCK_ITEMS);
     public static final RegistryObject<Item> MACHINE_SOLDERING_STATION = registerBlockItem("machine_soldering_station", HbmBlocks.MACHINE_SOLDERING_STATION, BLOCK_ITEMS);
+    public static final RegistryObject<Item> MACHINE_DI_FURNACE = registerBlockItem("machine_difurnace", HbmBlocks.MACHINE_DI_FURNACE, BLOCK_ITEMS);
+    public static final RegistryObject<Item> MACHINE_DI_FURNACE_EXTENSION = registerBlockItem("machine_difurnace_extension", HbmBlocks.MACHINE_DI_FURNACE_EXTENSION, BLOCK_ITEMS);
+    public static final RegistryObject<Item> MACHINE_DI_FURNACE_RTG = registerBlockItem("machine_difurnace_rtg", HbmBlocks.MACHINE_DI_FURNACE_RTG, BLOCK_ITEMS);
+    public static final RegistryObject<Item> MACHINE_ELECTRIC_FURNACE = registerBlockItem("machine_electric_furnace", HbmBlocks.MACHINE_ELECTRIC_FURNACE, BLOCK_ITEMS);
+    public static final RegistryObject<Item> MACHINE_RTG_FURNACE = registerBlockItem("machine_rtg_furnace", HbmBlocks.MACHINE_RTG_FURNACE, BLOCK_ITEMS);
+    public static final RegistryObject<Item> MACHINE_RTG_GREY = registerBlockItem("machine_rtg_grey", HbmBlocks.MACHINE_RTG_GREY, BLOCK_ITEMS);
+    public static final RegistryObject<Item> MACHINE_DIESEL_GENERATOR = registerBlockItem("machine_diesel", HbmBlocks.MACHINE_DIESEL_GENERATOR, BLOCK_ITEMS);
+    public static final RegistryObject<Item> MACHINE_COMBUSTION_ENGINE = registerBlockItem("machine_combustion", HbmBlocks.MACHINE_COMBUSTION_ENGINE, BLOCK_ITEMS);
+    public static final RegistryObject<Item> MACHINE_ASHPIT = registerBlockItem("machine_ashpit", HbmBlocks.MACHINE_ASHPIT, BLOCK_ITEMS);
+    public static final RegistryObject<Item> CHIMNEY_BRICK = registerBlockItem("chimney_brick", HbmBlocks.CHIMNEY_BRICK, BLOCK_ITEMS);
+    public static final RegistryObject<Item> CHIMNEY_INDUSTRIAL = registerBlockItem("chimney_industrial", HbmBlocks.CHIMNEY_INDUSTRIAL, BLOCK_ITEMS);
+    public static final RegistryObject<Item> MACHINE_MINI_RTG = registerBlockItem("machine_minirtg", HbmBlocks.MACHINE_MINI_RTG, BLOCK_ITEMS);
+    public static final RegistryObject<Item> MACHINE_POWER_RTG = registerBlockItem("machine_powerrtg", HbmBlocks.MACHINE_POWER_RTG, BLOCK_ITEMS);
     public static final RegistryObject<Item> MACHINE_SHREDDER = registerBlockItem("machine_shredder", HbmBlocks.MACHINE_SHREDDER, BLOCK_ITEMS);
     public static final RegistryObject<Item> MACHINE_CENTRIFUGE = registerBlockItem("machine_centrifuge", HbmBlocks.MACHINE_CENTRIFUGE, BLOCK_ITEMS);
     public static final RegistryObject<Item> MACHINE_GAS_CENTRIFUGE = registerBlockItem("machine_gascent", HbmBlocks.MACHINE_GAS_CENTRIFUGE, BLOCK_ITEMS);
+    public static final RegistryObject<Item> MACHINE_CYCLOTRON = registerBlockItem("machine_cyclotron", HbmBlocks.MACHINE_CYCLOTRON, BLOCK_ITEMS);
     public static final RegistryObject<Item> MACHINE_PUREX = registerBlockItem("machine_purex", HbmBlocks.MACHINE_PUREX, BLOCK_ITEMS);
     public static final RegistryObject<Item> MACHINE_ICF = registerBlockItem("machine_icf", HbmBlocks.MACHINE_ICF, BLOCK_ITEMS);
     public static final RegistryObject<Item> MACHINE_ICF_CONTROLLER = registerBlockItem("machine_icf_controller", HbmBlocks.MACHINE_ICF_CONTROLLER, BLOCK_ITEMS);
@@ -250,6 +302,12 @@ public final class HbmItems {
     public static final RegistryObject<Item> BARREL_STEEL = registerItem("barrel_steel", () -> new BarrelBlockItem(HbmBlocks.BARREL_STEEL.get(), BarrelType.STEEL, new Item.Properties()), BLOCK_ITEMS);
     public static final RegistryObject<Item> BARREL_TCALLOY = registerItem("barrel_tcalloy", () -> new BarrelBlockItem(HbmBlocks.BARREL_TCALLOY.get(), BarrelType.TCALLOY, new Item.Properties()), BLOCK_ITEMS);
     public static final RegistryObject<Item> BARREL_ANTIMATTER = registerItem("barrel_antimatter", () -> new BarrelBlockItem(HbmBlocks.BARREL_ANTIMATTER.get(), BarrelType.ANTIMATTER, new Item.Properties()), BLOCK_ITEMS);
+    public static final RegistryObject<Item> BARREL_RED = registerBlockItem("barrel_red", HbmBlocks.BARREL_RED, BLOCK_ITEMS);
+    public static final RegistryObject<Item> BARREL_PINK = registerBlockItem("barrel_pink", HbmBlocks.BARREL_PINK, BLOCK_ITEMS);
+    public static final RegistryObject<Item> BARREL_LOX = registerBlockItem("barrel_lox", HbmBlocks.BARREL_LOX, BLOCK_ITEMS);
+    public static final RegistryObject<Item> BARREL_TAINT = registerBlockItem("barrel_taint", HbmBlocks.BARREL_TAINT, BLOCK_ITEMS);
+    public static final RegistryObject<Item> BARREL_YELLOW = registerBlockItem("barrel_yellow", HbmBlocks.BARREL_YELLOW, BLOCK_ITEMS);
+    public static final RegistryObject<Item> BARREL_VITRIFIED = registerBlockItem("barrel_vitrified", HbmBlocks.BARREL_VITRIFIED, BLOCK_ITEMS);
     public static final RegistryObject<Item> SELLAFIELD = registerItem("sellafield", () -> new SellafieldBlockItem(HbmBlocks.SELLAFIELD.get(), new Item.Properties()), BLOCK_ITEMS);
     public static final RegistryObject<Item> GEIGER_COUNTER = registerItem("geiger_counter", () -> new GeigerCounterItem(new Item.Properties()), SIMPLE_ITEMS);
     public static final RegistryObject<Item> GEM_RAD = registerSimpleItem("gem_rad", SIMPLE_ITEMS);
@@ -392,6 +450,22 @@ public final class HbmItems {
 
     private static Item canisterFullItem() {
         return Objects.requireNonNull(CANISTER_FULL.get());
+    }
+
+    private static Item disperserCanisterEmptyItem() {
+        return Objects.requireNonNull(DISPERSER_CANISTER_EMPTY.get());
+    }
+
+    private static Item disperserCanisterItem() {
+        return Objects.requireNonNull(DISPERSER_CANISTER.get());
+    }
+
+    private static Item glyphidGlandEmptyItem() {
+        return Objects.requireNonNull(GLYPHID_GLAND_EMPTY.get());
+    }
+
+    private static Item glyphidGlandItem() {
+        return Objects.requireNonNull(GLYPHID_GLAND.get());
     }
 
     private static Item gasEmptyItem() {

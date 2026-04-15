@@ -4,6 +4,7 @@ import com.hbm.ntm.HbmNtmMod;
 import com.hbm.ntm.common.menu.GasCentrifugeMenu;
 import java.util.List;
 import java.util.Optional;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -34,10 +35,17 @@ public class GasCentrifugeScreen extends MachineScreenBase<GasCentrifugeMenu> {
             guiGraphics.blit(TEXTURE, this.leftPos + 70, this.topPos + 35, 206, 52, progressPixels, 13);
         }
 
-        this.renderPseudoTank(guiGraphics, this.leftPos + 16, this.topPos + 16, this.menu.inputAmount(), this.menu.tankCapacity(), 6, 52, 0xFFD1CEBE);
-        this.renderPseudoTank(guiGraphics, this.leftPos + 32, this.topPos + 16, this.menu.inputAmount(), this.menu.tankCapacity(), 6, 52, 0xFFD1CEBE);
-        this.renderPseudoTank(guiGraphics, this.leftPos + 138, this.topPos + 16, this.menu.outputAmount(), this.menu.tankCapacity(), 6, 52, 0xFFB8C77A);
-        this.renderPseudoTank(guiGraphics, this.leftPos + 154, this.topPos + 16, this.menu.outputAmount(), this.menu.tankCapacity(), 6, 52, 0xFFB8C77A);
+        this.renderLegacyInfoPanel(guiGraphics, this.leftPos - 12, this.topPos + 16, 3);
+        this.renderLegacyInfoPanel(guiGraphics, this.leftPos - 12, this.topPos + 32, 2);
+
+        this.renderVerticalFluidGaugeBar(guiGraphics, this.leftPos + 16, this.topPos + 16, 6, 52,
+            this.menu.inputAmount(), this.menu.tankCapacity(), 0xFFD1CEBE);
+        this.renderVerticalFluidGaugeBar(guiGraphics, this.leftPos + 32, this.topPos + 16, 6, 52,
+            this.menu.inputAmount(), this.menu.tankCapacity(), 0xFFD1CEBE);
+        this.renderVerticalFluidGaugeBar(guiGraphics, this.leftPos + 138, this.topPos + 16, 6, 52,
+            this.menu.outputAmount(), this.menu.tankCapacity(), 0xFFB8C77A);
+        this.renderVerticalFluidGaugeBar(guiGraphics, this.leftPos + 154, this.topPos + 16, 6, 52,
+            this.menu.outputAmount(), this.menu.tankCapacity(), 0xFFB8C77A);
     }
 
     @Override
@@ -53,9 +61,13 @@ public class GasCentrifugeScreen extends MachineScreenBase<GasCentrifugeMenu> {
             this.menu.maxEnergy());
 
         if (this.inside(mouseX, mouseY, this.leftPos + 15, this.topPos + 15, 24, 55)) {
+            final Component inputName = Component.translatable(this.menu.inputTypeKey())
+                .withStyle(this.menu.inputNeedsSpeedUpgrade()
+                    ? (this.menu.hasSpeedUpgrade() ? ChatFormatting.GOLD : ChatFormatting.DARK_RED)
+                    : ChatFormatting.WHITE);
             guiGraphics.renderTooltip(this.font,
                 List.of(
-                    Component.translatable(this.menu.inputTypeKey()),
+                    inputName,
                     Component.literal(this.menu.inputAmount() + " / " + this.menu.tankCapacity() + " mB")),
                 Optional.empty(),
                 mouseX,
@@ -80,6 +92,22 @@ public class GasCentrifugeScreen extends MachineScreenBase<GasCentrifugeMenu> {
                 0xAA3030,
                 false);
         }
+
+        this.renderLegacyInfoPanelTooltip(guiGraphics, mouseX, mouseY, this.leftPos - 12, this.topPos + 16, 3,
+            List.of(
+                Component.literal("Enrichment").withStyle(ChatFormatting.GREEN),
+                Component.literal("Uranium enrichment requires cascades."),
+                Component.literal("Two centrifuges produce fuel."),
+                Component.literal("Four centrifuges fully separate U-235.")));
+
+        this.renderLegacyInfoPanelTooltip(guiGraphics, mouseX, mouseY, this.leftPos - 12, this.topPos + 32, 2,
+            List.of(
+                Component.literal("Fluid Transfer").withStyle(ChatFormatting.GOLD),
+                Component.literal("Output fluid can be piped into"),
+                Component.literal("another centrifuge for further processing.")));
+
+        this.renderUpgradeInfoTooltip(guiGraphics, mouseX, mouseY,
+            this.leftPos + 69, this.topPos + 15, 18, 18);
     }
 
     @Override
@@ -87,18 +115,4 @@ public class GasCentrifugeScreen extends MachineScreenBase<GasCentrifugeMenu> {
         return TEXTURE;
     }
 
-    private void renderPseudoTank(final GuiGraphics guiGraphics,
-                                  final int x,
-                                  final int y,
-                                  final int amount,
-                                  final int capacity,
-                                  final int width,
-                                  final int height,
-                                  final int color) {
-        if (amount <= 0 || capacity <= 0) {
-            return;
-        }
-        final int fill = Math.max(1, Math.min(height, amount * height / capacity));
-        guiGraphics.fill(x, y + height - fill, x + width, y + height, color);
-    }
 }

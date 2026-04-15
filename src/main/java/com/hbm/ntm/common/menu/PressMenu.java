@@ -5,19 +5,15 @@ import com.hbm.ntm.common.config.PressMachineConfig;
 import com.hbm.ntm.common.item.StampBookItem;
 import com.hbm.ntm.common.item.StampItem;
 import com.hbm.ntm.common.registration.HbmMenuTypes;
-import com.hbm.ntm.common.menu.OutputSlotItemHandler;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.items.ItemStackHandler;
-import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("null")
 public class PressMenu extends MachineMenuBase<PressBlockEntity> {
@@ -41,9 +37,7 @@ public class PressMenu extends MachineMenuBase<PressBlockEntity> {
         this.addSlot(new FilteredSlotItemHandler(handler, PressBlockEntity.SLOT_INPUT, 80, 53,
             (slot, stack) -> press == null || press.isItemValid(slot, stack)));
         this.addSlot(new OutputSlotItemHandler(handler, PressBlockEntity.SLOT_OUTPUT, 140, 35));
-        for (int i = 0; i < 9; i++) {
-            this.addSlot(new net.minecraftforge.items.SlotItemHandler(handler, PressBlockEntity.SLOT_STORAGE_START + i, 8 + i * 18, 84));
-        }
+        this.addGridSlots(handler, PressBlockEntity.SLOT_STORAGE_START, 8, 84, 1, 9);
         this.addPlayerInventory(inventory, 8, 120);
         this.data = press == null
             ? new SimpleContainerData(3)
@@ -65,11 +59,6 @@ public class PressMenu extends MachineMenuBase<PressBlockEntity> {
         }
         return this.moveItemStackTo(stack, PressBlockEntity.SLOT_INPUT, PressBlockEntity.SLOT_INPUT + 1, false)
             || this.moveItemStackTo(stack, PressBlockEntity.SLOT_STORAGE_START, PressBlockEntity.SLOT_STORAGE_START + 9, false);
-    }
-
-    @Override
-    public boolean stillValid(final @NotNull Player player) {
-        return this.machine != null && this.machine.canPlayerControl(player);
     }
 
     public int speed() {
@@ -100,9 +89,11 @@ public class PressMenu extends MachineMenuBase<PressBlockEntity> {
 
     @Override
     protected void readMachineStateSync(final CompoundTag data) {
-        this.machine.setClientSpeed(Math.max(0, data.getInt("speed")));
-        this.machine.setClientBurnTime(Math.max(0, data.getInt("burnTime")));
-        this.machine.setClientPressTicks(Math.max(0, data.getInt("pressTicks")));
+        if (this.machine != null) {
+            this.machine.setClientSpeed(Math.max(0, data.getInt("speed")));
+            this.machine.setClientBurnTime(Math.max(0, data.getInt("burnTime")));
+            this.machine.setClientPressTicks(Math.max(0, data.getInt("pressTicks")));
+        }
         this.clientMaxSpeed = Math.max(1, data.getInt("maxSpeed"));
         this.clientMaxPress = Math.max(1, data.getInt("maxPress"));
     }

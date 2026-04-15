@@ -1,9 +1,0 @@
-{
-  "flip_v": true,
-  "loader": "forge:obj",
-  "model": "hbmntm:models/block/barrel_body.obj",
-  "textures": {
-    "particle": "hbmntm:block/barrel_corroded",
-    "texture0": "hbmntm:block/barrel_corroded"
-  }
-}

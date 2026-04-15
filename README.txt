@@ -1,53 +1,55 @@
-HBM's Nuclear Tech Mod - 1.20.1 port
- ====================================
+HBM Nuclear Tech Modern Port (Forge 1.20.1)
+ ==========================================
 
- This repo is an ongoing Forge 1.20.1 restoration port of HBM's Nuclear Tech Mod.
+ This repository is an active restoration port of HBM Nuclear Tech to modern Forge.
 
- The goal is pretty simple: bring the old mod forward without gutting what made it HBM in the first place. I am not trying to turn it into a loose remake. The plan is to rebuild the old systems one by one on a modern codebase so the result is easier to maintain, easier to debug, and a lot less fragile than dragging 1.7.10 code forward wholesale.
+ The goal is to keep legacy gameplay behavior while rebuilding systems in a maintainable 1.20.1 codebase. This is not a one-shot code dump from 1.7.10.
 
- Right now this is still an early port, not a finished playable release. A decent amount of groundwork is done though. The material/item pipeline exists, the radiation system is in, the Geiger tools and several hazard blocks are working, the anvil and stamp foundation is there, part of the circuit chain is in, and the first press support pieces have started to land.
+ Current state
+ -------------
+ The project is in ongoing subsystem parity work.
 
- Current baseline
- ----------------
- - Minecraft Forge 1.20.1
- - Forge 47.4.18
- - Java 17
- - Mod ID: `hbmntm`
- - Base package: `com.hbm.ntm`
+ Recent completed slices include:
+ - large shared barrel family coverage
+ - explosive and waste barrel variants
+ - first pass of disperser/glyphid fluid container restoration
 
- Setup
- -----
- IntelliJ:
- 1. Open the folder as a Gradle project.
- 2. If run configs are missing, run `./gradlew genIntellijRuns`.
+ Broader machine, logistics, and world-content parity is still in progress.
 
- Eclipse:
- 1. Run `./gradlew genEclipseRuns`.
- 2. Import the folder as an existing Gradle project.
+ Baseline
+ --------
+ - Minecraft: 1.20.1
+ - Forge: 47.4.18
+ - Java: 17
+ - Mod ID: hbmntm
+ - Base package: com.hbm.ntm
 
- If Gradle or your IDE gets weird, the usual fixes are still the usual fixes:
- - `./gradlew --refresh-dependencies`
- - `./gradlew clean`
+ Official releases
+ -----------------
+ This project now has official pages on Modrinth and CurseForge.
 
- A few useful commands
- ---------------------
- - `./gradlew compileJava`
- - `./gradlew runData`
- - `./gradlew runClient`
+ If a jar is posted elsewhere and not linked by the maintainer, treat it as unofficial.
 
- Project layout
- --------------
- - `src/main/java/com/hbm/ntm/` - code
- - `src/main/resources/` - hand-written assets and metadata
- - `src/generated/resources/` - generated recipes, tags, loot, models, and lang output
+ Useful commands
+ ---------------
+ - ./gradlew compileJava
+ - ./gradlew runData
+ - ./gradlew runClient
+ - ./gradlew runServer
 
- Licensing
- ---------
- The repo currently declares `GPL-3.0-or-later`.
+ Licensing and attribution
+ -------------------------
+ Code in this repository is GPL-3.0-or-later.
 
- The full GPL text is in `LICENSE`. `LICENSE.txt` and `CREDITS.txt` are just companion files for attribution and extra context.
+ Read the full policy in:
+ - LICENSE
+ - LICENSE.txt
+ - NOTICE.md
+ - CREDITS.txt
 
- Reference docs
- --------------
- - Forge docs: https://docs.minecraftforge.net/en/1.20.1/
- - Java 17 docs: https://docs.oracle.com/en/java/javase/17/
+ You can fork and modify under GPL, but attribution and license notices must be preserved.
+
+ Credits
+ -------
+ Original HBM Nuclear Tech content belongs to HbMinecraft and original contributors.
+ This repository is an independent modern port effort.

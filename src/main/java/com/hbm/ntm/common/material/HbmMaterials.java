@@ -87,6 +87,13 @@ public final class HbmMaterials {
         .withItemDisplayName(HbmMaterialShape.INGOT, "Plutonium-240 Ingot")
         .withItemDisplayName(HbmMaterialShape.NUGGET, "Plutonium-240 Nugget")
         .withItemDisplayName(HbmMaterialShape.BILLET, "Plutonium-240 Billet");
+    public static final HbmMaterialDefinition PU241 = HbmMaterialDefinition.of("pu241", "Pu-241", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET)
+        .withItemId(HbmMaterialShape.INGOT, "ingot_pu241")
+        .withItemId(HbmMaterialShape.NUGGET, "nugget_pu241")
+        .withItemId(HbmMaterialShape.BILLET, "billet_pu241")
+        .withItemDisplayName(HbmMaterialShape.INGOT, "Plutonium-241 Ingot")
+        .withItemDisplayName(HbmMaterialShape.NUGGET, "Plutonium-241 Nugget")
+        .withItemDisplayName(HbmMaterialShape.BILLET, "Plutonium-241 Billet");
     public static final HbmMaterialDefinition PU_MIX = HbmMaterialDefinition.of("pu_mix", "Plutonium Mix", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET)
         .withItemId(HbmMaterialShape.INGOT, "ingot_pu_mix")
         .withItemId(HbmMaterialShape.NUGGET, "nugget_pu_mix")
@@ -146,6 +153,20 @@ public final class HbmMaterials {
         .withItemDisplayName(HbmMaterialShape.INGOT, "Americium-241 Ingot")
         .withItemDisplayName(HbmMaterialShape.NUGGET, "Americium-241 Nugget")
         .withItemDisplayName(HbmMaterialShape.BILLET, "Americium-241 Billet");
+    public static final HbmMaterialDefinition AM242 = HbmMaterialDefinition.of("am242", "Am-242", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET)
+        .withItemId(HbmMaterialShape.INGOT, "ingot_am242")
+        .withItemId(HbmMaterialShape.NUGGET, "nugget_am242")
+        .withItemId(HbmMaterialShape.BILLET, "billet_am242")
+        .withItemDisplayName(HbmMaterialShape.INGOT, "Americium-242 Ingot")
+        .withItemDisplayName(HbmMaterialShape.NUGGET, "Americium-242 Nugget")
+        .withItemDisplayName(HbmMaterialShape.BILLET, "Americium-242 Billet");
+    public static final HbmMaterialDefinition AM_MIX = HbmMaterialDefinition.of("am_mix", "Reactor Grade Americium", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET)
+        .withItemId(HbmMaterialShape.INGOT, "ingot_am_mix")
+        .withItemId(HbmMaterialShape.NUGGET, "nugget_am_mix")
+        .withItemId(HbmMaterialShape.BILLET, "billet_am_mix")
+        .withItemDisplayName(HbmMaterialShape.INGOT, "Reactor Grade Americium Ingot")
+        .withItemDisplayName(HbmMaterialShape.NUGGET, "Reactor Grade Americium Nugget")
+        .withItemDisplayName(HbmMaterialShape.BILLET, "Reactor Grade Americium Billet");
     public static final HbmMaterialDefinition PB209 = HbmMaterialDefinition.of("pb209", "Lead-209", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET)
         .withItemDisplayName(HbmMaterialShape.INGOT, "Lead-209 Ingot")
         .withItemDisplayName(HbmMaterialShape.NUGGET, "Lead-209 Nugget");
@@ -440,6 +461,7 @@ public final class HbmMaterials {
         PU238,
         PU239,
         PU240,
+        PU241,
         PU_MIX,
         NEPTUNIUM,
         POLONIUM,
@@ -454,6 +476,8 @@ public final class HbmMaterials {
         CO60,
         AU198,
         AM241,
+        AM242,
+        AM_MIX,
         PB209,
         TITANIUM,
         COPPER,

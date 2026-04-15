@@ -30,18 +30,24 @@ public class IcfScreen extends MachineScreenBase<IcfMenu> {
         }
 
         final long maxHeat = this.menu.maxHeat();
-        if (maxHeat > 0L && this.menu.heat() > 0L) {
-            final int heatPixels = (int) Math.max(0L, Math.min(18L, this.menu.heat() * 18L / maxHeat));
-            if (heatPixels > 0) {
-                guiGraphics.fill(this.leftPos + 196, this.topPos + 98 - heatPixels, this.leftPos + 201, this.topPos + 98, 0xFFFF00AF);
-            }
+        if (maxHeat > 0L) {
+            this.renderSmoothNeedleGauge(
+                guiGraphics,
+                this.leftPos + 196,
+                this.topPos + 98,
+                (double) this.menu.heat() / (double) maxHeat,
+                5.0D,
+                2.0D,
+                1.0D,
+                0xFFFF00AF,
+                0xFF000000);
         }
 
-        this.renderVerticalFluidBar(guiGraphics, this.leftPos + 44, this.topPos + 18, 16, 70,
+        this.renderVerticalFluidGaugeBar(guiGraphics, this.leftPos + 44, this.topPos + 18, 16, 70,
             this.menu.fluidAmount(0), this.menu.fluidCapacity(0), 0xFF4E8FD6);
-        this.renderVerticalFluidBar(guiGraphics, this.leftPos + 188, this.topPos + 18, 16, 70,
+        this.renderVerticalFluidGaugeBar(guiGraphics, this.leftPos + 188, this.topPos + 18, 16, 70,
             this.menu.fluidAmount(1), this.menu.fluidCapacity(1), 0xFFE39BB9);
-        this.renderVerticalFluidBar(guiGraphics, this.leftPos + 224, this.topPos + 18, 16, 70,
+        this.renderVerticalFluidGaugeBar(guiGraphics, this.leftPos + 224, this.topPos + 18, 16, 70,
             this.menu.fluidAmount(2), this.menu.fluidCapacity(2), 0xFFE300FF);
     }
 
@@ -61,7 +67,7 @@ public class IcfScreen extends MachineScreenBase<IcfMenu> {
             final List<Component> tooltip = new ArrayList<>();
             final long maxLaser = this.menu.maxLaser();
             if (maxLaser <= 0L || this.menu.laser() <= 0L) {
-                tooltip.add(Component.literal("OFFLINE"));
+                tooltip.add(Component.literal("OFFLINE").withStyle(net.minecraft.ChatFormatting.RED));
             } else {
                 final double percent = this.menu.laser() * 100.0D / maxLaser;
                 tooltip.add(Component.literal(formatShortNumber(this.menu.laser()) + " TU/t - " + String.format(Locale.ROOT, "%.1f", percent) + "%"));
@@ -92,47 +98,5 @@ public class IcfScreen extends MachineScreenBase<IcfMenu> {
     @Override
     protected ResourceLocation texture() {
         return TEXTURE;
-    }
-
-    private void renderVerticalFluidBar(final GuiGraphics guiGraphics,
-                                        final int x,
-                                        final int y,
-                                        final int width,
-                                        final int height,
-                                        final int amount,
-                                        final int capacity,
-                                        final int color) {
-        if (amount <= 0 || capacity <= 0) {
-            return;
-        }
-        final int fill = Math.max(1, Math.min(height, amount * height / capacity));
-        guiGraphics.fill(x, y + height - fill, x + width, y + height, color);
-    }
-
-    private static String formatShortNumber(final long value) {
-        if (value >= 1_000_000_000_000_000_000L) {
-            return scaled(value, 1_000_000_000_000_000_000D, "E");
-        }
-        if (value >= 1_000_000_000_000_000L) {
-            return scaled(value, 1_000_000_000_000_000D, "P");
-        }
-        if (value >= 1_000_000_000_000L) {
-            return scaled(value, 1_000_000_000_000D, "T");
-        }
-        if (value >= 1_000_000_000L) {
-            return scaled(value, 1_000_000_000D, "G");
-        }
-        if (value >= 1_000_000L) {
-            return scaled(value, 1_000_000D, "M");
-        }
-        if (value >= 1_000L) {
-            return scaled(value, 1_000D, "k");
-        }
-        return Long.toString(value);
-    }
-
-    private static String scaled(final long value, final double divisor, final String suffix) {
-        final double result = Math.round(value / divisor * 100.0D) / 100.0D;
-        return result + suffix;
     }
 }

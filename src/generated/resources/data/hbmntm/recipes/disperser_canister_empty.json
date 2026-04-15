@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "item": "hbmntm:glass_boron"
+    },
+    "P": [
+      {
+        "item": "hbmntm:ingot_polymer"
+      },
+      {
+        "item": "hbmntm:ingot_bakelite"
+      },
+      {
+        "item": "hbmntm:ingot_biorubber"
+      },
+      {
+        "item": "hbmntm:ingot_rubber"
+      },
+      {
+        "item": "hbmntm:ingot_pet"
+      },
+      {
+        "item": "hbmntm:ingot_pc"
+      },
+      {
+        "item": "hbmntm:ingot_pvc"
+      }
+    ]
+  },
+  "pattern": [
+    " P ",
+    "PGP",
+    " P "
+  ],
+  "result": {
+    "count": 4,
+    "item": "hbmntm:disperser_canister_empty"
+  },
+  "show_notification": true
+}

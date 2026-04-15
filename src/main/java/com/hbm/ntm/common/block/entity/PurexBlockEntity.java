@@ -15,6 +15,8 @@ import com.hbm.ntm.common.registration.HbmBlockEntityTypes;
 import com.hbm.ntm.common.registration.HbmBlocks;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -73,6 +75,8 @@ public class PurexBlockEntity extends MachineBlockEntity {
     private boolean hasRecipe;
     private boolean canProcessRecipe;
     private boolean hasPowerForRecipe;
+    private String selectedRecipeId = "";
+    private String activeRecipeId = "";
 
     public PurexBlockEntity(final BlockPos pos, final BlockState state) {
         super(HbmBlockEntityTypes.MACHINE_PUREX.get(), pos, state, SLOT_COUNT);
@@ -117,8 +121,21 @@ public class PurexBlockEntity extends MachineBlockEntity {
             dirty = true;
         }
 
-        final @Nullable PurexRecipe recipe = purex.findRecipe();
-        purex.hasRecipe = recipe != null;
+        if (purex.syncSelectedRecipe()) {
+            dirty = true;
+        }
+
+        final @Nullable PurexRecipe selectedRecipe = purex.getSelectedRecipe().orElse(null);
+        final String recipeId = selectedRecipe == null ? "" : selectedRecipe.id();
+        if (!recipeId.equals(purex.selectedRecipeId)) {
+            purex.selectedRecipeId = recipeId;
+            dirty = true;
+        }
+        if (!recipeId.equals(purex.activeRecipeId)) {
+            purex.activeRecipeId = recipeId;
+            dirty = true;
+        }
+        purex.hasRecipe = selectedRecipe != null;
 
         final int speedLevel = Math.min(3, purex.countUpgrades(MachineUpgradeItem.UpgradeType.SPEED));
         final int powerLevel = Math.min(3, purex.countUpgrades(MachineUpgradeItem.UpgradeType.POWER));
@@ -131,25 +148,26 @@ public class PurexBlockEntity extends MachineBlockEntity {
         powerMultiplier += overdriveLevel * (10.0D / 3.0D);
         powerMultiplier = Math.max(0.25D, powerMultiplier);
 
-        final int baseTime = recipe == null ? PurexMachineConfig.INSTANCE.baseProcessTime() : recipe.duration();
-        final int baseConsumption = recipe == null ? PurexMachineConfig.INSTANCE.basePowerPerTick() : recipe.powerPerTick();
+        final int baseTime = selectedRecipe == null ? PurexMachineConfig.INSTANCE.baseProcessTime() : selectedRecipe.duration();
+        final int baseConsumption = selectedRecipe == null ? PurexMachineConfig.INSTANCE.basePowerPerTick() : selectedRecipe.powerPerTick();
 
         purex.processTime = Math.max(1, (int) Math.ceil(baseTime / Math.max(0.1D, speedMultiplier)));
         purex.lastConsumption = Math.max(1, (int) Math.ceil(baseConsumption * powerMultiplier));
         purex.displayMaxPower = Math.max(Math.max(1, purex.getStoredEnergy()), Math.max(PurexMachineConfig.INSTANCE.maxPower(), baseConsumption * 100));
 
-        final boolean canProcess = recipe != null && purex.canProcess(recipe);
+        final boolean recipeMatchesInputs = selectedRecipe != null && purex.hasSelectedInputs(selectedRecipe);
+        final boolean canProcess = recipeMatchesInputs && selectedRecipe != null && purex.canProcess(selectedRecipe);
         purex.canProcessRecipe = canProcess;
-        purex.hasPowerForRecipe = purex.getStoredEnergy() >= purex.lastConsumption;
+        purex.hasPowerForRecipe = selectedRecipe != null && purex.getStoredEnergy() >= purex.lastConsumption;
 
-        if (canProcess && purex.hasPowerForRecipe) {
+        if (canProcess && purex.hasPowerForRecipe && selectedRecipe != null) {
             purex.progress++;
             purex.consumeEnergy(purex.lastConsumption);
             dirty = true;
 
             if (purex.progress >= purex.processTime) {
                 purex.progress = 0;
-                if (purex.processRecipe(recipe)) {
+                if (purex.processRecipe(selectedRecipe)) {
                     dirty = true;
                 }
             }
@@ -164,25 +182,39 @@ public class PurexBlockEntity extends MachineBlockEntity {
         purex.tickMachineStateSync();
     }
 
-    private @Nullable PurexRecipe findRecipe() {
-        return HbmPurexRecipes.findRecipe(this.collectInputItems(), this.collectInputFluids()).orElse(null);
-    }
+    private boolean hasSelectedInputs(final PurexRecipe recipe) {
+        final List<CountedIngredient> itemRequirements = recipe.itemInputs();
+        if (itemRequirements.size() > 3) {
+            return false;
+        }
 
-    private List<ItemStack> collectInputItems() {
         final ItemStackHandler handler = this.getInternalItemHandler();
-        return List.of(
-            handler.getStackInSlot(SLOT_INPUT_1),
-            handler.getStackInSlot(SLOT_INPUT_2),
-            handler.getStackInSlot(SLOT_INPUT_3));
-    }
+        for (int i = 0; i < itemRequirements.size(); i++) {
+            final CountedIngredient requirement = itemRequirements.get(i);
+            final ItemStack stack = handler.getStackInSlot(SLOT_INPUT_1 + i);
+            if (stack.isEmpty() || !requirement.ingredient().test(stack) || stack.getCount() < requirement.count()) {
+                return false;
+            }
+        }
 
-    private List<FluidStack> collectInputFluids() {
-        return List.of(this.getTankFluid(TANK_INPUT_1), this.getTankFluid(TANK_INPUT_2), this.getTankFluid(TANK_INPUT_3));
-    }
+        final List<FluidStack> fluidRequirements = recipe.fluidInputs();
+        if (fluidRequirements.size() > 3) {
+            return false;
+        }
 
-    private FluidStack getTankFluid(final int tankIndex) {
-        final HbmFluidTank tank = this.getFluidTank(tankIndex);
-        return tank == null || tank.isEmpty() ? FluidStack.EMPTY : tank.getFluid().copy();
+        for (int i = 0; i < fluidRequirements.size(); i++) {
+            final FluidStack requirement = fluidRequirements.get(i);
+            if (requirement.isEmpty()) {
+                continue;
+            }
+
+            final HbmFluidTank tank = this.getFluidTank(TANK_INPUT_1 + i);
+            if (tank == null || tank.isEmpty() || !tank.getFluid().isFluidEqual(requirement) || tank.getFluidAmount() < requirement.getAmount()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private boolean canProcess(final PurexRecipe recipe) {
@@ -205,38 +237,25 @@ public class PurexBlockEntity extends MachineBlockEntity {
     }
 
     private boolean consumeItemInputs(final List<CountedIngredient> requirements) {
-        final ItemStackHandler handler = this.getInternalItemHandler();
-        final int[] slots = new int[]{SLOT_INPUT_1, SLOT_INPUT_2, SLOT_INPUT_3};
-        final int[] toConsume = new int[slots.length];
+        if (requirements.size() > 3) {
+            return false;
+        }
 
-        for (final CountedIngredient requirement : requirements) {
-            int needed = requirement.count();
-            for (int i = 0; i < slots.length && needed > 0; i++) {
-                final int slot = slots[i];
-                final ItemStack stack = handler.getStackInSlot(slot);
-                if (stack.isEmpty() || !requirement.ingredient().test(stack)) {
-                    continue;
-                }
-                final int available = Math.max(0, stack.getCount() - toConsume[i]);
-                if (available <= 0) {
-                    continue;
-                }
-                final int consumed = Math.min(needed, available);
-                toConsume[i] += consumed;
-                needed -= consumed;
-            }
-            if (needed > 0) {
+        final ItemStackHandler handler = this.getInternalItemHandler();
+
+        for (int i = 0; i < requirements.size(); i++) {
+            final CountedIngredient requirement = requirements.get(i);
+            final int slot = SLOT_INPUT_1 + i;
+            final ItemStack stack = handler.getStackInSlot(slot);
+            if (stack.isEmpty() || !requirement.ingredient().test(stack) || stack.getCount() < requirement.count()) {
                 return false;
             }
         }
 
-        for (int i = 0; i < slots.length; i++) {
-            if (toConsume[i] <= 0) {
-                continue;
-            }
-            final int slot = slots[i];
+        for (int i = 0; i < requirements.size(); i++) {
+            final int slot = SLOT_INPUT_1 + i;
             final ItemStack current = handler.getStackInSlot(slot).copy();
-            current.shrink(toConsume[i]);
+            current.shrink(requirements.get(i).count());
             handler.setStackInSlot(slot, current.isEmpty() ? ItemStack.EMPTY : current);
         }
 
@@ -244,39 +263,29 @@ public class PurexBlockEntity extends MachineBlockEntity {
     }
 
     private boolean consumeFluidInputs(final List<FluidStack> requirements) {
-        final int[] tankIndices = new int[]{TANK_INPUT_1, TANK_INPUT_2, TANK_INPUT_3};
-        final int[] toDrain = new int[tankIndices.length];
+        if (requirements.size() > 3) {
+            return false;
+        }
 
-        for (final FluidStack requirement : requirements) {
+        for (int i = 0; i < requirements.size(); i++) {
+            final FluidStack requirement = requirements.get(i);
             if (requirement.isEmpty()) {
                 continue;
             }
-            int needed = requirement.getAmount();
-            for (int i = 0; i < tankIndices.length && needed > 0; i++) {
-                final HbmFluidTank tank = this.getFluidTank(tankIndices[i]);
-                if (tank == null || tank.isEmpty() || !tank.getFluid().isFluidEqual(requirement)) {
-                    continue;
-                }
-                final int available = Math.max(0, tank.getFluidAmount() - toDrain[i]);
-                if (available <= 0) {
-                    continue;
-                }
-                final int drained = Math.min(needed, available);
-                toDrain[i] += drained;
-                needed -= drained;
-            }
-            if (needed > 0) {
+            final HbmFluidTank tank = this.getFluidTank(TANK_INPUT_1 + i);
+            if (tank == null || tank.isEmpty() || !tank.getFluid().isFluidEqual(requirement) || tank.getFluidAmount() < requirement.getAmount()) {
                 return false;
             }
         }
 
-        for (int i = 0; i < tankIndices.length; i++) {
-            if (toDrain[i] <= 0) {
+        for (int i = 0; i < requirements.size(); i++) {
+            final FluidStack requirement = requirements.get(i);
+            if (requirement.isEmpty()) {
                 continue;
             }
-            final HbmFluidTank tank = this.getFluidTank(tankIndices[i]);
+            final HbmFluidTank tank = this.getFluidTank(TANK_INPUT_1 + i);
             if (tank != null) {
-                tank.drain(toDrain[i], IFluidHandler.FluidAction.EXECUTE);
+                tank.drain(requirement.getAmount(), IFluidHandler.FluidAction.EXECUTE);
             }
         }
 
@@ -285,24 +294,22 @@ public class PurexBlockEntity extends MachineBlockEntity {
 
     private boolean canFitItemOutputs(final List<ItemStack> outputs) {
         final ItemStackHandler handler = this.getInternalItemHandler();
-        for (final ItemStack out : outputs) {
-            int remaining = out.getCount();
-
-            for (int slot = SLOT_OUTPUT_1; slot <= SLOT_OUTPUT_6 && remaining > 0; slot++) {
-                final ItemStack existing = handler.getStackInSlot(slot);
-                if (!existing.isEmpty() && ItemStack.isSameItemSameTags(existing, out)) {
-                    remaining -= Math.max(0, existing.getMaxStackSize() - existing.getCount());
-                }
+        for (int i = 0; i < outputs.size() && i < 6; i++) {
+            final ItemStack output = outputs.get(i);
+            if (output.isEmpty()) {
+                continue;
             }
 
-            for (int slot = SLOT_OUTPUT_1; slot <= SLOT_OUTPUT_6 && remaining > 0; slot++) {
-                final ItemStack existing = handler.getStackInSlot(slot);
-                if (existing.isEmpty()) {
-                    remaining -= Math.min(out.getMaxStackSize(), remaining);
-                }
+            final ItemStack existing = handler.getStackInSlot(SLOT_OUTPUT_1 + i);
+            if (existing.isEmpty()) {
+                continue;
             }
 
-            if (remaining > 0) {
+            if (!ItemStack.isSameItemSameTags(existing, output)) {
+                return false;
+            }
+
+            if (existing.getCount() + output.getCount() > existing.getMaxStackSize()) {
                 return false;
             }
         }
@@ -312,31 +319,22 @@ public class PurexBlockEntity extends MachineBlockEntity {
     private void insertItemOutputs(final List<ItemStack> outputs) {
         final ItemStackHandler handler = this.getInternalItemHandler();
 
-        for (final ItemStack out : outputs) {
-            int remaining = out.getCount();
-
-            for (int slot = SLOT_OUTPUT_1; slot <= SLOT_OUTPUT_6 && remaining > 0; slot++) {
-                final ItemStack existing = handler.getStackInSlot(slot);
-                if (!existing.isEmpty() && ItemStack.isSameItemSameTags(existing, out)) {
-                    final int moved = Math.min(remaining, existing.getMaxStackSize() - existing.getCount());
-                    if (moved > 0) {
-                        final ItemStack grown = existing.copy();
-                        grown.grow(moved);
-                        handler.setStackInSlot(slot, grown);
-                        remaining -= moved;
-                    }
-                }
+        for (int i = 0; i < outputs.size() && i < 6; i++) {
+            final ItemStack output = outputs.get(i);
+            if (output.isEmpty()) {
+                continue;
             }
 
-            for (int slot = SLOT_OUTPUT_1; slot <= SLOT_OUTPUT_6 && remaining > 0; slot++) {
-                final ItemStack existing = handler.getStackInSlot(slot);
-                if (existing.isEmpty()) {
-                    final ItemStack moved = out.copy();
-                    moved.setCount(Math.min(remaining, moved.getMaxStackSize()));
-                    handler.setStackInSlot(slot, moved);
-                    remaining -= moved.getCount();
-                }
+            final int slot = SLOT_OUTPUT_1 + i;
+            final ItemStack existing = handler.getStackInSlot(slot);
+            if (existing.isEmpty()) {
+                handler.setStackInSlot(slot, output.copy());
+                continue;
             }
+
+            final ItemStack merged = existing.copy();
+            merged.grow(output.getCount());
+            handler.setStackInSlot(slot, merged);
         }
     }
 
@@ -468,15 +466,28 @@ public class PurexBlockEntity extends MachineBlockEntity {
             return this.getValidUpgrades().containsKey(upgrade.type());
         }
         if (slot >= SLOT_INPUT_1 && slot <= SLOT_INPUT_3) {
-            return this.isAcceptedInputItem(stack);
+            return this.isAcceptedInputItem(slot, stack);
         }
         return false;
     }
 
-    private boolean isAcceptedInputItem(final ItemStack stack) {
-        return HbmPurexRecipes.all().stream()
-            .flatMap(recipe -> recipe.itemInputs().stream())
-            .anyMatch(ingredient -> ingredient.ingredient().test(stack));
+    private boolean isAcceptedInputItem(final int slot, final ItemStack stack) {
+        final int inputIndex = slot - SLOT_INPUT_1;
+        if (inputIndex < 0 || inputIndex >= 3) {
+            return false;
+        }
+
+        final Optional<PurexRecipe> selected = this.getSelectedRecipe();
+        if (selected.isEmpty()) {
+            return false;
+        }
+
+        final List<CountedIngredient> requirements = selected.get().itemInputs();
+        if (inputIndex >= requirements.size()) {
+            return false;
+        }
+
+        return requirements.get(inputIndex).ingredient().test(stack);
     }
 
     @Override
@@ -486,7 +497,18 @@ public class PurexBlockEntity extends MachineBlockEntity {
 
     @Override
     public boolean canExtractFromSlot(final int slot, final @Nullable Direction side) {
-        return slot >= SLOT_OUTPUT_1 && slot <= SLOT_OUTPUT_6;
+        if (slot >= SLOT_OUTPUT_1 && slot <= SLOT_OUTPUT_6) {
+            return true;
+        }
+        if (slot >= SLOT_INPUT_1 && slot <= SLOT_INPUT_3) {
+            return this.isInputSlotClogged(slot);
+        }
+        return false;
+    }
+
+    private boolean isInputSlotClogged(final int slot) {
+        final ItemStack stack = this.getInternalItemHandler().getStackInSlot(slot);
+        return !stack.isEmpty() && !this.isAcceptedInputItem(slot, stack);
     }
 
     @Override
@@ -507,6 +529,79 @@ public class PurexBlockEntity extends MachineBlockEntity {
     @Override
     public AbstractContainerMenu createMenu(final int containerId, final @NotNull Inventory inventory, final @NotNull Player player) {
         return new PurexMenu(containerId, inventory, this);
+    }
+
+    public List<PurexRecipe> visibleRecipes() {
+        return HbmPurexRecipes.all();
+    }
+
+    public Optional<PurexRecipe> getSelectedRecipe() {
+        final Optional<PurexRecipe> selected = HbmPurexRecipes.findById(this.selectedRecipeId);
+        if (selected.isPresent()) {
+            return selected;
+        }
+
+        final List<PurexRecipe> visible = this.visibleRecipes();
+        if (visible.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(visible.get(0));
+    }
+
+    public int getSelectedRecipeIndex() {
+        final List<PurexRecipe> visible = this.visibleRecipes();
+        for (int i = 0; i < visible.size(); i++) {
+            if (visible.get(i).id().equals(this.selectedRecipeId)) {
+                return i;
+            }
+        }
+        return visible.isEmpty() ? -1 : 0;
+    }
+
+    public int getVisibleRecipeCount() {
+        return this.visibleRecipes().size();
+    }
+
+    public String getSelectedRecipeId() {
+        return this.selectedRecipeId;
+    }
+
+    public void cycleRecipe(final int delta) {
+        final List<PurexRecipe> visible = this.visibleRecipes();
+        if (visible.isEmpty()) {
+            if (!this.selectedRecipeId.isEmpty()) {
+                this.selectedRecipeId = "";
+            }
+            return;
+        }
+
+        int index = this.getSelectedRecipeIndex();
+        if (index < 0 || index >= visible.size()) {
+            index = 0;
+        }
+
+        final int step = delta == 0 ? 1 : delta;
+        index = Math.floorMod(index + step, visible.size());
+        final String nextId = visible.get(index).id();
+        if (!nextId.equals(this.selectedRecipeId)) {
+            this.selectedRecipeId = nextId;
+        }
+    }
+
+    private boolean syncSelectedRecipe() {
+        final List<PurexRecipe> visible = this.visibleRecipes();
+        final String nextId = visible.stream()
+            .filter(recipe -> recipe.id().equals(this.selectedRecipeId))
+            .findFirst()
+            .map(PurexRecipe::id)
+            .orElseGet(() -> visible.isEmpty() ? "" : visible.get(0).id());
+
+        if (nextId.equals(this.selectedRecipeId)) {
+            return false;
+        }
+
+        this.selectedRecipeId = nextId;
+        return true;
     }
 
     public int getProgress() {
@@ -537,6 +632,10 @@ public class PurexBlockEntity extends MachineBlockEntity {
         return this.hasPowerForRecipe;
     }
 
+    public String getActiveRecipeId() {
+        return this.activeRecipeId;
+    }
+
     public int getTankAmount(final int tankIndex) {
         final HbmFluidTank tank = this.getFluidTank(tankIndex);
         return tank == null ? 0 : tank.getFluidAmount();
@@ -564,6 +663,8 @@ public class PurexBlockEntity extends MachineBlockEntity {
         tag.putBoolean("hasRecipe", this.hasRecipe);
         tag.putBoolean("canProcess", this.canProcessRecipe);
         tag.putBoolean("hasPower", this.hasPowerForRecipe);
+        tag.putString("selectedRecipeId", this.selectedRecipeId);
+        tag.putString("activeRecipeId", this.activeRecipeId);
     }
 
     @Override
@@ -575,6 +676,8 @@ public class PurexBlockEntity extends MachineBlockEntity {
         this.hasRecipe = tag.getBoolean("hasRecipe");
         this.canProcessRecipe = tag.getBoolean("canProcess");
         this.hasPowerForRecipe = tag.getBoolean("hasPower");
+        this.selectedRecipeId = tag.getString("selectedRecipeId");
+        this.activeRecipeId = tag.getString("activeRecipeId");
     }
 
     @Override
@@ -587,6 +690,10 @@ public class PurexBlockEntity extends MachineBlockEntity {
         tag.putBoolean("hasRecipe", this.hasRecipe);
         tag.putBoolean("canProcess", this.canProcessRecipe);
         tag.putBoolean("hasPower", this.hasPowerForRecipe);
+        tag.putString("selectedRecipeId", this.selectedRecipeId);
+        tag.putInt("selectedRecipeIndex", this.getSelectedRecipeIndex());
+        tag.putInt("visibleRecipeCount", this.getVisibleRecipeCount());
+        tag.putString("recipeId", this.activeRecipeId);
 
         for (int tank = TANK_INPUT_1; tank <= TANK_OUTPUT; tank++) {
             tag.putInt("fluid" + tank + "Amount", this.getTankAmount(tank));
@@ -604,6 +711,21 @@ public class PurexBlockEntity extends MachineBlockEntity {
         this.hasRecipe = tag.getBoolean("hasRecipe");
         this.canProcessRecipe = tag.getBoolean("canProcess");
         this.hasPowerForRecipe = tag.getBoolean("hasPower");
+        this.selectedRecipeId = tag.getString("selectedRecipeId");
+        this.activeRecipeId = tag.getString("recipeId");
+    }
+
+    @Override
+    protected void applyControlData(final CompoundTag data) {
+        super.applyControlData(data);
+        if (data.contains("cycleRecipe")) {
+            this.cycleRecipe(data.getInt("cycleRecipe"));
+        }
+    }
+
+    @Override
+    protected Set<String> allowedControlKeys() {
+        return Set.of("repair", "cycleRecipe");
     }
 
     @Override

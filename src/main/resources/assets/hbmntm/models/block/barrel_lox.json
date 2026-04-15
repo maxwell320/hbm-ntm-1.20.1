@@ -1,0 +1,16 @@
+{
+  "loader": "forge:obj",
+  "flip_v": true,
+  "model": "hbmntm:models/block/barrel_body.obj",
+  "transform": {
+    "translation": [
+      0.5,
+      0.0,
+      0.5
+    ]
+  },
+  "textures": {
+    "particle": "hbmntm:block/barrel_lox",
+    "texture0": "hbmntm:block/barrel_lox"
+  }
+}

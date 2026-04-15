@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_billet_beryllium": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:billet_beryllium"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:nugget_beryllium_from_billet_beryllium"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_billet_beryllium",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:nugget_beryllium_from_billet_beryllium"
+    ]
+  },
+  "sends_telemetry_event": false
+}

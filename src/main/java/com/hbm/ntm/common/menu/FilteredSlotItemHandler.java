@@ -17,6 +17,6 @@ public class FilteredSlotItemHandler extends SlotItemHandler {
 
     @Override
     public boolean mayPlace(final ItemStack stack) {
-        return this.validator.test(this.getSlotIndex(), stack);
+        return super.mayPlace(stack) && this.validator.test(this.getSlotIndex(), stack);
     }
 }

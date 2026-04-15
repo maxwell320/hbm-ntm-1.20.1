@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_powder_cerium": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:powder_cerium"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:powder_cerium_tiny_from_powder_cerium"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_powder_cerium",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:powder_cerium_tiny_from_powder_cerium"
+    ]
+  },
+  "sends_telemetry_event": false
+}

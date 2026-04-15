@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "hbmntm:block/brick_fire",
+    "side": "hbmntm:block/difurnace_side_alt",
+    "top": "hbmntm:block/difurnace_top_off_alt"
+  }
+}

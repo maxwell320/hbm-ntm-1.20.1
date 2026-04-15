@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_powder_meteorite_tiny": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:powder_meteorite_tiny"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:powder_meteorite_from_powder_meteorite_tiny"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_powder_meteorite_tiny",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:powder_meteorite_from_powder_meteorite_tiny"
+    ]
+  },
+  "sends_telemetry_event": false
+}

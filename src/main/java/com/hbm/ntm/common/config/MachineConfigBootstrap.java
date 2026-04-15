@@ -19,6 +19,7 @@ public final class MachineConfigBootstrap {
         ConfigurableMachineRegistry.register(() -> SolderingStationMachineConfig.INSTANCE);
         ConfigurableMachineRegistry.register(() -> CentrifugeMachineConfig.INSTANCE);
         ConfigurableMachineRegistry.register(() -> GasCentrifugeMachineConfig.INSTANCE);
+        ConfigurableMachineRegistry.register(() -> CyclotronMachineConfig.INSTANCE);
         ConfigurableMachineRegistry.register(() -> PurexMachineConfig.INSTANCE);
         ConfigurableMachineRegistry.register(() -> IcfMachineConfig.INSTANCE);
         ConfigurableMachineRegistry.register(() -> IcfControllerMachineConfig.INSTANCE);

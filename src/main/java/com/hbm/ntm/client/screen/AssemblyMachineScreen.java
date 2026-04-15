@@ -7,19 +7,18 @@ import com.hbm.ntm.common.menu.AssemblyMachineMenu;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.Slot;
 import net.minecraftforge.fluids.FluidStack;
 
 @SuppressWarnings("null")
 public class AssemblyMachineScreen extends MachineScreenBase<AssemblyMachineMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "textures/gui/processing/gui_assembler.png");
-    private Button previousButton;
-    private Button nextButton;
 
     public AssemblyMachineScreen(final AssemblyMachineMenu menu, final Inventory inventory, final Component title) {
         super(menu, inventory, title, 176, 256);
@@ -29,18 +28,22 @@ public class AssemblyMachineScreen extends MachineScreenBase<AssemblyMachineMenu
     @Override
     protected void init() {
         super.init();
-        this.previousButton = this.addRenderableWidget(Button.builder(Component.literal("<"), button -> this.cycleRecipe(-1))
+        this.addRenderableWidget(Button.builder(Component.literal("<"), button -> {
+                this.playButtonClick();
+                this.cycleRecipe(-1);
+            })
             .bounds(this.leftPos + 26, this.topPos + 125, 16, 16)
             .build());
-        this.nextButton = this.addRenderableWidget(Button.builder(Component.literal(">"), button -> this.cycleRecipe(1))
+        this.addRenderableWidget(Button.builder(Component.literal(">"), button -> {
+                this.playButtonClick();
+                this.cycleRecipe(1);
+            })
             .bounds(this.leftPos + 44, this.topPos + 125, 16, 16)
             .build());
     }
 
     private void cycleRecipe(final int delta) {
-        final CompoundTag tag = new CompoundTag();
-        tag.putInt("cycleRecipe", delta);
-        this.sendControl(tag);
+        this.sendIntControl("cycleRecipe", delta);
     }
 
     @Override
@@ -62,10 +65,10 @@ public class AssemblyMachineScreen extends MachineScreenBase<AssemblyMachineMenu
         machine.getSelectedRecipe().ifPresent(recipe -> {
             guiGraphics.renderFakeItem(recipe.outputCopy(), this.leftPos + 8, this.topPos + 126);
             final List<HbmAssemblyRecipes.AssemblyRequirement> requirements = recipe.itemInputs();
-            for (int i = 0; i < requirements.size() && i < 12; i++) {
-                final int x = this.leftPos + 8 + (i % 4) * 18;
-                final int y = this.topPos + 18 + (i / 4) * 18;
-                guiGraphics.renderFakeItem(requirements.get(i).displayStack(), x, y);
+            for (int i = 0; i < requirements.size() && i < AssemblyMachineBlockEntity.INPUT_COUNT; i++) {
+                final int slotIndex = AssemblyMachineBlockEntity.SLOT_INPUT_START + i;
+                final Slot slot = slotIndex < this.menu.slots.size() ? this.menu.slots.get(slotIndex) : null;
+                this.renderGhostSlotItem(guiGraphics, slot, requirements.get(i).displayStack());
             }
         });
     }
@@ -86,8 +89,18 @@ public class AssemblyMachineScreen extends MachineScreenBase<AssemblyMachineMenu
             "Input Tank", this.menu.inputFluid(), this.menu.inputAmount(), this.menu.inputCapacity());
         this.renderFluidTooltip(guiGraphics, mouseX, mouseY, this.leftPos + 80, this.topPos + 115, 52, 16,
             "Output Tank", this.menu.outputFluid(), this.menu.outputAmount(), this.menu.outputCapacity());
-        if (selectedRecipe.isPresent() && this.inside(mouseX, mouseY, this.leftPos + 7, this.topPos + 125, 18, 18)) {
-            guiGraphics.renderTooltip(this.font, this.recipeTooltip(selectedRecipe.get()), Optional.empty(), mouseX, mouseY);
+        this.renderUpgradeInfoTooltip(guiGraphics, mouseX, mouseY,
+            this.leftPos + 152, this.topPos + 108, 36, 18);
+        if (this.inside(mouseX, mouseY, this.leftPos + 7, this.topPos + 125, 18, 18)) {
+            if (selectedRecipe.isPresent()) {
+                guiGraphics.renderTooltip(this.font, this.recipeTooltip(selectedRecipe.get()), Optional.empty(), mouseX, mouseY);
+            } else {
+                guiGraphics.renderTooltip(this.font,
+                    List.of(Component.literal("Set recipe").withStyle(ChatFormatting.YELLOW)),
+                    Optional.empty(),
+                    mouseX,
+                    mouseY);
+            }
         }
     }
 

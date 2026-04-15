@@ -15,6 +15,7 @@ import com.hbm.ntm.common.soldering.HbmSolderingRecipes;
 import com.hbm.ntm.common.soldering.SolderingStationStructure;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -413,6 +414,11 @@ public class SolderingStationBlockEntity extends MultiblockCoreBE {
         if (data.contains("collision")) {
             this.collisionPrevention = !this.collisionPrevention;
         }
+    }
+
+    @Override
+    protected Set<String> allowedControlKeys() {
+        return Set.of("repair", "collision");
     }
 
     @Override

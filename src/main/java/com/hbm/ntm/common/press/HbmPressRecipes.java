@@ -80,6 +80,9 @@ public final class HbmPressRecipes {
         registry.add(PressStampType.FLAT,
             Ingredient.of(Objects.requireNonNull(HbmItems.POWDER_SAWDUST.get())),
             new ItemStack(Objects.requireNonNull(HbmItems.getBriquette(BriquetteItemType.WOOD).get())));
+        registry.add(PressStampType.FLAT,
+            Ingredient.of(Objects.requireNonNull(HbmItems.METEORITE_SWORD_REFORGED.get())),
+            new ItemStack(Objects.requireNonNull(HbmItems.METEORITE_SWORD_HARDENED.get())));
 
         addPlateRecipe(registry, HbmMaterials.IRON);
         addPlateRecipe(registry, HbmMaterials.GOLD);
@@ -133,12 +136,20 @@ public final class HbmPressRecipes {
 
     private static void addPlateRecipe(final PressRecipeRegistry registry, final HbmMaterialDefinition material) {
         registry.add(PressStampType.PLATE,
-            Ingredient.of(item(material, HbmMaterialShape.INGOT)),
+            Ingredient.of(plateInputIngot(material)),
             new ItemStack(item(material, HbmMaterialShape.PLATE)));
     }
 
     private static void addPrintingRecipe(final PressRecipeRegistry registry, final PrintingStampType stampType, final PageItemType pageType) {
         registry.add(PressStampType.from(stampType), Ingredient.of(Items.PAPER), PageItem.create(Objects.requireNonNull(HbmItems.PAGE_OF.get()), pageType));
+    }
+
+    private static Item plateInputIngot(final HbmMaterialDefinition material) {
+        // Legacy ingotIron recipes should use the vanilla ingot path in modern, not an autogen iron ingot part.
+        if (material == HbmMaterials.IRON) {
+            return Items.IRON_INGOT;
+        }
+        return item(material, HbmMaterialShape.INGOT);
     }
 
     private static Item item(final HbmMaterialDefinition material, final HbmMaterialShape shape) {

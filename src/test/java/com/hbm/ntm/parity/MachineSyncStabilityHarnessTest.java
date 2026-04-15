@@ -42,9 +42,10 @@ class MachineSyncStabilityHarnessTest {
         EXPECTATIONS.put("packet_registration", expectation(
             Path.of("src", "main", "java", "com", "hbm", "ntm", "common", "network", "HbmPacketHandler.java"),
             List.of(
-                "CHANNEL.registerMessage(nextId++, MachineControlPacket.class, MachineControlPacket::encode, MachineControlPacket::decode, MachineControlPacket::handle);",
-                "CHANNEL.registerMessage(nextId++, MachineStateSyncPacket.class, MachineStateSyncPacket::encode, MachineStateSyncPacket::decode, MachineStateSyncPacket::handle);",
-                "CHANNEL.registerMessage(nextId++, MachineStateRequestPacket.class, MachineStateRequestPacket::encode, MachineStateRequestPacket::decode,",
+                "registerMessage(\"machine_control\", MachineControlPacket.class, MachineControlPacket::encode, MachineControlPacket::decode, MachineControlPacket::handle);",
+                "registerMessage(\"machine_state_sync\", MachineStateSyncPacket.class, MachineStateSyncPacket::encode, MachineStateSyncPacket::decode,",
+                "MachineStateSyncPacket::handle);",
+                "registerMessage(\"machine_state_request\", MachineStateRequestPacket.class, MachineStateRequestPacket::encode, MachineStateRequestPacket::decode,",
                 "MachineStateRequestPacket::handle);"
             )
         ));
@@ -68,12 +69,30 @@ class MachineSyncStabilityHarnessTest {
             )
         ));
 
+        EXPECTATIONS.put("request_loaded_pos_guard", expectation(
+            Path.of("src", "main", "java", "com", "hbm", "ntm", "common", "network", "MachineStateRequestPacket.java"),
+            List.of(
+                "if (player == null) {",
+                "if (!player.level().isLoaded(packet.pos)) {",
+                "final BlockEntity blockEntity = player.level().getBlockEntity(packet.pos);"
+            )
+        ));
+
         EXPECTATIONS.put("control_packet_permission_gate", expectation(
             Path.of("src", "main", "java", "com", "hbm", "ntm", "common", "network", "MachineControlPacket.java"),
             List.of(
                 "if (!(blockEntity instanceof IMachineControlReceiver receiver)) {",
                 "if (!receiver.canPlayerControl(player)) {",
                 "receiver.receiveControl(player, packet.data.copy());"
+            )
+        ));
+
+        EXPECTATIONS.put("control_loaded_pos_guard", expectation(
+            Path.of("src", "main", "java", "com", "hbm", "ntm", "common", "network", "MachineControlPacket.java"),
+            List.of(
+                "if (player == null) {",
+                "if (!player.level().isLoaded(packet.pos)) {",
+                "final BlockEntity blockEntity = player.level().getBlockEntity(packet.pos);"
             )
         ));
 
@@ -153,9 +172,9 @@ class MachineSyncStabilityHarnessTest {
         EXPECTATIONS.put("sync_packet_payload_copy", expectation(
             Path.of("src", "main", "java", "com", "hbm", "ntm", "common", "network", "HbmPacketHandler.java"),
             List.of(
-                "public static void syncMachineState(final MachineBlockEntity machine, final net.minecraft.nbt.CompoundTag data) {",
+                "public static void syncMachineState(final MachineBlockEntity machine, final CompoundTag data) {",
                 "CHANNEL.send(PacketDistributor.TRACKING_CHUNK.with(() -> chunk), new MachineStateSyncPacket(machine.getBlockPos(), data.copy()));",
-                "public static void syncMachineStateToPlayer(final MachineBlockEntity machine, final net.minecraft.nbt.CompoundTag data, final ServerPlayer player) {",
+                "public static void syncMachineStateToPlayer(final MachineBlockEntity machine, final CompoundTag data, final ServerPlayer player) {",
                 "CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new MachineStateSyncPacket(machine.getBlockPos(), data.copy()));"
             )
         ));

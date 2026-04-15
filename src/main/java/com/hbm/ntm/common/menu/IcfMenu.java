@@ -34,24 +34,12 @@ public class IcfMenu extends MachineMenuBase<IcfBlockEntity> {
         super(HbmMenuTypes.MACHINE_ICF.get(), containerId, inventory, icf, IcfBlockEntity.SLOT_COUNT);
         final ItemStackHandler handler = icf == null ? new ItemStackHandler(IcfBlockEntity.SLOT_COUNT) : icf.getInternalItemHandler();
 
-        this.addSlot(new FilteredSlotItemHandler(handler, IcfBlockEntity.SLOT_INPUT_1, 80, 18,
-            (slot, stack) -> stack.getItem() == HbmItems.ICF_PELLET.get()));
-        this.addSlot(new FilteredSlotItemHandler(handler, IcfBlockEntity.SLOT_INPUT_2, 98, 18,
-            (slot, stack) -> stack.getItem() == HbmItems.ICF_PELLET.get()));
-        this.addSlot(new FilteredSlotItemHandler(handler, IcfBlockEntity.SLOT_INPUT_3, 116, 18,
-            (slot, stack) -> stack.getItem() == HbmItems.ICF_PELLET.get()));
-        this.addSlot(new FilteredSlotItemHandler(handler, IcfBlockEntity.SLOT_INPUT_4, 134, 18,
-            (slot, stack) -> stack.getItem() == HbmItems.ICF_PELLET.get()));
-        this.addSlot(new FilteredSlotItemHandler(handler, IcfBlockEntity.SLOT_INPUT_5, 152, 18,
-            (slot, stack) -> stack.getItem() == HbmItems.ICF_PELLET.get()));
+        this.addFilteredGridSlots(handler, IcfBlockEntity.SLOT_INPUT_1, 80, 18, 1, 5,
+            (slot, stack) -> stack.getItem() == HbmItems.ICF_PELLET.get());
 
         this.addSlot(new OutputSlotItemHandler(handler, IcfBlockEntity.SLOT_ACTIVE_PELLET, 116, 54));
 
-        this.addSlot(new OutputSlotItemHandler(handler, IcfBlockEntity.SLOT_OUTPUT_1, 80, 90));
-        this.addSlot(new OutputSlotItemHandler(handler, IcfBlockEntity.SLOT_OUTPUT_2, 98, 90));
-        this.addSlot(new OutputSlotItemHandler(handler, IcfBlockEntity.SLOT_OUTPUT_3, 116, 90));
-        this.addSlot(new OutputSlotItemHandler(handler, IcfBlockEntity.SLOT_OUTPUT_4, 134, 90));
-        this.addSlot(new OutputSlotItemHandler(handler, IcfBlockEntity.SLOT_OUTPUT_5, 152, 90));
+        this.addOutputGridSlots(handler, IcfBlockEntity.SLOT_OUTPUT_1, 80, 90, 1, 5);
 
         this.addSlot(new FilteredSlotItemHandler(handler, IcfBlockEntity.SLOT_FLUID_ID, 44, 90,
             (slot, stack) -> stack.getItem() instanceof IItemFluidIdentifier));

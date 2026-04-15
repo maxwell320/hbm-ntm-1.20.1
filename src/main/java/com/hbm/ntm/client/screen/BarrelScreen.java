@@ -4,8 +4,10 @@ import com.hbm.ntm.HbmNtmMod;
 import com.hbm.ntm.common.menu.BarrelMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
 
 @SuppressWarnings("null")
@@ -63,6 +65,10 @@ public class BarrelScreen extends AbstractContainerScreen<BarrelMenu> {
     @Override
     public boolean mouseClicked(final double mouseX, final double mouseY, final int button) {
         if (mouseX >= this.leftPos + 151 && mouseX < this.leftPos + 169 && mouseY >= this.topPos + 34 && mouseY < this.topPos + 52) {
+            if (this.minecraft == null || this.minecraft.gameMode == null) {
+                return true;
+            }
+            this.minecraft.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
             this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId, 0);
             return true;
         }

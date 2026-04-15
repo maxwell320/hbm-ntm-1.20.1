@@ -7,11 +7,14 @@ import com.hbm.ntm.common.menu.FluidIdentifierMenu;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -81,7 +84,7 @@ public class FluidIdentifierScreen extends AbstractContainerScreen<FluidIdentifi
         for (int i = 0; i < Math.min(9, this.matches.size()); i++) {
             final ResourceLocation fluidId = this.matches.get(i);
             if (mouseX >= 7 + i * 18 && mouseX < 25 + i * 18 && mouseY >= 29 && mouseY < 47) {
-                guiGraphics.renderTooltip(this.font, List.of(Component.literal(FluidIdentifierMenu.displayName(fluidId))), java.util.Optional.empty(), mouseX, mouseY);
+                guiGraphics.renderTooltip(this.font, fluidTooltip(fluidId), java.util.Optional.empty(), mouseX, mouseY);
             }
         }
     }
@@ -95,6 +98,10 @@ public class FluidIdentifierScreen extends AbstractContainerScreen<FluidIdentifi
             if (mouseX >= this.leftPos + 7 + i * 18 && mouseX < this.leftPos + 25 + i * 18 && mouseY >= this.topPos + 29 && mouseY < this.topPos + 47) {
                 final int fluidIndex = FluidIdentifierMenu.orderedSelectableFluids().indexOf(this.matches.get(i));
                 if (fluidIndex >= 0) {
+                    if (this.minecraft == null || this.minecraft.gameMode == null) {
+                        return true;
+                    }
+                    this.minecraft.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                     this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId, fluidIndex * 2 + (button == 1 ? 1 : 0));
                     return true;
                 }
@@ -144,5 +151,32 @@ public class FluidIdentifierScreen extends AbstractContainerScreen<FluidIdentifi
         final var fluidType = fluid.getFluidType();
         final int tint = fluidType instanceof HbmFluidType hbmFluidType ? hbmFluidType.getTintColor() : 0xFFFFFFFF;
         return tint | 0xFF000000;
+    }
+
+    private static List<Component> fluidTooltip(final ResourceLocation fluidId) {
+        final List<Component> tooltip = new ArrayList<>();
+        tooltip.add(Component.literal(FluidIdentifierMenu.displayName(fluidId)));
+
+        final var fluid = ForgeRegistries.FLUIDS.getValue(fluidId);
+        if (fluid == null) {
+            return tooltip;
+        }
+
+        final var fluidType = fluid.getFluidType();
+        if (fluidType instanceof final HbmFluidType hbmFluidType) {
+            if (hbmFluidType.isHot()) {
+                tooltip.add(Component.literal("Hot").withStyle(ChatFormatting.RED));
+            }
+            final int corrosive = hbmFluidType.getCorrosiveRating();
+            if (corrosive > 0) {
+                final ChatFormatting color = corrosive > 50 ? ChatFormatting.DARK_RED : ChatFormatting.GOLD;
+                tooltip.add(Component.literal("Corrosive " + corrosive).withStyle(color));
+            }
+            if (hbmFluidType.isAntimatter()) {
+                tooltip.add(Component.literal("Antimatter").withStyle(ChatFormatting.DARK_PURPLE));
+            }
+        }
+
+        return tooltip;
     }
 }

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "S": {
+      "item": "hbmntm:ingot_steel"
+    }
+  },
+  "pattern": [
+    "S",
+    "S",
+    "S"
+  ],
+  "result": {
+    "count": 8,
+    "item": "hbmntm:steel_beam"
+  },
+  "show_notification": true
+}

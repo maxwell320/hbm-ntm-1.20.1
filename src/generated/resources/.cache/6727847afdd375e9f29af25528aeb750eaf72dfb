@@ -1,6 +1,8 @@
-// 1.20.1	2026-04-11T23:07:03.5993322	HBM Item Tags
+// 1.20.1	2026-04-13T23:44:57.9522525	HBM Item Tags
 5e5245f92e4f2eed9c0fbe3d93f0366e27a4530c data/forge/tags/items/billets/actinium.json
 5f5a4382fd0dc52303ada218c7290a405047b0eb data/forge/tags/items/billets/am241.json
+7bd20319d625dc42ef0a37ea38dbee5d70240784 data/forge/tags/items/billets/am242.json
+e3568ca5f43292083acd49782c12d2a39cfdf324 data/forge/tags/items/billets/am_mix.json
 65d1d0138232e9f49b85fcdf4a585711b8c1d528 data/forge/tags/items/billets/au198.json
 1ab902dad59d64ed93bbe859502ea9611c92bb19 data/forge/tags/items/billets/australium.json
 1ed5aa494fc0e2101d01be5d430859837e56f2bf data/forge/tags/items/billets/beryllium.json
@@ -15,6 +17,7 @@ ba13a5ba6313aa7d7dfae9f8a1499b373b7080db data/forge/tags/items/billets/polonium.
 2095bc342bc4eeca95a40e7e9357a4968f2bdf69 data/forge/tags/items/billets/pu238.json
 09914c59778c09944654110da87b322f5cf8c0d6 data/forge/tags/items/billets/pu239.json
 ac870a4dfb3f36099113b490a55f1646363423f4 data/forge/tags/items/billets/pu240.json
+55cb93a208884c4681e9864e5ae5cfcad5421977 data/forge/tags/items/billets/pu241.json
 457d6a18e4f50577f5dda1b6bde3db2ba6a65fd1 data/forge/tags/items/billets/pu_mix.json
 75be8fcec3d0a8b413dd6b701c0be1f01afc6033 data/forge/tags/items/billets/ra226.json
 c155f2eec2284e4d41e2201bde32ad779f0491e1 data/forge/tags/items/billets/schrabidium.json
@@ -246,6 +249,8 @@ ce0e5383152e3688e8affeb9f3f055f398890c5d data/forge/tags/items/ingots/actinium.j
 cb89c36c841df517917c244f076a163ef7774995 data/forge/tags/items/ingots/advanced_alloy.json
 10a6f40dff0685eb2df65cc4eb1f64711e667146 data/forge/tags/items/ingots/aluminium.json
 49b41259513dafa960969ad26beea096b087185b data/forge/tags/items/ingots/am241.json
+64ff842e684b4bf17b3134ba7bee4b7c21b7078e data/forge/tags/items/ingots/am242.json
+33cbec73f323fa92967450ca9e52da04d45398fd data/forge/tags/items/ingots/am_mix.json
 eefb9592ba23f76c8368294a3445f497d3a515a3 data/forge/tags/items/ingots/arsenic.json
 670023b28b8042388eba21a69002f23fbf280a44 data/forge/tags/items/ingots/arsenic_bronze.json
 1fbcd13e1bc9f71c3b476ad9d429628b5204a00a data/forge/tags/items/ingots/asbestos.json
@@ -296,6 +301,7 @@ a85c39a5698700c0a650d1a22bfbfafef65925cf data/forge/tags/items/ingots/polonium.j
 2e6717358ceea49a9283210f16e9bb4108b07afe data/forge/tags/items/ingots/pu238.json
 64abf440e3a768222698e66e64d76dd3727f041f data/forge/tags/items/ingots/pu239.json
 3a060734ed40cd8d53c7873b5286a7b9aa1a16c6 data/forge/tags/items/ingots/pu240.json
+59245309ef3773e7cb73a34e415f958eb62c2bab data/forge/tags/items/ingots/pu241.json
 8a0a420381003c579b024c1012d8ba47a9b3fb2a data/forge/tags/items/ingots/pu_mix.json
 5ba0d5f7bd331d8153d94638396723ad4b9a5933 data/forge/tags/items/ingots/pvc.json
 91f18c6b2ec4d9117d7bc21a7865a6e54c2e1237 data/forge/tags/items/ingots/ra226.json
@@ -350,6 +356,8 @@ c2b355fe5367d2d1421ac0df8b456bb8ce22dff4 data/forge/tags/items/mechanisms/saturn
 674efac40e1d6296c3dcc8b878b4277a00fc4117 data/forge/tags/items/mechanisms/weaponsteel.json
 3a304e0331d81ee04224ea7fa577278ed4ed54de data/forge/tags/items/nuggets/actinium.json
 6aeac8c1f7f2df59de5dc6e7c4f7edab0d54f7d9 data/forge/tags/items/nuggets/am241.json
+fab1f1c662781f6fed6e11f425f61a6ee691f063 data/forge/tags/items/nuggets/am242.json
+e19bdfe0e1bb61c5f9769cdd92c2220655d022ca data/forge/tags/items/nuggets/am_mix.json
 f77598a3b0c2cf7ea5b80e78f2d37fd96663d1d1 data/forge/tags/items/nuggets/arsenic.json
 8933ce73cd478ab63a4f154354fe78b719a982e7 data/forge/tags/items/nuggets/au198.json
 55316003cdca9b36193faba3d00b49d78ecc176e data/forge/tags/items/nuggets/australium.json
@@ -371,6 +379,7 @@ a9abe81a845a7053d4ce86ea8bf1cb272837da5a data/forge/tags/items/nuggets/plutonium
 74a1cacc1d075cef62e5ee4fe52dadbab8bee976 data/forge/tags/items/nuggets/pu238.json
 7eaede94eca617ea21083b52fa040d588e1c1dda data/forge/tags/items/nuggets/pu239.json
 ce490de4f732b1c1be17ae1cf9422fb4dc44b3e5 data/forge/tags/items/nuggets/pu240.json
+e2cd25eb9fab40ec3fd074b5ad72329c0d954dc4 data/forge/tags/items/nuggets/pu241.json
 11e7d3909fd73af054d9bdc23248d40e4394106e data/forge/tags/items/nuggets/pu_mix.json
 014ed77ae443f80b645f212aa9012082cd944784 data/forge/tags/items/nuggets/ra226.json
 0c258d53ec85e9739adfd0a64bf525fa1af6d7ce data/forge/tags/items/nuggets/schrabidium.json
@@ -505,9 +514,11 @@ aec592c8b0a572089b7ccc9d0005e5fd47ad42c9 data/forge/tags/items/wires/schrabidium
 c959b042ba4109a487271818103f14f45d4b494a data/forge/tags/items/wires/steel.json
 b32d4f9f9b6605da66c19c830bbd2a2e4a3971b5 data/forge/tags/items/wires/tungsten.json
 845dc7beb23a196a71552113229089f3012763d8 data/forge/tags/items/wires/zirconium.json
-6ec734d8942a7d9881299fed1ebcf7370a7b60fb data/hbmntm/tags/items/billets.json
+c3d39745cca62eafe621a43d3fcea9ddf15bb55d data/hbmntm/tags/items/billets.json
 5e5245f92e4f2eed9c0fbe3d93f0366e27a4530c data/hbmntm/tags/items/billets/actinium.json
 5f5a4382fd0dc52303ada218c7290a405047b0eb data/hbmntm/tags/items/billets/am241.json
+7bd20319d625dc42ef0a37ea38dbee5d70240784 data/hbmntm/tags/items/billets/am242.json
+e3568ca5f43292083acd49782c12d2a39cfdf324 data/hbmntm/tags/items/billets/am_mix.json
 65d1d0138232e9f49b85fcdf4a585711b8c1d528 data/hbmntm/tags/items/billets/au198.json
 1ab902dad59d64ed93bbe859502ea9611c92bb19 data/hbmntm/tags/items/billets/australium.json
 1ed5aa494fc0e2101d01be5d430859837e56f2bf data/hbmntm/tags/items/billets/beryllium.json
@@ -522,6 +533,7 @@ ba13a5ba6313aa7d7dfae9f8a1499b373b7080db data/hbmntm/tags/items/billets/polonium
 2095bc342bc4eeca95a40e7e9357a4968f2bdf69 data/hbmntm/tags/items/billets/pu238.json
 09914c59778c09944654110da87b322f5cf8c0d6 data/hbmntm/tags/items/billets/pu239.json
 ac870a4dfb3f36099113b490a55f1646363423f4 data/hbmntm/tags/items/billets/pu240.json
+55cb93a208884c4681e9864e5ae5cfcad5421977 data/hbmntm/tags/items/billets/pu241.json
 457d6a18e4f50577f5dda1b6bde3db2ba6a65fd1 data/hbmntm/tags/items/billets/pu_mix.json
 75be8fcec3d0a8b413dd6b701c0be1f01afc6033 data/hbmntm/tags/items/billets/ra226.json
 c155f2eec2284e4d41e2201bde32ad779f0491e1 data/hbmntm/tags/items/billets/schrabidium.json
@@ -759,11 +771,13 @@ ab5d4a378dc9acee2f8283d3488d8143ff942a8a data/hbmntm/tags/items/heavy_receivers/
 d6334d8d0b3c496b350e3a85b63bf2d38bc30167 data/hbmntm/tags/items/heavy_receivers/saturnite.json
 dcdd4611ca89908bd1b1234b4d956916a5dc3f09 data/hbmntm/tags/items/heavy_receivers/tcalloy.json
 b2aa06dfe8ad0fa98992f77309850ef1a7f88c57 data/hbmntm/tags/items/heavy_receivers/weaponsteel.json
-aea81051b972e0db6e114fb22a697fde898f7844 data/hbmntm/tags/items/ingots.json
+3f2ca76a3ca689be8d062b36710f3c63c165a7a7 data/hbmntm/tags/items/ingots.json
 ce0e5383152e3688e8affeb9f3f055f398890c5d data/hbmntm/tags/items/ingots/actinium.json
 cb89c36c841df517917c244f076a163ef7774995 data/hbmntm/tags/items/ingots/advanced_alloy.json
 10a6f40dff0685eb2df65cc4eb1f64711e667146 data/hbmntm/tags/items/ingots/aluminium.json
 49b41259513dafa960969ad26beea096b087185b data/hbmntm/tags/items/ingots/am241.json
+64ff842e684b4bf17b3134ba7bee4b7c21b7078e data/hbmntm/tags/items/ingots/am242.json
+33cbec73f323fa92967450ca9e52da04d45398fd data/hbmntm/tags/items/ingots/am_mix.json
 eefb9592ba23f76c8368294a3445f497d3a515a3 data/hbmntm/tags/items/ingots/arsenic.json
 670023b28b8042388eba21a69002f23fbf280a44 data/hbmntm/tags/items/ingots/arsenic_bronze.json
 1fbcd13e1bc9f71c3b476ad9d429628b5204a00a data/hbmntm/tags/items/ingots/asbestos.json
@@ -814,6 +828,7 @@ a85c39a5698700c0a650d1a22bfbfafef65925cf data/hbmntm/tags/items/ingots/polonium.
 2e6717358ceea49a9283210f16e9bb4108b07afe data/hbmntm/tags/items/ingots/pu238.json
 64abf440e3a768222698e66e64d76dd3727f041f data/hbmntm/tags/items/ingots/pu239.json
 3a060734ed40cd8d53c7873b5286a7b9aa1a16c6 data/hbmntm/tags/items/ingots/pu240.json
+59245309ef3773e7cb73a34e415f958eb62c2bab data/hbmntm/tags/items/ingots/pu241.json
 8a0a420381003c579b024c1012d8ba47a9b3fb2a data/hbmntm/tags/items/ingots/pu_mix.json
 5ba0d5f7bd331d8153d94638396723ad4b9a5933 data/hbmntm/tags/items/ingots/pvc.json
 91f18c6b2ec4d9117d7bc21a7865a6e54c2e1237 data/hbmntm/tags/items/ingots/ra226.json
@@ -869,6 +884,8 @@ ea51655e57a6b664bb4d9aa75220b8723970e93c data/hbmntm/tags/items/light_receivers/
 7e669d59cf5d465f933d0fe272ee9d132106eaab data/hbmntm/tags/items/materials/advanced_alloy.json
 c21fd31289285dfb2382b5b7abb63c7f9a4cc4d5 data/hbmntm/tags/items/materials/aluminium.json
 5836974221e8a4f6e9d0d26406af7603e56babee data/hbmntm/tags/items/materials/am241.json
+0143b7e6f0a2f2378af68acb27b49f9296b384e0 data/hbmntm/tags/items/materials/am242.json
+e22363d9a53bde8a1dd07391a31c37b7daa10028 data/hbmntm/tags/items/materials/am_mix.json
 a54f65970418a63f7606e13e0dff5b776b1c264f data/hbmntm/tags/items/materials/arsenic.json
 295b272551700ddd74ee7cd60ee984313edababc data/hbmntm/tags/items/materials/arsenic_bronze.json
 e4b08d50bbc723bf89dc662a3f8235ed4c2791fc data/hbmntm/tags/items/materials/asbestos.json
@@ -948,6 +965,7 @@ f32ec6ead65995e5ffb0854cfb393675f3870113 data/hbmntm/tags/items/materials/polyme
 156058b80c1351883405af78a8c3fea288a5afca data/hbmntm/tags/items/materials/pu238.json
 07da0a0afa4b4303ded39f99b0d2a05ca7dcf2f8 data/hbmntm/tags/items/materials/pu239.json
 6bc21a872a4de46bc2045618c29e7c08df6c0a2a data/hbmntm/tags/items/materials/pu240.json
+a4c5da3045dfb73c5e1bd7844a46f451ed772861 data/hbmntm/tags/items/materials/pu241.json
 980d8e6f9b4762de081750f5aff2a3ebbdbbb578 data/hbmntm/tags/items/materials/pu_mix.json
 76ce3913c7115f73cf076632534efbfa0d97d909 data/hbmntm/tags/items/materials/pvc.json
 8e323c67dba853988c4747c1e7a6f1bca159a5f8 data/hbmntm/tags/items/materials/quartz.json
@@ -992,9 +1010,11 @@ d7d4fc059eb6b2f15860a58f07220dafc324fb6c data/hbmntm/tags/items/materials/zircon
 c452e4224ba4f29c452ff32c8ec42f53b2e78c75 data/hbmntm/tags/items/mechanisms/gunmetal.json
 c2b355fe5367d2d1421ac0df8b456bb8ce22dff4 data/hbmntm/tags/items/mechanisms/saturnite.json
 674efac40e1d6296c3dcc8b878b4277a00fc4117 data/hbmntm/tags/items/mechanisms/weaponsteel.json
-05531c3038dc52a99b061fc5713aa6731c349cf9 data/hbmntm/tags/items/nuggets.json
+bde4f957e9dac034909ec9b28c0b146c1d667b0c data/hbmntm/tags/items/nuggets.json
 3a304e0331d81ee04224ea7fa577278ed4ed54de data/hbmntm/tags/items/nuggets/actinium.json
 6aeac8c1f7f2df59de5dc6e7c4f7edab0d54f7d9 data/hbmntm/tags/items/nuggets/am241.json
+fab1f1c662781f6fed6e11f425f61a6ee691f063 data/hbmntm/tags/items/nuggets/am242.json
+e19bdfe0e1bb61c5f9769cdd92c2220655d022ca data/hbmntm/tags/items/nuggets/am_mix.json
 f77598a3b0c2cf7ea5b80e78f2d37fd96663d1d1 data/hbmntm/tags/items/nuggets/arsenic.json
 8933ce73cd478ab63a4f154354fe78b719a982e7 data/hbmntm/tags/items/nuggets/au198.json
 55316003cdca9b36193faba3d00b49d78ecc176e data/hbmntm/tags/items/nuggets/australium.json
@@ -1016,6 +1036,7 @@ a9abe81a845a7053d4ce86ea8bf1cb272837da5a data/hbmntm/tags/items/nuggets/plutoniu
 74a1cacc1d075cef62e5ee4fe52dadbab8bee976 data/hbmntm/tags/items/nuggets/pu238.json
 7eaede94eca617ea21083b52fa040d588e1c1dda data/hbmntm/tags/items/nuggets/pu239.json
 ce490de4f732b1c1be17ae1cf9422fb4dc44b3e5 data/hbmntm/tags/items/nuggets/pu240.json
+e2cd25eb9fab40ec3fd074b5ad72329c0d954dc4 data/hbmntm/tags/items/nuggets/pu241.json
 11e7d3909fd73af054d9bdc23248d40e4394106e data/hbmntm/tags/items/nuggets/pu_mix.json
 014ed77ae443f80b645f212aa9012082cd944784 data/hbmntm/tags/items/nuggets/ra226.json
 0c258d53ec85e9739adfd0a64bf525fa1af6d7ce data/hbmntm/tags/items/nuggets/schrabidium.json

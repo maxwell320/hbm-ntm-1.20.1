@@ -3,7 +3,6 @@ package com.hbm.ntm.client.screen;
 import com.hbm.ntm.HbmNtmMod;
 import com.hbm.ntm.common.menu.ShredderMenu;
 import java.util.List;
-import java.util.Optional;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -13,10 +12,8 @@ import net.minecraft.world.entity.player.Inventory;
 public class ShredderScreen extends MachineScreenBase<ShredderMenu> {
 
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "textures/gui/machine/gui_shredder.png");
-    private static final ResourceLocation GUI_UTILITY = ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "textures/gui/gui_utility.png");
     private static final int WARNING_X = -16;
     private static final int WARNING_Y = 36;
-    private static final int WARNING_SIZE = 16;
 
     public ShredderScreen(final ShredderMenu menu, final Inventory inventory, final Component title) {
         super(menu, inventory, title, 176, 233);
@@ -61,57 +58,35 @@ public class ShredderScreen extends MachineScreenBase<ShredderMenu> {
         }
 
         if (this.hasBladeError()) {
-            final int warningX = this.leftPos + WARNING_X;
-            final int warningY = this.topPos + WARNING_Y;
-            guiGraphics.blit(GUI_UTILITY, warningX, warningY, 8, 16, WARNING_SIZE, WARNING_SIZE, 64, 64);
+            this.renderLegacyInfoPanel(guiGraphics, this.leftPos + WARNING_X, this.topPos + WARNING_Y, 6);
         }
     }
 
     @Override
     protected void renderMachineLabels(final GuiGraphics guiGraphics, final int mouseX, final int mouseY) {
-        if (this.inside(mouseX, mouseY, this.leftPos + 8, this.topPos + 18, 16, 88)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(Component.literal(formatShortNumber(this.menu.energy()) + "/" + formatShortNumber(this.menu.maxEnergy()) + "HE")),
-                Optional.empty(), mouseX, mouseY);
-        }
+        this.renderEnergyTooltip(guiGraphics,
+            mouseX,
+            mouseY,
+            this.leftPos + 8,
+            this.topPos + 18,
+            16,
+            88,
+            this.menu.energy(),
+            this.menu.maxEnergy());
 
-        if (this.hasBladeError() && this.inside(mouseX, mouseY,
-            this.leftPos + WARNING_X, this.topPos + WARNING_Y, WARNING_SIZE, WARNING_SIZE)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(Component.literal("Error: Shredder blades are broken or missing!")),
-                Optional.empty(), mouseX, mouseY);
-        }
+        this.renderLegacyInfoPanelTooltip(guiGraphics,
+            mouseX,
+            mouseY,
+            this.leftPos + WARNING_X,
+            this.topPos + WARNING_Y,
+            6,
+            this.hasBladeError()
+                ? List.of(Component.literal("Error: Shredder blades are broken or missing!"))
+                : List.of());
     }
 
     private boolean hasBladeError() {
         return this.menu.gearLeft() == 0 || this.menu.gearLeft() == 3 || this.menu.gearRight() == 0 || this.menu.gearRight() == 3;
-    }
-
-    private static String formatShortNumber(final long value) {
-        if (value >= 1_000_000_000_000_000_000L) {
-            return scaled(value, 1_000_000_000_000_000_000D, "E");
-        }
-        if (value >= 1_000_000_000_000_000L) {
-            return scaled(value, 1_000_000_000_000_000D, "P");
-        }
-        if (value >= 1_000_000_000_000L) {
-            return scaled(value, 1_000_000_000_000D, "T");
-        }
-        if (value >= 1_000_000_000L) {
-            return scaled(value, 1_000_000_000D, "G");
-        }
-        if (value >= 1_000_000L) {
-            return scaled(value, 1_000_000D, "M");
-        }
-        if (value >= 1_000L) {
-            return scaled(value, 1_000D, "k");
-        }
-        return Long.toString(value);
-    }
-
-    private static String scaled(final long value, final double divisor, final String suffix) {
-        final double result = Math.round(value / divisor * 100.0D) / 100.0D;
-        return result + suffix;
     }
 
     @Override

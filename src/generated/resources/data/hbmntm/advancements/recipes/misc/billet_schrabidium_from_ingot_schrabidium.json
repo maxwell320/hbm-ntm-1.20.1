@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ingot_schrabidium": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:ingot_schrabidium"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:billet_schrabidium_from_ingot_schrabidium"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_ingot_schrabidium",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:billet_schrabidium_from_ingot_schrabidium"
+    ]
+  },
+  "sends_telemetry_event": false
+}

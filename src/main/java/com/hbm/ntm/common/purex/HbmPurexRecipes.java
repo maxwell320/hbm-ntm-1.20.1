@@ -25,6 +25,13 @@ public final class HbmPurexRecipes {
         return REGISTRY.all();
     }
 
+    public static Optional<PurexRecipe> findById(final String id) {
+        if (id == null || id.isBlank()) {
+            return Optional.empty();
+        }
+        return REGISTRY.findFirst(recipe -> recipe.id().equals(id));
+    }
+
     public static Optional<PurexRecipe> findRecipe(final List<ItemStack> itemInputs, final List<FluidStack> fluidInputs) {
         return REGISTRY.findFirst(recipe -> recipe.matches(itemInputs, fluidInputs));
     }

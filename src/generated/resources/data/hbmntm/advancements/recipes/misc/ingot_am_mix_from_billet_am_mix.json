@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_billet_am_mix": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "hbmntm:billet_am_mix"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "hbmntm:ingot_am_mix_from_billet_am_mix"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_billet_am_mix",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "hbmntm:ingot_am_mix_from_billet_am_mix"
+    ]
+  },
+  "sends_telemetry_event": false
+}

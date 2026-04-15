@@ -5,9 +5,17 @@ import com.hbm.ntm.client.renderer.blockentity.BarrelBlockEntityRenderer;
 import com.hbm.ntm.client.renderer.blockentity.IcfControllerBlockEntityRenderer;
 import com.hbm.ntm.client.renderer.blockentity.PressBlockEntityRenderer;
 import com.hbm.ntm.client.network.MachineClientPacketHandlers;
+import com.hbm.ntm.client.network.PermaSyncClientPacketHandlers;
 import com.hbm.ntm.client.screen.AssemblyMachineScreen;
+import com.hbm.ntm.client.screen.AshpitScreen;
 import com.hbm.ntm.client.screen.BarrelScreen;
 import com.hbm.ntm.client.screen.CentrifugeScreen;
+import com.hbm.ntm.client.screen.CombustionEngineScreen;
+import com.hbm.ntm.client.screen.CyclotronScreen;
+import com.hbm.ntm.client.screen.DiFurnaceRtgScreen;
+import com.hbm.ntm.client.screen.DiFurnaceScreen;
+import com.hbm.ntm.client.screen.DieselGeneratorScreen;
+import com.hbm.ntm.client.screen.ElectricFurnaceScreen;
 import com.hbm.ntm.client.screen.FluidIdentifierScreen;
 import com.hbm.ntm.client.screen.GasCentrifugeScreen;
 import com.hbm.ntm.client.screen.IcfScreen;
@@ -15,11 +23,14 @@ import com.hbm.ntm.client.screen.IcfPressScreen;
 import com.hbm.ntm.client.screen.NtmAnvilScreen;
 import com.hbm.ntm.client.screen.PressScreen;
 import com.hbm.ntm.client.screen.PurexScreen;
+import com.hbm.ntm.client.screen.RtgFurnaceScreen;
+import com.hbm.ntm.client.screen.RtgGeneratorScreen;
 import com.hbm.ntm.client.screen.ShredderScreen;
 import com.hbm.ntm.client.screen.SolderingStationScreen;
 import com.hbm.ntm.common.block.SellafieldBlock;
 import com.hbm.ntm.common.fluid.HbmFluidType;
 import com.hbm.ntm.common.item.CanisterItem;
+import com.hbm.ntm.common.item.DisperserCanisterItem;
 import com.hbm.ntm.common.item.FluidIdentifierItem;
 import com.hbm.ntm.common.item.FluidTankItem;
 import com.hbm.ntm.common.item.GasTankItem;
@@ -56,7 +67,9 @@ public final class HbmClientSetup {
     public static void onClientSetup(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             final RenderType translucent = Objects.requireNonNull(RenderType.translucent());
+            final RenderType cutout = Objects.requireNonNull(RenderType.cutout());
             HbmPacketHandler.setMachineStateClientDispatcher(MachineClientPacketHandlers::handleMachineStateSync);
+            HbmPacketHandler.setPermaSyncClientDispatcher(PermaSyncClientPacketHandlers::handlePermaSync);
             BlockEntityRenderers.register(HbmBlockEntityTypes.BARREL.get(), BarrelBlockEntityRenderer::new);
             BlockEntityRenderers.register(HbmBlockEntityTypes.MACHINE_PRESS.get(), PressBlockEntityRenderer::new);
             BlockEntityRenderers.register(HbmBlockEntityTypes.MACHINE_ICF_CONTROLLER.get(), IcfControllerBlockEntityRenderer::new);
@@ -65,13 +78,25 @@ public final class HbmClientSetup {
             MenuScreens.register(HbmMenuTypes.MACHINE_ASSEMBLY_MACHINE.get(), AssemblyMachineScreen::new);
             MenuScreens.register(HbmMenuTypes.NTM_ANVIL.get(), NtmAnvilScreen::new);
             MenuScreens.register(HbmMenuTypes.FLUID_IDENTIFIER.get(), FluidIdentifierScreen::new);
+            MenuScreens.register(HbmMenuTypes.MACHINE_DI_FURNACE.get(), DiFurnaceScreen::new);
+            MenuScreens.register(HbmMenuTypes.MACHINE_DI_FURNACE_RTG.get(), DiFurnaceRtgScreen::new);
+            MenuScreens.register(HbmMenuTypes.MACHINE_ELECTRIC_FURNACE.get(), ElectricFurnaceScreen::new);
+            MenuScreens.register(HbmMenuTypes.MACHINE_RTG_FURNACE.get(), RtgFurnaceScreen::new);
+            MenuScreens.register(HbmMenuTypes.MACHINE_RTG_GREY.get(), RtgGeneratorScreen::new);
+            MenuScreens.register(HbmMenuTypes.MACHINE_DIESEL_GENERATOR.get(), DieselGeneratorScreen::new);
+            MenuScreens.register(HbmMenuTypes.MACHINE_COMBUSTION_ENGINE.get(), CombustionEngineScreen::new);
+            MenuScreens.register(HbmMenuTypes.MACHINE_ASHPIT.get(), AshpitScreen::new);
             MenuScreens.register(HbmMenuTypes.MACHINE_SHREDDER.get(), ShredderScreen::new);
             MenuScreens.register(HbmMenuTypes.MACHINE_SOLDERING_STATION.get(), SolderingStationScreen::new);
             MenuScreens.register(HbmMenuTypes.MACHINE_CENTRIFUGE.get(), CentrifugeScreen::new);
             MenuScreens.register(HbmMenuTypes.MACHINE_GAS_CENTRIFUGE.get(), GasCentrifugeScreen::new);
+            MenuScreens.register(HbmMenuTypes.MACHINE_CYCLOTRON.get(), CyclotronScreen::new);
             MenuScreens.register(HbmMenuTypes.MACHINE_PUREX.get(), PurexScreen::new);
             MenuScreens.register(HbmMenuTypes.MACHINE_ICF.get(), IcfScreen::new);
             MenuScreens.register(HbmMenuTypes.MACHINE_ICF_PRESS.get(), IcfPressScreen::new);
+            ItemBlockRenderTypes.setRenderLayer(HbmBlocks.STEEL_GRATE.get(), cutout);
+            ItemBlockRenderTypes.setRenderLayer(HbmBlocks.STEEL_GRATE_WIDE.get(), cutout);
+            ItemBlockRenderTypes.setRenderLayer(HbmBlocks.GLASS_BORON.get(), translucent);
             ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.COOLANT.getStillFluid()), translucent);
             ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.COOLANT.getFlowingFluid()), translucent);
             ItemBlockRenderTypes.setRenderLayer(Objects.requireNonNull(HbmFluids.COOLANT_HOT.getStillFluid()), translucent);
@@ -420,6 +445,8 @@ public final class HbmClientSetup {
         }, HbmItems.FLUID_IDENTIFIER_MULTI.get());
         event.register((stack, tintIndex) -> tintIndex == 1 ? CanisterItem.getColor(stack) : 0xFFFFFF,
             HbmItems.CANISTER_FULL.get());
+        event.register((stack, tintIndex) -> tintIndex == 1 ? DisperserCanisterItem.getColor(stack) : 0xFFFFFF,
+            HbmItems.DISPERSER_CANISTER.get(), HbmItems.GLYPHID_GLAND.get());
         event.register((stack, tintIndex) -> switch (tintIndex) {
             case 1 -> GasTankItem.getBottleColor(stack);
             case 2 -> GasTankItem.getLabelColor(stack);

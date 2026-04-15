@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minecraft:item/gold_nugget"
+    "layer0": "hbmntm:item/nugget_am241"
   }
 }

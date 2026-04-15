@@ -1,5 +1,7 @@
 package com.hbm.ntm.common.assembly;
 
+import com.hbm.ntm.HbmNtmMod;
+import com.hbm.ntm.common.item.CanisterItem;
 import com.hbm.ntm.common.item.FluidTankItem;
 import com.hbm.ntm.common.item.CircuitItemType;
 import com.hbm.ntm.common.material.HbmMaterialDefinition;
@@ -144,6 +146,56 @@ public final class HbmAssemblyRecipes {
                 List.of(exact(packedStack, 1))));
         }
 
+        final ItemStack canisterPetroil = canisterWithFluid("petroil");
+        final ItemStack canisterDiesel = canisterWithFluid("diesel");
+        final ItemStack canisterHeatingOil = canisterWithFluid("heatingoil");
+        final ItemStack canisterLubricantPair = canisterWithFluid("lubricant");
+        canisterLubricantPair.setCount(2);
+
+        registry.add(new AssemblyRecipe(
+            "ass.canister_diesel",
+            canisterDiesel,
+            FluidStack.EMPTY,
+            FluidStack.EMPTY,
+            40,
+            100,
+            List.of(exact(canisterPetroil, 1))));
+
+        registry.add(new AssemblyRecipe(
+            "ass.canister_lubricant",
+            canisterLubricantPair,
+            new FluidStack(HbmFluids.UNSATURATEDS.getStillFluid(), 1_000),
+            FluidStack.EMPTY,
+            40,
+            100,
+            List.of(
+                exact(canisterHeatingOil, 1),
+                ingredient(Ingredient.of(item(HbmItems.CANISTER_EMPTY)), item(HbmItems.CANISTER_EMPTY), 1))));
+
+        registry.add(new AssemblyRecipe(
+            "ass.yellowbarrel",
+            new ItemStack(item(HbmItems.BARREL_YELLOW)),
+            FluidStack.EMPTY,
+            FluidStack.EMPTY,
+            400,
+            400,
+            List.of(
+                ingredient(Ingredient.of(item(HbmItems.TANK_STEEL)), item(HbmItems.TANK_STEEL), 1),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.LEAD, HbmMaterialShape.PLATE)), materialItem(HbmMaterials.LEAD, HbmMaterialShape.PLATE), 2),
+                ingredient(Ingredient.of(item(HbmItems.NUCLEAR_WASTE)), item(HbmItems.NUCLEAR_WASTE), 10))));
+
+        registry.add(new AssemblyRecipe(
+            "ass.vitrifiedbarrel",
+            new ItemStack(item(HbmItems.BARREL_VITRIFIED)),
+            FluidStack.EMPTY,
+            FluidStack.EMPTY,
+            400,
+            400,
+            List.of(
+                ingredient(Ingredient.of(item(HbmItems.TANK_STEEL)), item(HbmItems.TANK_STEEL), 1),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.LEAD, HbmMaterialShape.PLATE)), materialItem(HbmMaterials.LEAD, HbmMaterialShape.PLATE), 2),
+                ingredient(Ingredient.of(item(HbmItems.NUCLEAR_WASTE_VITRIFIED)), item(HbmItems.NUCLEAR_WASTE_VITRIFIED), 10))));
+
         registry.add(new AssemblyRecipe(
             "ass.shredder",
             new ItemStack(item(HbmItems.MACHINE_SHREDDER)),
@@ -197,6 +249,114 @@ public final class HbmAssemblyRecipes {
                 ingredient(Ingredient.of(materialItem(HbmMaterials.STEEL, HbmMaterialShape.PLATE)), materialItem(HbmMaterials.STEEL, HbmMaterialShape.PLATE), 8),
                 ingredient(Ingredient.of(item(HbmItems.getCircuit(CircuitItemType.ADVANCED))), item(HbmItems.getCircuit(CircuitItemType.ADVANCED)), 1)),
             List.of(POOL_PREFIX_528 + "gascent")));
+
+        registry.add(new AssemblyRecipe(
+            "ass.rtg",
+            new ItemStack(item(HbmItems.MACHINE_RTG_GREY)),
+            FluidStack.EMPTY,
+            FluidStack.EMPTY,
+            200,
+            100,
+            List.of(
+                ingredient(Ingredient.of(item(HbmItems.RTG_UNIT)), item(HbmItems.RTG_UNIT), 3),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.STEEL, HbmMaterialShape.PLATE)), materialItem(HbmMaterials.STEEL, HbmMaterialShape.PLATE), 4),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.RED_COPPER, HbmMaterialShape.WIRE)), materialItem(HbmMaterials.RED_COPPER, HbmMaterialShape.WIRE), 16),
+                ingredient(plasticIngotIngredient(), materialItem(HbmMaterials.POLYMER, HbmMaterialShape.INGOT), 4))));
+
+        registry.add(new AssemblyRecipe(
+            "ass.dieselgen",
+            new ItemStack(item(HbmItems.MACHINE_DIESEL_GENERATOR)),
+            FluidStack.EMPTY,
+            FluidStack.EMPTY,
+            200,
+            100,
+            List.of(
+                ingredient(Ingredient.of(materialItem(HbmMaterials.STEEL, HbmMaterialShape.SHELL)), materialItem(HbmMaterials.STEEL, HbmMaterialShape.SHELL), 1),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.COPPER, HbmMaterialShape.CAST_PLATE)), materialItem(HbmMaterials.COPPER, HbmMaterialShape.CAST_PLATE), 2),
+                ingredient(Ingredient.of(item(HbmItems.COIL_COPPER_TORUS)), item(HbmItems.COIL_COPPER_TORUS), 4))));
+
+        registry.add(new AssemblyRecipe(
+            "ass.combustiongen",
+            new ItemStack(item(HbmItems.MACHINE_COMBUSTION_ENGINE)),
+            FluidStack.EMPTY,
+            FluidStack.EMPTY,
+            300,
+            100,
+            List.of(
+                ingredient(Ingredient.of(materialItem(HbmMaterials.STEEL, HbmMaterialShape.PLATE)), materialItem(HbmMaterials.STEEL, HbmMaterialShape.PLATE), 16),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.COPPER, HbmMaterialShape.INGOT)), materialItem(HbmMaterials.COPPER, HbmMaterialShape.INGOT), 12),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.GOLD, HbmMaterialShape.DENSE_WIRE)), materialItem(HbmMaterials.GOLD, HbmMaterialShape.DENSE_WIRE), 8),
+                ingredient(Ingredient.of(item(HbmItems.CANISTER_EMPTY)), item(HbmItems.CANISTER_EMPTY), 4),
+                ingredient(Ingredient.of(item(HbmItems.getCircuit(CircuitItemType.BASIC))), item(HbmItems.getCircuit(CircuitItemType.BASIC)), 1))));
+
+        registry.add(new AssemblyRecipe(
+            "ass.pistonsetsteel",
+            new ItemStack(item(HbmItems.PISTON_SET_STEEL)),
+            FluidStack.EMPTY,
+            FluidStack.EMPTY,
+            200,
+            100,
+            List.of(
+                ingredient(Ingredient.of(materialItem(HbmMaterials.STEEL, HbmMaterialShape.PLATE)), materialItem(HbmMaterials.STEEL, HbmMaterialShape.PLATE), 16),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.COPPER, HbmMaterialShape.PLATE)), materialItem(HbmMaterials.COPPER, HbmMaterialShape.PLATE), 4),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.TUNGSTEN, HbmMaterialShape.INGOT)), materialItem(HbmMaterials.TUNGSTEN, HbmMaterialShape.INGOT), 8),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.TUNGSTEN, HbmMaterialShape.BOLT)), materialItem(HbmMaterials.TUNGSTEN, HbmMaterialShape.BOLT), 16))));
+
+        registry.add(new AssemblyRecipe(
+            "ass.pistonsetdura",
+            new ItemStack(item(HbmItems.PISTON_SET_DURA)),
+            FluidStack.EMPTY,
+            FluidStack.EMPTY,
+            200,
+            100,
+            List.of(
+                ingredient(Ingredient.of(materialItem(HbmMaterials.DURA_STEEL, HbmMaterialShape.INGOT)), materialItem(HbmMaterials.DURA_STEEL, HbmMaterialShape.INGOT), 24),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.TITANIUM, HbmMaterialShape.PLATE)), materialItem(HbmMaterials.TITANIUM, HbmMaterialShape.PLATE), 8),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.TUNGSTEN, HbmMaterialShape.INGOT)), materialItem(HbmMaterials.TUNGSTEN, HbmMaterialShape.INGOT), 8),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.DURA_STEEL, HbmMaterialShape.BOLT)), materialItem(HbmMaterials.DURA_STEEL, HbmMaterialShape.BOLT), 16))));
+
+        registry.add(new AssemblyRecipe(
+            "ass.pistonsetdesh",
+            new ItemStack(item(HbmItems.PISTON_SET_DESH)),
+            FluidStack.EMPTY,
+            FluidStack.EMPTY,
+            200,
+            100,
+            List.of(
+                ingredient(Ingredient.of(materialItem(HbmMaterials.DESH, HbmMaterialShape.INGOT)), materialItem(HbmMaterials.DESH, HbmMaterialShape.INGOT), 24),
+                ingredient(plasticIngotIngredient(), materialItem(HbmMaterials.POLYMER, HbmMaterialShape.INGOT), 12),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.COPPER, HbmMaterialShape.PLATE)), materialItem(HbmMaterials.COPPER, HbmMaterialShape.PLATE), 24),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.TUNGSTEN, HbmMaterialShape.INGOT)), materialItem(HbmMaterials.TUNGSTEN, HbmMaterialShape.INGOT), 16),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.DURA_STEEL, HbmMaterialShape.PIPE)), materialItem(HbmMaterials.DURA_STEEL, HbmMaterialShape.PIPE), 4))));
+
+        registry.add(new AssemblyRecipe(
+            "ass.pistonsetstar",
+            new ItemStack(item(HbmItems.PISTON_SET_STARMETAL)),
+            FluidStack.EMPTY,
+            FluidStack.EMPTY,
+            200,
+            100,
+            List.of(
+                ingredient(Ingredient.of(materialItem(HbmMaterials.STARMETAL, HbmMaterialShape.INGOT)), materialItem(HbmMaterials.STARMETAL, HbmMaterialShape.INGOT), 24),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.RUBBER, HbmMaterialShape.INGOT)), materialItem(HbmMaterials.RUBBER, HbmMaterialShape.INGOT), 16),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.SATURNITE, HbmMaterialShape.PLATE)), materialItem(HbmMaterials.SATURNITE, HbmMaterialShape.PLATE), 24),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.NIOBIUM, HbmMaterialShape.INGOT)), materialItem(HbmMaterials.NIOBIUM, HbmMaterialShape.INGOT), 16),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.DURA_STEEL, HbmMaterialShape.PIPE)), materialItem(HbmMaterials.DURA_STEEL, HbmMaterialShape.PIPE), 4))));
+
+        registry.add(new AssemblyRecipe(
+            "ass.cyclotron",
+            new ItemStack(item(HbmItems.MACHINE_CYCLOTRON)),
+            FluidStack.EMPTY,
+            FluidStack.EMPTY,
+            600,
+            100,
+            List.of(
+                ingredient(Ingredient.of(item(HbmItems.MACHINE_BATTERY)), item(HbmItems.MACHINE_BATTERY), 1),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.NEODYMIUM, HbmMaterialShape.DENSE_WIRE)), materialItem(HbmMaterials.NEODYMIUM, HbmMaterialShape.DENSE_WIRE), 32),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.STEEL, HbmMaterialShape.CAST_PLATE)), materialItem(HbmMaterials.STEEL, HbmMaterialShape.CAST_PLATE), 16),
+                ingredient(plasticIngotIngredient(), materialItem(HbmMaterials.POLYMER, HbmMaterialShape.INGOT), 24),
+                ingredient(Ingredient.of(materialItem(HbmMaterials.RUBBER, HbmMaterialShape.INGOT)), materialItem(HbmMaterials.RUBBER, HbmMaterialShape.INGOT), 24),
+                ingredient(Ingredient.of(item(HbmItems.getCircuit(CircuitItemType.BASIC))), item(HbmItems.getCircuit(CircuitItemType.BASIC)), 16))));
 
         registry.add(new AssemblyRecipe(
             "ass.purex",
@@ -589,6 +749,10 @@ public final class HbmAssemblyRecipes {
 
     private static Item item(final RegistryObject<Item> registryObject) {
         return Objects.requireNonNull(registryObject.get());
+    }
+
+    private static ItemStack canisterWithFluid(final String fluidPath) {
+        return CanisterItem.withFluid(item(HbmItems.CANISTER_FULL), ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, fluidPath));
     }
 
     private static Item materialItem(final HbmMaterialDefinition material, final HbmMaterialShape shape) {

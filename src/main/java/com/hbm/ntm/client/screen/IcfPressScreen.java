@@ -5,6 +5,7 @@ import com.hbm.ntm.common.block.entity.IcfPressBlockEntity;
 import com.hbm.ntm.common.menu.IcfPressMenu;
 import java.util.List;
 import java.util.Optional;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -26,9 +27,9 @@ public class IcfPressScreen extends MachineScreenBase<IcfPressMenu> {
             guiGraphics.blit(TEXTURE, this.leftPos + 28, this.topPos + 70 - muonPixels, 176, 52 - muonPixels, 4, muonPixels);
         }
 
-        this.renderVerticalFluidBar(guiGraphics, this.leftPos + 44, this.topPos + 18, 16, 52,
+        this.renderVerticalFluidGaugeBar(guiGraphics, this.leftPos + 44, this.topPos + 18, 16, 52,
             this.menu.fluidAmount(0), this.menu.fluidCapacity(0), 0xFF47B9E8);
-        this.renderVerticalFluidBar(guiGraphics, this.leftPos + 152, this.topPos + 18, 16, 52,
+        this.renderVerticalFluidGaugeBar(guiGraphics, this.leftPos + 152, this.topPos + 18, 16, 52,
             this.menu.fluidAmount(1), this.menu.fluidCapacity(1), 0xFFE85A6A);
     }
 
@@ -50,11 +51,11 @@ public class IcfPressScreen extends MachineScreenBase<IcfPressMenu> {
         if (this.hoveredSlot != null && !this.hoveredSlot.hasItem()) {
             if (this.hoveredSlot.index == IcfPressBlockEntity.SLOT_SOLID_FUEL_A) {
                 guiGraphics.renderTooltip(this.font,
-                    List.of(Component.literal("Item input: Top/Bottom")),
+                    List.of(Component.literal("Item input: Top/Bottom").withStyle(ChatFormatting.YELLOW)),
                     Optional.empty(), mouseX, mouseY);
             } else if (this.hoveredSlot.index == IcfPressBlockEntity.SLOT_SOLID_FUEL_B) {
                 guiGraphics.renderTooltip(this.font,
-                    List.of(Component.literal("Item input: Sides")),
+                    List.of(Component.literal("Item input: Sides").withStyle(ChatFormatting.YELLOW)),
                     Optional.empty(), mouseX, mouseY);
             }
         }
@@ -65,18 +66,4 @@ public class IcfPressScreen extends MachineScreenBase<IcfPressMenu> {
         return TEXTURE;
     }
 
-    private void renderVerticalFluidBar(final GuiGraphics guiGraphics,
-                                        final int x,
-                                        final int y,
-                                        final int width,
-                                        final int height,
-                                        final int amount,
-                                        final int capacity,
-                                        final int color) {
-        if (amount <= 0 || capacity <= 0) {
-            return;
-        }
-        final int fill = Math.max(1, Math.min(height, amount * height / capacity));
-        guiGraphics.fill(x, y + height - fill, x + width, y + height, color);
-    }
 }

@@ -42,19 +42,9 @@ public class ShredderMenu extends MachineMenuBase<ShredderBlockEntity> {
         super(HbmMenuTypes.MACHINE_SHREDDER.get(), containerId, inventory, shredder, ShredderBlockEntity.SLOT_COUNT);
         final ItemStackHandler handler = shredder == null ? new ItemStackHandler(ShredderBlockEntity.SLOT_COUNT) : shredder.getInternalItemHandler();
 
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                final int slot = row * 3 + col;
-                this.addSlot(new FilteredSlotItemHandler(handler, slot, 44 + col * 18, 18 + row * 18,
-                    (index, stack) -> this.machine != null && this.machine.isItemValid(index, stack)));
-            }
-        }
-
-        for (int row = 0; row < 6; row++) {
-            for (int col = 0; col < 3; col++) {
-                this.addSlot(new OutputSlotItemHandler(handler, 9 + row * 3 + col, 116 + col * 18, 18 + row * 18));
-            }
-        }
+        this.addFilteredGridSlots(handler, ShredderBlockEntity.SLOT_INPUT_START, 44, 18, 3, 3,
+            (index, stack) -> this.machine != null && this.machine.isItemValid(index, stack));
+        this.addOutputGridSlots(handler, ShredderBlockEntity.SLOT_OUTPUT_START, 116, 18, 6, 3);
 
         this.addSlot(new FilteredSlotItemHandler(handler, ShredderBlockEntity.SLOT_BLADE_LEFT, 44, 108,
             (slot, stack) -> stack.getItem() instanceof ShredderBladesItem));

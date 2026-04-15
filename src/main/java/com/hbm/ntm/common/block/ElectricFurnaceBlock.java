@@ -1,0 +1,54 @@
+package com.hbm.ntm.common.block;
+
+import com.hbm.ntm.common.block.entity.ElectricFurnaceBlockEntity;
+import com.hbm.ntm.common.registration.HbmBlockEntityTypes;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+@SuppressWarnings("null")
+public class ElectricFurnaceBlock extends MachineBlock {
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
+
+    public ElectricFurnaceBlock(final Properties properties) {
+        super(properties);
+        this.registerDefaultState(this.stateDefinition.any()
+            .setValue(FACING, Direction.NORTH)
+            .setValue(LIT, false));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(final StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+        builder.add(FACING, LIT);
+    }
+
+    @Override
+    public @Nullable BlockState getStateForPlacement(final @NotNull BlockPlaceContext context) {
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+    }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(final @NotNull BlockPos pos, final @NotNull BlockState state) {
+        return new ElectricFurnaceBlockEntity(pos, state);
+    }
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(final @NotNull Level level,
+                                                                             final @NotNull BlockState state,
+                                                                             final @NotNull BlockEntityType<T> type) {
+        return level.isClientSide() ? null : createTickerHelper(type, HbmBlockEntityTypes.MACHINE_ELECTRIC_FURNACE.get(), ElectricFurnaceBlockEntity::serverTick);
+    }
+}

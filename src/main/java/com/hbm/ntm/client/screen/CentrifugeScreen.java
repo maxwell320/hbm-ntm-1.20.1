@@ -67,6 +67,9 @@ public class CentrifugeScreen extends MachineScreenBase<CentrifugeMenu> {
                 mouseX,
                 mouseY);
         }
+
+        this.renderUpgradeInfoTooltip(guiGraphics, mouseX, mouseY,
+            this.leftPos + 149, this.topPos + 22, 18, 36);
     }
 
     @Override
