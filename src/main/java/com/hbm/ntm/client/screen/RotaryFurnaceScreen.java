@@ -4,6 +4,7 @@ import com.hbm.ntm.HbmNtmMod;
 import com.hbm.ntm.common.menu.RotaryFurnaceMenu;
 import java.util.List;
 import java.util.Optional;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -67,78 +68,83 @@ public class RotaryFurnaceScreen extends MachineScreenBase<RotaryFurnaceMenu> {
             guiGraphics.fill(this.leftPos + 96, this.topPos + 70 - heatPixels, this.leftPos + 97, this.topPos + 70, 0x80FFB347);
         }
 
-        if (this.menu.outputAmount() > 0 && !this.menu.hasOutputAcceptor()) {
-            guiGraphics.drawString(this.font, "!", this.leftPos + 116, this.topPos + 18, 0xFFC02020, false);
-        }
     }
 
     @Override
     protected void renderMachineLabels(final GuiGraphics guiGraphics, final int mouseX, final int mouseY) {
-        this.renderFluidTooltip(guiGraphics,
+        this.renderSimpleTankTooltip(guiGraphics,
             mouseX,
             mouseY,
             this.leftPos + 8,
             this.topPos + 36,
             52,
             16,
-            "Input Fluid",
             this.menu.inputFluidName(),
             this.menu.inputFluidAmount(),
             this.menu.inputFluidCapacity());
 
         if (this.inside(mouseX, mouseY, this.leftPos + 134, this.topPos + 18, 16, 52)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(
-                    Component.literal("Steam"),
-                    Component.literal(this.menu.steamAmount() + " / " + this.menu.steamCapacity() + " mB")),
-                Optional.empty(),
+            this.renderSimpleTankTooltip(guiGraphics,
                 mouseX,
-                mouseY);
+                mouseY,
+                this.leftPos + 134,
+                this.topPos + 18,
+                16,
+                52,
+                this.menu.steamAmount() > 0 ? "Steam" : "",
+                this.menu.steamAmount(),
+                this.menu.steamCapacity());
         }
 
         if (this.inside(mouseX, mouseY, this.leftPos + 152, this.topPos + 18, 16, 52)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(
-                    Component.literal("Low-pressure Steam"),
-                    Component.literal(this.menu.spentSteamAmount() + " / " + this.menu.spentSteamCapacity() + " mB")),
-                Optional.empty(),
+            this.renderSimpleTankTooltip(guiGraphics,
                 mouseX,
-                mouseY);
+                mouseY,
+                this.leftPos + 152,
+                this.topPos + 18,
+                16,
+                52,
+                this.menu.spentSteamAmount() > 0 ? "Low-pressure Steam" : "",
+                this.menu.spentSteamAmount(),
+                this.menu.spentSteamCapacity());
         }
 
         if (this.inside(mouseX, mouseY, this.leftPos + 98, this.topPos + 18, 16, 52)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(
-                    Component.literal(this.menu.outputMaterialName().isBlank() ? "Output: Empty" : this.menu.outputMaterialName()),
-                    Component.literal(this.menu.formattedOutputAmount().isBlank() ? "0" : this.menu.formattedOutputAmount())),
-                Optional.empty(),
-                mouseX,
-                mouseY);
+            if (this.menu.outputMaterialName().isBlank() || this.menu.outputAmount() <= 0) {
+                this.renderMachineTooltip(guiGraphics, List.of(Component.literal("Empty").withStyle(ChatFormatting.RED)), mouseX, mouseY);
+            } else {
+                this.renderMachineTooltip(guiGraphics, List.of(Component.literal(this.menu.outputMaterialName() + ": " + this.menu.formattedOutputAmount()).withStyle(ChatFormatting.YELLOW)), mouseX, mouseY);
+            }
         }
 
-        if (this.inside(mouseX, mouseY, this.leftPos + 26, this.topPos + 55, 14, 14)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(Component.literal("Fuel: " + this.menu.burnTime() + " / " + this.menu.maxBurnTime())),
-                Optional.empty(),
-                mouseX,
-                mouseY);
-        }
+        // Legacy shows burn-module description on fuel slot hover; modern menu sync does not currently expose this text payload.
+    }
 
-        if (this.inside(mouseX, mouseY, this.leftPos + 63, this.topPos + 30, 33, 10)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(Component.literal("Progress: " + this.menu.progressScaled() + " / 10000")),
-                Optional.empty(),
-                mouseX,
-                mouseY);
-        }
+    @Override
+    protected int titleLabelX() {
+        return (this.imageWidth - 54) / 2 - this.font.width(this.title) / 2;
+    }
 
-        if (this.menu.outputAmount() > 0 && !this.menu.hasOutputAcceptor() && this.inside(mouseX, mouseY, this.leftPos + 116, this.topPos + 18, 6, 8)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(Component.translatable("screen.hbmntm.machine_rotary_furnace.no_output")),
-                Optional.empty(),
-                mouseX,
-                mouseY);
+    private void renderSimpleTankTooltip(final GuiGraphics guiGraphics,
+                                         final int mouseX,
+                                         final int mouseY,
+                                         final int x,
+                                         final int y,
+                                         final int width,
+                                         final int height,
+                                         final String fluidName,
+                                         final int amount,
+                                         final int capacity) {
+        if (!this.inside(mouseX, mouseY, x, y, width, height)) {
+            return;
         }
+        if (amount <= 0) {
+            this.renderMachineTooltip(guiGraphics, List.of(Component.translatable("hbmfluid.none")), mouseX, mouseY);
+            return;
+        }
+        this.renderMachineTooltip(guiGraphics, List.of(
+                Component.literal(fluidName),
+                Component.literal(amount + "/" + capacity + "mB")), mouseX, mouseY);
     }
 
     @Override
@@ -146,3 +152,4 @@ public class RotaryFurnaceScreen extends MachineScreenBase<RotaryFurnaceMenu> {
         return TEXTURE;
     }
 }
+

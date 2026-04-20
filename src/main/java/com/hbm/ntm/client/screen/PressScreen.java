@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 @SuppressWarnings("null")
 public class PressScreen extends MachineScreenBase<PressMenu> {
-    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "textures/gui/gui_press.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "textures/gui/machine/gui_press.png");
 
     public PressScreen(final PressMenu menu, final Inventory inventory, final Component title) {
         super(menu, inventory, title, 176, 202);
@@ -41,10 +41,10 @@ public class PressScreen extends MachineScreenBase<PressMenu> {
     @Override
     protected void renderMachineLabels(final GuiGraphics guiGraphics, final int mouseX, final int mouseY) {
         if (this.inside(mouseX, mouseY, this.leftPos + 25, this.topPos + 16, 18, 18)) {
-            guiGraphics.renderTooltip(this.font, java.util.List.of(Component.literal((this.menu.speed() * 100 / Math.max(1, this.menu.maxSpeed())) + "%")), java.util.Optional.empty(), mouseX, mouseY);
+            this.renderMachineTooltip(guiGraphics, java.util.List.of(Component.literal((this.menu.speed() * 100 / Math.max(1, this.menu.maxSpeed())) + "%")), mouseX, mouseY);
         }
         if (this.inside(mouseX, mouseY, this.leftPos + 25, this.topPos + 34, 18, 18)) {
-            guiGraphics.renderTooltip(this.font, java.util.List.of(Component.literal((this.menu.burnTime() / 200) + " operations left")), java.util.Optional.empty(), mouseX, mouseY);
+            this.renderMachineTooltip(guiGraphics, java.util.List.of(Component.literal((this.menu.burnTime() / 200) + " operations left")), mouseX, mouseY);
         }
     }
 
@@ -53,3 +53,4 @@ public class PressScreen extends MachineScreenBase<PressMenu> {
         return TEXTURE;
     }
 }
+

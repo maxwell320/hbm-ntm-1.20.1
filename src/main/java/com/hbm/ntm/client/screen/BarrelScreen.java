@@ -50,11 +50,15 @@ public class BarrelScreen extends AbstractContainerScreen<BarrelMenu> {
         super.render(guiGraphics, mouseX, mouseY, partialTick);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
         if (mouseX >= this.leftPos + 71 && mouseX < this.leftPos + 105 && mouseY >= this.topPos + 17 && mouseY < this.topPos + 69) {
+            final String fluidName = this.menu.fluidName();
+            final Component displayName = fluidName == null || fluidName.isBlank()
+                ? Component.translatable("hbmfluid.none")
+                : Component.literal(fluidName);
             guiGraphics.renderTooltip(this.font,
-                java.util.List.of(
-                    Component.literal(this.menu.fluidName()),
-                    Component.literal(this.menu.fluidAmount() + "/" + this.menu.capacity() + "mB")),
-                java.util.Optional.empty(), mouseX, mouseY);
+                java.util.List.of(displayName, Component.literal(this.menu.fluidAmount() + "/" + this.menu.capacity() + "mB")),
+                java.util.Optional.empty(),
+                mouseX,
+                mouseY);
         }
     }
 
@@ -71,3 +75,4 @@ public class BarrelScreen extends AbstractContainerScreen<BarrelMenu> {
         return super.mouseClicked(mouseX, mouseY, button);
     }
 }
+

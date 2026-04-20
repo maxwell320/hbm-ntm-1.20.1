@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=east": {
-      "model": "hbmntm:block/machine_cyclotron",
+      "model": "hbmntm:block/machine_cyclotron_obj",
       "y": 90
     },
     "facing=north": {
-      "model": "hbmntm:block/machine_cyclotron"
+      "model": "hbmntm:block/machine_cyclotron_obj"
     },
     "facing=south": {
-      "model": "hbmntm:block/machine_cyclotron",
+      "model": "hbmntm:block/machine_cyclotron_obj",
       "y": 180
     },
     "facing=west": {
-      "model": "hbmntm:block/machine_cyclotron",
+      "model": "hbmntm:block/machine_cyclotron_obj",
       "y": 270
     }
   }

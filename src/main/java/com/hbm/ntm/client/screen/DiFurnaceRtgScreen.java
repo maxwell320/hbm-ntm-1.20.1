@@ -56,11 +56,7 @@ public class DiFurnaceRtgScreen extends MachineScreenBase<DiFurnaceRtgMenu> {
             this.rtgPelletHeatTooltip());
 
         if (this.inside(mouseX, mouseY, this.leftPos + 58, this.topPos + 36, 18, 16)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(Component.translatable("desc.gui.rtg.heat", this.menu.power())),
-                Optional.empty(),
-                mouseX,
-                mouseY);
+            this.renderMachineTooltip(guiGraphics, List.of(Component.translatable("desc.gui.rtg.heat", this.menu.power())), mouseX, mouseY);
         }
 
         if (this.minecraft == null || this.minecraft.player == null || !this.minecraft.player.containerMenu.getCarried().isEmpty()) {
@@ -77,9 +73,8 @@ public class DiFurnaceRtgScreen extends MachineScreenBase<DiFurnaceRtgMenu> {
 
             final int dir = i == 0 ? this.menu.sideUpper() : this.menu.sideLower();
             final int tooltipY = mouseY - (slot.hasItem() ? 15 : 0);
-            guiGraphics.renderTooltip(this.font,
+            this.renderMachineTooltip(guiGraphics,
                 List.of(Component.literal("Accepts items from: " + this.directionName(dir)).withStyle(ChatFormatting.YELLOW)),
-                Optional.empty(),
                 mouseX,
                 tooltipY);
             return;
@@ -152,3 +147,4 @@ public class DiFurnaceRtgScreen extends MachineScreenBase<DiFurnaceRtgMenu> {
         return TEXTURE;
     }
 }
+

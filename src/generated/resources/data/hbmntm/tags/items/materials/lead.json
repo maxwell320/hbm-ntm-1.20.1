@@ -6,6 +6,7 @@
     "hbmntm:crystal_lead",
     "hbmntm:wire_lead",
     "hbmntm:plate_lead",
+    "hbmntm:plate_cast_lead",
     "hbmntm:block_lead"
   ]
 }

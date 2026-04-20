@@ -109,7 +109,7 @@ public class BarrelMenu extends AbstractContainerMenu {
     }
 
     public String fluidName() {
-        return this.barrel == null ? "Empty" : this.barrel.getConfiguredFluidDisplayName();
+        return this.barrel == null ? "" : this.barrel.getConfiguredFluidDisplayName();
     }
 
     public int mode() {

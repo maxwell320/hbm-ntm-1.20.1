@@ -98,11 +98,11 @@ public class HbmItemModelProvider extends ItemModelProvider {
         withExistingParent("steel_grate_wide", modLoc("block/steel_grate_wide"));
         withExistingParent("machine_minirtg", modLoc("block/machine_minirtg"));
         withExistingParent("machine_powerrtg", modLoc("block/machine_powerrtg"));
-        withExistingParent("machine_centrifuge", modLoc("block/machine_centrifuge"));
+        withExistingParent("machine_centrifuge", modLoc("block/machine_centrifuge_obj"));
         withExistingParent("machine_gascent", modLoc("block/machine_gascent"));
-        withExistingParent("machine_cyclotron", modLoc("block/machine_cyclotron"));
+        withExistingParent("machine_cyclotron", modLoc("block/machine_cyclotron_obj"));
         withExistingParent("machine_purex", modLoc("block/machine_purex"));
-        withExistingParent("machine_icf", modLoc("block/machine_icf"));
+        withExistingParent("machine_icf", modLoc("block/machine_icf_obj"));
         withExistingParent("machine_icf_controller", modLoc("block/machine_icf_controller"));
         withExistingParent("machine_icf_laser_component", modLoc("block/machine_icf_laser_component_casing"));
         withExistingParent("machine_icf_press", modLoc("block/machine_icf_press"));

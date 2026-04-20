@@ -53,11 +53,7 @@ public class RtgGeneratorScreen extends MachineScreenBase<RtgGeneratorMenu> {
     @Override
     protected void renderMachineLabels(final GuiGraphics guiGraphics, final int mouseX, final int mouseY) {
         if (this.inside(mouseX, mouseY, this.leftPos + 124, this.topPos + 9, 16, 51)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(Component.translatable("desc.gui.rtg.heat", this.menu.heat())),
-                Optional.empty(),
-                mouseX,
-                mouseY);
+            this.renderMachineTooltip(guiGraphics, List.of(Component.translatable("desc.gui.rtg.heat", this.menu.heat())), mouseX, mouseY);
         }
 
         this.renderEnergyTooltip(guiGraphics,
@@ -113,3 +109,4 @@ public class RtgGeneratorScreen extends MachineScreenBase<RtgGeneratorMenu> {
         return TEXTURE;
     }
 }
+

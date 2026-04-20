@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-17T20:15:01.8401411	Loot Tables
+// 1.20.1	2026-04-18T14:57:48.1394652	Loot Tables
 761932d7de8bb82a916daf8141885c374f4dc866 data/hbmntm/loot_tables/blocks/anvil_arsenic_bronze.json
 bd80baf7df56acdba9ed8c6d066c4e45b80d430b data/hbmntm/loot_tables/blocks/anvil_bismuth_bronze.json
 2d39a7e294d885b47f2ec965a87c5916bbd05817 data/hbmntm/loot_tables/blocks/anvil_desh.json
@@ -146,6 +146,7 @@ c413f89d80ea0143d5eba65b824fb68ddeea97ca data/hbmntm/loot_tables/blocks/ore_uran
 4fc53b1c10a1057297df12a076235ec4cc3d14a9 data/hbmntm/loot_tables/blocks/press_preheater.json
 1ccd9501feb148100bc2601537b19994e961f32f data/hbmntm/loot_tables/blocks/red_cable.json
 ea64922a23a1b9f7b50c9a65f926160329132d38 data/hbmntm/loot_tables/blocks/red_cable_classic.json
+1f96197afc1c63b0db5a83fbaae804377c21174b data/hbmntm/loot_tables/blocks/sellafield.json
 17e832252765181f1c4d8cfed3daec8472d69997 data/hbmntm/loot_tables/blocks/sellafield_slaked.json
 4720fa978fc6e64852dfcb3c76d3ba8943bc5d9a data/hbmntm/loot_tables/blocks/steel_beam.json
 2d9ada2624ec7c79900c91f8059e02de0bacf971 data/hbmntm/loot_tables/blocks/steel_grate.json

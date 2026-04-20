@@ -64,7 +64,6 @@ public class CyclotronScreen extends MachineScreenBase<CyclotronMenu> {
             this.topPos + 81,
             34,
             7,
-            "Coolant Input",
             this.menu.fluidName(0),
             this.menu.fluidAmount(0),
             this.menu.fluidCapacity(0));
@@ -76,7 +75,6 @@ public class CyclotronScreen extends MachineScreenBase<CyclotronMenu> {
             this.topPos + 90,
             34,
             7,
-            "Spent Steam",
             this.menu.fluidName(1),
             this.menu.fluidAmount(1),
             this.menu.fluidCapacity(1));
@@ -88,7 +86,6 @@ public class CyclotronScreen extends MachineScreenBase<CyclotronMenu> {
             this.topPos + 81,
             34,
             16,
-            "Antimatter",
             this.menu.fluidName(2),
             this.menu.fluidAmount(2),
             this.menu.fluidCapacity(2));

@@ -1,9 +1,9 @@
 package com.hbm.ntm.client.screen;
 
 import com.hbm.ntm.HbmNtmMod;
+import com.hbm.ntm.common.block.entity.FurnaceIronBlockEntity;
 import com.hbm.ntm.common.menu.FurnaceIronMenu;
 import java.util.List;
-import java.util.Optional;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -22,16 +22,14 @@ public class FurnaceIronScreen extends MachineScreenBase<FurnaceIronMenu> {
         final int progress = this.menu.progress();
         final int processingTime = this.menu.processingTime();
         if (processingTime > 0) {
-            final int progressWidth = Math.max(1, Math.min(70, progress * 70 / processingTime));
-            if (progressWidth > 0) {
-                guiGraphics.blit(TEXTURE, this.leftPos + 53, this.topPos + 36, 176, 18, progressWidth, 5);
-            }
+            final int progressWidth = Math.max(0, Math.min(70, progress * 70 / Math.max(processingTime, 1)));
+            guiGraphics.blit(TEXTURE, this.leftPos + 53, this.topPos + 36, 176, 18, progressWidth, 5);
         }
 
         final int burnTime = this.menu.burnTime();
         final int maxBurnTime = this.menu.maxBurnTime();
-        if (burnTime > 0 && maxBurnTime > 0) {
-            final int burnWidth = Math.max(1, Math.min(70, burnTime * 70 / maxBurnTime));
+        if (maxBurnTime > 0) {
+            final int burnWidth = Math.max(0, Math.min(70, burnTime * 70 / Math.max(maxBurnTime, 1)));
             guiGraphics.blit(TEXTURE, this.leftPos + 53, this.topPos + 45, 176, 23, burnWidth, 5);
         }
         if (this.menu.canSmelt()) {
@@ -41,21 +39,22 @@ public class FurnaceIronScreen extends MachineScreenBase<FurnaceIronMenu> {
 
     @Override
     protected void renderMachineLabels(final GuiGraphics guiGraphics, final int mouseX, final int mouseY) {
+        if (this.renderBurnBonusTooltipOverEmptyFuelSlot(guiGraphics,
+            mouseX,
+            mouseY,
+            FurnaceIronBlockEntity.SLOT_FUEL_LEFT,
+            FurnaceIronBlockEntity.SLOT_FUEL_RIGHT,
+            this.menu.burnBonuses())) {
+            return;
+        }
+
         if (this.inside(mouseX, mouseY, this.leftPos + 52, this.topPos + 35, 71, 7)) {
             final int percentage = this.menu.processingTime() <= 0 ? 0 : this.menu.progress() * 100 / this.menu.processingTime();
-            guiGraphics.renderTooltip(this.font,
-                List.of(Component.literal(percentage + "%")),
-                Optional.empty(),
-                mouseX,
-                mouseY);
+            this.renderMachineTooltip(guiGraphics, List.of(Component.literal(percentage + "%")), mouseX, mouseY);
         }
 
         if (this.inside(mouseX, mouseY, this.leftPos + 52, this.topPos + 44, 71, 7)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(Component.literal((this.menu.burnTime() / 20) + "s")),
-                Optional.empty(),
-                mouseX,
-                mouseY);
+            this.renderMachineTooltip(guiGraphics, List.of(Component.literal((this.menu.burnTime() / 20) + "s")), mouseX, mouseY);
         }
 
     }
@@ -65,3 +64,4 @@ public class FurnaceIronScreen extends MachineScreenBase<FurnaceIronMenu> {
         return TEXTURE;
     }
 }
+

@@ -27,6 +27,7 @@ public class NtmAnvilScreen extends AbstractContainerScreen<NtmAnvilMenu> {
     private int page;
     private int selectedRecipe = -1;
     private EditBox searchBox;
+    private int lastSize;
 
     public NtmAnvilScreen(final NtmAnvilMenu menu, final Inventory inventory, final Component title) {
         super(menu, inventory, title);
@@ -69,10 +70,13 @@ public class NtmAnvilScreen extends AbstractContainerScreen<NtmAnvilMenu> {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         guiGraphics.blit(TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 
-        final int extensionCount = this.infoPanelExtensionCount();
-        for (int mul = 0; mul < extensionCount; mul++) {
+        final int slide = Mth.clamp(this.lastSize - 42, 0, 1000);
+        int mul = 1;
+        while (slide >= 51 * mul) {
             guiGraphics.blit(TEXTURE, this.leftPos + 125 + 51 * mul, this.topPos + 17, 125, 17, 54, 108);
+            mul++;
         }
+        guiGraphics.blit(TEXTURE, this.leftPos + 125 + slide, this.topPos + 17, 125, 17, 54, 108);
 
         if (this.searchBox != null && this.searchBox.isFocused()) {
             guiGraphics.blit(TEXTURE, this.leftPos + 8, this.topPos + 108, 168, 222, 88, 16);
@@ -116,24 +120,24 @@ public class NtmAnvilScreen extends AbstractContainerScreen<NtmAnvilMenu> {
 
         if (this.selectedRecipe >= 0 && this.selectedRecipe < this.menu.constructionRecipes().size()) {
             final HbmAnvilRecipes.ConstructionRecipe recipe = this.menu.constructionRecipes().get(this.selectedRecipe);
+            final List<Component> detailLines = this.recipeDetailLines(recipe);
+            int longest = 0;
+            for (final Component line : detailLines) {
+                longest = Math.max(longest, this.font.width(line));
+            }
+
             guiGraphics.pose().pushPose();
             guiGraphics.pose().scale(0.5F, 0.5F, 0.5F);
-            guiGraphics.drawString(this.font, Component.literal("Inputs:").withStyle(ChatFormatting.YELLOW), 260, 50, 0xFFFFFF, false);
-            int lineY = 59;
-            final long tick = this.minecraft == null ? 0L : this.minecraft.level == null ? 0L : this.minecraft.level.getGameTime();
-            for (final HbmAnvilRecipes.ConstructionIngredient ingredient : recipe.ingredients()) {
-                final int available = this.menu.countPlayerItems(ingredient.ingredient());
-                final boolean hasInput = available >= ingredient.count();
-                final var display = this.cyclingDisplayStack(ingredient, tick + lineY);
-                final String name = display.isEmpty() ? "Unknown" : display.getHoverName().getString();
-                guiGraphics.drawString(this.font,
-                    Component.literal(">" + ingredient.count() + "x " + name).withStyle(hasInput ? ChatFormatting.WHITE : ChatFormatting.RED),
-                    260, lineY, 0xFFFFFF, false);
+            int lineY = 50;
+            for (final Component line : detailLines) {
+                guiGraphics.drawString(this.font, line, 260, lineY, 0xFFFFFF, false);
                 lineY += 9;
             }
-            guiGraphics.drawString(this.font, Component.literal("Outputs:").withStyle(ChatFormatting.YELLOW), 260, 77, 0xFFFFFF, false);
-            guiGraphics.drawString(this.font, Component.literal(">1x " + recipe.outputStack().getHoverName().getString()), 260, 86, 0xFFFFFF, false);
             guiGraphics.pose().popPose();
+
+            this.lastSize = (int) (longest * 0.5D);
+        } else {
+            this.lastSize = 0;
         }
     }
 
@@ -295,6 +299,27 @@ public class NtmAnvilScreen extends AbstractContainerScreen<NtmAnvilMenu> {
         return count;
     }
 
+    private List<Component> recipeDetailLines(final HbmAnvilRecipes.ConstructionRecipe recipe) {
+        final List<Component> lines = new ArrayList<>();
+        lines.add(Component.literal("Inputs:").withStyle(ChatFormatting.YELLOW));
+
+        final long tick = this.minecraft == null ? 0L : this.minecraft.level == null ? 0L : this.minecraft.level.getGameTime();
+        int offset = 0;
+        for (final HbmAnvilRecipes.ConstructionIngredient ingredient : recipe.ingredients()) {
+            final int available = this.menu.countPlayerItems(ingredient.ingredient());
+            final boolean hasInput = available >= ingredient.count();
+            final var display = this.cyclingDisplayStack(ingredient, tick + offset);
+            final String name = display.isEmpty() ? "Unknown" : display.getHoverName().getString();
+            lines.add(Component.literal(">" + ingredient.count() + "x " + name).withStyle(hasInput ? ChatFormatting.WHITE : ChatFormatting.RED));
+            offset += 9;
+        }
+
+        lines.add(Component.literal(""));
+        lines.add(Component.literal("Outputs:").withStyle(ChatFormatting.YELLOW));
+        lines.add(Component.literal(">1x " + recipe.outputStack().getHoverName().getString()));
+        return lines;
+    }
+
     private net.minecraft.world.item.ItemStack cyclingDisplayStack(final HbmAnvilRecipes.ConstructionIngredient ingredient, final long tickSeed) {
         final net.minecraft.world.item.ItemStack[] options = ingredient.ingredient().getItems();
         if (options.length <= 0) {
@@ -313,3 +338,4 @@ public class NtmAnvilScreen extends AbstractContainerScreen<NtmAnvilMenu> {
         this.minecraft.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
     }
 }
+

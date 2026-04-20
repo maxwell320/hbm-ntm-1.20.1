@@ -1,5 +1,7 @@
 # Blender v2.79 (sub 0) OBJ File: 'chimney_industrial.blend'
 # www.blender.org
+mtllib chimney_industrial.mtl
+usemtl texture0
 o Plane
 v -1.500000 0.000000 1.500000
 v 1.500000 0.000000 1.500000

@@ -11,6 +11,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
+
 @SuppressWarnings("null")
 public class IcfPressScreen extends MachineScreenBase<IcfPressMenu> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "textures/gui/processing/gui_icf_press.png");
@@ -35,37 +36,18 @@ public class IcfPressScreen extends MachineScreenBase<IcfPressMenu> {
 
     @Override
     protected void renderMachineLabels(final GuiGraphics guiGraphics, final int mouseX, final int mouseY) {
-        if (this.inside(mouseX, mouseY, this.leftPos + 44, this.topPos + 18, 16, 52)) {
-            final List<Component> tooltip = new java.util.ArrayList<>();
-            if (this.menu.fluidAmount(0) <= 0) {
-                tooltip.add(Component.literal("Empty"));
-            } else {
-                tooltip.add(Component.literal(this.menu.fluidName(0)));
-                tooltip.add(Component.literal(this.menu.fluidAmount(0) + " / " + this.menu.fluidCapacity(0) + " mB"));
-            }
-            guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
-        }
-
-        if (this.inside(mouseX, mouseY, this.leftPos + 152, this.topPos + 18, 16, 52)) {
-            final List<Component> tooltip = new java.util.ArrayList<>();
-            if (this.menu.fluidAmount(1) <= 0) {
-                tooltip.add(Component.literal("Empty"));
-            } else {
-                tooltip.add(Component.literal(this.menu.fluidName(1)));
-                tooltip.add(Component.literal(this.menu.fluidAmount(1) + " / " + this.menu.fluidCapacity(1) + " mB"));
-            }
-            guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
-        }
+        this.renderFluidTooltip(guiGraphics, mouseX, mouseY,
+            this.leftPos + 44, this.topPos + 18, 16, 52,
+            this.menu.fluidName(0), this.menu.fluidAmount(0), this.menu.fluidCapacity(0));
+        this.renderFluidTooltip(guiGraphics, mouseX, mouseY,
+            this.leftPos + 152, this.topPos + 18, 16, 52,
+            this.menu.fluidName(1), this.menu.fluidAmount(1), this.menu.fluidCapacity(1));
 
         if (this.hoveredSlot != null && !this.hoveredSlot.hasItem()) {
             if (this.hoveredSlot.index == IcfPressBlockEntity.SLOT_SOLID_FUEL_A) {
-                guiGraphics.renderTooltip(this.font,
-                    List.of(Component.literal("Item input: Top/Bottom").withStyle(ChatFormatting.YELLOW)),
-                    Optional.empty(), mouseX, mouseY);
+                this.renderMachineTooltip(guiGraphics, List.of(Component.literal("Item input: Top/Bottom").withStyle(ChatFormatting.YELLOW)), mouseX, mouseY);
             } else if (this.hoveredSlot.index == IcfPressBlockEntity.SLOT_SOLID_FUEL_B) {
-                guiGraphics.renderTooltip(this.font,
-                    List.of(Component.literal("Item input: Sides").withStyle(ChatFormatting.YELLOW)),
-                    Optional.empty(), mouseX, mouseY);
+                this.renderMachineTooltip(guiGraphics, List.of(Component.literal("Item input: Sides").withStyle(ChatFormatting.YELLOW)), mouseX, mouseY);
             }
         }
     }
@@ -76,3 +58,4 @@ public class IcfPressScreen extends MachineScreenBase<IcfPressMenu> {
     }
 
 }
+

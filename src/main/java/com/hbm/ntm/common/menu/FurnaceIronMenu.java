@@ -2,8 +2,10 @@ package com.hbm.ntm.common.menu;
 
 import com.hbm.ntm.common.block.entity.FurnaceIronBlockEntity;
 import com.hbm.ntm.common.item.MachineUpgradeItem;
+import com.hbm.ntm.common.module.ModuleBurnTime;
 import com.hbm.ntm.common.registration.HbmMenuTypes;
 import java.util.List;
+import net.minecraft.network.chat.Component;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -19,8 +21,17 @@ public class FurnaceIronMenu extends MachineMenuBase<FurnaceIronBlockEntity> {
     private static final int DATA_MAX_BURN_TIME = 2;
     private static final int DATA_PROCESSING_TIME = 3;
     private static final int DATA_COUNT = 4;
+    private static final List<Component> LEGACY_BURN_BONUSES = List.copyOf(new ModuleBurnTime()
+        .setLigniteTimeMod(1.25)
+        .setCoalTimeMod(1.25)
+        .setCokeTimeMod(1.5)
+        .setSolidTimeMod(2.0)
+        .setRocketTimeMod(2.0)
+        .setBalefireTimeMod(2.0)
+        .getTimeDesc());
 
     private final ContainerData data;
+    private final List<Component> burnBonuses;
     private int clientProgress;
     private int clientBurnTime;
     private int clientMaxBurnTime;
@@ -47,6 +58,7 @@ public class FurnaceIronMenu extends MachineMenuBase<FurnaceIronBlockEntity> {
         this.addUpgradeSlot(handler, FurnaceIronBlockEntity.SLOT_UPGRADE, 17, 35, MachineUpgradeItem.UpgradeType.SPEED);
 
         this.addPlayerInventory(inventory, 8, 84);
+        this.burnBonuses = LEGACY_BURN_BONUSES;
 
         this.data = furnace == null
             ? new SimpleContainerData(DATA_COUNT)
@@ -107,6 +119,10 @@ public class FurnaceIronMenu extends MachineMenuBase<FurnaceIronBlockEntity> {
 
     public boolean canSmelt() {
         return this.clientCanSmelt;
+    }
+
+    public List<Component> burnBonuses() {
+        return this.burnBonuses;
     }
 
     @Override

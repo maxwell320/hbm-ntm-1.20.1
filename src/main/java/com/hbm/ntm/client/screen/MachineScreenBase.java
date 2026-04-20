@@ -1,6 +1,7 @@
 package com.hbm.ntm.client.screen;
 
 import com.hbm.ntm.HbmNtmMod;
+import com.hbm.ntm.client.debug.HbmDebugHitboxTracker;
 import com.hbm.ntm.common.menu.MachineMenuBase;
 import com.hbm.ntm.common.item.MachineUpgradeItem;
 import com.hbm.ntm.common.network.HbmPacketHandler;
@@ -28,7 +29,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.inventory.Slot;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -37,6 +37,7 @@ import org.joml.Matrix4f;
 @SuppressWarnings("null")
 public abstract class MachineScreenBase<T extends MachineMenuBase<?>> extends AbstractContainerScreen<T> {
     private static final ResourceLocation GUI_UTILITY_TEXTURE = ResourceLocation.fromNamespaceAndPath(HbmNtmMod.MOD_ID, "textures/gui/gui_utility.png");
+    private static final int REPAIR_ICON_SIZE = 8;
 
     protected MachineScreenBase(final T menu, final Inventory inventory, final Component title, final int imageWidth, final int imageHeight) {
         super(menu, inventory, title);
@@ -70,7 +71,18 @@ public abstract class MachineScreenBase<T extends MachineMenuBase<?>> extends Ab
             guiGraphics.drawString(this.font, this.title, this.titleLabelX(), this.titleLabelY(), this.titleLabelColor(), false);
         }
         guiGraphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX(), this.inventoryLabelY(), this.inventoryLabelColor(), false);
+        this.renderRepairIcon(guiGraphics);
         this.renderMachineLabels(guiGraphics, mouseX, mouseY);
+    }
+
+    private void renderRepairIcon(final GuiGraphics guiGraphics) {
+        if (!this.menu.isMaintenanceBlocked()) {
+            return;
+        }
+        final int x = this.imageWidth - REPAIR_ICON_SIZE - 4;
+        final int y = 4;
+        guiGraphics.fill(x, y, x + REPAIR_ICON_SIZE, y + REPAIR_ICON_SIZE, 0xFFC02020);
+        guiGraphics.drawString(this.font, "!", x + 2, y, 0xFFFFFFFF, false);
     }
 
     protected boolean shouldRenderTitle() {
@@ -108,6 +120,26 @@ public abstract class MachineScreenBase<T extends MachineMenuBase<?>> extends Ab
     }
 
     protected void renderMachineLabels(final GuiGraphics guiGraphics, final int mouseX, final int mouseY) {
+    }
+
+    protected final void renderMachineTooltip(final GuiGraphics guiGraphics,
+                                              final List<Component> tooltip,
+                                              final int mouseX,
+                                              final int mouseY) {
+        if (tooltip == null || tooltip.isEmpty()) {
+            return;
+        }
+        guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
+    }
+
+    protected final void renderMachineTooltip(final GuiGraphics guiGraphics,
+                                              final ItemStack stack,
+                                              final int mouseX,
+                                              final int mouseY) {
+        if (stack == null || stack.isEmpty()) {
+            return;
+        }
+        guiGraphics.renderTooltip(this.font, stack, mouseX, mouseY);
     }
 
     protected final void sendControl(final CompoundTag data) {
@@ -233,10 +265,12 @@ public abstract class MachineScreenBase<T extends MachineMenuBase<?>> extends Ab
                                              final int height,
                                              final long energy,
                                              final long maxEnergy) {
+        HbmDebugHitboxTracker.record("energy", x, y, width, height, HbmDebugHitboxTracker.COLOR_ENERGY);
         if (this.inside(mouseX, mouseY, x, y, width, height)) {
-            guiGraphics.renderTooltip(this.font,
+            this.renderMachineTooltip(guiGraphics,
                 List.of(Component.literal(this.formatShortNumber(energy) + " / " + this.formatShortNumber(Math.max(0L, maxEnergy)) + " HE")),
-                Optional.empty(), mouseX, mouseY);
+                mouseX,
+                mouseY);
         }
     }
 
@@ -260,11 +294,12 @@ public abstract class MachineScreenBase<T extends MachineMenuBase<?>> extends Ab
         }
 
         final LegacyInfoPanelSprite sprite = this.infoPanelSprite(type);
+        HbmDebugHitboxTracker.record("info-panel-" + type, x, y, sprite.width(), sprite.height(), HbmDebugHitboxTracker.COLOR_INFO_PANEL);
         if (!this.inside(mouseX, mouseY, x, y, sprite.width(), sprite.height())) {
             return;
         }
 
-        guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
+        this.renderMachineTooltip(guiGraphics, tooltip, mouseX, mouseY);
     }
 
     protected final void renderGhostSlotItem(final GuiGraphics guiGraphics,
@@ -287,6 +322,7 @@ public abstract class MachineScreenBase<T extends MachineMenuBase<?>> extends Ab
                                                   final int y,
                                                   final int width,
                                                   final int height) {
+        HbmDebugHitboxTracker.record("upgrade", x, y, width, height, HbmDebugHitboxTracker.COLOR_UPGRADE);
         if (!this.inside(mouseX, mouseY, x, y, width, height) || this.menu.machine() == null) {
             return;
         }
@@ -306,9 +342,7 @@ public abstract class MachineScreenBase<T extends MachineMenuBase<?>> extends Ab
             tooltip.add(Component.literal(String.format(Locale.ROOT, "%s: %d", this.upgradeTypeLabel(type), max)));
         }
 
-        if (tooltip.size() > 1) {
-            guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
-        }
+        this.renderMachineTooltip(guiGraphics, tooltip.size() > 1 ? tooltip : List.of(), mouseX, mouseY);
     }
 
     protected final void renderHorizontalFluidBar(final GuiGraphics guiGraphics,
@@ -405,31 +439,6 @@ public abstract class MachineScreenBase<T extends MachineMenuBase<?>> extends Ab
         RenderSystem.disableBlend();
     }
 
-    protected final void renderFluidTooltip(final GuiGraphics guiGraphics,
-                                            final int mouseX,
-                                            final int mouseY,
-                                            final int x,
-                                            final int y,
-                                            final int width,
-                                            final int height,
-                                            final String title,
-                                            final FluidTank tank) {
-        if (!this.inside(mouseX, mouseY, x, y, width, height)) {
-            return;
-        }
-
-        final List<Component> tooltip = new java.util.ArrayList<>();
-        tooltip.add(Component.literal(title));
-        if (tank == null || tank.getFluidAmount() <= 0) {
-            tooltip.add(Component.literal("Empty"));
-        } else {
-            final FluidStack fluid = tank.getFluid();
-            tooltip.add(fluid.getDisplayName());
-            tooltip.add(Component.literal(fluid.getAmount() + " / " + tank.getCapacity() + " mB"));
-        }
-        guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
-    }
-
     protected final String formatShortNumber(final long value) {
         if (value >= 1_000_000_000_000_000L) {
             return this.scaledShortNumber(value, 1_000_000_000_000_000D, "Q");
@@ -456,22 +465,49 @@ public abstract class MachineScreenBase<T extends MachineMenuBase<?>> extends Ab
                                             final int y,
                                             final int width,
                                             final int height,
-                                            final String title,
                                             final String fluidName,
                                             final int amount,
                                             final int capacity) {
+        HbmDebugHitboxTracker.record("fluid:" + (fluidName == null || fluidName.isBlank() ? "empty" : fluidName),
+            x, y, width, height, HbmDebugHitboxTracker.COLOR_FLUID);
         if (!this.inside(mouseX, mouseY, x, y, width, height)) {
             return;
         }
         final List<Component> tooltip = new java.util.ArrayList<>();
-        tooltip.add(Component.literal(title));
-        if (amount <= 0) {
-            tooltip.add(Component.literal("Empty"));
-        } else {
-            tooltip.add(Component.literal(fluidName == null || fluidName.isBlank() ? "Unknown" : fluidName));
-            tooltip.add(Component.literal(amount + " / " + Math.max(0, capacity) + " mB"));
+        final Component name = fluidName == null || fluidName.isBlank()
+            ? Component.translatable("hbmfluid.none")
+            : Component.literal(fluidName);
+        tooltip.add(name);
+        tooltip.add(Component.literal(amount + "/" + Math.max(0, capacity) + "mB"));
+        this.renderMachineTooltip(guiGraphics, tooltip, mouseX, mouseY);
+    }
+
+    protected final boolean renderBurnBonusTooltipOverEmptyFuelSlot(final GuiGraphics guiGraphics,
+                                                                    final int mouseX,
+                                                                    final int mouseY,
+                                                                    final int firstSlotIndex,
+                                                                    final int lastSlotIndex,
+                                                                    final List<Component> bonuses) {
+        if (bonuses == null || bonuses.isEmpty()) {
+            return false;
         }
-        guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
+        if (this.minecraft == null || this.minecraft.player == null) {
+            return false;
+        }
+        if (!this.minecraft.player.containerMenu.getCarried().isEmpty()) {
+            return false;
+        }
+        for (int i = firstSlotIndex; i <= lastSlotIndex; i++) {
+            final Slot slot = this.menu.getSlot(i);
+            if (slot.hasItem()) {
+                continue;
+            }
+            if (this.inside(mouseX, mouseY, this.leftPos + slot.x, this.topPos + slot.y, 16, 16)) {
+                this.renderMachineTooltip(guiGraphics, bonuses, mouseX, mouseY);
+                return true;
+            }
+        }
+        return false;
     }
 
     protected abstract ResourceLocation texture();

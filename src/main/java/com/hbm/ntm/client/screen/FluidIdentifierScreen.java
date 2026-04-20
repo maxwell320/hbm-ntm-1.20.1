@@ -91,8 +91,11 @@ public class FluidIdentifierScreen extends AbstractContainerScreen<FluidIdentifi
     protected void renderLabels(final GuiGraphics guiGraphics, final int mouseX, final int mouseY) {
         for (int i = 0; i < Math.min(9, this.matches.size()); i++) {
             final ResourceLocation fluidId = this.matches.get(i);
-            if (mouseX >= 7 + i * 18 && mouseX < 25 + i * 18 && mouseY >= 29 && mouseY < 47) {
-                guiGraphics.renderTooltip(this.font, fluidTooltip(fluidId), java.util.Optional.empty(), mouseX, mouseY);
+            final int x = this.leftPos + 7 + i * 18;
+            final int y = this.topPos + 29;
+            if (mouseX >= x && mouseX < x + 18 && mouseY >= y && mouseY < y + 18) {
+                guiGraphics.renderTooltip(this.font, fluidTooltip(fluidId), java.util.Optional.empty(),
+                    mouseX, mouseY);
             }
         }
     }
@@ -188,3 +191,4 @@ public class FluidIdentifierScreen extends AbstractContainerScreen<FluidIdentifi
         return tooltip;
     }
 }
+

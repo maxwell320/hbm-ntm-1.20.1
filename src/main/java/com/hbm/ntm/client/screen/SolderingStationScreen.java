@@ -38,6 +38,7 @@ public class SolderingStationScreen extends MachineScreenBase<SolderingStationMe
         if (this.menu.collisionPrevention()) {
             guiGraphics.blit(TEXTURE, this.leftPos + 5, this.topPos + 66, 192, 14, 10, 10);
         }
+        this.renderConfigToggleIndicator(guiGraphics, this.leftPos + 5, this.topPos + 66, 10, 10, this.menu.collisionPrevention());
 
         if (this.menu.energy() >= this.menu.consumption()) {
             guiGraphics.blit(TEXTURE, this.leftPos + 156, this.topPos + 4, 176, 52, 9, 12);
@@ -45,7 +46,7 @@ public class SolderingStationScreen extends MachineScreenBase<SolderingStationMe
 
         this.renderLegacyInfoPanel(guiGraphics, this.leftPos + 78, this.topPos + 67, 8);
 
-        this.renderHorizontalFluidBar(guiGraphics, this.leftPos + 35, this.topPos + 63, 34, 16,
+        this.renderHorizontalFluidBar(guiGraphics, this.leftPos + 35, this.topPos + 79, 34, 16,
             this.menu.fluidAmount(), this.menu.fluidCapacity(), 0xFF2090D0);
     }
 
@@ -55,26 +56,17 @@ public class SolderingStationScreen extends MachineScreenBase<SolderingStationMe
             this.leftPos + 152, this.topPos + 18, 16, 52,
             this.menu.energy(), this.menu.maxPower());
 
-        if (this.inside(mouseX, mouseY, this.leftPos + 35, this.topPos + 63, 34, 16)) {
-            final List<Component> tooltip = new java.util.ArrayList<>();
-            if (this.menu.fluidAmount() <= 0) {
-                tooltip.add(Component.literal("Empty"));
-            } else {
-                tooltip.add(Component.literal(this.menu.fluidName()));
-                tooltip.add(Component.literal(this.menu.fluidAmount() + " / " + this.menu.fluidCapacity() + " mB"));
-            }
-            guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
-        }
+        this.renderFluidTooltip(guiGraphics, mouseX, mouseY,
+            this.leftPos + 35, this.topPos + 79, 34, 16,
+            this.menu.fluidName(), this.menu.fluidAmount(), this.menu.fluidCapacity());
 
         if (this.inside(mouseX, mouseY, this.leftPos + 5, this.topPos + 66, 10, 10)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(
+            this.renderMachineTooltip(guiGraphics, List.of(
                     Component.literal("Recipe Collision Prevention: ")
                         .append(Component.literal(this.menu.collisionPrevention() ? "ON" : "OFF")
                             .withStyle(this.menu.collisionPrevention() ? ChatFormatting.GREEN : ChatFormatting.RED)),
                     Component.literal("Prevents no-fluid recipes from being processed"),
-                    Component.literal("when fluid is present.")),
-                Optional.empty(), mouseX, mouseY);
+                    Component.literal("when fluid is present.")), mouseX, mouseY);
         }
 
         this.renderUpgradeInfoTooltip(guiGraphics, mouseX, mouseY,
@@ -105,4 +97,5 @@ public class SolderingStationScreen extends MachineScreenBase<SolderingStationMe
         return TEXTURE;
     }
 }
+
 

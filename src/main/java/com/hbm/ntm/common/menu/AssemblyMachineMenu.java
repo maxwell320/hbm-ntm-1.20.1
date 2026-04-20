@@ -52,7 +52,7 @@ public class AssemblyMachineMenu extends MachineMenuBase<AssemblyMachineBlockEnt
         this.addSlot(new FilteredSlotItemHandler(handler, AssemblyMachineBlockEntity.SLOT_BLUEPRINT, 35, 126,
             (slot, stack) -> stack.getItem() instanceof BlueprintItem));
         this.addUpgradeSlot(handler, AssemblyMachineBlockEntity.SLOT_UPGRADE_1, 152, 108);
-        this.addUpgradeSlot(handler, AssemblyMachineBlockEntity.SLOT_UPGRADE_2, 170, 108);
+        this.addUpgradeSlot(handler, AssemblyMachineBlockEntity.SLOT_UPGRADE_2, 152, 126);
         this.addFilteredGridSlots(handler, AssemblyMachineBlockEntity.SLOT_INPUT_START, 8, 18, 4, 3,
             (slot, stack) -> machine == null || machine.isItemValid(slot, stack));
         this.addSlot(new OutputSlotItemHandler(handler, AssemblyMachineBlockEntity.SLOT_OUTPUT, 98, 45));

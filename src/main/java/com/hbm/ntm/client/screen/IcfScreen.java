@@ -4,7 +4,6 @@ import com.hbm.ntm.HbmNtmMod;
 import com.hbm.ntm.common.menu.IcfMenu;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
@@ -22,7 +21,7 @@ public class IcfScreen extends MachineScreenBase<IcfMenu> {
     @Override
     protected void renderBg(final GuiGraphics guiGraphics, final float partialTick, final int mouseX, final int mouseY) {
         guiGraphics.blit(TEXTURE, this.leftPos, this.topPos, 0, 0, 248, 114);
-        guiGraphics.blit(TEXTURE, this.leftPos + 72, this.topPos + 122, 72, 122, 176, 108);
+        guiGraphics.blit(TEXTURE, this.leftPos + 36, this.topPos + 122, 36, 122, 176, 108);
         this.renderMachineContents(guiGraphics, partialTick, mouseX, mouseY);
     }
 
@@ -47,7 +46,7 @@ public class IcfScreen extends MachineScreenBase<IcfMenu> {
                 2.0D,
                 1.0D,
                 0xFFFF00AF,
-                0xFF000000);
+                0xFFFF00AF);
         }
 
         this.renderVerticalFluidGaugeBar(guiGraphics, this.leftPos + 44, this.topPos + 18, 16, 70,
@@ -62,30 +61,30 @@ public class IcfScreen extends MachineScreenBase<IcfMenu> {
     protected void renderMachineLabels(final GuiGraphics guiGraphics, final int mouseX, final int mouseY) {
         this.renderFluidTooltip(guiGraphics, mouseX, mouseY,
             this.leftPos + 44, this.topPos + 18, 16, 70,
-            "Coolant Input", this.menu.fluidName(0), this.menu.fluidAmount(0), this.menu.fluidCapacity(0));
+            this.menu.fluidName(0), this.menu.fluidAmount(0), this.menu.fluidCapacity(0));
         this.renderFluidTooltip(guiGraphics, mouseX, mouseY,
             this.leftPos + 188, this.topPos + 18, 16, 70,
-            "Hot Coolant", this.menu.fluidName(1), this.menu.fluidAmount(1), this.menu.fluidCapacity(1));
+            this.menu.fluidName(1), this.menu.fluidAmount(1), this.menu.fluidCapacity(1));
         this.renderFluidTooltip(guiGraphics, mouseX, mouseY,
             this.leftPos + 224, this.topPos + 18, 16, 70,
-            "Stellar Flux", this.menu.fluidName(2), this.menu.fluidAmount(2), this.menu.fluidCapacity(2));
+            this.menu.fluidName(2), this.menu.fluidAmount(2), this.menu.fluidCapacity(2));
 
         if (this.inside(mouseX, mouseY, this.leftPos + 8, this.topPos + 18, 16, 70)) {
             final List<Component> tooltip = new ArrayList<>();
             final long maxLaser = this.menu.maxLaser();
             if (maxLaser <= 0L || this.menu.laser() <= 0L) {
-                tooltip.add(Component.literal("OFFLINE").withStyle(net.minecraft.ChatFormatting.RED));
+                tooltip.add(Component.literal("OFFLINE"));
             } else {
-                final double percent = this.menu.laser() * 1000.0D / maxLaser / 10.0D;
-                tooltip.add(Component.literal(formatShortNumber(this.menu.laser()) + "tu/t - " + String.format(Locale.ROOT, "%.1f", percent) + "%"));
+                final double percent = (this.menu.laser() * 1000L / maxLaser) / 10D;
+                tooltip.add(Component.literal(this.legacyShortNumber(this.menu.laser()) + "TU/t - " + percent + "%"));
             }
-            guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
+            this.renderMachineTooltip(guiGraphics, tooltip, mouseX, mouseY);
         }
 
         if (this.inside(mouseX, mouseY, this.leftPos + 187, this.topPos + 89, 18, 18)) {
             final List<Component> tooltip = new ArrayList<>();
-            tooltip.add(Component.literal(formatShortNumber(this.menu.heat()) + " / " + formatShortNumber(this.menu.maxHeat()) + "TU"));
-            guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
+            tooltip.add(Component.literal(this.legacyShortNumber(this.menu.heat()) + " / " + this.legacyShortNumber(this.menu.maxHeat()) + "TU"));
+            this.renderMachineTooltip(guiGraphics, tooltip, mouseX, mouseY);
         }
     }
 
@@ -99,5 +98,32 @@ public class IcfScreen extends MachineScreenBase<IcfMenu> {
     @Override
     protected ResourceLocation texture() {
         return TEXTURE;
+    }
+
+    private String legacyShortNumber(final long value) {
+        if (value >= 1_000_000_000_000_000_000L) {
+            return this.scaleShort(value, 1_000_000_000_000_000_000D, "E");
+        }
+        if (value >= 1_000_000_000_000_000L) {
+            return this.scaleShort(value, 1_000_000_000_000_000D, "P");
+        }
+        if (value >= 1_000_000_000_000L) {
+            return this.scaleShort(value, 1_000_000_000_000D, "T");
+        }
+        if (value >= 1_000_000_000L) {
+            return this.scaleShort(value, 1_000_000_000D, "G");
+        }
+        if (value >= 1_000_000L) {
+            return this.scaleShort(value, 1_000_000D, "M");
+        }
+        if (value >= 1_000L) {
+            return this.scaleShort(value, 1_000D, "k");
+        }
+        return Long.toString(value);
+    }
+
+    private String scaleShort(final long value, final double divisor, final String suffix) {
+        final double scaled = Math.round((value / divisor) * 100.0D) / 100.0D;
+        return scaled + suffix;
     }
 }

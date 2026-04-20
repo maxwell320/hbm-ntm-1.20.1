@@ -18,8 +18,9 @@ import com.hbm.ntm.common.material.HbmMaterials;
 import com.hbm.ntm.common.registration.HbmBlocks;
 import com.hbm.ntm.common.registration.HbmItems;
 import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
+import net.minecraftforge.registries.RegistryObject;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -38,21 +39,16 @@ import net.minecraft.data.loot.BlockLootSubProvider;
 
 @SuppressWarnings("null")
 public class HbmBlockLootProvider extends BlockLootSubProvider {
-    private final Set<Block> knownBlocks = new LinkedHashSet<>();
-
     public HbmBlockLootProvider() {
         super(Collections.emptySet(), FeatureFlags.REGISTRY.allFlags());
     }
 
     @Override
-    protected void add(final Block block, final LootTable.Builder builder) {
-        super.add(block, builder);
-        knownBlocks.add(block);
-    }
-
-    @Override
     protected Iterable<Block> getKnownBlocks() {
-        return knownBlocks;
+        final List<Block> all = HbmBlocks.BLOCKS.getEntries().stream()
+            .map(RegistryObject::get)
+            .collect(Collectors.toList());
+        return all;
     }
 
     @Override
@@ -124,6 +120,7 @@ public class HbmBlockLootProvider extends BlockLootSubProvider {
         dropSelf(HbmBlocks.RED_CABLE.get());
         dropSelf(HbmBlocks.RED_CABLE_CLASSIC.get());
         dropSelf(HbmBlocks.FLUID_DUCT_NEO.get());
+        dropSelf(HbmBlocks.SELLAFIELD.get());
         dropSelf(HbmBlocks.SELLAFIELD_SLAKED.get());
         add(HbmBlocks.WASTE_LOG.get(), createWasteLogTable(HbmBlocks.WASTE_LOG.get()));
         dropSelf(HbmBlocks.WASTE_PLANKS.get());

@@ -53,29 +53,17 @@ public class FurnaceSteelScreen extends MachineScreenBase<FurnaceSteelMenu> {
             final int pX = this.leftPos + 53;
             final int pY = this.topPos + 17 + 18 * lane;
             if (this.inside(mouseX, mouseY, pX, pY, 70, 7)) {
-                guiGraphics.renderTooltip(this.font,
-                    List.of(Component.literal(String.format(Locale.US, "%,d / %,dTU", this.menu.progress(lane), this.menu.processTime()))),
-                    Optional.empty(),
-                    mouseX,
-                    mouseY);
+                this.renderMachineTooltip(guiGraphics, List.of(Component.literal(String.format(Locale.US, "%,d / %,dTU", this.menu.progress(lane), this.menu.processTime()))), mouseX, mouseY);
             }
 
             final int bY = this.topPos + 26 + 18 * lane;
             if (this.inside(mouseX, mouseY, pX, bY, 70, 7)) {
-                guiGraphics.renderTooltip(this.font,
-                    List.of(Component.literal("Bonus: " + this.menu.bonus(lane) + "%")),
-                    Optional.empty(),
-                    mouseX,
-                    mouseY);
+                this.renderMachineTooltip(guiGraphics, List.of(Component.literal("Bonus: " + this.menu.bonus(lane) + "%")), mouseX, mouseY);
             }
         }
 
         if (this.inside(mouseX, mouseY, this.leftPos + 151, this.topPos + 18, 9, 50)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(Component.literal(String.format(Locale.US, "%,d / %,dTU", this.menu.heat(), this.menu.maxHeat()))),
-                Optional.empty(),
-                mouseX,
-                mouseY);
+            this.renderMachineTooltip(guiGraphics, List.of(Component.literal(String.format(Locale.US, "%,d / %,dTU", this.menu.heat(), this.menu.maxHeat()))), mouseX, mouseY);
         }
     }
 
@@ -84,3 +72,4 @@ public class FurnaceSteelScreen extends MachineScreenBase<FurnaceSteelMenu> {
         return TEXTURE;
     }
 }
+

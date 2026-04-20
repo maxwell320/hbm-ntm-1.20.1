@@ -2,10 +2,12 @@ package com.hbm.ntm.client.screen;
 
 import com.hbm.ntm.HbmNtmMod;
 import com.hbm.ntm.common.menu.GasCentrifugeMenu;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -70,37 +72,26 @@ public class GasCentrifugeScreen extends MachineScreenBase<GasCentrifugeMenu> {
                 .withStyle(this.menu.inputNeedsSpeedUpgrade()
                     ? (this.menu.hasSpeedUpgrade() ? ChatFormatting.GOLD : ChatFormatting.DARK_RED)
                     : ChatFormatting.WHITE);
-            guiGraphics.renderTooltip(this.font,
-                List.of(
-                    inputName,
-                    Component.literal(this.menu.inputAmount() + " / " + this.menu.tankCapacity() + " mB")),
-                Optional.empty(),
-                mouseX,
-                mouseY);
+            final List<Component> tooltip = new ArrayList<>();
+            tooltip.add(inputName);
+            tooltip.add(Component.literal(this.menu.inputAmount() + " / " + this.menu.tankCapacity() + " mB"));
+            if (this.menu.inputNeedsSpeedUpgrade() && !this.menu.hasSpeedUpgrade()) {
+                tooltip.add(Component.translatable("screen.hbmntm.machine_gascent.warning").withStyle(ChatFormatting.DARK_RED));
+            }
+            this.renderMachineTooltip(guiGraphics, tooltip, mouseX, mouseY);
         }
 
         if (this.inside(mouseX, mouseY, this.leftPos + 137, this.topPos + 15, 25, 55)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(
+            this.renderMachineTooltip(guiGraphics, List.of(
                     Component.translatable(this.menu.outputTypeKey()),
-                    Component.literal(this.menu.outputAmount() + " / " + this.menu.tankCapacity() + " mB")),
-                Optional.empty(),
-                mouseX,
-                mouseY);
+                    Component.literal(this.menu.outputAmount() + " / " + this.menu.tankCapacity() + " mB")), mouseX, mouseY);
         }
 
         this.renderLegacyInfoPanelTooltip(guiGraphics, mouseX, mouseY, this.leftPos - 12, this.topPos + 16, 3,
-            List.of(
-                Component.literal("Enrichment").withStyle(ChatFormatting.GREEN),
-                Component.literal("Uranium enrichment requires cascades."),
-                Component.literal("Two centrifuges produce fuel."),
-                Component.literal("Four centrifuges fully separate U-235.")));
+            this.legacyKeyArrayTooltip("desc.gui.gasCent.enrichment"));
 
         this.renderLegacyInfoPanelTooltip(guiGraphics, mouseX, mouseY, this.leftPos - 12, this.topPos + 32, 2,
-            List.of(
-                Component.literal("Fluid Transfer").withStyle(ChatFormatting.GOLD),
-                Component.literal("Output fluid can be piped into"),
-                Component.literal("another centrifuge for further processing.")));
+            this.legacyKeyArrayTooltip("desc.gui.gasCent.output"));
     }
 
     @Override
@@ -108,4 +99,28 @@ public class GasCentrifugeScreen extends MachineScreenBase<GasCentrifugeMenu> {
         return TEXTURE;
     }
 
+    private List<Component> legacyKeyArrayTooltip(final String key) {
+        final String translated = I18n.get(key);
+        final String[] lines = translated.split("\\$");
+        final List<Component> tooltip = new ArrayList<>(lines.length);
+
+        for (int i = 0; i < lines.length; i++) {
+            final String raw = lines[i];
+            final boolean green = raw.contains("\u00A72");
+            final boolean gold = raw.contains("\u00A76");
+            final String text = raw.replace("\u00A72", "").replace("\u00A76", "").replace("\u00A7r", "");
+
+            if (i == 0 && green) {
+                tooltip.add(Component.literal(text).withStyle(ChatFormatting.GREEN));
+            } else if (i == 0 && gold) {
+                tooltip.add(Component.literal(text).withStyle(ChatFormatting.GOLD));
+            } else {
+                tooltip.add(Component.literal(text));
+            }
+        }
+
+        return tooltip;
+    }
+
 }
+

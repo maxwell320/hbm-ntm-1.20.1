@@ -1,5 +1,7 @@
 # Blender v2.79 (sub 0) OBJ File: 'rotary_furnace.blend'
 # www.blender.org
+mtllib rotary_furnace.mtl
+usemtl texture0
 o Piston
 v -0.375000 2.000000 1.125000
 v -0.375000 2.000000 1.875000

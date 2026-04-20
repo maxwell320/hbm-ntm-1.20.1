@@ -503,12 +503,7 @@ public class HbmBlockStateProvider extends BlockStateProvider {
     }
 
     private void centrifugeBlock(final Block block, final String modelName) {
-        final ModelFile model = models().withExistingParent(modelName, mcLoc("block/orientable_with_bottom"))
-            .texture("particle", modLoc("block/machine_centrifuge"))
-            .texture("front", modLoc("block/machine_centrifuge"))
-            .texture("side", modLoc("block/machine_centrifuge"))
-            .texture("top", modLoc("block/machine_centrifuge"))
-            .texture("bottom", modLoc("block/machine_centrifuge"));
+        final ModelFile model = new ModelFile.ExistingModelFile(modLoc("block/" + modelName + "_obj"), existingFileHelper);
 
         getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder()
             .modelFile(model)
@@ -540,12 +535,7 @@ public class HbmBlockStateProvider extends BlockStateProvider {
     }
 
     private void cyclotronBlock(final Block block, final String modelName) {
-        final ModelFile model = models().withExistingParent(modelName, mcLoc("block/orientable_with_bottom"))
-            .texture("particle", modLoc("block/machine_cyclotron"))
-            .texture("front", modLoc("block/machine_cyclotron"))
-            .texture("side", modLoc("block/machine_cyclotron"))
-            .texture("top", modLoc("block/machine_cyclotron"))
-            .texture("bottom", modLoc("block/machine_cyclotron"));
+        final ModelFile model = new ModelFile.ExistingModelFile(modLoc("block/" + modelName + "_obj"), existingFileHelper);
 
         getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder()
             .modelFile(model)
@@ -582,12 +572,7 @@ public class HbmBlockStateProvider extends BlockStateProvider {
     }
 
     private void icfBlock(final Block block, final String modelName) {
-        final ModelFile model = models().withExistingParent(modelName, mcLoc("block/orientable_with_bottom"))
-            .texture("particle", modLoc("block/block_steel"))
-            .texture("front", modLoc("block/block_steel"))
-            .texture("side", modLoc("block/block_steel"))
-            .texture("top", modLoc("block/block_steel"))
-            .texture("bottom", modLoc("block/block_steel"));
+        final ModelFile model = new ModelFile.ExistingModelFile(modLoc("block/" + modelName + "_obj"), existingFileHelper);
 
         getVariantBuilder(block).forAllStates(state -> ConfiguredModel.builder()
             .modelFile(model)

@@ -59,9 +59,8 @@ public class DiFurnaceScreen extends MachineScreenBase<DiFurnaceMenu> {
                 default -> this.menu.sideFuel();
             };
             final int tooltipY = mouseY - (slot.hasItem() ? 15 : 0);
-            guiGraphics.renderTooltip(this.font,
+            this.renderMachineTooltip(guiGraphics,
                 List.of(Component.literal("Accepts items from: " + this.directionName(raw)).withStyle(ChatFormatting.YELLOW)),
-                Optional.empty(),
                 mouseX,
                 tooltipY);
             return;

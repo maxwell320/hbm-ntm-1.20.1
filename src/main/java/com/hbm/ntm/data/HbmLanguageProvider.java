@@ -23,14 +23,28 @@ import com.hbm.ntm.common.registration.HbmBlocks;
 import com.hbm.ntm.common.registration.HbmFluids;
 import com.hbm.ntm.common.registration.HbmItems;
 import com.hbm.ntm.common.registration.HbmMobEffects;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.BlockItem;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.minecraftforge.registries.RegistryObject;
 
 @SuppressWarnings("null")
 public class HbmLanguageProvider extends LanguageProvider {
+    private final Set<String> trackedKeys = new HashSet<>();
+
     public HbmLanguageProvider(final PackOutput output) {
         super(output, HbmNtmMod.MOD_ID, "en_us");
+    }
+
+    @Override
+    public void add(final String key, final String value) {
+        super.add(key, value);
+        trackedKeys.add(key);
     }
 
     @Override
@@ -103,6 +117,7 @@ public class HbmLanguageProvider extends LanguageProvider {
         add("fluid.hbmntm.fishoil", "Fish Oil");
         add("fluid.hbmntm.sunfloweroil", "Sunflower Seed Oil");
         add("fluid.hbmntm.nitroglycerin", "Nitroglycerin");
+        add("hbmfluid.none", "None");
         add("fluid.hbmntm.chlorocalcite_solution", "Chlorocalcite Solution");
         add("fluid.hbmntm.chlorocalcite_mix", "Mixed Chlorocalcite Solution");
         add("fluid.hbmntm.chlorocalcite_cleaned", "Cleaned Chlorocalcite Solution");
@@ -236,6 +251,17 @@ public class HbmLanguageProvider extends LanguageProvider {
         add(Objects.requireNonNull(HbmBlocks.MACHINE_GAS_CENTRIFUGE.get()), "Gas Centrifuge");
         add(Objects.requireNonNull(HbmBlocks.MACHINE_CYCLOTRON.get()), "Cyclotron");
         add(Objects.requireNonNull(HbmBlocks.MACHINE_PUREX.get()), "PUREX");
+        add("desc.gui.gasCent.enrichment", "\u00A72Enrichment\u00A7r$Uranium enrichment requires cascades.$Two-centrifuge cascades will give$uranium fuel, four-centrifuge cascades$will give total separation.");
+        add("desc.gui.gasCent.output", "\u00A76Fluid Transfer\u00A7r$Fluid can be transferred to another centrifuge$via the output port for further processing.");
+        add("desc.gui.rtg.heat", "\u00A7eCurrent heat level: %s");
+        add("desc.gui.rtg.pellets", "Accepted Pellets:");
+        add("desc.gui.rtg.pelletHeat", "%s (%s heat)");
+        add("desc.gui.rtg.pelletPower", "%s (%s HE/tick)");
+        add("desc.gui.rtgBFurnace.desc", "Requires at least 15 heat to process$The more heat on top of that, the faster it runs$Heat going over maximum speed will have no effect$Short-lived pellets may decay");
+        add("desc.gui.upgrade", "\u00A7lAcceptable Upgrades:\u00A7r");
+        add("desc.gui.upgrade.speed", " * \u00A74Speed\u00A7r: Stacks to level 3");
+        add("desc.gui.upgrade.power", " * \u00A71Power-Saving\u00A7r: Stacks to level 3");
+        add("desc.gui.upgrade.effectiveness", " * \u00A7aEffectiveness\u00A7r: Stacks to level 3");
         add(Objects.requireNonNull(HbmBlocks.MACHINE_ICF.get()), "Inertial Confinement Fusion Reactor");
         add(Objects.requireNonNull(HbmBlocks.MACHINE_ICF_CONTROLLER.get()), "ICF Laser Controller");
         add(Objects.requireNonNull(HbmBlocks.MACHINE_ICF_LASER_COMPONENT.get()), "ICF Laser Component");
@@ -563,10 +589,12 @@ public class HbmLanguageProvider extends LanguageProvider {
             add(Objects.requireNonNull(HbmItems.getStamp(type).get()), type.displayName());
         }
 
+        add("item.hbmntm.stamp_book", "Printing Press Stamp");
         for (final PrintingStampType type : PrintingStampType.values()) {
             add("item.hbmntm.stamp_book." + type.translationSuffix(), type.displayName());
         }
 
+        add("item.hbmntm.page_of_", "Page");
         for (final PageItemType type : PageItemType.values()) {
             add("item.hbmntm.page_of_." + type.translationSuffix(), type.displayName());
         }
@@ -597,6 +625,36 @@ public class HbmLanguageProvider extends LanguageProvider {
 
         for (final NetherOreType type : NetherOreType.values()) {
             add(Objects.requireNonNull(HbmBlocks.getNetherOre(type).get()), type.displayName());
+        }
+
+        validateCoverage();
+    }
+
+    private void validateCoverage() {
+        final List<String> missing = new ArrayList<>();
+        final String prefix = "." + HbmNtmMod.MOD_ID + ".";
+        for (final RegistryObject<net.minecraft.world.level.block.Block> ro : HbmBlocks.BLOCKS.getEntries()) {
+            final String key = "block" + prefix + ro.getId().getPath();
+            if (!trackedKeys.contains(key)) {
+                missing.add(key);
+            }
+        }
+        for (final RegistryObject<net.minecraft.world.item.Item> ro : HbmItems.ITEMS.getEntries()) {
+            if (ro.get() instanceof BlockItem) {
+                continue;
+            }
+            final String key = "item" + prefix + ro.getId().getPath();
+            if (!trackedKeys.contains(key)) {
+                missing.add(key);
+            }
+        }
+        if (!missing.isEmpty()) {
+            final StringBuilder sb = new StringBuilder();
+            sb.append("HbmLanguageProvider missing ").append(missing.size()).append(" translation keys:\n");
+            for (final String key : missing) {
+                sb.append("  ").append(key).append('\n');
+            }
+            throw new IllegalStateException(sb.toString());
         }
     }
 }

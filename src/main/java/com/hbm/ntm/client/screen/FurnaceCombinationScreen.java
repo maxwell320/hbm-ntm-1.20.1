@@ -44,31 +44,16 @@ public class FurnaceCombinationScreen extends MachineScreenBase<FurnaceCombinati
     @Override
     protected void renderMachineLabels(final GuiGraphics guiGraphics, final int mouseX, final int mouseY) {
         if (this.inside(mouseX, mouseY, this.leftPos + 44, this.topPos + 36, 39, 7)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(Component.literal(String.format(Locale.US, "%,d / %,dTU", this.menu.progress(), this.menu.processTime()))),
-                Optional.empty(),
-                mouseX,
-                mouseY);
+            this.renderMachineTooltip(guiGraphics, List.of(Component.literal(String.format(Locale.US, "%,d / %,dTU", this.menu.progress(), this.menu.processTime()))), mouseX, mouseY);
         }
 
         if (this.inside(mouseX, mouseY, this.leftPos + 44, this.topPos + 45, 39, 7)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(Component.literal(String.format(Locale.US, "%,d / %,dTU", this.menu.heat(), this.menu.maxHeat()))),
-                Optional.empty(),
-                mouseX,
-                mouseY);
+            this.renderMachineTooltip(guiGraphics, List.of(Component.literal(String.format(Locale.US, "%,d / %,dTU", this.menu.heat(), this.menu.maxHeat()))), mouseX, mouseY);
         }
 
-        if (this.inside(mouseX, mouseY, this.leftPos + 118, this.topPos + 18, 16, 52)) {
-            final List<Component> tooltip = new java.util.ArrayList<>();
-            if (this.menu.tankAmount() <= 0) {
-                tooltip.add(Component.literal("Empty"));
-            } else {
-                tooltip.add(Component.literal(this.menu.tankName()));
-                tooltip.add(Component.literal(this.menu.tankAmount() + " / " + this.menu.tankCapacity() + " mB"));
-            }
-            guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
-        }
+        this.renderFluidTooltip(guiGraphics, mouseX, mouseY,
+            this.leftPos + 118, this.topPos + 18, 16, 52,
+            this.menu.tankName(), this.menu.tankAmount(), this.menu.tankCapacity());
     }
 
     @Override
@@ -76,3 +61,4 @@ public class FurnaceCombinationScreen extends MachineScreenBase<FurnaceCombinati
         return TEXTURE;
     }
 }
+

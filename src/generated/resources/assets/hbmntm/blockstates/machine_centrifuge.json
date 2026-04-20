@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=east": {
-      "model": "hbmntm:block/machine_centrifuge",
+      "model": "hbmntm:block/machine_centrifuge_obj",
       "y": 90
     },
     "facing=north": {
-      "model": "hbmntm:block/machine_centrifuge"
+      "model": "hbmntm:block/machine_centrifuge_obj"
     },
     "facing=south": {
-      "model": "hbmntm:block/machine_centrifuge",
+      "model": "hbmntm:block/machine_centrifuge_obj",
       "y": 180
     },
     "facing=west": {
-      "model": "hbmntm:block/machine_centrifuge",
+      "model": "hbmntm:block/machine_centrifuge_obj",
       "y": 270
     }
   }

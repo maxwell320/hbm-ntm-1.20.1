@@ -247,7 +247,7 @@ public final class HbmMaterials {
         .withItemId(HbmMaterialShape.INGOT, "ingot_schraranium")
         .withItemId(HbmMaterialShape.CRYSTAL, "crystal_schraranium");
     public static final HbmMaterialDefinition GH336 = HbmMaterialDefinition.of("gh336", "Ghiorsium-336", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET);
-    public static final HbmMaterialDefinition LEAD = HbmMaterialDefinition.of("lead", "Lead", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL, HbmMaterialShape.WIRE, HbmMaterialShape.PLATE)
+    public static final HbmMaterialDefinition LEAD = HbmMaterialDefinition.of("lead", "Lead", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.DUST, HbmMaterialShape.CRYSTAL, HbmMaterialShape.WIRE, HbmMaterialShape.PLATE, HbmMaterialShape.CAST_PLATE)
         .withItemId(HbmMaterialShape.DUST, "powder_lead")
         .withItemId(HbmMaterialShape.CRYSTAL, "crystal_lead");
     public static final HbmMaterialDefinition BISMUTH = HbmMaterialDefinition.of("bismuth", "Bismuth", HbmMaterialShape.INGOT, HbmMaterialShape.NUGGET, HbmMaterialShape.BILLET, HbmMaterialShape.DUST)

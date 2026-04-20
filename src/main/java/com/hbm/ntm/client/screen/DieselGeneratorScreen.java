@@ -58,7 +58,6 @@ public class DieselGeneratorScreen extends MachineScreenBase<DieselGeneratorMenu
             this.topPos + 17,
             16,
             52,
-            "Fuel",
             this.menu.fuelName(),
             this.menu.fuel(),
             this.menu.fuelCapacity());

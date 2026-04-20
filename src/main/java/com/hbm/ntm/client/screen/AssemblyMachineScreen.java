@@ -79,32 +79,28 @@ public class AssemblyMachineScreen extends MachineScreenBase<AssemblyMachineMenu
         if (this.inside(mouseX, mouseY, this.leftPos + 8, this.topPos + 99, 52, 16)) {
             final List<Component> tooltip = new ArrayList<>();
             if (this.menu.inputAmount() <= 0) {
-                tooltip.add(Component.literal("Empty"));
+                tooltip.add(Component.translatable("hbmfluid.none"));
             } else {
                 tooltip.add(Component.literal(this.menu.inputFluid()));
-                tooltip.add(Component.literal(this.menu.inputAmount() + " / " + this.menu.inputCapacity() + " mB"));
+                tooltip.add(Component.literal(this.menu.inputAmount() + "/" + this.menu.inputCapacity() + "mB"));
             }
-            guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
+            this.renderMachineTooltip(guiGraphics, tooltip, mouseX, mouseY);
         }
         if (this.inside(mouseX, mouseY, this.leftPos + 80, this.topPos + 99, 52, 16)) {
             final List<Component> tooltip = new ArrayList<>();
             if (this.menu.outputAmount() <= 0) {
-                tooltip.add(Component.literal("Empty"));
+                tooltip.add(Component.translatable("hbmfluid.none"));
             } else {
                 tooltip.add(Component.literal(this.menu.outputFluid()));
-                tooltip.add(Component.literal(this.menu.outputAmount() + " / " + this.menu.outputCapacity() + " mB"));
+                tooltip.add(Component.literal(this.menu.outputAmount() + "/" + this.menu.outputCapacity() + "mB"));
             }
-            guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
+            this.renderMachineTooltip(guiGraphics, tooltip, mouseX, mouseY);
         }
         if (this.inside(mouseX, mouseY, this.leftPos + 7, this.topPos + 125, 18, 18)) {
             if (selectedRecipe.isPresent()) {
-                guiGraphics.renderTooltip(this.font, this.recipeTooltip(selectedRecipe.get()), Optional.empty(), mouseX, mouseY);
+                this.renderMachineTooltip(guiGraphics, this.recipeTooltip(selectedRecipe.get()), mouseX, mouseY);
             } else {
-                guiGraphics.renderTooltip(this.font,
-                    List.of(Component.literal("Set recipe").withStyle(ChatFormatting.YELLOW)),
-                    Optional.empty(),
-                    mouseX,
-                    mouseY);
+                this.renderMachineTooltip(guiGraphics, List.of(Component.literal("Set recipe").withStyle(ChatFormatting.YELLOW)), mouseX, mouseY);
             }
         }
     }
@@ -152,3 +148,4 @@ public class AssemblyMachineScreen extends MachineScreenBase<AssemblyMachineMenu
         return TEXTURE;
     }
 }
+

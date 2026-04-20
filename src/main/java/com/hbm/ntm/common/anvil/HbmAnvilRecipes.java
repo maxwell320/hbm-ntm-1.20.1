@@ -55,7 +55,7 @@ public final class HbmAnvilRecipes {
             List.of(
                 ingredient(Ingredient.of(Items.STONE_BRICKS), 8),
                 ingredient(Ingredient.of(Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.FIREBRICK, HbmMaterialShape.INGOT).get())), 16),
-                ingredient(Ingredient.of(Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.IRON, HbmMaterialShape.INGOT).get())), 4),
+                ingredient(Ingredient.of(Items.IRON_INGOT), 4),
                 ingredient(Ingredient.of(Objects.requireNonNull(HbmItems.getMaterialPart(HbmMaterials.COPPER, HbmMaterialShape.PLATE).get())), 8)
             ),
             NtmAnvilBlock.TIER_STEEL)

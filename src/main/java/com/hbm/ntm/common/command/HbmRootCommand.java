@@ -13,12 +13,22 @@ import com.hbm.ntm.common.transfer.TransferNodeProvider;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.FloatArgumentType;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -27,32 +37,45 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.loading.FMLPaths;
 
 @Mod.EventBusSubscriber(modid = HbmNtmMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 @SuppressWarnings("null")
 public final class HbmRootCommand {
+    private static final DateTimeFormatter DEBUG_STAMP = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
     private static final SuggestionProvider<CommandSourceStack> POLLUTION_TYPE_SUGGESTIONS =
         (context, builder) -> SharedSuggestionProvider.suggest(new String[]{"soot", "heavy_metal", "poison"}, builder);
+    private static final SuggestionProvider<CommandSourceStack> DIRECTION_SUGGESTIONS =
+        (context, builder) -> SharedSuggestionProvider.suggest(new String[]{"north", "south", "west", "east"}, builder);
     private static final DynamicCommandExceptionType INVALID_POLLUTION_TYPE =
         new DynamicCommandExceptionType(type -> Component.literal("Unknown pollution type: " + type));
+    private static final DynamicCommandExceptionType INVALID_DIRECTION =
+        new DynamicCommandExceptionType(direction -> Component.literal("Unknown direction: " + direction));
 
     private HbmRootCommand() {
     }
@@ -190,7 +213,73 @@ public final class HbmRootCommand {
                     .then(Commands.argument("radius", FloatArgumentType.floatArg(1.0F, 256.0F))
                         .executes(context -> debugEntities(context,
                             BlockPosArgument.getLoadedBlockPos(context, "pos"),
-                            FloatArgumentType.getFloat(context, "radius"))))));
+                            FloatArgumentType.getFloat(context, "radius"))))))
+            .then(inventoryDebugCommand());
+    }
+
+    private static LiteralArgumentBuilder<CommandSourceStack> inventoryDebugCommand() {
+        final LiteralArgumentBuilder<CommandSourceStack> inventory = Commands.literal("inventory");
+
+        inventory.then(Commands.literal("scan")
+            .executes(context -> debugInventoryScan(context, false))
+            .then(Commands.literal("nbt")
+                .executes(context -> debugInventoryScan(context, true))));
+
+        final LiteralArgumentBuilder<CommandSourceStack> placeLine = Commands.literal("place_line")
+            .executes(context -> debugInventoryPlaceLine(
+                context,
+                sourcePos(context).relative(sourceFacing(context), 2),
+                sourceFacing(context),
+                3,
+                false))
+            .then(Commands.argument("spacing", IntegerArgumentType.integer(1, 16))
+                .executes(context -> debugInventoryPlaceLine(
+                    context,
+                    sourcePos(context).relative(sourceFacing(context), 2),
+                    sourceFacing(context),
+                    IntegerArgumentType.getInteger(context, "spacing"),
+                    false))
+                .then(Commands.argument("replace", BoolArgumentType.bool())
+                    .executes(context -> debugInventoryPlaceLine(
+                        context,
+                        sourcePos(context).relative(sourceFacing(context), 2),
+                        sourceFacing(context),
+                        IntegerArgumentType.getInteger(context, "spacing"),
+                        BoolArgumentType.getBool(context, "replace")))));
+
+        placeLine.then(Commands.literal("at")
+            .then(Commands.argument("pos", BlockPosArgument.blockPos())
+                .executes(context -> debugInventoryPlaceLine(
+                    context,
+                    BlockPosArgument.getLoadedBlockPos(context, "pos"),
+                    sourceFacing(context),
+                    3,
+                    false))
+                .then(Commands.argument("direction", StringArgumentType.word())
+                    .suggests(DIRECTION_SUGGESTIONS)
+                    .executes(context -> debugInventoryPlaceLine(
+                        context,
+                        BlockPosArgument.getLoadedBlockPos(context, "pos"),
+                        parseDirection(StringArgumentType.getString(context, "direction")),
+                        3,
+                        false))
+                    .then(Commands.argument("spacing", IntegerArgumentType.integer(1, 16))
+                        .executes(context -> debugInventoryPlaceLine(
+                            context,
+                            BlockPosArgument.getLoadedBlockPos(context, "pos"),
+                            parseDirection(StringArgumentType.getString(context, "direction")),
+                            IntegerArgumentType.getInteger(context, "spacing"),
+                            false))
+                        .then(Commands.argument("replace", BoolArgumentType.bool())
+                            .executes(context -> debugInventoryPlaceLine(
+                                context,
+                                BlockPosArgument.getLoadedBlockPos(context, "pos"),
+                                parseDirection(StringArgumentType.getString(context, "direction")),
+                                IntegerArgumentType.getInteger(context, "spacing"),
+                                BoolArgumentType.getBool(context, "replace"))))))));
+
+        inventory.then(placeLine);
+        return inventory;
     }
 
     private static int runHelp(final CommandContext<CommandSourceStack> context) {
@@ -203,7 +292,183 @@ public final class HbmRootCommand {
         source.sendSuccess(() -> Component.literal("/hbm debug machine|transfer|world|worldgen [pos]"), false);
         source.sendSuccess(() -> Component.literal("/hbm debug transfer rebuild [pos]"), false);
         source.sendSuccess(() -> Component.literal("/hbm debug entity [radius] OR [pos] [radius]"), false);
+        source.sendSuccess(() -> Component.literal("/hbm debug inventory scan [nbt]"), false);
+        source.sendSuccess(() -> Component.literal("/hbm debug inventory place_line [spacing] [replace]"), false);
+        source.sendSuccess(() -> Component.literal("/hbm debug inventory place_line at <pos> <direction> [spacing] [replace]"), false);
         return 1;
+    }
+
+    private static int debugInventoryScan(final CommandContext<CommandSourceStack> context,
+                                          final boolean includeNbt) throws CommandSyntaxException {
+        final CommandSourceStack source = context.getSource();
+        final ServerPlayer player = source.getPlayerOrException();
+        final var slots = collectInventorySlots(player);
+        final StringBuilder sb = new StringBuilder(16_384);
+        sb.append("=== HBM inventory scan ===\n");
+        sb.append("timestamp: ").append(stamp()).append('\n');
+        sb.append("player: ").append(player.getScoreboardName()).append('\n');
+        sb.append("dimension: ").append(player.level().dimension().location()).append('\n');
+        sb.append("includeNbt: ").append(includeNbt).append('\n');
+
+        int occupied = 0;
+        int totalItems = 0;
+        final Map<String, Integer> byItem = new LinkedHashMap<>();
+        final Map<String, Integer> bySignature = new LinkedHashMap<>();
+
+        sb.append("\nslot\titem\tcount\tblock\tdisplay\n");
+        for (final InventorySlotRef ref : slots) {
+            final ItemStack stack = ref.stack();
+            if (stack.isEmpty()) {
+                continue;
+            }
+            occupied++;
+            totalItems += stack.getCount();
+            final String itemId = String.valueOf(BuiltInRegistries.ITEM.getKey(stack.getItem()));
+            final boolean block = stack.getItem() instanceof BlockItem;
+            byItem.merge(itemId, stack.getCount(), Integer::sum);
+            bySignature.merge(stackSignature(stack, includeNbt), stack.getCount(), Integer::sum);
+
+            sb.append(ref.slotLabel()).append('\t')
+                .append(itemId).append('\t')
+                .append(stack.getCount()).append('\t')
+                .append(block).append('\t')
+                .append(stack.getHoverName().getString())
+                .append('\n');
+
+            if (includeNbt && stack.hasTag()) {
+                sb.append("  nbt: ").append(truncateTag(stack.getTag())).append('\n');
+            }
+        }
+
+        sb.append("\noccupiedStacks=").append(occupied)
+            .append(" totalItems=").append(totalItems)
+            .append(" uniqueItems=").append(byItem.size())
+            .append(" uniqueSignatures=").append(bySignature.size())
+            .append('\n');
+
+        final String topItems = byItem.entrySet().stream()
+            .sorted((left, right) -> Integer.compare(right.getValue(), left.getValue()))
+            .limit(20)
+            .map(entry -> entry.getKey() + "=" + entry.getValue())
+            .collect(Collectors.joining(", "));
+        sb.append("topItems: ").append(topItems.isBlank() ? "none" : topItems).append('\n');
+
+        final String topSignatures = bySignature.entrySet().stream()
+            .sorted((left, right) -> Integer.compare(right.getValue(), left.getValue()))
+            .limit(20)
+            .map(entry -> entry.getKey() + "=" + entry.getValue())
+            .collect(Collectors.joining(", "));
+        sb.append("topSignatures: ").append(topSignatures.isBlank() ? "none" : topSignatures).append('\n');
+
+        final Path out = writeServerDebugFile("inventory-scan", sb.toString());
+        final int occupiedFinal = occupied;
+        final int totalItemsFinal = totalItems;
+        final int signaturesFinal = bySignature.size();
+        source.sendSuccess(() -> Component.literal("Inventory scan written -> " + out.toAbsolutePath()), false);
+        source.sendSuccess(() -> Component.literal("Stacks/items/signatures: "
+            + occupiedFinal + " / " + totalItemsFinal + " / " + signaturesFinal), false);
+        return occupied;
+    }
+
+    private static int debugInventoryPlaceLine(final CommandContext<CommandSourceStack> context,
+                                               final BlockPos startPos,
+                                               final Direction direction,
+                                               final int spacing,
+                                               final boolean replace) throws CommandSyntaxException {
+        final CommandSourceStack source = context.getSource();
+        final ServerLevel level = source.getLevel();
+        final ServerPlayer player = source.getPlayerOrException();
+        final Direction lineDirection = normalizeHorizontal(direction);
+
+        final Map<String, InventorySlotRef> uniqueBlocks = new LinkedHashMap<>();
+        int ignoredNonBlocks = 0;
+        for (final InventorySlotRef ref : collectInventorySlots(player)) {
+            final ItemStack stack = ref.stack();
+            if (stack.isEmpty()) {
+                continue;
+            }
+            if (!(stack.getItem() instanceof BlockItem)) {
+                ignoredNonBlocks++;
+                continue;
+            }
+            final String signature = stackSignature(stack, true);
+            uniqueBlocks.putIfAbsent(signature, ref);
+        }
+
+        if (uniqueBlocks.isEmpty()) {
+            source.sendSuccess(() -> Component.literal("No placeable BlockItem stacks in inventory."), false);
+            return 0;
+        }
+
+        int placed = 0;
+        int skipped = 0;
+        final StringBuilder report = new StringBuilder(16_384);
+        report.append("=== HBM inventory place line ===\n");
+        report.append("timestamp: ").append(stamp()).append('\n');
+        report.append("player: ").append(player.getScoreboardName()).append('\n');
+        report.append("start: ").append(formatPos(startPos)).append('\n');
+        report.append("direction: ").append(lineDirection.getName()).append('\n');
+        report.append("spacing: ").append(spacing).append(" replace=").append(replace).append('\n');
+        report.append("sourceUniqueBlocks: ").append(uniqueBlocks.size()).append(" ignoredNonBlocks=").append(ignoredNonBlocks).append("\n\n");
+
+        int offsetIndex = 0;
+        for (final InventorySlotRef ref : uniqueBlocks.values()) {
+            final ItemStack stack = ref.stack();
+            if (!(stack.getItem() instanceof final BlockItem blockItem)) {
+                continue;
+            }
+
+            final BlockPos target = startPos.relative(lineDirection, offsetIndex * spacing);
+            offsetIndex++;
+            final Block block = blockItem.getBlock();
+            final String blockId = String.valueOf(BuiltInRegistries.BLOCK.getKey(block));
+
+            if (block == Blocks.AIR) {
+                skipped++;
+                report.append(ref.slotLabel()).append(" -> ").append(formatPos(target))
+                    .append(" : SKIP (air block item) ").append(blockId).append('\n');
+                continue;
+            }
+
+            final BlockState existing = level.getBlockState(target);
+            if (!replace && !existing.isAir()) {
+                skipped++;
+                report.append(ref.slotLabel()).append(" -> ").append(formatPos(target))
+                    .append(" : SKIP (occupied by ")
+                    .append(BuiltInRegistries.BLOCK.getKey(existing.getBlock()))
+                    .append(")\n");
+                continue;
+            }
+
+            final BlockPos below = target.below();
+            if (level.getBlockState(below).isAir()) {
+                level.setBlock(below, Blocks.IRON_BLOCK.defaultBlockState(), 3);
+            }
+
+            final BlockState toPlace = orientState(block.defaultBlockState(), lineDirection);
+            final boolean success = level.setBlock(target, toPlace, 3);
+            if (success) {
+                placed++;
+                report.append(ref.slotLabel()).append(" -> ").append(formatPos(target))
+                    .append(" : OK ")
+                    .append(blockId)
+                    .append(" count=").append(stack.getCount())
+                    .append(" nbt=").append(stack.hasTag())
+                    .append('\n');
+            } else {
+                skipped++;
+                report.append(ref.slotLabel()).append(" -> ").append(formatPos(target))
+                    .append(" : FAIL ").append(blockId).append('\n');
+            }
+        }
+
+        report.append("\nplaced=").append(placed).append(" skipped=").append(skipped).append('\n');
+        final Path out = writeServerDebugFile("inventory-place-line", report.toString());
+        final int placedFinal = placed;
+        final int skippedFinal = skipped;
+        source.sendSuccess(() -> Component.literal("Placed " + placedFinal + " unique blocks in a line (skipped " + skippedFinal + ")"), true);
+        source.sendSuccess(() -> Component.literal("Placement report -> " + out.toAbsolutePath()), false);
+        return placed;
     }
 
     private static int runStatus(final CommandContext<CommandSourceStack> context) {
@@ -565,6 +830,108 @@ public final class HbmRootCommand {
 
     private static BlockPos sourcePos(final CommandContext<CommandSourceStack> context) {
         return BlockPos.containing(context.getSource().getPosition());
+    }
+
+    private static Direction sourceFacing(final CommandContext<CommandSourceStack> context) {
+        return context.getSource().getEntity() instanceof ServerPlayer player
+            ? normalizeHorizontal(player.getDirection())
+            : Direction.NORTH;
+    }
+
+    private static Direction parseDirection(final String raw) throws CommandSyntaxException {
+        final Direction direction = switch (raw.toLowerCase(Locale.ROOT)) {
+            case "north" -> Direction.NORTH;
+            case "south" -> Direction.SOUTH;
+            case "west" -> Direction.WEST;
+            case "east" -> Direction.EAST;
+            default -> null;
+        };
+        if (direction == null) {
+            throw INVALID_DIRECTION.create(raw);
+        }
+        return direction;
+    }
+
+    private static Direction normalizeHorizontal(final Direction direction) {
+        if (direction == null || direction.getAxis().isVertical()) {
+            return Direction.NORTH;
+        }
+        return direction;
+    }
+
+    private static BlockState orientState(final BlockState state, final Direction direction) {
+        final Direction horizontal = normalizeHorizontal(direction);
+        if (state.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
+            return state.setValue(BlockStateProperties.HORIZONTAL_FACING, horizontal);
+        }
+        if (state.hasProperty(BlockStateProperties.FACING)) {
+            if (BlockStateProperties.FACING.getPossibleValues().contains(horizontal)) {
+                return state.setValue(BlockStateProperties.FACING, horizontal);
+            }
+            final Direction opposite = horizontal.getOpposite();
+            if (BlockStateProperties.FACING.getPossibleValues().contains(opposite)) {
+                return state.setValue(BlockStateProperties.FACING, opposite);
+            }
+        }
+        return state;
+    }
+
+    private static java.util.List<InventorySlotRef> collectInventorySlots(final ServerPlayer player) {
+        final java.util.List<InventorySlotRef> slots = new ArrayList<>();
+        final var inventory = player.getInventory();
+        for (int i = 0; i < inventory.items.size(); i++) {
+            final ItemStack stack = inventory.items.get(i);
+            final String section = i < 9 ? "hotbar" : "main";
+            final int sectionIndex = i < 9 ? i : (i - 9);
+            slots.add(new InventorySlotRef(section + "[" + sectionIndex + "]", stack));
+        }
+        for (int i = 0; i < inventory.armor.size(); i++) {
+            slots.add(new InventorySlotRef("armor[" + i + "]", inventory.armor.get(i)));
+        }
+        for (int i = 0; i < inventory.offhand.size(); i++) {
+            slots.add(new InventorySlotRef("offhand[" + i + "]", inventory.offhand.get(i)));
+        }
+        return slots;
+    }
+
+    private static String stackSignature(final ItemStack stack, final boolean includeNbt) {
+        final String itemId = String.valueOf(BuiltInRegistries.ITEM.getKey(stack.getItem()));
+        if (!includeNbt) {
+            return itemId;
+        }
+        final CompoundTag tag = stack.getTag();
+        return itemId + "|nbt=" + (tag == null ? "{}" : tag);
+    }
+
+    private static String truncateTag(final CompoundTag tag) {
+        if (tag == null) {
+            return "{}";
+        }
+        final String raw = tag.toString();
+        if (raw.length() <= 512) {
+            return raw;
+        }
+        return raw.substring(0, 512) + "... (truncated " + (raw.length() - 512) + " chars)";
+    }
+
+    private static Path writeServerDebugFile(final String kind, final String content) {
+        try {
+            final Path dir = FMLPaths.GAMEDIR.get().resolve("hbm-debug");
+            Files.createDirectories(dir);
+            final Path out = dir.resolve(kind + "-" + stamp() + ".txt");
+            Files.writeString(out, content, StandardCharsets.UTF_8,
+                StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+            return out;
+        } catch (final IOException ex) {
+            throw new RuntimeException("Failed to write debug file " + kind + ": " + ex, ex);
+        }
+    }
+
+    private static String stamp() {
+        return LocalDateTime.now().format(DEBUG_STAMP);
+    }
+
+    private record InventorySlotRef(String slotLabel, ItemStack stack) {
     }
 
     private static String formatPos(final BlockPos pos) {

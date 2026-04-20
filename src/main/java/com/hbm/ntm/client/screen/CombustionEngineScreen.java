@@ -69,7 +69,6 @@ public class CombustionEngineScreen extends MachineScreenBase<CombustionEngineMe
             this.topPos + 17,
             16,
             52,
-            "Fuel",
             this.menu.fuelName(),
             this.menu.fuel(),
             this.menu.fuelCapacity());
@@ -85,29 +84,17 @@ public class CombustionEngineScreen extends MachineScreenBase<CombustionEngineMe
             this.menu.maxEnergy());
 
         if (this.inside(mouseX, mouseY, this.leftPos + 89, this.topPos + 13, 16, 14)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(Component.literal("Ignition")),
-                java.util.Optional.empty(),
-                mouseX,
-                mouseY);
+            this.renderMachineTooltip(guiGraphics, List.of(Component.literal("Ignition")), mouseX, mouseY);
         }
 
         if (this.inside(mouseX, mouseY, this.leftPos + 79, this.topPos + 38, 36, 8)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(Component.literal(String.format(Locale.ROOT, "%.1fmB/t", this.menu.setting() * 0.2D))),
-                java.util.Optional.empty(),
-                mouseX,
-                mouseY);
+            this.renderMachineTooltip(guiGraphics, List.of(Component.literal(String.format(Locale.ROOT, "%.1fmB/t", this.menu.setting() * 0.2D))), mouseX, mouseY);
         }
 
         if (this.inside(mouseX, mouseY, this.leftPos + 79, this.topPos + 50, 35, 14)) {
-            guiGraphics.renderTooltip(this.font,
-                List.of(
+            this.renderMachineTooltip(guiGraphics, List.of(
                     Component.literal(String.format(Locale.ROOT, "%d HE/t", this.menu.generation())).withStyle(ChatFormatting.YELLOW),
-                    Component.literal(String.format(Locale.ROOT, "%d HE/s", this.menu.generation() * 20)).withStyle(ChatFormatting.YELLOW)),
-                java.util.Optional.empty(),
-                mouseX,
-                mouseY);
+                    Component.literal(String.format(Locale.ROOT, "%d HE/s", this.menu.generation() * 20)).withStyle(ChatFormatting.YELLOW)), mouseX, mouseY);
         }
     }
 
@@ -152,3 +139,4 @@ public class CombustionEngineScreen extends MachineScreenBase<CombustionEngineMe
         return TEXTURE;
     }
 }
+

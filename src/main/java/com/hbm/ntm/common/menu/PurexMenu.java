@@ -54,7 +54,7 @@ public class PurexMenu extends MachineMenuBase<PurexBlockEntity> {
         this.addSlot(new FilteredSlotItemHandler(handler, PurexBlockEntity.SLOT_BLUEPRINT, 35, 126,
             (slot, stack) -> stack.getItem() instanceof BlueprintItem));
         this.addUpgradeSlot(handler, PurexBlockEntity.SLOT_UPGRADE_1, 152, 108);
-        this.addUpgradeSlot(handler, PurexBlockEntity.SLOT_UPGRADE_2, 170, 108);
+        this.addUpgradeSlot(handler, PurexBlockEntity.SLOT_UPGRADE_2, 152, 126);
 
         this.addSlot(new FilteredSlotItemHandler(handler, PurexBlockEntity.SLOT_INPUT_1, 8, 90,
             (slot, stack) -> this.machine == null || this.machine.isItemValid(slot, stack)));

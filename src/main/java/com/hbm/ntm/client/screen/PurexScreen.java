@@ -99,18 +99,12 @@ public class PurexScreen extends MachineScreenBase<PurexMenu> {
         if (this.inside(mouseX, mouseY, this.leftPos + 7, this.topPos + 125, 18, 18)) {
             final Optional<PurexRecipe> recipe = this.resolveGhostRecipe();
             if (recipe.isPresent()) {
-                guiGraphics.renderTooltip(this.font, this.recipeTooltip(recipe.get()), Optional.empty(), mouseX, mouseY);
+                this.renderMachineTooltip(guiGraphics, this.recipeTooltip(recipe.get()), mouseX, mouseY);
             } else {
-                guiGraphics.renderTooltip(this.font,
-                    List.of(Component.literal("Set recipe").withStyle(ChatFormatting.YELLOW)),
-                    Optional.empty(),
-                    mouseX,
-                    mouseY);
+                this.renderMachineTooltip(guiGraphics, List.of(Component.literal("Set recipe").withStyle(ChatFormatting.YELLOW)), mouseX, mouseY);
             }
         }
 
-        this.renderUpgradeInfoTooltip(guiGraphics, mouseX, mouseY,
-            this.leftPos + 152, this.topPos + 108, 36, 18);
     }
 
     private void renderTankInfo(final GuiGraphics guiGraphics,
@@ -126,12 +120,12 @@ public class PurexScreen extends MachineScreenBase<PurexMenu> {
         }
         final List<Component> tooltip = new java.util.ArrayList<>();
         if (this.menu.fluidAmount(tank) <= 0) {
-            tooltip.add(Component.literal("Empty"));
+            tooltip.add(Component.translatable("hbmfluid.none"));
         } else {
             tooltip.add(Component.literal(this.menu.fluidName(tank)));
-            tooltip.add(Component.literal(this.menu.fluidAmount(tank) + " / " + this.menu.fluidCapacity(tank) + " mB"));
+            tooltip.add(Component.literal(this.menu.fluidAmount(tank) + "/" + this.menu.fluidCapacity(tank) + "mB"));
         }
-        guiGraphics.renderTooltip(this.font, tooltip, Optional.empty(), mouseX, mouseY);
+        this.renderMachineTooltip(guiGraphics, tooltip, mouseX, mouseY);
     }
 
     @Override
@@ -214,3 +208,4 @@ public class PurexScreen extends MachineScreenBase<PurexMenu> {
     }
 
 }
+

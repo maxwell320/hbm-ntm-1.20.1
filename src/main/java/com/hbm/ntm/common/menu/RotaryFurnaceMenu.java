@@ -2,9 +2,11 @@ package com.hbm.ntm.common.menu;
 
 import com.hbm.ntm.common.block.entity.RotaryFurnaceBlockEntity;
 import com.hbm.ntm.common.item.IItemFluidIdentifier;
+import com.hbm.ntm.common.module.ModuleBurnTime;
 import com.hbm.ntm.common.registration.HbmMenuTypes;
 import com.hbm.ntm.common.rotary.HbmRotaryFurnaceRecipes;
 import java.util.List;
+import net.minecraft.network.chat.Component;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -31,8 +33,18 @@ public class RotaryFurnaceMenu extends MachineMenuBase<RotaryFurnaceBlockEntity>
     private static final int DATA_OUTPUT_AMOUNT = 11;
     private static final int DATA_MAX_OUTPUT = 12;
     private static final int DATA_COUNT = 13;
+    private static final List<Component> LEGACY_BURN_BONUSES = List.copyOf(new ModuleBurnTime()
+        .setCokeTimeMod(1.25)
+        .setRocketTimeMod(1.5)
+        .setSolidTimeMod(1.5)
+        .setBalefireTimeMod(1.5)
+        .setSolidHeatMod(1.5)
+        .setRocketHeatMod(3.0)
+        .setBalefireHeatMod(10.0)
+        .getDesc());
 
     private final ContainerData data;
+    private final List<Component> burnBonuses;
 
     private int clientProgressScaled;
     private int clientBurnTime;
@@ -75,6 +87,7 @@ public class RotaryFurnaceMenu extends MachineMenuBase<RotaryFurnaceBlockEntity>
             (slot, stack) -> ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0));
 
         this.addPlayerInventory(inventory, 8, 104);
+        this.burnBonuses = LEGACY_BURN_BONUSES;
 
         this.data = furnace == null
             ? new SimpleContainerData(DATA_COUNT)
@@ -202,6 +215,10 @@ public class RotaryFurnaceMenu extends MachineMenuBase<RotaryFurnaceBlockEntity>
 
     public boolean hasOutputAcceptor() {
         return this.clientHasOutputAcceptor;
+    }
+
+    public List<Component> burnBonuses() {
+        return this.burnBonuses;
     }
 
     public String formattedOutputAmount() {
